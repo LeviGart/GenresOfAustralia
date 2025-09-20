@@ -1,0 +1,113 @@
+body {
+  font-family: sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+td {
+  outline: 2px solid rgba(255, 255, 255, 0); 
+  outline-offset: -2px;
+  transition: outline-color 0.2s ease-out; 
+}
+
+td:hover {
+  outline-color: rgba(255, 255, 255, 0.575); 
+  transition: 0.01s ease-in; 
+  position: relative;
+}
+
+/*
+td {
+  transition: background-color 0.5s ease-out; 
+}
+
+td:hover {
+  background-color: #fff !important; 
+  transition: 0.01s ease-in; 
+}
+*/
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* full viewport height */
+}
+
+/* Modal overlay */
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Modal content box */
+.modal-box {
+  background-color: #222; /* same for all popups */
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 600px;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Close button */
+#modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Responsive video */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  margin-top: 1em;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Toggle button */
+.track-toggle {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.track-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Genre taxonomy badge */
+.genre-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
