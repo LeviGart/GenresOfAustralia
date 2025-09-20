@@ -1,5 +1,5 @@
 // Load JSON file
-d3.json("data/songs.json").then(dataset => {
+d3.json("songs.json").then(dataset => {
   
   const songs = dataset.songs;
   const taxonomy = dataset.taxonomy;
@@ -146,5 +146,6 @@ d3.json("data/songs.json").then(dataset => {
   d3.select("#modal-close").on("click", () => {
     d3.select("#modal").style("display", "none");
   });
+
 
 });
