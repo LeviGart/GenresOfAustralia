@@ -1,5 +1,5 @@
 // Load JSON file
-d3.json("songs.json").then(dataset => {
+d3.json("./songs.json").then(dataset => {
   
   const songs = dataset.songs;
   const taxonomy = dataset.taxonomy;
@@ -149,3 +149,4 @@ d3.json("songs.json").then(dataset => {
 
 
 });
+
