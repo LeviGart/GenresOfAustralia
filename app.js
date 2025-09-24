@@ -11,6 +11,16 @@ d3.json("./songs.json").then(dataset => {
 
   const taxonomyOrder = ["hiphop","dance","soulrnb","rock", "countryfolk","jazztraditionalpop"];
 
+  // Build a set of all genres present in the dataset
+const allGenresSet = new Set();
+songs.forEach(s => {
+  if (s.primarygenre) allGenresSet.add(s.primarygenre.toLowerCase());
+  if (Array.isArray(s.subgenres)) {
+    s.subgenres.forEach(g => allGenresSet.add(g.toLowerCase()));
+  }
+});
+const allGenresList = Array.from(allGenresSet).sort();
+
   // ===== Tooltip =====
   const tooltip = d3.select("body")
     .append("div")
@@ -194,7 +204,7 @@ d3.json("./songs.json").then(dataset => {
 
     let toggleButtonHtml = "";
     if (hasSecondTrack) {
-      const initialLabel = hasSecondTitle ? "Show B-side" : "View other versions";
+      const initialLabel = hasSecondTitle ? "Show B-side" : "View other charting version";
       toggleButtonHtml = `<button class="track-toggle" id="toggle-side">${initialLabel}</button>`;
     }
 
@@ -223,12 +233,12 @@ d3.json("./songs.json").then(dataset => {
           currentSide = "B";
           currentTrack = song.tracks[1];
           d3.select("#video-container").html(videoHtml(currentTrack));
-          d3.select(this).text(hasSecondTitle ? "Show A-side" : "View original version");
+          d3.select(this).text(hasSecondTitle ? "Show A-side" : "View other charting version");
         } else {
           currentSide = "A";
           currentTrack = song.tracks[0];
           d3.select("#video-container").html(videoHtml(currentTrack));
-          d3.select(this).text(hasSecondTitle ? "Show B-side" : "View other versions");
+          d3.select(this).text(hasSecondTitle ? "Show B-side" : "View other charting version");
         }
       });
     }
@@ -263,7 +273,22 @@ d3.json("./songs.json").then(dataset => {
       showGenrePanel(genreKey);
     });
   }
+function renderFeaturedGenresList() {
+  return Object.entries(genres)
+    .filter(([key, g]) => g.description && g.description.trim() !== "")
+    .map(([gKey, g]) => `<li class="clickable-genre" data-genre="${gKey}">${g.label}</li>`)
+    .join("");
+}
 
+function renderAllGenresList() {
+  return allGenresList
+    .map(gKey => {
+      // If this genre has a manual entry, use its label, else just show the raw string
+      const g = genres[gKey];
+      return `<li class="clickable-genre" data-genre="${gKey}">${g ? g.label : gKey}</li>`;
+    })
+    .join("");
+}
   // ===== Side Panel: Taxonomy view =====
   function showTaxonomyPanel(taxKey) {
     const info = taxonomy[taxKey];
@@ -276,15 +301,24 @@ d3.json("./songs.json").then(dataset => {
         }).join(", ")
       : "None listed";
 
-    const allGenresHtml = renderAllGenresList();
+
+// genre taxonomy side panel
+    const featuredHtml = renderFeaturedGenresList();
+    const allHtml = renderAllGenresList();
 
     d3.select("#side-panel-body").html(`
-      <h2>${info.label}</h2>
       <div class="genre-badge" style="background-color:${info.color}">${info.label}</div>
       <p>${info.description || ""}</p>
+      <br>
       <p><strong>Related genres:</strong> ${relatedHtml}</p>
-      <h4>All genres in dataset:</h4>
-      <ul>${allGenresHtml}</ul>
+      <br>
+      <h4>'''complete''' genres in dataset:</h4>
+      <br>
+      <ul>${featuredHtml}</ul>
+      <br>
+      <h4>Complete list</h4>
+      <br>
+      <ul>${allHtml}</ul>
     `);
 
     openSidePanel();
@@ -307,13 +341,25 @@ d3.json("./songs.json").then(dataset => {
 
     const allGenresHtml = renderAllGenresList();
 
+// individual genre side panel
+    const featuredHtml = renderFeaturedGenresList();
+    const allHtml = renderAllGenresList();
+
     d3.select("#side-panel-body").html(`
       <h2>${g.label}</h2>
+      <br>
       <div>${taxBadge}</div>
       <p>${g.description || ""}</p>
+      <br>
       <p><strong>Related genres:</strong> ${relatedHtml}</p>
-      <h4>All genres in dataset:</h4>
-      <ul>${allGenresHtml}</ul>
+      <br>
+      <h4>'''complete''' genres in dataset:</h4>
+      <br>
+      <ul>${featuredHtml}</ul>
+      <br>
+      <h4>Complete list</h4>
+      <br>
+      <ul>${allHtml}</ul>
     `);
 
     openSidePanel();
