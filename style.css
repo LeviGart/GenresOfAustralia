@@ -22,7 +22,6 @@ td:hover {
   height: auto;     /*could cut for scaling browser, keep all the cells the same */ 
 }
 
-/* Modal overlay */
 #modal {
   display: none;
   position: fixed;
@@ -32,7 +31,6 @@ td:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
-/* Modal content box */
 .modal-box {
   background-color: #222;
   margin: 5% auto;
@@ -45,7 +43,6 @@ td:hover {
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-/* Close button */
 #modal-close {
   position: absolute;
   top: 10px;
@@ -55,7 +52,6 @@ td:hover {
   cursor: pointer;
 }
 
-/* Responsive video */
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -70,7 +66,6 @@ td:hover {
   height: 100%;
 }
 
-/* Controls under video */
 .modal-controls {
   display: flex;
   justify-content: space-between;
@@ -94,7 +89,6 @@ td:hover {
   background: rgba(255,255,255,0.2);
 }
 
-/* Genre taxonomy badge */
 .genre-badge {
   display: inline-block;
   padding: 4px 8px;
@@ -198,8 +192,8 @@ td:hover {
   font-size: 14px;
 }
 
-/* Add underline when the radio is checked */
 .sort-controls input[type="radio"]:checked + span,
 .sort-controls input[type="radio"]:checked + label {
   text-decoration: underline;
 }
+
