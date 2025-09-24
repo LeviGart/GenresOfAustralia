@@ -31,7 +31,7 @@
   "tracks": [
     {
       "title": "Pretend",
-      "youtubeId": "ciS5GikZ5Jo"
+      "youtubeId": "CC0RanPRr_0"
     },
     {
       "title": null,
@@ -215,7 +215,7 @@
   "tracks": [
     {
       "title": "Ebb Tide",
-      "youtubeId": "VATF93NMujk"
+      "youtubeId": "rFDHJBISn5Q"
     },
     {
       "title": null,
@@ -330,7 +330,7 @@
   "tracks": [
     {
       "title": "I Need You Now",
-      "youtubeId": "BdAcH8QQZJ4"
+      "youtubeId": "K9cTWMF-jLo"
     },
     {
       "title": null,
@@ -380,7 +380,7 @@
     },
     {
       "title": null,
-      "youtubeId": "kesfyzSl7ZU"
+      "youtubeId": "hzseIGaFGHw"
     }
   ],
   "artists": ["The Chordettes", "The Four Aces"],
@@ -399,7 +399,7 @@
   "tracks": [
     {
       "title": "Let Me Go, Lover",
-      "youtubeId": "9xrYc3Kfft4"
+      "youtubeId": "eYCFXDoFhSY"
     },
     {
       "title": null,
@@ -445,7 +445,7 @@
   "tracks": [
     {
       "title": "Cherry Pink and Apple Blossom White",
-      "youtubeId": "zj64NlRnpDY"
+      "youtubeId": "pqk3F1pPjyA"
     },
     {
       "title": null,
@@ -560,7 +560,7 @@
   "tracks": [
     {
       "title": "Memories Are Made of This",
-      "youtubeId": "KqVUwJvde44"
+      "youtubeId": "wKYwqqhqaxM"
     },
     {
       "title": null,
@@ -606,7 +606,7 @@
   "tracks": [
     {
       "title": "The Great Pretender",
-      "youtubeId": "rwfmbXJEBtY"
+      "youtubeId": "BDGmJlvn0e0"
     },
     {
       "title": null,
@@ -675,7 +675,7 @@
   "tracks": [
     {
       "title": "Hot Diggity (Dog Ziggity Boom)",
-      "youtubeId": "1jVECp5Dzp4"
+      "youtubeId": "YsZD019foKY"
     },
     {
       "title": null,
@@ -698,7 +698,7 @@
   "tracks": [
     {
       "title": "Around The World",
-      "youtubeId": "Qk51-vjcZ-Y"
+      "youtubeId": "zOGTWGjoM6k"
     },
     {
       "title": null,
@@ -16338,7 +16338,7 @@
     "jazztraditionalpop": {
       "label": "Jazz & Traditional Pop",
       "color": "#e6bb21",
-      "description": "Pre-rock pop, jazz standards, crooners...",
+      "description": "...",
       "related": ["easylistening", "folk"]
       
     },
@@ -16351,19 +16351,19 @@
     "rock": {
       "label": "Rock",
       "color": "#dd3b40",
-      "description": "Rock and roll...",
+      "description": "...",
       "subgenres": ["Rock & Roll", "alt rock", "punk", "indie"]
     },
     "soulrnb": {
       "label": "Soul & R&B",
       "color": "#882e86",
-      "description": "Contemporary R&B...",
+      "description": "...",
       "subgenres": ["motown", "neo soul", "contemporary R&B"]
     },
     "dance": {
       "label": "Dance & Electronic",
       "color": "#3770b8",
-      "description": "Disco...",
+      "description": "...",
       "subgenres": ["house", "techno", "disco", "EDM"]
     },
     "hiphop": {
@@ -16377,19 +16377,19 @@
     "country": {
       "label": "Country",
       "taxonomy": "countryfolk",
-      "description": "Traditional and modern country music.",
+      "description": "...",
       "related": ["folk", "bluegrass"]
     },
     "folk": {
       "label": "Folk",
       "taxonomy": "countryfolk",
-      "description": "Acoustic, narrative-driven music.",
+      "description": "...",
       "related": ["country", "singersongwriter"]
     },
     "jazz": {
       "label": "Jazz",
       "taxonomy": "jazztraditionalpop",
-      "description": "Improvisational, swing, bebop, etc.",
+      "description": "...",
       "related": ["blues", "soul"]
     }
   }
