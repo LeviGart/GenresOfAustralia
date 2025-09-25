@@ -2825,7 +2825,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
   "primarygenre": "Psychedelic Pop",
-  "subgenres": ["Baroque Pop", "Pop Rock", "Folk Pop", "Music Hall", "Art Pop"],
+  "subgenres": ["Baroque Pop", "Pop Rock", "Folk Pop", "Music Hall", "Art Pop", "Children's Music"],
   "peakPos": 1,
   "weeksOnChart": 8
 },
@@ -3227,145 +3227,145 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hey Jude",
+      "youtubeId": "A_MjCqQoLLA"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Revolution",
+      "youtubeId": "BGLGzRXY5Bw"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Symphonic Rock","Piano Rock",""],
+  "peakPos": 1,
+  "weeksOnChart": 13
 },
 {
   "id": "1968-2",
   "chartYear": 1968,
-  "releaseYear": 1968,
-  "rank": 1,
+  "releaseYear": 1967,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Sadie (The Cleaning Lady)",
+      "youtubeId": "r0c55lXRAeg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Johnny Farnham"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Novelty",
+  "subgenres": ["Traditional Pop","Music Hall"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1968-3",
   "chartYear": 1968,
-  "releaseYear": 1968,
-  "rank": 1,
+  "releaseYear": 1967,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love is Blue",
+      "youtubeId": "Y_tPE3o5NWk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Paul Mauriat"],
+  "countryCode": ["France"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Easy Listening",
+  "subgenres": ["Baroque Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1968-4",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Honey",
+      "youtubeId": "hDqqAp11wgI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bobby Goldsboro"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Easy Listening",
+  "subgenres": ["Traditional Pop","Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1968-5",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Unicorn",
+      "youtubeId": "_EPsuOEH1fY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Irish Rovers"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Irish Folk Music", "Children's Music"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1968-6",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Those Were the Days",
+      "youtubeId": "JnxTT7XXMPA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Mary Hopkin"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Russian Romance"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1968-7",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Little Arrows",
       "youtubeId": "a"
     },
     {
@@ -3373,36 +3373,36 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "artists": ["Leapy Lee"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "subgenres": ["Bubblegum", "Psychedelic Pop],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1968-8",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Orange and the Green",
+      "youtubeId": "tfladPfvMrs"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Whiskey on a Sunday",
+      "youtubeId": "Xna3vgVqe7s"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Irish Rovers"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Contemporary Folk",
+  "subgenres": ["Celtic Folk Music", "Irish Folk Music"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1968-9",
@@ -16394,6 +16394,7 @@
     }
   }
 }
+
 
 
 
