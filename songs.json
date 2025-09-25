@@ -3101,7 +3101,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
   "primarygenre": "Psychedelic Pop",
-  "subgenres": ["Pop Rock", "Progressive Pop", "Baroque Pop", Psychedelic Rock", "Art Pop", "Music Hall", "Toytown Pop"],
+  "subgenres": ["Pop Rock", "Progressive Pop", "Baroque Pop", "Psychedelic Rock", "Art Pop", "Music Hall", "Toytown Pop"],
   "peakPos": 1,
   "weeksOnChart": 5
 },
@@ -16394,5 +16394,6 @@
     }
   }
 }
+
 
 
