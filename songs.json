@@ -3377,7 +3377,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Bubblegum", "Psychedelic Pop],
+  "subgenres": ["Bubblegum", "Psychedelic Pop"],
   "peakPos": 2,
   "weeksOnChart": null
 },
@@ -16394,6 +16394,7 @@
     }
   }
 }
+
 
 
 
