@@ -3017,208 +3017,208 @@
   "id": "1967-2",
   "chartYear": 1967,
   "releaseYear": 1967,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "This Is My Song",
+      "youtubeId": "V8XmLuTmKIM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "artists": ["Petula Clark"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Baroque Pop", "Italian Folk Music", "Sunshine Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1967-3",
   "chartYear": 1967,
-  "releaseYear": 1967,
-  "rank": 1,
+  "releaseYear": 1966,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Snoopy Vs. The Red Baron",
+      "youtubeId": "icsHJhMeXYo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Royal Guardsmen"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Novelty",
+  "subgenres": ["Bubblegum", "Marching Band", "Garage Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1967-4",
   "chartYear": 1967,
-  "releaseYear": 1967,
-  "rank": 1,
+  "releaseYear": 1966,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Green, Green Grass of Home",
+      "youtubeId": "EmT1ptv3VEc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Tom Jones"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Soul",
+  "subgenres": ["Blue-Eyed Soul", "Traditional Pop", "Countrypolitan"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1967-5",
   "chartYear": 1967,
   "releaseYear": 1967,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Penny Lane",
+      "youtubeId": "S-rB0pHI9fU"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Strawberry Fields Forever",
+      "youtubeId": "HtUH9z_Oey8"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Psychedelic Pop",
+  "subgenres": ["Pop Rock", "Progressive Pop", "Baroque Pop", Psychedelic Rock", "Art Pop", "Music Hall", "Toytown Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1967-6",
   "chartYear": 1967,
   "releaseYear": 1967,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Somethin' Stupid",
+      "youtubeId": "LWXUdqvVO8Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Nancy Sinatra", "Frank Sinatra"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Bolero", "Swing", "Lounge", "Easy Listening" ],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1967-7",
   "chartYear": 1967,
-  "releaseYear": 1967,
-  "rank": 1,
+  "releaseYear": 1966,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Georgy Girl",
+      "youtubeId": "bGyixX7QJVE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Seekers"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Sunshine Pop","Contemporary Folk","Vocal Group"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1967-8",
   "chartYear": 1967,
   "releaseYear": 1967,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "All You Need Is Love",
+      "youtubeId": "_7xMfIp-irg"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Baby, You're a Rich Man",
+      "youtubeId": "i5m-sgtwFck"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Baroque Pop",
+  "subgenres": ["Pop Rock", "Psychedelic Pop", "Sunshine Pop", "Fanfare"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1967-9",
   "chartYear": 1967,
   "releaseYear": 1967,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "A Whiter Shade of Pale",
+      "youtubeId": "z0vCwGUZe1I"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Procol Harum"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Baroque Pop",
+  "subgenres": ["Blue-Eyed Soul","Psychedlic Pop", "Psychedlic Soul", "Progressive Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1967-10",
   "chartYear": 1967,
   "releaseYear": 1967,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'm a Believer",
+      "youtubeId": "5tpxXDILZHs"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "(I'm Not Your) Stepping Stone",
+      "youtubeId": "ehWbMmFm6G0"
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Monkees"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Sunshine Pop", "Garage Rock", "Garage Rock", "Bubblegum", "Proto-Punk", "Rhythm & Blues"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1968-1",
@@ -16394,4 +16394,5 @@
     }
   }
 }
+
 
