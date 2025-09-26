@@ -4,53 +4,59 @@ d3.json("./songs.json").then(dataset => {
   const genres = dataset.genres || {};
 
   let currentSongList = [];
-  let sortMode = "chart"; // default
+  let sortMode = "chart";
+  let currentPanel = { type: null, key: null };
 
   const years = Array.from(new Set(songs.map(d => d.chartYear))).sort((a, b) => a - b);
   const ranks = d3.range(1, 11);
+  const taxonomyOrder = ["hiphop","dance","soulrnb","rock","countryfolk","jazztraditionalpop"];
 
-  const taxonomyOrder = ["hiphop","dance","soulrnb","rock", "countryfolk","jazztraditionalpop"];
+  // Collect all genres (primary + subgenres)
+  const allGenresSet = new Set();
+  songs.forEach(s => {
+    if (s.primarygenre) allGenresSet.add(s.primarygenre);
+    if (Array.isArray(s.subgenres)) s.subgenres.forEach(g => allGenresSet.add(g));
+  });
+  const allGenresList = Array.from(allGenresSet).sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase())
+  );
 
-  // Build a set of all genres present in the dataset
-const allGenresSet = new Set();
-songs.forEach(s => {
-  if (s.primarygenre) allGenresSet.add(s.primarygenre.toLowerCase());
-  if (Array.isArray(s.subgenres)) {
-    s.subgenres.forEach(g => allGenresSet.add(g.toLowerCase()));
-  }
-});
-const allGenresList = Array.from(allGenresSet).sort();
+  // Track visibility state
+  let genreVisibility = {};
+  allGenresList.forEach(g => { genreVisibility[g] = true; });
 
-  // ===== Tooltip =====
-  const tooltip = d3.select("body")
-    .append("div")
-    .attr("id", "tooltip");
+  // Track taxonomy visibility state
+  let taxonomyVisibility = {};
+  Object.keys(taxonomy).forEach(t => { taxonomyVisibility[t] = true; });
 
-  // ===== Legend (taxonomy badges) =====
+  // Tooltip
+  const tooltip = d3.select("body").append("div").attr("id", "tooltip");
+
+  // Legend (Taxonomy labels)
   const legend = d3.select(".legend");
   Object.entries(taxonomy).forEach(([key, info]) => {
     legend.append("span")
-      .attr("class", "genre-badge")
+      .attr("class", "genre-badge clickable-taxonomy")
       .style("background-color", info.color)
+      .attr("data-taxonomy", key)
       .text(info.label)
       .on("click", () => showTaxonomyPanel(key))
-      .append("title")
-      .text(info.description || "");
+      .append("title").text(info.description || "");
   });
 
-  // ===== Sort controls (radio in HTML) =====
+  // Sort controls
   d3.selectAll("input[name=sortMode]").on("change", function() {
     sortMode = this.value;
     buildTable();
   });
 
-  // ===== Side panel close =====
+  // Side panel close
   d3.select("#side-panel-close").on("click", () => closeSidePanel());
   d3.select("#side-panel").on("click", function(event) {
     if (event.target.id === "side-panel") closeSidePanel();
   });
 
-  // ===== Song Modal close =====
+  // Modal close
   d3.select("#modal-close").on("click", () => {
     d3.selectAll("#video-container iframe").attr("src", "");
     d3.select("#modal").style("display", "none");
@@ -62,21 +68,17 @@ const allGenresList = Array.from(allGenresSet).sort();
     }
   });
 
-  // ===== Table =====
-  const table = d3.select(".chart-container")
-    .append("table")
-    .attr("class", "chart-table");
-
+  // Table
+  const table = d3.select(".chart-container").append("table").attr("class", "chart-table");
   const tbody = table.append("tbody");
 
   buildTable();
-
   function buildTable() {
     tbody.html("");
     currentSongList = [];
 
     if (sortMode === "chart") {
-      // Original: rows = ranks 1..10
+      // Chart mode: strict rank order
       const rowMap = {};
       ranks.forEach(rank => {
         rowMap[rank] = tbody.append("tr");
@@ -85,102 +87,152 @@ const allGenresList = Array.from(allGenresSet).sort();
           appendCell(rowMap[rank], song);
         });
       });
-
       years.forEach(year => {
         ranks.forEach(rank => {
           const song = songs.find(d => d.chartYear === year && d.rank === rank);
           if (song) currentSongList.push(song);
         });
       });
-
     } else {
-      // Sort by genre taxonomy within each year
+      // Taxonomy mode: visible songs pinned to bottom
       const songsByYear = {};
       years.forEach(year => {
-        songsByYear[year] = songs
-          .filter(d => d.chartYear === year)
-          .sort((a, b) => {
-            const ai = taxonomyOrder.indexOf(a.genretaxonomy);
-            const bi = taxonomyOrder.indexOf(b.genretaxonomy);
-            // If taxonomy not found, push to bottom (after known ones)
-            return (ai === -1 ? taxonomyOrder.length : ai) - (bi === -1 ? taxonomyOrder.length : bi);
-          });
+        const yearSongs = songs.filter(d => d.chartYear === year);
+        const visible = yearSongs.filter(isSongVisible);
+        const hidden = yearSongs.filter(s => !isSongVisible(s));
+
+        const sorter = (a, b) => {
+          const ai = taxonomyOrder.indexOf(a.genretaxonomy);
+          const bi = taxonomyOrder.indexOf(b.genretaxonomy);
+          const A = ai === -1 ? taxonomyOrder.length : ai;
+          const B = bi === -1 ? taxonomyOrder.length : bi;
+          return A - B;
+        };
+
+        visible.sort(sorter);
+        hidden.sort(sorter);
+
+        // Hidden first, visible last → visible pinned to bottom
+        songsByYear[year] = [...hidden, ...visible];
       });
-
+      // Determine max rows needed (longest year column)
       const maxRows = d3.max(Object.values(songsByYear), arr => arr.length) || 0;
-
+      // Build table row by row
       for (let rowIndex = 0; rowIndex < maxRows; rowIndex++) {
         const tr = tbody.append("tr");
         years.forEach(year => {
           const song = songsByYear[year][rowIndex];
           appendCell(tr, song);
-          if (song) currentSongList.push(song);
         });
       }
-    }
-  }
-
-  function appendCell(row, song) {
-    const cell = row.append("td")
-      .attr("class", "chart-cell")
-      .classed("empty", !song);
-
-    if (song) {
-      cell.style("background-color", taxonomy[song.genretaxonomy]?.color || "#333");
-    }
-
-    cell.on("mouseenter", function (event) {
-        if (!song) return;
-        let combinedTitle = song.tracks[0].title;
-        if (song.tracks.length > 1 && song.tracks[1].title) {
-          combinedTitle += " / " + song.tracks[1].title;
-        }
-        tooltip
-          .classed("visible", true)
-          .html(`
-            ${combinedTitle}<br>
-            ${song.artists.join(", ")}<br><br>
-            Rank #${song.rank} for ${song.chartYear}<br><br>
-            ${song.primarygenre}<br>
-          `)
-          .style("left", (event.pageX + 10) + "px")
-          .style("top", (event.pageY + 10) + "px");
-      })
-      .on("mouseleave", () => tooltip.classed("visible", false))
-      .on("click", () => {
-        if (!song) return;
-        // Prefer reference-based index to avoid mismatch after sorting
-        let songIndex = currentSongList.indexOf(song);
-
-        // Fallback: locate by identity keys if reference not found
-        if (songIndex === -1) {
-          songIndex = currentSongList.findIndex(s =>
-            s.chartYear === song.chartYear && s.rank === song.rank
-          );
-        }
-
-        if (songIndex !== -1) {
-          showSongModal(songIndex);
+      // Build navigation order (column-major)
+      years.forEach(year => {
+        for (let rowIndex = 0; rowIndex < maxRows; rowIndex++) {
+          const song = songsByYear[year][rowIndex];
+          if (song) currentSongList.push(song);
         }
       });
+    }
   }
 
-  // ===== Song Modal =====
+  // Check if a song should be visible (genres + taxonomies)
+function isSongVisible(song) {
+  const songGenres = [song.primarygenre, ...(song.subgenres || [])];
+
+  // If no taxonomies are explicitly checked, behave normally (just use genres)
+  const anyTaxChecked = Object.values(taxonomyVisibility).some(v => v);
+  if (!anyTaxChecked) {
+    return songGenres.some(g => genreVisibility[g]);
+  }
+
+  // Otherwise, filter by taxonomy + genres
+  const taxOk = taxonomyVisibility[song.genretaxonomy];
+
+  // If all genres are off but a taxonomy is selected, force genres on
+  const anyGenreChecked = Object.values(genreVisibility).some(v => v);
+  if (!anyGenreChecked && taxOk) {
+    return true;
+  }
+
+  // Normal case: taxonomy + genre both must match
+  return taxOk && songGenres.some(g => genreVisibility[g]);
+}
+
+  // Append a single table cell for a song
+  function appendCell(row, song) {
+    const cell = row.append("td").attr("class", "chart-cell").classed("empty", !song);
+    if (song) {
+      if (!isSongVisible(song)) {
+        cell.classed("empty", true).style("background-color", "");
+        return;
+      }
+      cell.style("background-color", taxonomy[song.genretaxonomy]?.color || "#333");
+    }
+    // Tooltip + click handlers
+    cell.on("mouseenter", function (event) {
+      if (!song) return;
+      let combinedTitle = song.tracks[0].title;
+      if (song.tracks.length > 1 && song.tracks[1].title) {
+        combinedTitle += " / " + song.tracks[1].title;
+      }
+      tooltip.classed("visible", true).html(`
+        ${combinedTitle}<br>
+        ${song.artists.join(", ")}<br><br>
+        Rank #${song.rank} for ${song.chartYear}<br><br>
+        ${song.primarygenre}<br>
+      `)
+      .style("left", (event.pageX + 10) + "px")
+      .style("top", (event.pageY + 10) + "px");
+    })
+    .on("mouseleave", () => tooltip.classed("visible", false))
+    .on("click", () => {
+      if (!song) return;
+      let songIndex = currentSongList.indexOf(song);
+      if (songIndex === -1) {
+        songIndex = currentSongList.findIndex(s =>
+          s.chartYear === song.chartYear && s.rank === song.rank
+        );
+      }
+      if (songIndex !== -1) showSongModal(songIndex);
+    });
+  }
+
+  function getVisibleSongs() {
+    return currentSongList.filter(isSongVisible);
+  }
+
+  function openSidePanel() {
+    d3.select("#side-panel").classed("open", true);
+  }
+  function closeSidePanel() {
+    d3.select("#side-panel").classed("open", false);
+  }
+
+  function rerenderCurrentPanel(resetScroll = false) {
+    if (!currentPanel.type) return;
+    if (currentPanel.type === "taxonomy") {
+      showTaxonomyPanel(currentPanel.key, resetScroll);
+    } else if (currentPanel.type === "genre") {
+      showGenrePanel(currentPanel.key, resetScroll);
+    }
+  }
+
+  // Song modal
   function showSongModal(songIndex) {
     const song = currentSongList[songIndex];
     if (!song) return;
-
+    // Build combined title (A-side / B-side if present)
     let combinedTitle = song.tracks[0].title;
     if (song.tracks.length > 1 && song.tracks[1].title) {
       combinedTitle += " / " + song.tracks[1].title;
     }
-
+    // Track switching (A/B sides)
     const hasSecondTrack = song.tracks.length > 1 && song.tracks[1].youtubeId;
     const hasSecondTitle = hasSecondTrack && !!song.tracks[1].title;
 
     let currentSide = "A";
     let currentTrack = song.tracks[0];
-
+    // Helper to embed YouTube video. nocookie version
     const videoHtml = (track) => `
       <div class="video-wrapper">
         <iframe
@@ -190,10 +242,11 @@ const allGenresList = Array.from(allGenresSet).sort();
         </iframe>
       </div>
     `;
-
-    const combinedGenres = song.primarygenre +
-      (song.subgenres && song.subgenres.length ? ", " + song.subgenres.join(", ") : "");
-
+    // Build clickable genre spans
+    const genreSpans = [song.primarygenre, ...(song.subgenres || [])]
+      .map(g => `<span class="clickable-genre" data-genre="${g}">${g}</span>`)
+      .join(", ");
+    // Peak chart info
     let peakInfo = "";
     if (song.peakPos) {
       peakInfo = `Peaked at #${song.peakPos}`;
@@ -201,7 +254,7 @@ const allGenresList = Array.from(allGenresSet).sort();
         peakInfo += ` for ${song.weeksOnChart} week${song.weeksOnChart > 1 ? "s" : ""}`;
       }
     }
-
+    // Toggle button for A/B side
     let toggleButtonHtml = "";
     if (hasSecondTrack) {
       const initialLabel = hasSecondTitle ? "Show B-side" : "View other charting version";
@@ -209,7 +262,7 @@ const allGenresList = Array.from(allGenresSet).sort();
     }
 
     const tax = taxonomy[song.genretaxonomy];
-
+    // Fill modal content
     d3.select("#modal-content").html(`
       <h2>${combinedTitle}</h2>
       ${song.artists.join(", ")} <br>
@@ -217,8 +270,12 @@ const allGenresList = Array.from(allGenresSet).sort();
       Released in ${song.releaseYear}<br>
       <p>#${song.rank} Year End Position For ${song.chartYear}</p>
       ${peakInfo ? `<p>${peakInfo}</p>` : ""}<br>
-      ${tax ? `<div class="genre-badge" style="background-color:${tax.color}">${tax.label}</div>` : ""}
-      <p>${combinedGenres}</p>
+      ${tax ? `<div class="genre-badge clickable-taxonomy" 
+      style="background-color:${tax.color}" 
+      data-taxonomy="${song.genretaxonomy}">
+      ${tax.label}
+      </div>` : ""}
+      <p>${genreSpans}</p>
       <div id="video-container">${videoHtml(currentTrack)}</div>
       <div class="modal-controls">
         <button id="prev-song">&#8592; Prev</button>
@@ -227,6 +284,15 @@ const allGenresList = Array.from(allGenresSet).sort();
       </div>
     `);
 
+    // Bind taxonomy + genre clicks inside modal
+    bindGenreClicks();
+
+    d3.selectAll(".clickable-genre").on("click", function() {
+      const gKey = d3.select(this).attr("data-genre");
+      showGenrePanel(gKey, true);
+    });
+
+    // A/B side toggle
     if (hasSecondTrack) {
       d3.select("#toggle-side").on("click", function () {
         if (currentSide === "A") {
@@ -243,132 +309,211 @@ const allGenresList = Array.from(allGenresSet).sort();
       });
     }
 
+    // Prev/Next navigation (only among visible songs)
+    const visibleSongs = getVisibleSongs();
+    const visibleIndex = visibleSongs.indexOf(song);
+
+    function showSongModalFromSong(nextSong) {
+      const idx = currentSongList.indexOf(nextSong);
+      if (idx !== -1) showSongModal(idx);
+    }
+
     d3.select("#prev-song").on("click", () => {
-      showSongModal((songIndex - 1 + currentSongList.length) % currentSongList.length);
+      const prevIdx = (visibleIndex - 1 + visibleSongs.length) % visibleSongs.length;
+      showSongModalFromSong(visibleSongs[prevIdx]);
     });
     d3.select("#next-song").on("click", () => {
-      showSongModal((songIndex + 1) % currentSongList.length);
+      const nextIdx = (visibleIndex + 1) % visibleSongs.length;
+      showSongModalFromSong(visibleSongs[nextIdx]);
     });
 
     d3.select("#modal").style("display", "block");
   }
 
-  // ===== Side Panel helpers =====
-  function openSidePanel() {
-    d3.select("#side-panel").classed("open", true);
+  // Return correct label for the "Show/Hide All" button
+  function getToggleAllLabel() {
+    const allChecked = Object.values(genreVisibility).every(v => v);
+    return allChecked ? "Hide all" : "Show all";
   }
-  function closeSidePanel() {
-    d3.select("#side-panel").classed("open", false);
+
+  function renderFeaturedGenresList() {
+    return Object.entries(genres)
+      .filter(([key, g]) => g.description && g.description.trim() !== "")
+      .map(([gKey, g]) => `
+        <li>
+          <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
+          <span class="clickable-genre" data-genre="${gKey}">${g.label}</span>
+        </li>
+      `).join("");
   }
 
   function renderAllGenresList() {
-    return Object.entries(genres)
-      .map(([gKey, g]) => `<li class="clickable-genre" data-genre="${gKey}">${g.label}</li>`)
-      .join("");
+    return allGenresList
+      .map(gKey => {
+        const manual = genres[gKey];
+        return `
+          <li>
+            <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
+            <span class="clickable-genre" data-genre="${gKey}">${manual ? manual.label : gKey}</span>
+          </li>
+        `;
+      }).join("");
   }
 
   function bindGenreClicks() {
     d3.selectAll(".clickable-genre").on("click", function() {
-      const genreKey = d3.select(this).attr("data-genre");
-      showGenrePanel(genreKey);
+      showGenrePanel(d3.select(this).attr("data-genre"), true);
+    });
+
+    d3.selectAll(".clickable-taxonomy").on("click", function() {
+      showTaxonomyPanel(d3.select(this).attr("data-taxonomy"), true);
+    });
+
+    d3.selectAll(".genre-toggle").on("change", function() {
+      const gKey = d3.select(this).attr("data-genre");
+      genreVisibility[gKey] = this.checked;
+      d3.selectAll(`.genre-toggle[data-genre="${gKey}"]`).property("checked", this.checked);
+      buildTable();
+      rerenderCurrentPanel(false);
+    });
+
+    d3.selectAll(".taxonomy-toggle").on("change", function() {
+      const tKey = d3.select(this).attr("data-taxonomy");
+      taxonomyVisibility[tKey] = this.checked;
+      d3.selectAll(`.taxonomy-toggle[data-taxonomy="${tKey}"]`).property("checked", this.checked);
+      buildTable();
+      rerenderCurrentPanel(false);
+    });
+
+  const btn = d3.select("#toggle-all-genres");
+  if (!btn.empty()) {
+    btn.on("click", function() {
+      const allChecked = Object.values(genreVisibility).every(v => v);
+      const newState = !allChecked;
+
+      // Toggle all genres
+      Object.keys(genreVisibility).forEach(k => { genreVisibility[k] = newState; });
+
+      // 🔑 Also toggle taxonomy checkboxes to match
+      Object.keys(taxonomyVisibility).forEach(t => {
+        taxonomyVisibility[t] = newState;
+      });
+
+      // Update UI checkboxes in the panel
+      d3.selectAll(".genre-toggle").property("checked", newState);
+      d3.selectAll(".taxonomy-toggle").property("checked", newState);
+
+      buildTable();
+      rerenderCurrentPanel(false);
     });
   }
-function renderFeaturedGenresList() {
-  return Object.entries(genres)
-    .filter(([key, g]) => g.description && g.description.trim() !== "")
-    .map(([gKey, g]) => `<li class="clickable-genre" data-genre="${gKey}">${g.label}</li>`)
-    .join("");
 }
-
-function renderAllGenresList() {
-  return allGenresList
-    .map(gKey => {
-      // If this genre has a manual entry, use its label, else just show the raw string
-      const g = genres[gKey];
-      return `<li class="clickable-genre" data-genre="${gKey}">${g ? g.label : gKey}</li>`;
-    })
-    .join("");
-}
-  // ===== Side Panel: Taxonomy view =====
-  function showTaxonomyPanel(taxKey) {
+// taxonomy side panel
+  function showTaxonomyPanel(taxKey, resetScroll = true) {
+    currentPanel = { type: "taxonomy", key: taxKey };
     const info = taxonomy[taxKey];
     if (!info) return;
 
     const relatedHtml = Array.isArray(info.related) && info.related.length
       ? info.related.map(r => {
           const g = genres[r];
-          return `<span class="clickable-genre" data-genre="${r}">${g ? g.label : r}</span>`;
-        }).join(", ")
-      : "None listed";
+          return `
+            <li>
+              <input type="checkbox" class="genre-toggle" data-genre="${r}" ${genreVisibility[r] !== false ? "checked" : ""}>
+              <span class="clickable-genre" data-genre="${r}">${g ? g.label : r}</span>
+            </li>
+          `;
+        }).join("")
+      : "<li>None listed</li>";
 
-
-// genre taxonomy side panel
-    const featuredHtml = renderFeaturedGenresList();
-    const allHtml = renderAllGenresList();
-
+    const toggleAllLabel = getToggleAllLabel();
     d3.select("#side-panel-body").html(`
-      <div class="genre-badge" style="background-color:${info.color}">${info.label}</div>
+         <div>
+        <input type="checkbox" class="taxonomy-toggle" data-taxonomy="${taxKey}" ${taxonomyVisibility[taxKey] !== false ? "checked" : ""}>
+        <span class="genre-badge clickable-taxonomy" style="background-color:${info.color}" data-taxonomy="${taxKey}">${info.label}</span>
+      </div>
       <p>${info.description || ""}</p>
-      <br>
-      <p><strong>Related genres:</strong> ${relatedHtml}</p>
-      <br>
-      <h4>'''complete''' genres in dataset:</h4>
-      <br>
-      <ul>${featuredHtml}</ul>
-      <br>
-      <h4>Complete list</h4>
-      <br>
-      <ul>${allHtml}</ul>
+      <h4>Related genres:</h4>
+      <ul>${relatedHtml}</ul>
+      <button id="toggle-all-genres">${toggleAllLabel}</button>
+      <h4>"""Completed Genres:"""</h4>
+      <ul>${renderFeaturedGenresList()}</ul>
+      <h4>All genres in dataset:</h4>
+      <ul>${renderAllGenresList()}</ul>
     `);
 
     openSidePanel();
+    if (resetScroll) d3.select("#side-panel").node().scrollTop = 0;
     bindGenreClicks();
   }
 
-  // ===== Side Panel: Genre view =====
-  function showGenrePanel(genreKey) {
-    const g = genres[genreKey];
-    if (!g) return;
+  // genre side panel
+  function showGenrePanel(genreKey, resetScroll = true) {
+    // resolve case sensitivity if needed/ consistency with them all and json
+    let resolvedKey = genreKey;
+    if (!genres[genreKey]) {
+      const found = Object.keys(genres).find(k => k.toLowerCase() === String(genreKey).toLowerCase());
+      if (found) resolvedKey = found;
+    }
+    currentPanel = { type: "genre", key: resolvedKey };
 
+    const g = genres[resolvedKey];
+    const toggleAllLabel = getToggleAllLabel();
+    // if no detailed info is supplied for the genre
+    if (!g) {
+      d3.select("#side-panel-body").html(`
+        <h2>
+          <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
+          ${resolvedKey}
+        </h2>
+        <p>No detailed information has been added for this genre yet.</p>
+        <button id="toggle-all-genres">${toggleAllLabel}</button>
+        <h4>"""Compleded genres""":</h4>
+        <ul>${renderFeaturedGenresList()}</ul>
+        <h4>All genres in dataset:</h4>
+        <ul>${renderAllGenresList()}</ul>
+      `);
+      openSidePanel();
+      if (resetScroll) d3.select("#side-panel").node().scrollTop = 0;
+      bindGenreClicks();
+      return;
+    }
+
+    // taxonomy badge and related genres list
     const taxInfo = taxonomy[g.taxonomy];
     const taxBadge = taxInfo
-      ? `<span class="genre-badge" style="background-color:${taxInfo.color}" data-taxonomy="${g.taxonomy}">${taxInfo.label}</span>`
-      : `<span class="genre-badge" data-taxonomy="${g.taxonomy}">${g.taxonomy}</span>`;
+      ? `<span class="genre-badge clickable-taxonomy" style="background-color:${taxInfo.color}" data-taxonomy="${g.taxonomy}">${taxInfo.label}</span>`
+      : `<span class="genre-badge clickable-taxonomy" data-taxonomy="${g.taxonomy}">${g.taxonomy}</span>`;
 
     const relatedHtml = Array.isArray(g.related) && g.related.length
-      ? g.related.map(r => `<span class="clickable-genre" data-genre="${r}">${genres[r]?.label || r}</span>`).join(", ")
-      : "None listed";
+      ? g.related.map(r => `
+          <li>
+            <input type="checkbox" class="genre-toggle" data-genre="${r}" ${genreVisibility[r] !== false ? "checked" : ""}>
+            <span class="clickable-genre" data-genre="${r}">${genres[r]?.label || r}</span>
+          </li>
+        `).join("")
+      : "<li>None listed</li>";
 
-    const allGenresHtml = renderAllGenresList();
-
-// individual genre side panel
-    const featuredHtml = renderFeaturedGenresList();
-    const allHtml = renderAllGenresList();
-
+    // Fill side panel body with genre info, taxonomy badge, related genres, and lists
     d3.select("#side-panel-body").html(`
-      <h2>${g.label}</h2>
-      <br>
+      <h2>
+        <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
+        ${g.label}
+      </h2>
       <div>${taxBadge}</div>
       <p>${g.description || ""}</p>
-      <br>
-      <p><strong>Related genres:</strong> ${relatedHtml}</p>
-      <br>
-      <h4>'''complete''' genres in dataset:</h4>
-      <br>
-      <ul>${featuredHtml}</ul>
-      <br>
-      <h4>Complete list</h4>
-      <br>
-      <ul>${allHtml}</ul>
+      <h4>Related genres:</h4>
+      <ul>${relatedHtml}</ul>
+      <button id="toggle-all-genres">${toggleAllLabel}</button>
+      <h4>""complete genres""s:</h4>
+      <ul>${renderFeaturedGenresList()}</ul>
+      <h4>All genres in dataset:</h4>
+      <ul>${renderAllGenresList()}</ul>
     `);
 
     openSidePanel();
-
-    // Bind clicks: related genres and taxonomy badge
+    if (resetScroll) d3.select("#side-panel").node().scrollTop = 0;
     bindGenreClicks();
-    d3.select(".genre-badge[data-taxonomy]").on("click", function() {
-      const tKey = d3.select(this).attr("data-taxonomy");
-      showTaxonomyPanel(tKey);
-    });
   }
+
 });
