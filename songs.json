@@ -134,7 +134,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Big Band","vocal jazz"],
+  "subgenres": ["Big Band","Vocal Jazz"],
   "peakPos": 1,
   "weeksOnChart": null
 },
@@ -157,7 +157,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": 1,
+  "subgenres": ["Vocal Jazz", "Standards"],
   "peakPos": 1,
   "weeksOnChart": null
 },
@@ -387,7 +387,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Vocal Group",
-  "subgenres": ["Traditional Pop", "Jazz Pop", "Doo-Wop", "Barbershop", "Vocal jazz", "Swing"],
+  "subgenres": ["Traditional Pop", "Jazz Pop", "Doo-Wop", "Barbershop", "Vocal Jazz", "Swing"],
   "peakPos": 1,
   "weeksOnChart": 4
 },
@@ -548,7 +548,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "countryfolk",
   "primarygenre": "Country Blues",
-  "subgenres": ["Rhythm & Blues", "Country Boogie", "Vocal jazz", "Boogie Woogie"],
+  "subgenres": ["Rhythm & Blues", "Country Boogie", "Vocal Jazz", "Boogie Woogie"],
   "peakPos": 1,
   "weeksOnChart": 6
 },
@@ -663,7 +663,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Waltz",
-  "subgenres": ["Traditional Pop", "Vocal jazz"],
+  "subgenres": ["Traditional Pop", "Vocal Jazz"],
   "peakPos": 1,
   "weeksOnChart": 5
 },
@@ -770,7 +770,7 @@
       "youtubeId": "lz_B8JP2pA8"
     },
     {
-      "title": null,
+      "title": "The Four Lads",
       "youtubeId": "5bo_6ph-LlQ"
     }
   ],
@@ -858,7 +858,7 @@
   "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "True Love",
       "youtubeId": "zfqFtsINILo"
     },
     {
@@ -894,8 +894,8 @@
   "genretaxonomy": "countryfolk",
   "primarygenre": "Country Pop",
   "subgenres": ["Nashville Sound", "Vocal Group", "Teen Pop"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1957-10",
@@ -1328,7 +1328,7 @@
   ],
   "artists": ["Johnnie Ray"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
   "subgenres": null,
   "peakPos": 1,
@@ -2089,7 +2089,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
   "primarygenre": "Rock & Roll",
-  "subgenres": ["Merseybeat", "Power Pop", "Doo-Wop"],
+  "subgenres": ["Merseybeat", "Power Pop"],
   "peakPos": 1,
   "weeksOnChart": 7
 },
@@ -2135,7 +2135,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
   "primarygenre": "Surf Rock",
-  "subgenres": null,
+  "subgenres": ["Exotica", "Easy Listening"],
   "peakPos": 1,
   "weeksOnChart": 4
 },
@@ -3021,7 +3021,7 @@
   "tracks": [
     {
       "title": "This Is My Song",
-      "youtubeId": "V8XmLuTmKIM"
+      "youtubeId": "8oBm9snFqnk"
     },
     {
       "title": null,
@@ -3216,7 +3216,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
   "primarygenre": "Pop Rock",
-  "subgenres": ["Sunshine Pop", "Garage Rock", "Garage Rock", "Bubblegum", "Proto-Punk", "Rhythm & Blues"],
+  "subgenres": ["Sunshine Pop", "Garage Rock", "Bubblegum", "Proto-Punk", "Rhythm & Blues"],
   "peakPos": 1,
   "weeksOnChart": 1
 },
@@ -3239,7 +3239,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
   "primarygenre": "Pop Rock",
-  "subgenres": ["Symphonic Rock","Piano Rock",""],
+  "subgenres": ["Symphonic Rock","Piano Rock", "Hard Rock"],
   "peakPos": 1,
   "weeksOnChart": 13
 },
@@ -3408,47 +3408,47 @@
   "id": "1968-9",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "MacArthur Park",
+      "youtubeId": "H2lwhnSL5LE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Richard Harris"],
+  "countryCode": ["Ireland"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Baroque Pop",
+  "subgenres": ["Progressive Pop", "Art Pop", "Pop Rock", "Easy Listening", "Progressive Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1968-10",
   "chartYear": 1968,
   "releaseYear": 1968,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hello, Goodbye",
+      "youtubeId": "rblYSKz_VnI"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "I Am The Walrus",
+      "youtubeId": "Og-yjQGzIS8"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Psychedelic Pop",
+  "subgenres": ["Sunshine Pop", "Baroque Pop","Psychedelic Rock", "Progressive Pop", "Toytown Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1969-1",
@@ -3457,228 +3457,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Something",
+      "youtubeId": "UelDrZ1aFeY"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Come Together",
+      "youtubeId": "45cYwDMibGo"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Blues Rock", "Psychedelic Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1969-2",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Honky Tonk Women",
+      "youtubeId": "hqqkGxZ1_8I"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Rolling Stones"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Blues Rock",
+  "subgenres": ["Roots Rock", "Country Rock", "Pop Rock", "Rock & Roll"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1969-3",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Ob-La-Di, Ob-La-Da",
+      "youtubeId": "_J9NpHKrKMw"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "While My Guitar Gently Weeps",
+      "youtubeId": "YFDg-pgE0Hk"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Ska", "Music Hall", "Art Rock", "Sunshine Pop", "Bubblegum", "Blues Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1969-4",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Real Thing",
+      "youtubeId": "sjJAQsx9d3Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Russell Morris"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Psychedelic Pop",
+  "subgenres": ["Psychedelic Rock", "Sound Collage"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1969-5",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Suspicious Minds",
+      "youtubeId": "WrMGGouem3c"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Elvis Presley"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Blue-Eyed Soul", "Pop Soul", "Countrypolitan", "Nashville Sound"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1969-6",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Part Three into Paper Walls",
+      "youtubeId": "zKHzUHb6g4Q"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "The Girl That I Love",
+      "youtubeId": "wmJStnc9M2A"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Russell Morris"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Psychedelic Rock",
+  "subgenres": ["Psychedelic Pop", "Progressive Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1969-7",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Penny Arcade",
+      "youtubeId": "eT2OHok85zQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Roy Orbison"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Traditional Pop", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1969-8",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Get Back",
+      "youtubeId": "IKJqecxswCA"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Don't Let Me Down",
+      "youtubeId": "NCtzkaL2t_Y"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Blues Rock",
+  "subgenres": ["Pop Rock", "Roots Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1969-9",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hair",
+      "youtubeId": "d-1jsmgTYt4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Cowsills"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Psychedelic Pop",
+  "subgenres": ["Progressive Pop", "Sunshine Pop", "Show Tunes", "Psychedlic Soul", "Bubblegum"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1969-10",
   "chartYear": 1969,
   "releaseYear": 1969,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Where Do You Go To (My Lovely)",
+      "youtubeId": "EA6gIyLT3c0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Peter Sarstedt"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Singer-Songwriter", "Baroque Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1970-1",
@@ -3687,191 +3687,191 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Let It Be",
+      "youtubeId": "CGj85pVzRJs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Beatles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Piano Rock",
+  "subgenres": ["Pop Rock", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1970-2",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "(They Long to Be) Close to You",
+      "youtubeId": "M268Csnue9I"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Carpenters"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Baroque Pop",
+  "subgenres": ["Soft Rock", "Adult Contemporary", "Sunshine Pop", "Brill Building", "Easy Listening"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1970-3",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "In The Summertime",
+      "youtubeId": "x-oucKEvyig"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Mixtures"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Folk Rock", "Sunshine Pop", "Skiffle", "Jug Band"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1970-4",
   "chartYear": 1970,
-  "releaseYear": 1970,
-  "rank": 1,
+  "releaseYear": 1969,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Spirit in the Sky",
+      "youtubeId": "W2msh0jut2Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Norman Greenbaum"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Psychedelic Rock",
+  "subgenres": ["Christian Rock", "Boogie Rock", "Xian Psych", "Hard Rock", "Southern Rock", "Gospel", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1970-5",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bridge Over Troubled Water",
+      "youtubeId": "4G-YQA_bsOU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Simon & Garfunkel"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Baroque Pop", "Piano Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1970-6",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lookin' Out My Back Door",
+      "youtubeId": "Aae_RHRptRg"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Long As I Can See The Light",
+      "youtubeId": "fu_fjQXAra4"
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Creedence Clearwater Revival"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Country Rock",
+  "subgenres": ["Swamp Rock", "Bakersfield Sound", "Rockabilly", "Skiffle", "Southern Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1970-7",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "El Condor Pasa",
+      "youtubeId": "i6d3yVq1Xtw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Simon & Garfunkel"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Conjunto andino", "Indigenous Andean Music", "Huayno"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1970-8",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Up Around the Bend",
+      "youtubeId": "DX3o1O8ZsTw"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Run Through the Jungle",
+      "youtubeId": "_7PUPNxsRQ0"
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Creedence Clearwater Revival"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Swamp Rock",
+  "subgenres": ["Southern Rock", "Blues Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1970-9",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Knock Knock Who's There",
       "youtubeId": "a"
     },
     {
@@ -3879,36 +3879,36 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Liv Maessen"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Brill Building",
+  "subgenres": ["Traditional Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1970-10",
   "chartYear": 1970,
   "releaseYear": 1970,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Raindrops Keep Fallin' on My Head",
+      "youtubeId": "8Ik79k_SHiE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "artists": ["Johnny Farnham"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Easy Listening", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1971-1",
@@ -3917,227 +3917,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Eagle Rock",
+      "youtubeId": "GJ-m4AVOKiU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Daddy Cool"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Boogie Rock",
+  "subgenres": ["Blues Rock", "Rock & Roll", "Pub Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 10
 },
 {
   "id": "1971-2",
   "chartYear": 1971,
-  "releaseYear": 1971,
-  "rank": 1,
+  "releaseYear": 1970,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "My Sweet Lord",
+      "youtubeId": "XWTvkcHlOPQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["George Harrison"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Pop Rock", "Singer-Songwriter", "Folk Rock", "Gospel", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1971-3",
   "chartYear": 1971,
-  "releaseYear": 1971,
-  "rank": 1,
+  "releaseYear": 1970,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Pushbike Song",
+      "youtubeId": "ZPWj1vO75Wc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Mixtures"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Skiffle", "Jug Band", "Novelty"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1971-4",
   "chartYear": 1971,
   "releaseYear": 1971,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Daddy Cool",
+      "youtubeId": "t7cAA4vlctM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Drummond"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Novelty",
+  "subgenres": ["Surf Rock", "Chipmunk"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1971-5",
   "chartYear": 1971,
   "releaseYear": 1971,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "L.A. International Airport",
+      "youtubeId": "rh0RSzPdjUQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Susan Raye"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Bakersfield Sound"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1971-6",
   "chartYear": 1971,
   "releaseYear": 1971,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"I Don't Know How to Love Him",
+      "youtubeId": "i12PWD9EQvE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Helen Reddy"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "subgenres": ["Adult Contemporary", "Easy Listening"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1971-7",
   "chartYear": 1971,
   "releaseYear": 1971,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Knock Three Times",
+      "youtubeId": "iUUv9S3LKII"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Tony Orlando & Dawn"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Bubblegum",
+  "subgenres": ["Adult Contemporary", "Easy Listening"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1971-8",
   "chartYear": 1971,
   "releaseYear": 1971,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Banks of the Ohio",
+      "youtubeId": "-LT5ZJGj5QA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Olivia Newton-John"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Contemporary Folk", "Folk Pop", "Countrypolitan"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1971-9",
   "chartYear": 1971,
-  "releaseYear": 1971,
-  "rank": 1,
+  "releaseYear": 1970,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Rose Garden",
+      "youtubeId": "aKXHsWBKKNbI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lynn Anderson"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Nashville Sound"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1971-10",
   "chartYear": 1971,
-  "releaseYear": 1971,
-  "rank": 1,
+  "releaseYear": 1970,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Eleanor Rigby",
+      "youtubeId": "VrcyeB7fYDs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Zoot"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Hard Rock",
+  "subgenres": ["Heavy Metal", "Psychedelic Rock", "Heavy Psych"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
@@ -4147,228 +4147,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Puppy Love",
+      "youtubeId": "Ze9oY6zaGYQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Donny Osmond"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Brill Building",
+  "subgenres": ["Teen Pop", "Bubblegum"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1972-2",
   "chartYear": 1972,
-  "releaseYear": 1972,
-  "rank": 1,
+  "releaseYear": 1971,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Without You",
+      "youtubeId": "8dnUv3DUP4E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Harry Nilsson"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Baroque Pop",
+  "subgenres": ["Adult Contemporary", "Singer-Songwriter"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1972-3",
   "chartYear": 1972,
   "releaseYear": 1972,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Popcorn",
+      "youtubeId": "k9xDPa5d464"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Hot Butter"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Moogsploitation",
+  "subgenres": ["Synthpop", "Novelty"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1972-4",
   "chartYear": 1972,
-  "releaseYear": 1972,
-  "rank": 1,
+  "releaseYear": 1971,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "American Pie",
+      "youtubeId": "PRpiBpDy7MQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Don McLean"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Folk Rock", "Piano Rock", "Heartland Rock", "Soft Rock", "Americana"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1972-5",
   "chartYear": 1972,
   "releaseYear": 1972,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Rangers Waltz",
+      "youtubeId": "tDpOrBzl_jE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Mom and Dads"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Easy Listening",
+  "subgenres": ["Waltz", "Light Music"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1972-6",
   "chartYear": 1972,
   "releaseYear": 1972,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Boppin' the Blues",
+      "youtubeId": "-EKZ6NdCOI0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Blackfeather"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Blues Rock",
+  "subgenres": ["Boogie Rock", "Rock & Roll", "Hard Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1972-7",
   "chartYear": 1972,
   "releaseYear": 1972,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Daddy Don't You Walk So Fast",
+      "youtubeId": "U5EESSLuzqA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Wayne Newton"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Easy Listening"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1972-8",
   "chartYear": 1972,
   "releaseYear": 1972,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The First Time Ever I Saw Your Face",
+      "youtubeId": "d8_fLu2yrP4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Roberta Flack"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Smooth Soul",
+  "subgenres": ["Traditional Pop", "Vocal Jazz"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1972-9",
   "chartYear": 1972,
-  "releaseYear": 1972,
-  "rank": 1,
+  "releaseYear": 1971,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Cherish",
+      "youtubeId": "TIUwsxBy0I8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["David Cassidy"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Baroque Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1972-10",
   "chartYear": 1972,
   "releaseYear": 1972,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Amazing Grace",
+      "youtubeId": "8zH4bDg63eo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Pipes and Drums and the Military Band of the Royal Scots Dragoon Guards"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Pipe Band",
+  "subgenres": null,
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1973-1",
@@ -16339,7 +16339,7 @@
       "label": "Jazz & Traditional Pop",
       "color": "#e6bb21",
       "description": "...",
-      "related": ["easylistening", "folk"]
+      "related": ["Easy Listening", "folk"]
       
     },
     "countryfolk": {
@@ -16374,26 +16374,39 @@
     }
   },
   "genres": {
-    "country": {
-      "label": "Country",
-      "taxonomy": "countryfolk",
+    "Doo-Wop": {
+      "label": "Doo-Wop",
+      "taxonomy": "jazztraditionalpop",
       "description": "...",
-      "related": ["folk", "bluegrass"]
+      "related": ["Traditional Pop", "bluegrass"]
     },
-    "folk": {
-      "label": "Folk",
-      "taxonomy": "countryfolk",
+    "Easy Listening": {
+      "label": "Easy Listening",
+      "taxonomy": "jazztraditionalpop",
       "description": "...",
       "related": ["country", "singersongwriter"]
     },
-    "jazz": {
-      "label": "Jazz",
+    "Traditional Pop": { 
+      "label": "Traditional Pop",
+      "taxonomy": "jazztraditionalpop",
+      "description": "...",
+      "related": ["blues", "soul"]
+    },
+    "Vocal Jazz": { 
+      "label": "Vocal Jazz",
+      "taxonomy": "jazztraditionalpop",
+      "description": "...",
+      "related": ["blues", "soul"]
+    },
+    "Marching Band": { 
+      "label": "Marching Band",
       "taxonomy": "jazztraditionalpop",
       "description": "...",
       "related": ["blues", "soul"]
     }
   }
 }
+
 
 
 
