@@ -108,7 +108,7 @@
     }
   ],
   "artists": ["The Crew Cuts","The Chords"],
-  "countryCode": ["Canada"],
+  "countryCode": ["Canada", "USA"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Doo-Wop",
   "subgenres": ["Traditional Pop"],
@@ -770,11 +770,11 @@
       "youtubeId": "lz_B8JP2pA8"
     },
     {
-      "title": "The Four Lads",
+      "title": null,
       "youtubeId": "5bo_6ph-LlQ"
     }
   ],
-  "artists": ["Perry Como"],
+  "artists": ["Perry Como", "The Four Lads"],
   "countryCode": ["USA","Canada"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
@@ -2318,8 +2318,8 @@
   "artists": ["The Beatles"],
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Merseybeat",
-  "subgenres": ["Rock & Roll", "British Rhythm & Blues", "Rockabilly", "Vocal Surf", "Power Pop", "Skiffle"],
+  "primarygenre": "Rock & Roll",
+  "subgenres": ["Merseybeat", "British Rhythm & Blues", "Rockabilly", "Vocal Surf", "Power Pop", "Skiffle"],
   "peakPos": 1,
   "weeksOnChart": 7
 },
@@ -2963,7 +2963,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Music Hall",
-  "subgenres": ["Novelty", "Vocal Group", "British Dance Band"],
+  "subgenres": ["Novelty", "Vaudeville", "Traditional Pop", "British Dance Band"],
   "peakPos": 1,
   "weeksOnChart": 1
 },
@@ -3193,7 +3193,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
   "primarygenre": "Baroque Pop",
-  "subgenres": ["Blue-Eyed Soul","Psychedlic Pop", "Psychedlic Soul", "Progressive Pop"],
+  "subgenres": ["Blue-Eyed Soul","Psychedelic Pop", "Psychedelic Soul", "Progressive Pop"],
   "peakPos": 1,
   "weeksOnChart": 3
 },
@@ -3366,7 +3366,7 @@
   "tracks": [
     {
       "title": "Little Arrows",
-      "youtubeId": "a"
+      "youtubeId": "cRCvTe-BsNc"
     },
     {
       "title": null,
@@ -3653,7 +3653,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
   "primarygenre": "Psychedelic Pop",
-  "subgenres": ["Progressive Pop", "Sunshine Pop", "Show Tunes", "Psychedlic Soul", "Bubblegum"],
+  "subgenres": ["Progressive Pop", "Sunshine Pop", "Show Tunes", "Psychedelic Soul", "Bubblegum"],
   "peakPos": 1,
   "weeksOnChart": 2
 },
@@ -3872,7 +3872,7 @@
   "tracks": [
     {
       "title": "Knock Knock Who's There",
-      "youtubeId": "a"
+      "youtubeId": "iGsPeM6_EYM"
     },
     {
       "title": null,
@@ -4042,7 +4042,7 @@
   ],
   "artists": ["Helen Reddy"],
   "countryCode": ["Australia"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
   "subgenres": ["Adult Contemporary", "Easy Listening"],
   "peakPos": 2,
@@ -4102,7 +4102,7 @@
   "tracks": [
     {
       "title": "Rose Garden",
-      "youtubeId": "aKXHsWBKKNbI"
+      "youtubeId": "KXHsWBKKNbI"
     },
     {
       "title": null,
@@ -4377,228 +4377,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Tie a Yellow Ribbon Round the Ole Oak Tree",
+      "youtubeId": "PxG9XFqHSFw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Tony Orlando & Dawn"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Adult Contemporary", "Bubblegum", "Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1973-2",
   "chartYear": 1973,
   "releaseYear": 1973,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Never Never Never",
+      "youtubeId": "suclM4sWffA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Shirley Bassey"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Adult Contemporary", "Easy Listening"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1973-3",
   "chartYear": 1973,
-  "releaseYear": 1973,
-  "rank": 1,
+  "releaseYear": 1972,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You're So Vain",
+      "youtubeId": "j13oJajXx0M"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Carly Simon"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Singer-Songwriter", "Pop Rock", "Country Rock", "Piano Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1973-4",
   "chartYear": 1973,
   "releaseYear": 1973,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Heaven is My Woman's Love",
+      "youtubeId": "KkZdZI3Ogrc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Col Joye"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Traditional Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1973-5",
   "chartYear": 1973,
-  "releaseYear": 1973,
-  "rank": 1,
+  "releaseYear": 1972,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Crocodile Rock",
+      "youtubeId": "75r0nQu-hMs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Elton John"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Piano Rock",
+  "subgenres": ["Glam Rock", "Rock & Roll"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1973-6",
   "chartYear": 1973,
   "releaseYear": 1973,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Delta Dawn",
+      "youtubeId": "n5SOZ_6sHFY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Helen Reddy"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Traditional Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1973-7",
   "chartYear": 1973,
   "releaseYear": 1973,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can the Can",
+      "youtubeId": "AnnqQ0nyNgY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Suzi Quatro"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Pop Rock", "Hard Rock", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1973-8",
   "chartYear": 1973,
-  "releaseYear": 1973,
-  "rank": 1,
+  "releaseYear": 1972,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'd Love You to Want Me",
+      "youtubeId": "tqp_wbYLsYQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lobo"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Folk Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1973-9",
   "chartYear": 1973,
   "releaseYear": 1973,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "And I Love You So",
+      "youtubeId": "GqLMHaEUu68"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Perry Como"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "subgenres": ["Adult Contemporary", "Easy Listening", "Tropical Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1973-10",
   "chartYear": 1973,
   "releaseYear": 1973,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Daisy a Day",
+      "youtubeId": "LJj1CQLJM30"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Jud Strunk"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1974-1",
@@ -4607,228 +4607,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "My Coo Ca Choo",
+      "youtubeId": "b0ZqNBd_orI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Alvin Stardust"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Pop Rock", "Rockabilly"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1974-2",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Billy Don't Be a Hero",
+      "youtubeId": "oJxXmYS3XJc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Paper Lace"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Bubblegum", "Marching Band"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1974-3",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Evie",
+      "youtubeId": "j34YkVoJMdo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Stevie Wright"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Hard Rock",
+  "subgenres": ["Blues Rock", "Piano Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1974-4",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Night Chicago Died",
+      "youtubeId": "w2OFubG0dPo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Paper Lace"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Music Hall", "Bubblegum", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1974-5",
   "chartYear": 1974,
-  "releaseYear": 1974,
-  "rank": 1,
+  "releaseYear": 1973,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Seasons in the Sun",
+      "youtubeId": "-tPcc1ftj8E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Terry Jacks"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Baroque Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1974-6",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Farewell Aunty Jack",
+      "youtubeId": "N9Jo5JicbCk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Grahame Bond"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Television Music",
+  "subgenres": ["Pop Rock", "Novelty"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1974-7",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can't Stop Myself From Loving You",
+      "youtubeId": "BPW8dwrGMf4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["William Shakespeare"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Pop Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1974-8",
   "chartYear": 1974,
-  "releaseYear": 1974,
-  "rank": 1,
+  "releaseYear": 1973,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Leave Me Alone (Ruby Red Dress)",
+      "youtubeId": "ULKEBJRC0gs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "artists": ["Helen Reddy"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Music Hall"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1974-9",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Ballroom Blitz",
+      "youtubeId": "7lTwA5xMeTM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Sweet"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Hard Rock","Power Pop", "Glam Punk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1974-10",
   "chartYear": 1974,
   "releaseYear": 1974,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Honestly Love You",
+      "youtubeId": "bCcKg2asm9k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Olivia Newton-John"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Traditional Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1975-1",
@@ -4837,227 +4837,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Fox on the Run",
+      "youtubeId": "qBdFA6sI6-8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Sweet"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Power Pop", "Hard Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1975-2",
   "chartYear": 1975,
   "releaseYear": 1975,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "January",
+      "youtubeId": "WdcrTUcdO0Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Pilot"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Bubblegum", "Sunshine Pop", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1975-3",
   "chartYear": 1975,
   "releaseYear": 1975,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Mamma Mia",
+      "youtubeId": "unfzfe8f9NI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["ABBA"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Europop",
+  "subgenres": ["Pop Rock", "Progressive Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 10
 },
 {
   "id": "1975-4",
   "chartYear": 1975,
   "releaseYear": 1975,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Summer Love",
+      "youtubeId": "pv7_VntPKyA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Sherbet"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Yacht Rock", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1975-5",
   "chartYear": 1975,
-  "releaseYear": 1975,
-  "rank": 1,
+  "releaseYear": 1974,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Horror Movie",
+      "youtubeId": "CtOv4ZBpkW4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Skyhooks"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Psychedelic Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1975-6",
   "chartYear": 1975,
   "releaseYear": 1975,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love Will Keep Us Together",
+      "youtubeId": "5m3q7M5zFwM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Captain & Tennille"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Piano Rock",
+  "subgenres": ["Pop Soul", "Yacht Rock", "Sunshine Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1975-7",
   "chartYear": 1975,
-  "releaseYear": 1975,
-  "rank": 1,
+  "releaseYear": 1974,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Please Mr. Postman",
+      "youtubeId": "AHfddvbKb4w"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Carpenters"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Bubblegum", "Easy Listening", "Brill Building"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1975-8",
   "chartYear": 1975,
-  "releaseYear": 1975,
-  "rank": 1,
+  "releaseYear": 1974,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Newcastle Song",
+      "youtubeId": "yZSSYqHYjxY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Bob Hudson"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Musical Comedy",
+  "subgenres": ["Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1975-9",
   "chartYear": 1975,
-  "releaseYear": 1975,
-  "rank": 1,
+  "releaseYear": 1974,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Before the Next Teardrop Falls",
+      "youtubeId": "VRdWEpCF5L4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Freddy Fender"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Tejano Music", "Countrypolitan"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1975-10",
   "chartYear": 1975,
   "releaseYear": 1975,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bony Moronie",
+      "youtubeId": "-f0bsL_IPp8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Hush"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Hard Rock", "Rock & Roll", "Pop Rock"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
@@ -5067,458 +5067,458 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Fernando",
+      "youtubeId": "dQsjAbZDx-4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["ABBA"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Europop",
+  "subgenres": ["Soft Rock", "Pop Rock", "Schlager"],
+  "peakPos": 1,
+  "weeksOnChart": 14
 },
 {
   "id": "1976-2",
   "chartYear": 1976,
-  "releaseYear": 1976,
-  "rank": 1,
+  "releaseYear": 1975,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bohemian Rhapsody",
+      "youtubeId": "fJ9rUzIMcZQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Queen"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Progressive Rock",
+  "subgenres": ["Art Rock", "Rock Opera", "Glam Rock", "Hard Rock", "A cappella", "Vocal Group"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1976-3",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Dancing Queen",
+      "youtubeId": "xFrGuyw1V8s"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["ABBA"],
+  "countryCode": ["Sweden"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Europop",
+  "subgenres": ["Euro-Disco", "Philly Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1976-4",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Howzat",
+      "youtubeId": "aOPEhg_dNPE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Sherbet"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Glam Rock", "Yacht Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1976-5",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Don't Go Breaking My Heart",
+      "youtubeId": "z0qW9P-uYfM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Elton John", "Kiki Dee"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Disco", "Philly Soul", "Blue-Eyed Soul", "Baroque Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1976-6",
   "chartYear": 1976,
-  "releaseYear": 1976,
-  "rank": 1,
+  "releaseYear": 1975,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Jump In My Car",
+      "youtubeId": "27JA41OZNAI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Ted Mulry Gang"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pub Rock",
+  "subgenres": ["Pop Rock", "Glam Rock", "Boogie Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1976-7",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Money Money Money",
+      "youtubeId": "ETxmCCsMoD0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["ABBA"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Europop",
+  "subgenres": ["Pop Rock", "Baroque Pop", "Cabaret"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1976-8",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "S-S-S-Single Bed",
+      "youtubeId": "X2_DOLXAwMc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Fox"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Funk",
+  "subgenres": ["Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1976-9",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Let's Stick Together",
+      "youtubeId": "Z9EbR0ckb40"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bryan Ferry"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Glam Rock", "Rhythm & Blues"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1976-10",
   "chartYear": 1976,
   "releaseYear": 1976,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Convoy",
+      "youtubeId": "Sd5ZLJWQmss"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["C.W. McCall"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Truck Driving Country",
+  "subgenres": ["Novelty", "Country Pop", "Spoken Word"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1977-1",
   "chartYear": 1977,
-  "releaseYear": 1977,
+  "releaseYear": 1976,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Don't Cry for Me Argentina",
+      "youtubeId": "adUPdnzCAk8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "artists": ["Julie Covington"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Show Tunes"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1977-2",
   "chartYear": 1977,
-  "releaseYear": 1977,
-  "rank": 1,
+  "releaseYear": 1976,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Way You Do It",
+      "youtubeId": "KpgPY9HTyHg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Pussyfoot"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Pop Rock", "Bubblegum", "Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1977-3",
   "chartYear": 1977,
   "releaseYear": 1977,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Just Want to Be Your Everything",
+      "youtubeId": "n-EJQ9kjZ84"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Andy Gibb"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Yacht Rock",
+  "subgenres": ["Disco", "Blue-Eyed Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1977-4",
   "chartYear": 1977,
-  "releaseYear": 1977,
-  "rank": 1,
+  "releaseYear": 1976,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "That's Rock and Roll",
+      "youtubeId": "EDlLF0pBrzg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Shaun Cassidy"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Pop Rock", "Soft Rock", "Rock & Roll"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1977-5",
   "chartYear": 1977,
   "releaseYear": 1977,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Living Next Door to Alice",
+      "youtubeId": "Z6qnRS36EgE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Smokie"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Pop Rock", "Country Rock", "Schlager"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1977-6",
   "chartYear": 1977,
   "releaseYear": 1977,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Go To Rio",
+      "youtubeId": "peCxmarQYj4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Peter Allen"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Latin Disco",
+  "subgenres": ["Yacht Rock", "Soft Rock", "Samba"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1977-7",
   "chartYear": 1977,
-  "releaseYear": 1977,
-  "rank": 1,
+  "releaseYear": 1976,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Torn Between Two Lovers",
+      "youtubeId": "0URFfZx9otI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Mary McGregor"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Easy Listening", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1977-8",
   "chartYear": 1977,
   "releaseYear": 1977,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Walk Right In",
+      "youtubeId": "9LC4ga6C954"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Dr. Hook"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Rock",
+  "subgenres": ["Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1977-9",
   "chartYear": 1977,
   "releaseYear": 1977,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You're Moving Out Today",
+      "youtubeId": "06J4NiCl4Vc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Carole Bayer Sager"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Piano Rock",
+  "subgenres": ["Adult Contemporary", "Pop Rock", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1977-10",
   "chartYear": 1977,
-  "releaseYear": 1977,
-  "rank": 1,
+  "releaseYear": 1976,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "If You Leave Me Now",
+      "youtubeId": "-9_d-sFhmRM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Chicago"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Blue-Eyed Soul", "Baroque Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1978-1",
@@ -5527,228 +5527,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You're the One that I Want",
+      "youtubeId": "itRFjzQICJU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Olivia Newton-John", "John Travolta"],
+  "countryCode": ["UK", "USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Film Soundtrack", "Rock & Roll", "Show Tunes", "Country Pop", "Rhythm & Blues"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1978-2",
   "chartYear": 1978,
-  "releaseYear": 1978,
-  "rank": 1,
+  "releaseYear": 1977,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Mull of Kintyre",
+      "youtubeId": "Plhtk_XJqhM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Wings"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Singer-Songwriter", "Pipe Band", "Scottish Folk Music", "Pìobaireachd"],
+  "peakPos": 1,
+  "weeksOnChart": 11
 },
 {
   "id": "1978-3",
   "chartYear": 1978,
   "releaseYear": 1978,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Rivers of Babylon",
+      "youtubeId": "jSxQJUv1e8k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Boney M."],
+  "countryCode": ["Germany"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Europop",
+  "subgenres": ["Disco", "Pop Reggae", "Schlager", "Mbaqanga"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1978-4",
   "chartYear": 1978,
-  "releaseYear": 1978,
-  "rank": 1,
+  "releaseYear": 1977,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stayin' Alive",
+      "youtubeId": "fNFzfwLM72c"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Bee Gees"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Funk", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1978-5",
   "chartYear": 1978,
-  "releaseYear": 1978,
-  "rank": 1,
+  "releaseYear": 1977,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Black Is Black",
+      "youtubeId": "NNXTHu_pYQM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Belle Epoque"],
+  "countryCode": ["France"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Euro-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1978-6",
   "chartYear": 1978,
   "releaseYear": 1978,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Macho Man",
+      "youtubeId": "HgBw22bBV74"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Village People"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Euro-Disco"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1978-7",
   "chartYear": 1978,
   "releaseYear": 1978,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "It's a Heartache",
+      "youtubeId": "bEOl38y8Nj8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bonnie Tyler"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Country Pop", "Urban Cowboy"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1978-8",
   "chartYear": 1978,
   "releaseYear": 1978,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Three Times a Lady",
+      "youtubeId": "vuWK7jY-5aE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Commodores"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Adult Contemporary", "Smooth Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1978-9",
   "chartYear": 1978,
   "releaseYear": 1978,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You Took the Words Right Out of My Mouth (Hot Summer Night)",
+      "youtubeId": "_wO8toxinoc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Meat Loaf"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Rock Opera",
+  "subgenres": ["Piano Rock", "Brill Building", "Rock & Roll", "Spoken Word", "Symphonic Rock"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1978-10",
   "chartYear": 1978,
   "releaseYear": 1978,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Baker Street",
+      "youtubeId": "Fo6aKnRnBxM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Gerry Rafferty"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Pop Rock", "Smooth Jazz", "AOR", "Yacht Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1979-1",
@@ -5757,228 +5757,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lay Your Love on Me",
+      "youtubeId": "ZmSW3CuhZyc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Racey"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Glam Rock",
+  "subgenres": ["Power Pop", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 8
+},
+{
+  "id": "1979-3",
+  "chartYear": 1979,
+  "releaseYear": 1979,
+  "rank": 3,
+  "tracks": [
+    {
+      "title": "Heart of Glass",
+      "youtubeId": "WGU_4-5RaxU"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Blondie"],
+  "countryCode": ["USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["New Wave"],
+  "peakPos": 1,
+  "weeksOnChart": 5
+},
+{
+  "id": "1979-4",
+  "chartYear": 1979,
+  "releaseYear": 1979,
+  "rank": 4,
+  "tracks": [
+    {
+      "title": "Some Girls",
+      "youtubeId": "5E2TAr5IIDY"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Racey"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "rock",
+  "primarygenre": "Bubblegum",
+  "subgenres": ["Pop Rock", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
+},
+{
+  "id": "1979-5",
+  "chartYear": 1979,
+  "releaseYear": 1979,
+  "rank": 5,
+  "tracks": [
+    {
+      "title": "Born to Be Alive",
+      "youtubeId": "9UaJAnnipkY"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Patrick Hernandez"],
+  "countryCode": ["France"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Euro-Disco",
+  "subgenres": ["Hi-NRG"],
+  "peakPos": 1,
+  "weeksOnChart": 5
+},
+{
+  "id": "1979-6",
+  "chartYear": 1979,
+  "releaseYear": 1979,
+  "rank": 6,
+  "tracks": [
+    {
+      "title": "I Don't Like Mondays",
+      "youtubeId": "-Kobdb37Cwc"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["The Boomtown Rats"],
+  "countryCode": ["Ireland"],
+  "genretaxonomy": "rock",
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Baroque Pop", "New Wave", "Piano Rock", "Progressive Pop", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
+},
+{
+  "id": "1979-7",
+  "chartYear": 1979,
+  "releaseYear": 1978,
+  "rank": 7,
+  "tracks": [
+    {
+      "title": "Da Ya Think I'm Sexy?",
+      "youtubeId": "Hphwfq1wLJs"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Rod Stewart"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Pop Rock", "Euro-Disco", "Funk Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
+},
+{
+  "id": "1979-8",
+  "chartYear": 1979,
+  "releaseYear": 1978,
+  "rank": 8,
+  "tracks": [
+    {
+      "title": 	"Le Freak",
+      "youtubeId": "aXgSHL7efKg"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Chic"],
+  "countryCode": ["USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 5
+},
+{
+  "id": "1979-9",
+  "chartYear": 1979,
+  "releaseYear": 1979,
+  "rank": 9,
+  "tracks": [
+    {
+      "title": "Knock on Wood",
+      "youtubeId": "XKuJUxGntRI"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Amii Stewart"],
+  "countryCode": ["USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Electro-Disco", "Hi-NRG"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1979-2",
   "chartYear": 1979,
   "releaseYear": 1979,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Was Made For Lovin' You",
+      "youtubeId": "ZhIsAZO5gl0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kiss"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-3",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-4",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-5",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-6",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-7",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-8",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1979-9",
-  "chartYear": 1979,
-  "releaseYear": 1979,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Hard Rock", "AOR", "Disco", "Glam Rock", "Power Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1979-10",
   "chartYear": 1979,
   "releaseYear": 1979,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Pop Muzik",
+      "youtubeId": "gPoiv0sZ4s4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["M"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["New Wave", "Electro-Disco", "Zolo", "Disco Rap", "Mutant Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1980-1",
@@ -5987,228 +5987,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Got You",
+      "youtubeId": "wiqBlKnb91A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Split Enz"],
+  "countryCode": ["New Zealand"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1980-2",
   "chartYear": 1980,
   "releaseYear": 1980,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Turning Japanese",
+      "youtubeId": "nGy9uomagO4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Vapors"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Power Pop", "Alternative Rock", "Post-Punk", "Mod Revival"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1980-3",
   "chartYear": 1980,
-  "releaseYear": 1980,
-  "rank": 1,
+  "releaseYear": 1979,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Crazy Little Thing Called Love",
+      "youtubeId": "zO6D_BAuYCI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Queen"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Rockabilly",
+  "subgenres": ["Pop Rock", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1980-4",
   "chartYear": 1980,
-  "releaseYear": 1980,
-  "rank": 1,
+  "releaseYear": 1979,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Another Brick in the Wall part 2",
+      "youtubeId": "HrxX9TBj2zY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Pink Floyd"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Art Rock",
+  "subgenres": ["Funk Rock", "Disco", "Rock Opera"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1980-5",
   "chartYear": 1980,
-  "releaseYear": 1980,
-  "rank": 1,
+  "releaseYear": 1979,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Brass in Pocket",
+      "youtubeId": "0H6re3PCP3E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Pretenders"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "Jangle Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1980-6",
   "chartYear": 1980,
   "releaseYear": 1980,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can't Stop the Music",
+      "youtubeId": "2smOQTXvZOs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Village People"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1980-7",
   "chartYear": 1980,
-  "releaseYear": 1980,
-  "rank": 1,
+  "releaseYear": 1979,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Space Invaders",
+      "youtubeId": "F2lGJMrUUHw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Player One"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Space Disco",
+  "subgenres": ["Euro-Disco", "Novelty"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1980-8",
   "chartYear": 1980,
   "releaseYear": 1980,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "More Than I Can Say",
+      "youtubeId": "GnIlo91CrBw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Leo Sayer"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Yacht Rock", "Urban Cowboy"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1980-9",
   "chartYear": 1980,
   "releaseYear": 1980,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Funkytown",
+      "youtubeId": "uhzy7JaU2Zc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lipps Inc."],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electro-Disco",
+  "subgenres": ["Boogie", "Minneapolis Sound"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1980-10",
   "chartYear": 1980,
-  "releaseYear": 1980,
-  "rank": 1,
+  "releaseYear": 1979,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Please Don't Go",
+      "youtubeId": "PwrVePMx6t0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["KC and the Sunshine Band"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Smooth Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1981-1",
@@ -6217,227 +6217,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Counting the Beat",
+      "youtubeId": "WvxSfAv50aQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Swingers"],
+  "countryCode": ["New Zealand"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Power Pop", "Jangle Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1981-2",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stars on 45",
+      "youtubeId": "7skQvj-aBV8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Stars on 45"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Mashup", "Merseybeat", "Novelty"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1981-3",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Antmusic",
+      "youtubeId": "rSLy513UFbI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Adam and the Ants"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Post-Punk", "Glam Rock", "Glam Punk"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1981-4",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Jealous Guy",
+      "youtubeId": "hRzGzRqNj58"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Roxy Music"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Pop Rock", "Adult Contemporary", "Sophisti-Pop", "New Wave"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1981-5",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Devo Live [EP] (Whip It)",
+      "youtubeId": "j_QLzthSkfM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Devo"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Post-Punk", "Synthpop", "Synth Punk", "Zolo", "Dance-Punk"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1981-6",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bette Davis Eyes",
+      "youtubeId": "EPOIS5taqA8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kim Carnes"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Synthpop", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1981-7",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Nine to Five (Morning Train)",
+      "youtubeId": "S_3vZYOYNYU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Sheena Easton"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Bubblegum"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1981-8",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Endless Love",
+      "youtubeId": "UsqDoz2Co4o"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Diana Ross", "Lionel Richie"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1981-9",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Who Can It Be Now?",
+      "youtubeId": "SECVGN4Bsgg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Men at Work"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "Reggae Rock", "Big Music"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1981-10",
   "chartYear": 1981,
   "releaseYear": 1981,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Kids in America",
+      "youtubeId": "80TfG7C9azA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Kim Wilde"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "Synthpop", "Power Pop", "Synth Punk", "Post-Punk"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
@@ -6447,227 +6447,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Eye of the Tiger",
+      "youtubeId": "btPJPFnesV4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Survivor"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Hard Rock",
+  "subgenres": ["AOR", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1982-2",
   "chartYear": 1982,
   "releaseYear": 1982,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "What About Me",
+      "youtubeId": "OzQKECQgjW8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Moving Pictures"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1982-3",
   "chartYear": 1982,
   "releaseYear": 1982,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Tainted Love",
+      "youtubeId": "XZVpR3Pk-r8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Soft Cell"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Minimal Synth", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1982-4",
   "chartYear": 1982,
-  "releaseYear": 1982,
-  "rank": 1,
+  "releaseYear": 1981,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Centerfold",
+      "youtubeId": "BqDjMZKf-wg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The J. Geils Band"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Power Pop", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1982-5",
   "chartYear": 1982,
-  "releaseYear": 1982,
-  "rank": 1,
+  "releaseYear": 1981,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Key Largo",
+      "youtubeId": "Ru2tsT32pHA"
     },
     {
-      "title": null,
+      "title": 2,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bertie Higgins"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Tropical Rock", "Soft Rock", "Yacht Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1982-6",
   "chartYear": 1982,
   "releaseYear": 1982,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Mickey",
+      "youtubeId": "0aqLwHP4y6Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Toni Basil"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Bubblegum",
+  "subgenres": ["Power Pop", "New Wave", "Pep Band", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1982-7",
   "chartYear": 1982,
   "releaseYear": 1982,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Love Rock 'n' Roll",
+      "youtubeId": "wMsazR6Tnf8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Joan Jett and the Blackhearts"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Hard Rock",
+  "subgenres": ["Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1982-8",
   "chartYear": 1982,
-  "releaseYear": 1982,
-  "rank": 1,
+  "releaseYear": 1981,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Trouble",
+      "youtubeId": "Kcm3dbuV8Z4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lindsey Buckingham"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Pop Rock", "Dream Pop", "New Wave"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1982-9",
   "chartYear": 1982,
   "releaseYear": 1982,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Believe it or Not",
+      "youtubeId": "WqF5M7IK7I0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Joey Scarbury"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Yacht Rock", "Television Music"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1982-10",
   "chartYear": 1982,
   "releaseYear": 1982,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hard to Say I'm Sorry",
+      "youtubeId": "1A0MPWseJIE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Chicago"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Soft Rock",
+  "subgenres": ["AOR", "Adult Contemporary"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
@@ -6677,145 +6677,145 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Flashdance... What a Feeling",
+      "youtubeId": "ILWSp0m9G2U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Irene Cara"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Film Soundtrack","Synthpop", "Electro-Disco", "Adult Contemporary", "Freestyle"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1983-2",
   "chartYear": 1983,
-  "releaseYear": 1983,
-  "rank": 1,
+  "releaseYear": 1982,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Gloria",
+      "youtubeId": "nNEb2k_EmMg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Laura Branigan"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Euro-Disco", "Disco", "Europop"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1983-3",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Billie Jean",
+      "youtubeId": "Zi_XLOBDo_Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Michael Jackson"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Dance-Pop", "Boogie", "Synth Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1983-4",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Up Where We Belong",
+      "youtubeId": "bjrOcrisGyI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Joe Cocker", "Jennifer Warnes"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Yacht Rock", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1983-5",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Total Eclipse of the Heart",
+      "youtubeId": "lcOxhH8N3Bo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bonnie Tyler"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["AOR", "Rock Opera", "Adult Contemporary", "Progressive Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1983-6",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Save Your Love",
+      "youtubeId": "m7EnYrW0oQM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Renee & Renato"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Classical Crossover",
+  "subgenres": ["Traditional Pop", "Opera", "Adult Contemporary"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1983-7",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Karma Chameleon",
       "youtubeId": "a"
     },
     {
@@ -6823,81 +6823,81 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Culture Club"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock","Tropical Rock", "Zydeco", "Jangle Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1983-8",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Beat It",
+      "youtubeId": "oRdxUFDoQe0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Michael Jackson"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Hard Rock", "Dance-Pop", "Funk Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1983-9",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Every Breath You Take",
+      "youtubeId": "OMOGaugKpzs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Police"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "Sophisti-Pop", "Big Music"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1983-10",
   "chartYear": 1983,
   "releaseYear": 1983,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bop Girl",
+      "youtubeId": "svSOepHyPvc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Pat Wilson"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "New Wave",
+  "subgenres": ["Synthpop", "Power Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -6907,228 +6907,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Dancing in the Dark",
+      "youtubeId": "129kuDCQtHs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bruce Springsteen"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Heartland Rock", "New Wave", "Synthpop", "Big Music"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "1984-2",
   "chartYear": 1984,
   "releaseYear": 1984,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Ghostbusters",
+      "youtubeId": "TaV1r341wYk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Ray Parker Jr"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Film Soundtrack", "Minneapolis Sound", "Halloween Music", "Synth Funk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1984-3",
   "chartYear": 1984,
   "releaseYear": 1984,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Careless Whisper",
+      "youtubeId": "izGwDsrQ1eQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["George Michael", "Wham!"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Sophisti-Pop", "Blue-Eyed Soul", "Adult Contemporary", "Smooth Soul", "Smooth Jazz", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1984-4",
   "chartYear": 1984,
   "releaseYear": 1984,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Wake Me Up Before You Go-Go",
+      "youtubeId": "pIgZ7gMze7A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Wham!"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Soul", "Bubblegum", "Motwon Sound"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1984-5",
   "chartYear": 1984,
   "releaseYear": 1984,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Just Called to Say I Love You",
+      "youtubeId": "djHiBp5oRnY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Stevie Wonder"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Film Soundtrack", "Synthpop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1984-6",
   "chartYear": 1984,
   "releaseYear": 1984,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Footloose",
+      "youtubeId": "ltrMfT4Qz5Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kenny Loggins"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Film Soundtrack", "Rockabilly", "New Wave", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1984-7",
   "chartYear": 1984,
-  "releaseYear": 1984,
-  "rank": 1,
+  "releaseYear": 1983,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hello",
+      "youtubeId": "mHONNcZbwDY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lionel Richie"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul", "Smooth Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1984-8",
   "chartYear": 1984,
-  "releaseYear": 1984,
-  "rank": 1,
+  "releaseYear": 1983,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Girls Just Want to Have Fun",
+      "youtubeId": "PIb6AZdTr-A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Cyndi Lauper"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Synthpop", "New Wave", "Blue-Eyed Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1984-9",
   "chartYear": 1984,
-  "releaseYear": 1984,
-  "rank": 1,
+  "releaseYear": 1983,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Islands in the Stream",
+      "youtubeId": "UaNGtgYwSsU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kenny Rogers", "Dolly Parton"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Urban Cowboy",
+  "subgenres": ["Adult Contemporary", "Country Pop", "Yacht Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1984-10",
   "chartYear": 1984,
-  "releaseYear": 1984,
-  "rank": 1,
+  "releaseYear": 1983,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love Is a Battlefield",
+      "youtubeId": "IGVZOLV9SPo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Pat Benatar"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1985-1",
@@ -7137,53 +7137,53 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "We Are the World",
+      "youtubeId": "9AjkUyX0rVw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["USA for Africa"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul", "Vocal Group"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1985-2",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Angel",
+      "youtubeId": "J7W3oVF4O1Q"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Into the Groove",
+      "youtubeId": "52iW3lcpK5M"
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Madonna"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Synthpop", "New Wave", "Freestyle", "Synth Funk", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1985-3",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Crazy for You",
       "youtubeId": "a"
     },
     {
@@ -7191,174 +7191,174 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Madonna"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Synthpop", "Soft Rock", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1985-4",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Live it Up",
+      "youtubeId": "kK_eQImKnPA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Mental As Anything"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "Big Music", "Synthpop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1985-5",
   "chartYear": 1985,
-  "releaseYear": 1985,
-  "rank": 1,
+  "releaseYear": 1984,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Want to Know What Love Is",
+      "youtubeId": "r3Pr1_v7hsw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Foreigner"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "AOR",
+  "subgenres": ["Soft Rock", "Pop Soul", "Blue-Eyed Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1985-6",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Out of Mind, Out of Sight",
+      "youtubeId": "k5EZmJoNeYs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Models"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "New Wave",
+  "subgenres": ["Pop Rock", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1985-7",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Money for Nothing",
+      "youtubeId": "wTP2RUD_cL0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Dire Straits"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Hard Rock", "AOR"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "1985-8",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Got You Babe",
+      "youtubeId": "bS33wtUDh10"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["UB40", "Chrissie Hynde"],
+  "countryCode": ["UK", "USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Pop Reggae",
+  "subgenres": null,
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1985-9",
   "chartYear": 1985,
-  "releaseYear": 1985,
-  "rank": 1,
+  "releaseYear": 1984,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Should Have Known Better",
+      "youtubeId": "qWEFNFsFrgE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Jim Diamond"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1985-10",
   "chartYear": 1985,
   "releaseYear": 1985,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Would I Lie To You?",
+      "youtubeId": "Uhpu2N4rQZM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Eurythmics"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Pop Soul", "Motwon Sound", "Hard Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1986-1",
@@ -7367,30 +7367,30 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Chain Reaction",
+      "youtubeId": "PcMD2Gs9fwU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Diana Ross"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Contemporary R&B", "Dance-Pop", "Motwon Sound"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1986-2",
   "chartYear": 1986,
-  "releaseYear": 1986,
-  "rank": 1,
+  "releaseYear": 1985,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "When the Going Gets Tough, the Tough Get Going",
       "youtubeId": "a"
     },
     {
@@ -7398,197 +7398,197 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Billy Ocean"],
+  "countryCode": ["Trinidad and Tobago"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Synth Funk", "Pop Soul", "Contemporary R&B", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1986-3",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Touch Me (I Want Your Body)",
+      "youtubeId": "W1btg3mpEOc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Samantha Fox"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Rock", "Synthpop", "Euro-Disco", "Italo-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1986-4",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Venus",
+      "youtubeId": "d4-1ASpdT1Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Bananarama"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Hi-NRG",
+  "subgenres": ["Dance-Pop", "Synthpop"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1986-5",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stimulation",
+      "youtubeId": "DAHhjeXuiHk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Wa Wa Nee"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Dance-Pop", "Synth Funk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1986-6",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Take My Breath Away",
+      "youtubeId": "Bx51eegLTY8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Berlin"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Adult Contemporary", "Sophisti-Pop", "Film Soundtrack"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1986-7",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Living Doll",
+      "youtubeId": "gGOU0o9K89g"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Cliff Richard", "The Young Ones"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Novelty",
+  "subgenres": ["Sketch Comedy", "Traditional Pop", "Vocal Group"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1986-8",
   "chartYear": 1986,
-  "releaseYear": 1986,
-  "rank": 1,
+  "releaseYear": 1985,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "A Good Heart",
+      "youtubeId": "cJLCETw8rlA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Feargal Sharkey"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["AOR", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1986-9",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Papa Don't Preach",
+      "youtubeId": "G333Is7VPOg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Madonna"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Dance-Pop", "New Wave", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1986-10",
   "chartYear": 1986,
   "releaseYear": 1986,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Addicted to Love",
+      "youtubeId": "XcATvu5f9vE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Robert Palmer"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["AOR", "Hard Rock", "New Wave"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1987-1",
@@ -7597,457 +7597,457 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Locomotion",
+      "youtubeId": "UpvRg_2oD7A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Kylie Minogue"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Euro-Disco", "Hi-NRG"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1987-2",
   "chartYear": 1987,
   "releaseYear": 1987,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "La Bamba",
+      "youtubeId": "nLAWPrCUQQ0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Los Lobos"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Latin Rock",
+  "subgenres": ["Rock & Roll", "Film Soundtrack", "Tex-Mex", "Son jarocho"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1987-3",
   "chartYear": 1987,
   "releaseYear": 1987,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Old Time Rock and Roll",
+      "youtubeId": "W1LsRShUPtY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bob Seger"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Heartland Rock",
+  "subgenres": ["Pop Rock", "Boogie Rock", "Blues Rock", "Rock & Roll"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1987-4",
   "chartYear": 1987,
   "releaseYear": 1987,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Slice of Heaven",
+      "youtubeId": "OWNLVogchpU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Dave Dobbyn", "Herbs"],
+  "countryCode": ["New Zealand"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Film Soundtrack", "Zolo", "New Wave"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1987-5",
   "chartYear": 1987,
   "releaseYear": 1987,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Respectable",
+      "youtubeId": "ykDsmAqExH8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Mel & Kim"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Synthpop", "Hi-NRG", "House", "Italo House", "Chicago House"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1987-6",
   "chartYear": 1987,
-  "releaseYear": 1987,
-  "rank": 1,
+  "releaseYear": 1986,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You Keep Me Hangin' On",
+      "youtubeId": "xJZF-skCY-M"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Kim Wilde"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Hi-NRG", "New Wave", "Synthpop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1987-7",
   "chartYear": 1987,
-  "releaseYear": 1987,
-  "rank": 1,
+  "releaseYear": 1986,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Walk Like an Egyptian",
+      "youtubeId": "JA0VfqtIK_A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Bangles"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Jangle Pop", "Paisley Underground"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1987-8",
   "chartYear": 1987,
   "releaseYear": 1987,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Electric Blue",
+      "youtubeId": "zeV_POB16f8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Icehouse"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Synthpop", "New Wave", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1987-9",
   "chartYear": 1987,
   "releaseYear": 1987,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Boom Boom (Let's Go Back to My Room)",
+      "youtubeId": "xXMrDu7374Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Paul Lekakis"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Hi-NRG",
+  "subgenres": ["Italo-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1987-10",
   "chartYear": 1987,
-  "releaseYear": 1987,
-  "rank": 1,
+  "releaseYear": 1986,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Final Countdown",
+      "youtubeId": "9jK-NcRmVcw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Europe"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Hard Rock",
+  "subgenres": ["AOR", "Fanfare", "Glam Metal"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1988-1",
   "chartYear": 1988,
-  "releaseYear": 1988,
+  "releaseYear": 1987,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "(I've Had) The Time of My Life",
+      "youtubeId": "4BQLE_RrTSU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bill Medley", "Jennifer Warnes"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Film Soundtrack", "Adult Contemporary", "Boogie", "Freestyle"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1988-2",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Simply Irresistible",
+      "youtubeId": "SoHpSY3IoAI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Robert Palmer"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Hard Rock", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1988-3",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Flame",
+      "youtubeId": "2u6uXuT9pm4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Cheap Trick"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["AOR", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1988-4",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Get Outta My Dreams, Get into My Car",
+      "youtubeId": "zNgcYGgtf8M"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Billy Ocean"],
+  "countryCode": ["Trinidad and Tobago"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Freestyle", "Synth Funk", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1988-5",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"I Should Be So Lucky",
+      "youtubeId": "3_TvpBwSZDM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Kylie Minogue"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Hi-NRG", "Teen Pop", "Bubblegum", "Synthpop", "Eurobeat"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1988-6",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Perfect",
+      "youtubeId": "txapREGWHp0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Fairground Attraction"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Rockabilly", "Jazz Pop", "Skiffle"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1988-7",
   "chartYear": 1988,
-  "releaseYear": 1988,
-  "rank": 1,
+  "releaseYear": 1967,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"What a Wonderful World",
+      "youtubeId": "VqhCQZaH4Vs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Louis Armstrong"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
+  "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "subgenres": ["Vocal Jazz", "Swing", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1988-8",
   "chartYear": 1988,
-  "releaseYear": 1988,
-  "rank": 1,
+  "releaseYear": 1987,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Never Gonna Give You Up",
+      "youtubeId": "dQw4w9WgXcQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Rick Astley"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Synthpop", "Blue-Eyed Soul", "Italo-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1988-9",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Age of Reason",
+      "youtubeId": "adVR3MT8fGg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["John Farnham"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Adult Contemporary", "Soft Rock", "Synthpop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1988-10",
   "chartYear": 1988,
   "releaseYear": 1988,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Better Be Home Soon",
+      "youtubeId": "AQOlwMKpmvQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Crowded House"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Acoustic Rock", "Jangle Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -8057,228 +8057,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Like a Prayer",
+      "youtubeId": "79fzeNUqQbQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Madonna"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Rock", "Art Pop", "Gospel", "Synth Funk", "Urban Contemporary Gospel", "Freestyle"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1989-2",
   "chartYear": 1989,
   "releaseYear": 1989,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Look",
+      "youtubeId": "LlVI7ZNiFlI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Roxette"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Synthpop", "Funk Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1989-3",
   "chartYear": 1989,
   "releaseYear": 1989,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'm Gonna Be (500 Miles)",
+      "youtubeId": "tbNlMtqrYS0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Proclaimers"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Folk Rock", "Power Pop", "Indie Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1989-4",
   "chartYear": 1989,
   "releaseYear": 1989,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Eternal Flame",
+      "youtubeId": "TLTrtMlNmUQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Bangles"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Baroque Pop", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1989-5",
   "chartYear": 1989,
   "releaseYear": 1989,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "If I Could Turn Back Time",
+      "youtubeId": "9n3A_-HRFfc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Cher"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "AOR",
+  "subgenres": ["Pop Rock", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1989-6",
   "chartYear": 1989,
-  "releaseYear": 1989,
-  "rank": 1,
+  "releaseYear": 1988,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "She Drives Me Crazy",
+      "youtubeId": "UtvmTu4zAMg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Fine Young Cannibals"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Synthpop", "Synth Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1989-7",
   "chartYear": 1989,
   "releaseYear": 1989,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Bedroom Eyes",
+      "youtubeId": "BVStfVu_Q8A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Kate Ceberano"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Pop Reggae"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1989-8",
   "chartYear": 1989,
-  "releaseYear": 1989,
-  "rank": 1,
+  "releaseYear": 1988,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You Got It (The Right Stuff)",
+      "youtubeId": "tbIEwIwYz-c"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["New Kids on the Block"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Boy Band", "New Jack Swing", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1989-9",
   "chartYear": 1989,
-  "releaseYear": 1989,
-  "rank": 1,
+  "releaseYear": 1988,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Kokomo",
+      "youtubeId": "fJWmbLS2_ec"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Beach Boys"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Tropical Rock",
+  "subgenres": ["Film Soundtrack", "Calypso", "Vocal Surf"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1989-10",
   "chartYear": 1989,
   "releaseYear": 1989,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Living Years",
+      "youtubeId": "5hr64MxYpgk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Mike & The Mechanics"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Adult Contemporary", "Synthpop", "Soft Rock", "Sophisti-Pop", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1990-1",
@@ -8287,228 +8287,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Nothing Compares 2 U",
+      "youtubeId": "0-EF60neguk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Sinéad O'Connor"],
+  "countryCode": ["Ireland"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1990-2",
   "chartYear": 1990,
   "releaseYear": 1990,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "U Can't Touch This",
+      "youtubeId": "otCpCn0l4Wo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["MC Hammer"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Dance-Pop", "Synth Funk", "Disco Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1990-3",
   "chartYear": 1990,
   "releaseYear": 1990,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Vogue",
+      "youtubeId": "GuJQSAiODqI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Madonna"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Diva House", "Italo House", "Garage House"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1990-4",
   "chartYear": 1990,
   "releaseYear": 1990,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "It Must Have Been Love",
+      "youtubeId": "k2C5TjS2sh4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Roxette"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Adult Contemporary", "Soft Rock", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1990-5",
   "chartYear": 1990,
   "releaseYear": 1990,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "All I Wanna Do Is Make Love to You",
+      "youtubeId": "OAfxs0IDeMs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Heart"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "AOR",
+  "subgenres": ["Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1990-6",
   "chartYear": 1990,
-  "releaseYear": 1990,
-  "rank": 1,
+  "releaseYear": 1989,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Opposites Attract",
+      "youtubeId": "xweiQukBM_k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Paula Abdul"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "New Jack Swing",
+  "subgenres": ["Dance-Pop", "Pop Rap", "Minneapolis Sound", "Freestyle"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1990-7",
   "chartYear": 1990,
-  "releaseYear": 1990,
-  "rank": 1,
+  "releaseYear": 1989,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "How Am I Supposed to Live Without You",
+      "youtubeId": "YFood_bTOX4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Michael Bolton"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Soft Rock", "Blue-Eyed Soul"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1990-8",
   "chartYear": 1990,
-  "releaseYear": 1990,
-  "rank": 1,
+  "releaseYear": 1965,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Unchained Melody",
+      "youtubeId": "Zv8czIoAw5w"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Righteous Brothers"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Blue-Eyed Soul",
+  "subgenres": ["Traditional Pop", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1990-9",
   "chartYear": 1990,
-  "releaseYear": 1990,
-  "rank": 1,
+  "releaseYear": 1989,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Girl I'm Gonna Miss You",
+      "youtubeId": "ZbUENJ5FjBk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Milli Vanilli"],
+  "countryCode": ["Germany"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Adult Contemporary", "Downtempo", "Sophisti-Pop"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1990-10",
   "chartYear": 1990,
-  "releaseYear": 1990,
-  "rank": 1,
+  "releaseYear": 1989,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Love Shack",
+      "youtubeId": "9SOryJvTAGs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The B-52's"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["New Wave", "Funk Rock","Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1991-1",
@@ -8517,227 +8517,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "(Everything I Do) I Do It for You",
+      "youtubeId": "Y0pdQU87dc8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bryan Adams"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Adult Contemporary", "Film Soundtrack", "AOR", "Piano Rock", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 11
 },
 {
   "id": "1991-2",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Tingles [EP] - That Ain't Bad",
+      "youtubeId": "8nuJkLt59iQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Ratcat"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Noise Pop",
+  "subgenres": ["Power Pop", "Indie Rock", "Alternative Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1991-3",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Grease Mega-Mix",
+      "youtubeId": "WTAg7aolyCY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Olivia Newton-John", "John Travolta"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Mashup", "Rock & Roll", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1991-4",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Horses",
+      "youtubeId": "ZtnC7aMez2s"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Daryl Braithwaite"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Adult Contemporary", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1991-5",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You Could Be Mine",
+      "youtubeId": "6Sp1bLrBAuQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Guns N' Roses"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Hard Rock",
+  "subgenres": ["Film Soundtrack", "Heavy Metal", "Glam Metal"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "1991-6",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Read My Lips",
+      "youtubeId": "f_FswLkbHUY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Melissa"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Euro House", "House"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1991-7",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "More Than Words",
+      "youtubeId": "UrIiLvg58SY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Extreme"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Acoustic Rock",
+  "subgenres": ["Soft Rock", "Singer-Songwriter"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1991-8",
   "chartYear": 1991,
-  "releaseYear": 1991,
-  "rank": 1,
+  "releaseYear": 1990,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I've Been Thinking About You",
+      "youtubeId": "Bvrym1NXXjca"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Londonbeat"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Euro House", "Garage House", "Diva House", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1991-9",
   "chartYear": 1991,
   "releaseYear": 1991,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Joyride",
+      "youtubeId": "xCorJG9mubk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Roxette"],
+  "countryCode": ["Sweden"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Synthpop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1991-10",
   "chartYear": 1991,
-  "releaseYear": 1991,
-  "rank": 1,
+  "releaseYear": 1990,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Shoop Shoop Song (It's in His Kiss)"	,
+      "youtubeId": "ZM5qIJdBtX0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Cher"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Doo-Wop","Brill Building", "Film Soundtrack", "Pop Rock"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
@@ -8747,228 +8747,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Achy Breaky Heart",
+      "youtubeId": "byQIPdHMpjc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Billy Ray Cyrus"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Country Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1992-2",
   "chartYear": 1992,
-  "releaseYear": 1992,
-  "rank": 1,
+  "releaseYear": 1991,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "November Rain",
+      "youtubeId": "8SbUC-UaAxE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Guns N' Roses"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Hard Rock",
+  "subgenres": ["Symphonic Rock", "AOR", "Progressive Rock", "Art Rock"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "1992-3",
   "chartYear": 1992,
   "releaseYear": 1992,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "End of the Road",
+      "youtubeId": "zDKO6XYXioc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Boyz II Men"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Smooth Soul", "Boy Band", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1992-4",
   "chartYear": 1992,
-  "releaseYear": 1992,
-  "rank": 1,
+  "releaseYear": 1991,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "To Be with You",
+      "youtubeId": "L6-uJLteKek"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Mr. Big"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Acoustic Rock",
+  "subgenres": ["Pop Rock", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1992-5",
   "chartYear": 1992,
   "releaseYear": 1992,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Amigos Para Siempre (Friends for Life) ",
+      "youtubeId": "U6_YbSB1c1s"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["José Carreras","Sarah Brightman"],
+  "countryCode": ["Spain", "UK"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Classical Crossover",
+  "subgenres": ["Opera", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1992-6",
   "chartYear": 1992,
   "releaseYear": 1992,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Best Things in Life Are Free",
+      "youtubeId": "79SNvZi3ltE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Luther Vandross", "Janet Jackson"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "New Jack Swing",
+  "subgenres": ["Dance-Pop", "House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1992-7",
   "chartYear": 1992,
   "releaseYear": 1992,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Please Don't Go",
+      "youtubeId": "glWQc8tgYQA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["K.W.S."],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["House", "Euro House", "Diva House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1992-8",
   "chartYear": 1992,
   "releaseYear": 1992,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Day You Went Away",
+      "youtubeId": "T8fgmfM2zeQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Wendy Matthews"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Piano Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1992-9",
   "chartYear": 1992,
   "releaseYear": 1992,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Under the Bridge",
+      "youtubeId": "GLvohMXgcBo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Red Hot Chili Peppers"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Alternative Rock",
+  "subgenres": ["Funk Rock", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1992-10",
   "chartYear": 1992,
-  "releaseYear": 1992,
-  "rank": 1,
+  "releaseYear": 1991,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hazard",
+      "youtubeId": "gdmHHoI9beM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Richard Marx"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "AOR",
+  "subgenres": ["Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1993-1",
@@ -8977,228 +8977,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'd Do Anything for Love (But I Won't Do That)",
+      "youtubeId": "9X_ViIPA-Gc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Meat Loaf"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Rock Opera", "AOR", "Piano Rock", "Symphonic Rock", "Hard Rock", "Progressive Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1993-2",
   "chartYear": 1993,
-  "releaseYear": 1993,
-  "rank": 1,
+  "releaseYear": 1992,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Will Always Love You",
+      "youtubeId": "3JWTaaS7LdU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Whitney Houston"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 10
 },
 {
   "id": "1993-3",
   "chartYear": 1993,
   "releaseYear": 1993,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You Don't Treat Me No Good",
+      "youtubeId": "Lqw1Q19i_vQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Sonia Dada"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Folk Pop", "Country Soul", "Acoustic Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1993-4",
   "chartYear": 1993,
-  "releaseYear": 1993,
-  "rank": 1,
+  "releaseYear": 1992,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Sweat (A La La La La Long)",
+      "youtubeId": "uc2UEfWjvo8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Inner Circle"],
+  "countryCode": ["Jamacia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Pop Reggae",
+  "subgenres": ["Dancehall"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1993-5",
   "chartYear": 1993,
   "releaseYear": 1993,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "(I Can't Help) Falling in Love with You",
+      "youtubeId": "vUdloUqZa7w"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["UB40"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Pop Reggae",
+  "subgenres": ["Digital Dancehall", "Downtempo"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1993-6",
   "chartYear": 1993,
   "releaseYear": 1993,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Informer",
+      "youtubeId": "TSffz_bl6zo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Snow"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Pop Reggae", "Ragga", "New Jack Swing", "Gansta Rap", "Boom Bap", "Dancehall"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1993-7",
   "chartYear": 1993,
   "releaseYear": 1993,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "What's Up",
+      "youtubeId": "6NXnxTNIWkc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["4 Non Blondes"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Acoustic Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1993-8",
   "chartYear": 1993,
   "releaseYear": 1993,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Cat's in the Cradle",
+      "youtubeId": "B32yjbCSVpU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Ugly Kid Joe"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Alternative Rock",
+  "subgenres": ["Acoustic Rock", "Hard Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1993-9",
   "chartYear": 1993,
-  "releaseYear": 1993,
-  "rank": 1,
+  "releaseYear": 1992,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "All That She Wants",
+      "youtubeId": "d73tiBBzvFM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ace of Base"],
+  "countryCode": ["Sweden"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Europop",
+  "subgenres": ["Dance-Pop", "Pop Reggae", "Dancehall"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1993-10",
   "chartYear": 1993,
   "releaseYear": 1993,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Please Forgive Me",
+      "youtubeId": "9EHAo6rEuas"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bryan Adams"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["AOR", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1994-1",
@@ -9207,228 +9207,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love Is All Around",
+      "youtubeId": "h3gEkwhdXUE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Wet Wet Wet"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Blue-Eyed Soul", "Adult Contemporary", "Film Soundtrack", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1994-2",
   "chartYear": 1994,
   "releaseYear": 1994,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Swear",
+      "youtubeId": "cVpvlaKfLQc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["All-4-One"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Boy Band", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1994-3",
   "chartYear": 1994,
   "releaseYear": 1994,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Always",
+      "youtubeId": "9BMwcO6_hyA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bon Jovi"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Adult Contemporary", "AOR", "Piano Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1994-4",
   "chartYear": 1994,
-  "releaseYear": 1994,
-  "rank": 1,
+  "releaseYear": 1993,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "It's Alright",
+      "youtubeId": "tP_WRk-xV7I"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["East 17"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Boy Band", "Euro House", "House"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1994-5",
   "chartYear": 1994,
-  "releaseYear": 1994,
-  "rank": 1,
+  "releaseYear": 1993,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Sign",
+      "youtubeId": "iqu132vTl5Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ace of Base"],
+  "countryCode": ["Sweden"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Europop",
+  "subgenres": ["Dance-Pop", "Pop Reggae", "Synthpop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1994-6",
   "chartYear": 1994,
-  "releaseYear": 1994,
-  "rank": 1,
+  "releaseYear": 1993,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Power of Love",
+      "youtubeId": "Y8HOfcYWZooa"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Céline Dion"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Rock", "Sophisti-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1994-7",
   "chartYear": 1994,
   "releaseYear": 1994,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'll Make Love to You",
+      "youtubeId": "fV8vB1BB2qc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Boyz II Men"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Adult Contemporary", "Smooth Soul", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1994-8",
   "chartYear": 1994,
-  "releaseYear": 1994,
-  "rank": 1,
+  "releaseYear": 1993,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Please Forgive Me",
+      "youtubeId": "9EHAo6rEuas"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bryan Adams"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["AOR", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1994-9",
   "chartYear": 1994,
   "releaseYear": 1994,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Tomorrow",
+      "youtubeId": "PjsMnvqL7eY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Silverchair"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Acoustic Rock",
+  "subgenres": ["Grunge", "Stoner Rock", "Post-Grunge"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1994-10",
   "chartYear": 1994,
-  "releaseYear": 1994,
-  "rank": 1,
+  "releaseYear": 1993,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "All for Love",
+      "youtubeId": "ofA3URC1wyk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bryan Adams", "Rod Stewart", "Sting"],
+  "countryCode": ["Canada", "UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Rock", "Film Soundtrack", "Soft Rock", "AOR"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1995-1",
@@ -9437,375 +9437,375 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Gangsta's Paradise",
+      "youtubeId": "fPO76Jlnz6c"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Coolio"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Gangsta Rap",
+  "subgenres": ["Conscious Hip Hop", "Film Soundtrack", "Pop Rap", "Boom Bap", "Gospel", "G-Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 11
 },
 {
   "id": "1995-2",
   "chartYear": 1995,
   "releaseYear": 1995,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stayin' Alive",
+      "youtubeId": "qiKOif0UKRM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["N-Trande"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Hip House", "Disco Rap", "Funk House"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1995-3",
   "chartYear": 1995,
-  "releaseYear": 1995,
-  "rank": 1,
+  "releaseYear": 1994,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Kiss from a Rose",
+      "youtubeId": "hDd2G_V1rzc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Seal"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Progressive Soul",
+  "subgenres": ["Adult Contemporary", "Pop Soul", "Contemporary R&B", "Baroque Pop", "Sophisti-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1995-4",
   "chartYear": 1995,
-  "releaseYear": 1995,
-  "rank": 1,
+  "releaseYear": 1994,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Mouth",
+      "youtubeId": "5AlklK5q0wQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Merril Bainbridge"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Indie Pop", "Adult Contemporary", "Folk Pop", "Beatboxing"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1995-5",
   "chartYear": 1995,
-  "releaseYear": 1995,
-  "rank": 1,
+  "releaseYear": 1994,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Another Night",
+      "youtubeId": "Pav2f4b-1ZE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Real McCoy"],
+  "countryCode": ["Germany"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Eurodance",
+  "subgenres": ["Euro House"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1995-6",
   "chartYear": 1995,
   "releaseYear": 1995,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Have You Ever Really Loved a Woman",
+      "youtubeId": "diKIYv8tMC8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Bryan Adams"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Flamenco", "Adult Contemporary", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "1995-7",
   "chartYear": 1995,
-  "releaseYear": 1995,
-  "rank": 1,
+  "releaseYear": 1994,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Zombie",
+      "youtubeId": "6Ejga4kJUts"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Cranberries"],
+  "countryCode": ["Ireland"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Alternative Rock",
+  "subgenres": ["Post-Grunge"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1995-8",
   "chartYear": 1995,
   "releaseYear": 1995,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Let's Groove",
+      "youtubeId": "oYCx1WA072U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["CDB"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Boy Band", "Contemporary R&B"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1995-9",
   "chartYear": 1995,
   "releaseYear": 1995,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Back for Good",
+      "youtubeId": "N2ICtCO8TCw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Take That"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Boy Band", "Blue-Eyed Soul", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1995-10",
   "chartYear": 1995,
   "releaseYear": 1995,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You Are Not Alone",
+      "youtubeId": "pAyKJAtDNCw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Michael Jackson"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Soul", "Adult Contemporary", "Smooth Soul"],
+  "peakPos": 7,
   "weeksOnChart": null
 },
 {
   "id": "1996-1",
   "chartYear": 1996,
-  "releaseYear": 1996,
+  "releaseYear": 1995,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Macarena",
+      "youtubeId": "zWaymcVmJ-A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Los Del Rio"],
+  "countryCode": ["Spain"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Europop", "Euro House", "Eurodance", "Flamenco Pop", "Progressive House"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1996-2",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Killing Me Softly",
+      "youtubeId": "oKOtzIo-uYw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Fugees"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Hip Hop Soul",
+  "subgenres": ["Neo-Soul", "Contemporary R&B", "Pop Soul", "Boom Bap"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1996-3",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Because You Loved Me",
+      "youtubeId": "fpl4if07ics"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Céline Dion"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Film Soundtrack", "Contemporary R&B", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1996-4",
   "chartYear": 1996,
-  "releaseYear": 1996,
-  "rank": 1,
+  "releaseYear": 1995,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "How Bizarre",
+      "youtubeId": "C2cMG33mWVY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["OMC"],
+  "countryCode": ["New Zealand"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Rap", "Tropical Rock", "Mariachi", "Latin Pop", "Rap Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1996-5",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Wannabe",
+      "youtubeId": "gJLIiF15wjQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Spice Girls"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Teen Pop", "Pop Rap", "UK Street Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1996-6",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "One of Us",
+      "youtubeId": "aDdOnl0bHO4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Joan Osborne"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Singer-Songwriter", "Alternative Rock", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1996-7",
   "chartYear": 1996,
-  "releaseYear": 1996,
-  "rank": 1,
+  "releaseYear": 1995,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Missing (Todd Terry Club Mix)",
       "youtubeId": "a"
     },
     {
@@ -9813,81 +9813,81 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Everything but the Girl"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Deep House",
+  "subgenres": ["Garage House", "Dance-Pop", "Progressive House", "Balearic Beat", "Ibiza Trance"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1996-8",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Return of the Mack",
+      "youtubeId": "uB1D9wWxd2w"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Mark Morrison"],
+  "countryCode": ["Germany"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Hip Hop Soul",
+  "subgenres": ["Contemporary R&B", "New Jack Swing", "UK Street Soul", "Turntablism"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1996-9",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "What's Love Got to Do with It",
+      "youtubeId": "ri-eOc1irww"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Warren G"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["G-Funk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1996-10",
   "chartYear": 1996,
   "releaseYear": 1996,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "You're Makin' Me High",
+      "youtubeId": "wIgOL21S98o"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Toni Braxton"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Hip Hop Soul", "G-Funk", "Synth Funk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -9897,444 +9897,444 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Something About the Way You Look Tonight",
+      "youtubeId": "B93Tir6l5FA"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Candle in the Wind 1997",
+      "youtubeId": "EX7FvFexpg8"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Elton John"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Soft Rock", "Pop Rock", "Piano Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1997-2",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Barbie Girl",
+      "youtubeId": "ZyhrYis509A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Aqua"],
+  "countryCode": ["Denmark"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Bubblegum Dance",
+  "subgenres": ["Europop", "Novelty"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1997-3",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Tubthumping",
+      "youtubeId": "2H5uWRjFsGc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Chumbawamba"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Dance", "Baggy", "Football Chant", "Grebo"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "1997-4",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'll Be Missing You",
+      "youtubeId": "NKMtZm2YuBE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Puff Daddy", "Faith Evans"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Contemporary R&B", "Gospel", "Urban Contemporary Gospel"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1997-5",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "MMMBop",
+      "youtubeId": "NHozn0YXAeE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Hanson"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Pop Rock", "Power Pop", "Bubblegum", "Sunshine Pop", "Turntablism", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1997-6",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Men in Black",
+      "youtubeId": "fiBLgEx6svA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Will Smith"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Contemporary R&B", "Film Soundtrack", "Boogie", "Disco Rap", "Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1997-7",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Truly, Madly, Deeply",
+      "youtubeId": "WQnAxOQxQIU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Savage Garden"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Soft Rock", "Downtempo", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1997-8",
   "chartYear": 1997,
-  "releaseYear": 1997,
-  "rank": 1,
+  "releaseYear": 1996,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Don't Speak",
+      "youtubeId": "TR3Vdo5etCQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["No Doubt"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Latin Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1997-9",
   "chartYear": 1997,
-  "releaseYear": 1997,
-  "rank": 1,
+  "releaseYear": 1996,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Breathe",
+      "youtubeId": "6_PAHbqq-o4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Prodigy"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Big Beat",
+  "subgenres": ["Industrial Rock", "Grebo", "Digital Hardcore", "Breakstep"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1997-10",
   "chartYear": 1997,
   "releaseYear": 1997,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Break My Stride",
+      "youtubeId": "CUgdtkSOXHU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "1998-1",
-  "chartYear": 1998,
-  "releaseYear": 1998,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Unique II"],
+  "countryCode": ["Austria"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Eurodance", "Europop", "Pop Reggae"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1998-2",
   "chartYear": 1998,
-  "releaseYear": 1998,
-  "rank": 1,
+  "releaseYear": 1997,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "It's Like That",
+      "youtubeId": "TLGWQfK-6DY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["RUN DMC", "Jason Nevins" ],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Hip House",
+  "subgenres": ["Conscious Hip Hop", "UK Hard House"],
+  "peakPos": 1,
+  "weeksOnChart": 1
+},
+{
+  "id": "1998-1",
+  "chartYear": 1998,
+  "releaseYear": 1995,
+  "rank": 1,
+  "tracks": [
+    {
+      "title": "Maria",
+      "youtubeId": "vCEvCXuglqo"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Ricky Martin"],
+  "countryCode": ["Puerto Rico"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Latin Pop", "Tropipop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1998-3",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Iris",
+      "youtubeId": "NdYWuo9OFAw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Goo Goo Dolls"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Film Soundtrack", "Post-Britpop", "Acoustic Rock", "Symphonic Rock", "Alternative Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1998-4",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Don't Want to Miss a Thing",
+      "youtubeId": "JkK8g6FMEXE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Aerosmith"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Film Soundtrack", "AOR", "Adult Contemporary", "Symphonic Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1998-5",
   "chartYear": 1998,
-  "releaseYear": 1998,
-  "rank": 1,
+  "releaseYear": 1997,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Never Ever",
+      "youtubeId": "nPXqkjpXZ_k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["All Saints"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Contemporary R&B", "Spoken Word"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1998-6",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Prisoner of Society",
+      "youtubeId": "VVtD4qMy5Hc"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Second Solution",
+      "youtubeId": "xaXKiyKwaOU"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["The Living End"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Punk",
+  "subgenres": ["Punk Rock", "Alternative Rock", "Psychobilly"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "1998-7",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Crush",
+      "youtubeId": "EIhSnaqou0I"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Jennifer Paige"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Contemporary R&B", "Latin Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "1998-8",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Good Riddance (Time of Your Life)",
+      "youtubeId": "CnQ8N1KacJc"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Redundant",
+      "youtubeId": "6ydpSVvXE9k"
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Green Day"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Acoustic Rock",
+  "subgenres": ["Pop Rock", "Chamber Pop", "Folk Pop", "Alternative Rock", "Power Pop", "Pop Punk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1998-9",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"You're Still the One",
+      "youtubeId": "KNZH-emehxA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Shania Twain"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Adult Contemporary", "Soft Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "1998-10",
   "chartYear": 1998,
   "releaseYear": 1998,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "From This Moment On",
       "youtubeId": "a"
     },
     {
@@ -10342,12 +10342,12 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Shania Twain"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -16358,7 +16358,7 @@
       "label": "Soul & R&B",
       "color": "#882e86",
       "description": "...",
-      "subgenres": ["motown", "neo soul", "contemporary R&B"]
+      "subgenres": ["motown", "neo soul", "Contemporary R&B"]
     },
     "dance": {
       "label": "Dance & Electronic",
