@@ -6,6 +6,7 @@ d3.json("./songs.json").then(dataset => {
   let currentSongList = [];
   let sortMode = "chart";
   let currentPanel = { type: null, key: null };
+  let genreSortMode = "az"; // az, za, popular, unpopular
 
   const years = Array.from(new Set(songs.map(d => d.chartYear))).sort((a, b) => a - b);
   const ranks = d3.range(1, 11);
@@ -20,7 +21,14 @@ d3.json("./songs.json").then(dataset => {
   const allGenresList = Array.from(allGenresSet).sort((a, b) =>
     a.toLowerCase().localeCompare(b.toLowerCase())
   );
-
+  // Count how many times each genre appears (primary or sub)
+  let genreCounts = {};
+  songs.forEach(s => {
+    [s.primarygenre, ...(s.subgenres || [])].forEach(g => {
+      if (!g) return;
+      genreCounts[g] = (genreCounts[g] || 0) + 1;
+    });
+  });
   // Track visibility state
   let genreVisibility = {};
   allGenresList.forEach(g => { genreVisibility[g] = true; });
@@ -308,6 +316,7 @@ function isSongVisible(song) {
     d3.selectAll(".clickable-genre").on("click", function() {
       const gKey = d3.select(this).attr("data-genre");
       showGenrePanel(gKey, true);
+    
     });
 
     // A/B side toggle
@@ -365,18 +374,31 @@ function isSongVisible(song) {
       `).join("");
   }
 
-  function renderAllGenresList() {
-    return allGenresList
-      .map(gKey => {
-        const manual = genres[gKey];
-        return `
-          <li>
-            <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
-            <span class="clickable-genre" data-genre="${gKey}">${manual ? manual.label : gKey}</span>
-          </li>
-        `;
-      }).join("");
+
+  
+function renderAllGenresList() {
+  let sorted = [...allGenresList];
+
+  if (genreSortMode === "az") {
+    sorted.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+  } else if (genreSortMode === "za") {
+    sorted.sort((a, b) => b.toLowerCase().localeCompare(a.toLowerCase()));
+  } else if (genreSortMode === "popular") {
+    sorted.sort((a, b) => (genreCounts[b] || 0) - (genreCounts[a] || 0));
+  } else if (genreSortMode === "unpopular") {
+    sorted.sort((a, b) => (genreCounts[a] || 0) - (genreCounts[b] || 0));
   }
+
+  return sorted.map(gKey => {
+    const manual = genres[gKey];
+    const count = genreCounts[gKey] || 0;
+    return `<li>
+      <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
+      <span class="clickable-genre" data-genre="${gKey}">${manual ? manual.label : gKey}</span>
+      <span class="genre-count">[${count}]</span>
+    </li>`;
+  }).join("");
+}
 
   function bindGenreClicks() {
     d3.selectAll(".clickable-genre").on("click", function() {
@@ -428,9 +450,31 @@ function isSongVisible(song) {
       
     });
   }
+
+
+  
+const sortBtn = d3.select("#sort-genres-btn");
+if (!sortBtn.empty()) {
+  sortBtn.on("click", function() {
+    if (genreSortMode === "az") genreSortMode = "za";
+    else if (genreSortMode === "za") genreSortMode = "popular";
+    else if (genreSortMode === "popular") genreSortMode = "unpopular";
+    else genreSortMode = "az";
+
+    // Rerender panel (button label will come from getSortButtonLabel)
+    rerenderCurrentPanel(true);
+  });
+}
 }
 // taxonomy side panel
-  function showTaxonomyPanel(taxKey, resetScroll = true) {
+function getSortButtonLabel() {
+  if (genreSortMode === "az") return "Sort by A-Z ↑";
+  if (genreSortMode === "za") return "Sort by A-Z ↓";
+  if (genreSortMode === "popular") return "Sort by Popularity ↓";
+  if (genreSortMode === "unpopular") return "Sort by Popularity ↑";
+  return "[Sort]"; // fallback
+}  
+function showTaxonomyPanel(taxKey, resetScroll = true) {
     currentPanel = { type: "taxonomy", key: taxKey };
     const info = taxonomy[taxKey];
     if (!info) return;
@@ -456,11 +500,12 @@ function isSongVisible(song) {
       <p>${info.description || ""}</p>
       <h4>Related genres:</h4>
       <ul>${relatedHtml}</ul>
-      <button id="toggle-all-genres">${toggleAllLabel}</button>
+      <h4>All genres in dataset:</h4>
+      <p><button id="toggle-all-genres">${toggleAllLabel}</button></P>
+      <p><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
+      <ul>${renderAllGenresList()}</ul>
       <h4>"""Completed Genres:"""</h4>
       <ul>${renderFeaturedGenresList()}</ul>
-      <h4>All genres in dataset:</h4>
-      <ul>${renderAllGenresList()}</ul>
     `);
 
     openSidePanel();
@@ -485,14 +530,15 @@ function isSongVisible(song) {
       d3.select("#side-panel-body").html(`
         <h2>
           <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
-          ${resolvedKey}
+          ${resolvedKey} <span class="genre-count">[${genreCounts[resolvedKey] || 0}]</span>
         </h2>
         <p>No info on this genre.</p>
-        <button id="toggle-all-genres">${toggleAllLabel}</button>
-        <h4>"""Compleded genres""":</h4>
-        <ul>${renderFeaturedGenresList()}</ul>
         <h4>All genres in dataset:</h4>
+        <p><button id="toggle-all-genres">${toggleAllLabel}</button></P>
+        <p><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
         <ul>${renderAllGenresList()}</ul>
+        <h4>"""Completed Genres:"""</h4>
+        <ul>${renderFeaturedGenresList()}</ul>
       `);
       openSidePanel();
       if (resetScroll) d3.select("#side-panel").node().scrollTop = 0;
@@ -519,17 +565,18 @@ function isSongVisible(song) {
     d3.select("#side-panel-body").html(`
       <h2>
         <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
-        ${g.label}
+        ${g.label} <span class="genre-count">[${genreCounts[resolvedKey] || 0}]</span>
       </h2>
       <div>${taxBadge}</div>
       <p>${g.description || ""}</p>
       <h4>Related genres:</h4>
       <ul>${relatedHtml}</ul>
-      <button id="toggle-all-genres">${toggleAllLabel}</button>
-      <h4>""complete genres""s:</h4>
-      <ul>${renderFeaturedGenresList()}</ul>
       <h4>All genres in dataset:</h4>
+      <p><button id="toggle-all-genres">${toggleAllLabel}</button></P>
+      <p><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
       <ul>${renderAllGenresList()}</ul>
+      <h4>"""Completed Genres:"""</h4>
+      <ul>${renderFeaturedGenresList()}</ul>
     `);
 
     openSidePanel();
