@@ -14,11 +14,11 @@ body {
 }
 
 .chart-table {
-  border-collapse: collapse;
+  margin: 0 auto;
 }
 
 .chart-cell {
-  width: 24px;
+  min-width: 24px;
   height: 48px;
   cursor: pointer;
   outline: 0.5px solid transparent;
@@ -39,6 +39,72 @@ td:hover {
   transition: none;
   position: relative;
 }
+.y-axis-cell {
+  width: 40px;
+  text-align: center;
+  position: relative;
+  padding: 0;
+}
+
+/* ===== Y Axis  ===== */
+
+/* Chart sort: center notches + labels */
+.y-axis-cell.chart-sort {
+  vertical-align: middle;
+}
+
+.y-axis-cell.chart-sort .y-axis-notch {
+  width: 4px;
+  height: 8px;
+  background: #888;
+  margin: auto;
+}
+
+.y-axis-cell.chart-sort .y-axis-label {
+  font-size: 0.7rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+/* Genre sort: notches aligned top, label at top or bottom of column */
+.y-axis-cell.genre-sort {
+  vertical-align: top;
+}
+
+.y-axis-cell.genre-sort .y-axis-notch.top {
+  width: 4px;
+  height: 8px;
+  background: #888;
+  margin: 0 auto;
+  margin-top: 0;
+}
+
+.y-axis-cell.genre-sort .y-axis-label {
+  font-size: 0.7rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+/* ===== X Axis Timeline ===== */
+.timeline-row .timeline-cell {
+  text-align: center;
+  vertical-align: top;
+  height: 40px;
+  position: relative;
+  padding: 0;
+}
+
+.timeline-notch {
+  width: 2px;
+  height: 10px;
+  background: #888;
+  margin: 0 auto;
+}
+
+.timeline-label {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
 
 /* ===== Tooltip ===== */
 #tooltip {
