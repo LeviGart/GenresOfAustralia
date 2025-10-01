@@ -133,6 +133,24 @@ d3.json("./songs.json").then(dataset => {
         }
       });
     }
+  // Add timeline row (everyime the table rebuilds itself)
+const timelineRow = tbody.append("tr").attr("class", "timeline-row");
+
+years.forEach((year, i) => {
+  const cell = timelineRow.append("td")
+    .attr("class", "timeline-cell");
+
+  // Always draw a notch 
+  cell.append("div")
+    .attr("class", "timeline-notch");
+
+  // Add label if it's the first year, last year, or a decade
+  if (year === years[0] || year === years[years.length - 1] || year % 10 === 0) {
+    cell.append("div")
+      .attr("class", "timeline-label")
+      .text(year);
+  }
+});
   }
 
   // Check if a song should be visible (genres + taxonomies)
@@ -394,7 +412,7 @@ function isSongVisible(song) {
       // Toggle all genres
       Object.keys(genreVisibility).forEach(k => { genreVisibility[k] = newState; });
 
-      // 🔑 Also toggle taxonomy checkboxes to match
+      // Also toggle taxonomy checkboxes to match
       Object.keys(taxonomyVisibility).forEach(t => {
         taxonomyVisibility[t] = newState;
       });
@@ -405,6 +423,9 @@ function isSongVisible(song) {
 
       buildTable();
       rerenderCurrentPanel(false);
+      
+      
+      
     });
   }
 }
@@ -466,7 +487,7 @@ function isSongVisible(song) {
           <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
           ${resolvedKey}
         </h2>
-        <p>No detailed information has been added for this genre yet.</p>
+        <p>No info on this genre.</p>
         <button id="toggle-all-genres">${toggleAllLabel}</button>
         <h4>"""Compleded genres""":</h4>
         <ul>${renderFeaturedGenresList()}</ul>
