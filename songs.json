@@ -3009,7 +3009,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Easy Listening",
-  "subgenres": ["Waltz", "Adult Contemporary","Traditional Pop"],
+  "subgenres": ["Waltz","Traditional Pop"],
   "peakPos": 1,
   "weeksOnChart": 9
 },
@@ -3883,7 +3883,7 @@
   "countryCode": ["Australia"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Brill Building",
-  "subgenres": ["Traditional Pop", "Adult Contemporary"],
+  "subgenres": ["Traditional Pop"],
   "peakPos": 1,
   "weeksOnChart": 1
 },
@@ -3906,7 +3906,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Traditional Pop",
-  "subgenres": ["Easy Listening", "Adult Contemporary"],
+  "subgenres": ["Easy Listening"],
   "peakPos": 1,
   "weeksOnChart": 7
 },
@@ -4550,7 +4550,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
   "primarygenre": "Soft Rock",
-  "subgenres": ["Folk Pop", "Adult Contemporary"],
+  "subgenres": ["Folk Pop"],
   "peakPos": 1,
   "weeksOnChart": 2
 },
@@ -6816,7 +6816,7 @@
   "tracks": [
     {
       "title": "Karma Chameleon",
-      "youtubeId": "a"
+      "youtubeId": "JmcA9LIIXWw"
     },
     {
       "title": null,
@@ -7184,7 +7184,7 @@
   "tracks": [
     {
       "title": "Crazy for You",
-      "youtubeId": "a"
+      "youtubeId": "DHutZXREZ0E"
     },
     {
       "title": null,
@@ -7391,7 +7391,7 @@
   "tracks": [
     {
       "title": "When the Going Gets Tough, the Tough Get Going",
-      "youtubeId": "a"
+      "youtubeId": "-n3sUWR4FV4"
     },
     {
       "title": null,
@@ -8679,7 +8679,7 @@
   "tracks": [
     {
       "title": "I've Been Thinking About You",
-      "youtubeId": "Bvrym1NXXjca"
+      "youtubeId": "Bvrym1NXXjc"
     },
     {
       "title": null,
@@ -9104,7 +9104,7 @@
   "countryCode": ["Canada"],
   "genretaxonomy": "hiphop",
   "primarygenre": "Pop Rap",
-  "subgenres": ["Pop Reggae", "Ragga", "New Jack Swing", "Gansta Rap", "Boom Bap", "Dancehall"],
+  "subgenres": ["Pop Reggae", "Ragga", "New Jack Swing", "Gangsta Rap", "Boom Bap", "Dancehall"],
   "peakPos": 1,
   "weeksOnChart": 5
 },
@@ -9806,7 +9806,7 @@
   "tracks": [
     {
       "title": "Missing (Todd Terry Club Mix)",
-      "youtubeId": "a"
+      "youtubeId": "tkO0A3c_3LI"
     },
     {
       "title": null,
@@ -10335,7 +10335,7 @@
   "tracks": [
     {
       "title": "From This Moment On",
-      "youtubeId": "a"
+      "youtubeId": "a-Lp2uC_1lg"
     },
     {
       "title": null,
@@ -10357,227 +10357,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Mambo No. 5 (A Little Bit Of ...)",
+      "youtubeId": "EK_LN3XEcnw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Lou Bega"],
+  "countryCode": ["Germany"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Latin Pop",
+  "subgenres": ["Dance-Pop", "Mambo", "Swing Revival", "Electro Swing"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "1999-2",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "...Baby One More Time",
+      "youtubeId": "C-u5WLJ9Yk4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Britney Spears"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Dance-Pop", "New Jack Swing", "Contemporary R&B", "Europop"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1999-3",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Blue (Da Ba Dee)",
+      "youtubeId": "68ugkg9RePc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Eiffel 65"],
+  "countryCode": ["Italy"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Italo Dance",
+  "subgenres": ["Europop", "Euro House"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "1999-4",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Last Kiss",
+      "youtubeId": "tNDWJ_KDkAc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Pearl Jam"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Alternative Rock",
+  "subgenres": ["Pop Rock", "Heartland Rock", "Jangle Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "1999-5",
   "chartYear": 1999,
-  "releaseYear": 1999,
-  "rank": 1,
+  "releaseYear": 1998,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Pretty Fly (For a White Guy)",
+      "youtubeId": "QtTR-_Klcq8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Offspring"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Punk",
+  "subgenres": ["Alternative Rock", "Comedy Rock", "Rap Rock", "Satire", "Reggae Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "1999-6",
   "chartYear": 1999,
-  "releaseYear": 1999,
-  "rank": 1,
+  "releaseYear": 1998,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Believe",
+      "youtubeId": "nZXRV4MezEw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Cher"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Eurodance", "Vocal Trance", "Diva House", "Euro House", "Space Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "1999-7",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Don't Call Me Baby",
+      "youtubeId": "M1kEjj3Ej68"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Madison Avenue"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Funky House",
+  "subgenres": ["Dance-Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1999-8",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "That Don't Impress Me Much",
+      "youtubeId": "mqFLXayD6e8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Shania Twain"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Dance-Pop", "Pop Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1999-9",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Why Don't You Get a Job",
+      "youtubeId": "LH-i8IvYIcg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Offspring"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Third Wave Ska",
+  "subgenres": ["Comedy Rock", "Steel Band"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "1999-10",
   "chartYear": 1999,
   "releaseYear": 1999,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Genie in a Bottle",
+      "youtubeId": "kIDWgqDBNXA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Christina Aguilera"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Contemporary R&B", "Hip Hop Soul", "Electropop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -10587,180 +10587,180 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'm Outta Love",
+      "youtubeId": "TnOy6HEf7HU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Anastacia"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Soul", "Nu-Disco", "Synth Funk", "Boogie"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2000-2",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Teenage Dirtbag",
+      "youtubeId": "FC3y9llDXuM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Wheatus"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Power Pop",
+  "subgenres": ["Alternative Rock", "Geek Rock", "Pop Punk"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2000-3",
   "chartYear": 2000,
-  "releaseYear": 2000,
-  "rank": 1,
+  "releaseYear": 1999,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Freestyler",
+      "youtubeId": "ymNFyxvIdaM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Bomfunk MC's"],
+  "countryCode": ["Finland"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Breakbeat",
+  "subgenres": ["Jump-Up", "Hip Hop","Turntablism", "Florida Breaks"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2000-4",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Music",
+      "youtubeId": "Sdz2oW0NMFk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Madonna"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Dance-Pop", "Electroclash", "Acid House", "Atlanta Bass", "French Electro", "Glitch Pop", "Acid Breaks", "Art Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2000-5",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Say My Name",
+      "youtubeId": "sQgd6MccwZc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Destiny's Child"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Dance-Pop", "Hip Hop Soul", "2-Step", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2000-6",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Poison",
+      "youtubeId": "nPnZ9SLb2EM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Bardot"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rock", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2000-7",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bye Bye Bye",
+      "youtubeId": "Eo-KmOd3i7s"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["*NSYNC"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Boy Band",
+  "subgenres": ["Contemporary R&B", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2000-8",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Who the Hell Are You",
+      "youtubeId": "r1FFfBp9zsc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
+  "artists": ["Madison Avenue"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Funky House",
+  "subgenres": ["Dance-Pop", "Nu-Disco"],
   "peakPos": null,
   "weeksOnChart": null
 },
@@ -10768,91 +10768,91 @@
   "id": "2000-9",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Groovejet (If This Ain't Love)",
+      "youtubeId": "FI3gn4APNXc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Spiller", "Sophie Ellis-Bextor"],
+  "countryCode": ["Italy", "UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Funky House",
+  "subgenres": ["Dance-Pop", "French House", "Nu-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2000-10",
   "chartYear": 2000,
   "releaseYear": 2000,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Shackles (Praise You)",
+      "youtubeId": "i1L2lToMlB4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Mary Mary"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Urban Contemporary Gospel", "Hip Hop Soul", "Gospel"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2001-1",
   "chartYear": 2001,
-  "releaseYear": 2001,
+  "releaseYear": 2000,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can't Fight the Moonlight",
+      "youtubeId": "bx3s99FNXzI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["LeAnn Rimes"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Contemporary R&B", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2001-2",
   "chartYear": 2001,
-  "releaseYear": 2001,
-  "rank": 1,
+  "releaseYear": 2000,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "It Wasn't Me",
+      "youtubeId": "2g5Hz17C4is"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
+  "artists": ["Shaggy"],
+  "countryCode": ["Jamacia"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Reggae", "Pop Rap", "Musical Comedy", "Comedy Rap"],
   "peakPos": null,
   "weeksOnChart": null
 },
@@ -10860,185 +10860,185 @@
   "id": "2001-3",
   "chartYear": 2001,
   "releaseYear": 2001,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can't Get You Out of My Head",
+      "youtubeId": "c18441Eh_WE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kylie Minogue"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Euro House", "Electropop", "Europop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2001-4",
   "chartYear": 2001,
   "releaseYear": 2001,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Angel",
+      "youtubeId": "XWJrPzAUzAs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Shaggy"],
+  "countryCode": ["Jamacia"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Reggae",
+  "subgenres": ["Contemporary R&B", "Pop Rap", "Dancehall", "Hip Hop Soul", "Ragga"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2001-5",
   "chartYear": 2001,
   "releaseYear": 2001,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Hanging by a Moment",
+      "youtubeId": "tPnK39ax_AM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lifehouse"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Post-Grunge",
+  "subgenres": ["Pop Rock", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2001-6",
   "chartYear": 2001,
-  "releaseYear": 2001,
-  "rank": 1,
+  "releaseYear": 2000,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stan",
+      "youtubeId": "aSLZFdqwh7E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Eminem", "Dido"],
+  "countryCode": ["USA", "UK"],
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Hip Hop",
+  "subgenres": ["Conscious Hip Hop", "Trip Hop", "Horrorcore", "Rain Sounds"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2001-7",
   "chartYear": 2001,
-  "releaseYear": 2001,
-  "rank": 1,
+  "releaseYear": 2000,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'm Like a Bird",
+      "youtubeId": "roPQ_M3yJTA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Nelly Furtado"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Downtempo", "Neo-Soul", "Post-Britpop"],
+  "peakPos": 2,
+  "weeksOnChart": 2
 },
 {
   "id": "2001-8",
   "chartYear": 2001,
   "releaseYear": 2001,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Smooth Criminal",
+      "youtubeId": "CDl9ZMfj6aE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Alien Ant Farm"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Funk Metal",
+  "subgenres": ["Alternative Rock", "Nu Metal"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2001-9",
   "chartYear": 2001,
   "releaseYear": 2001,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can We Fix It?",
+      "youtubeId": "l-epqIHe4w0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Bob The Builder"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Children's Music",
+  "subgenres": ["Television Music", "Dance-Pop", "2-Step", "Pop Rock", "Alternative Dance", "Big Beat", "Post-Industrial"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2001-10",
   "chartYear": 2001,
   "releaseYear": 2001,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Whole Again",
+      "youtubeId": "1V0xQkk9kbc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Atomic Kitten"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Downtempo", "Contemporary R&B", "Pop Soul", "Adult Contemporary"],
+  "peakPos": 2,
+  "weeksOnChart": 1
 },
 {
   "id": "2002-1",
@@ -11047,65 +11047,65 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Without Me",
+      "youtubeId": "YVkUvmDQ3HY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Eminem"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Comedy Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2002-2",
   "chartYear": 2002,
-  "releaseYear": 2002,
-  "rank": 1,
+  "releaseYear": 2001,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Whenever, Wherever",
+      "youtubeId": "weRHyjj34ZE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Shakira"],
+  "countryCode": ["Colombia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Latin Pop",
+  "subgenres": ["Pop Rock", "Indigenous Andean Music", "Rock Andino", "Alternative Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2002-3",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Ketchup Song",
+      "youtubeId": "AMT698ArSfQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
+  "artists": ["Las Ketchup (Asereje)"],
+  "countryCode": ["Spain"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Flamenco Pop", "Vocal Surf", "Rumba Flamenca"],
   "peakPos": null,
   "weeksOnChart": null
 },
@@ -11113,162 +11113,162 @@
   "id": "2002-4",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Dilemma",
+      "youtubeId": "8WYHDfJDPDc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Nelly", "Kelly Rowland"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap", "Hip Hop Soul", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2002-5",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "A Little Less Conversation",
+      "youtubeId": "Zx1_6F-nCaw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Elvis Presley", "Junkie XL"],
+  "countryCode": ["USA", "Netherlands"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Big Beat",
+  "subgenres": ["Funky Breaks", "Rock & Roll", "Alternative Dance", "Film Soundtrack"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2002-6",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "A Thousand Miles",
+      "youtubeId": "Cwkej79U3ek"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Vanessa Carlton"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Piano Rock",
+  "subgenres": ["Singer-Songwriter", "Chamber Pop", "Adult Contemporary", "Post-Britpop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2002-7",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Born to Try",
+      "youtubeId": "qTBOJ71ypRw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Delta Goodrem"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Singer-Songwriter", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2002-8",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Not Pretty Enough",
+      "youtubeId": "v5rOdF9rUKI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Kasey Chambers"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Singer-Songwriter", "Contemporary Country", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2002-9",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Complicated",
+      "youtubeId": "5NPBIwQyPWE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Avril Lavigne"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Teen Pop", "Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2002-10",
   "chartYear": 2002,
   "releaseYear": 2002,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Kiss Kiss",
+      "youtubeId": "o3wS2tdlZtE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Holly Valance"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Turkish Pop", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2003-1",
@@ -16339,38 +16339,38 @@
       "label": "Jazz & Traditional Pop",
       "color": "#e6bb21",
       "description": "...",
-      "related": ["Easy Listening", "folk"]
+      "related": ["Easy Listening"]
       
     },
     "countryfolk": {
       "label": "Country & Folk",
       "color": "#f47b3b",
       "description": "...",
-      "subgenres": ["country", "folk", "bluegrass"]
+      "subgenres": ["Country Pop"]
     },
     "rock": {
       "label": "Rock",
       "color": "#dd3b40",
       "description": "...",
-      "subgenres": ["Rock & Roll", "alt rock", "punk", "indie"]
+      "subgenres": ["Rock & Roll", "Alternative Rock"]
     },
     "soulrnb": {
       "label": "Soul & R&B",
       "color": "#882e86",
       "description": "...",
-      "subgenres": ["motown", "neo soul", "Contemporary R&B"]
+      "subgenres": ["Contemporary R&B", "Neo-Soul"]
     },
     "dance": {
       "label": "Dance & Electronic",
       "color": "#3770b8",
       "description": "...",
-      "subgenres": ["house", "techno", "disco", "EDM"]
+      "subgenres": ["Disco", "Dance-Pop", "Electropop"]
     },
     "hiphop": {
       "label": "Hip-hop",
       "color": "#76ac42",
       "description": "...",
-      "subgenres": ["rap", "trap", "boom bap"]
+      "subgenres": ["Boom Bap", "Pop Rap"]
     }
   },
   "genres": {
@@ -16378,31 +16378,7 @@
       "label": "Doo-Wop",
       "taxonomy": "jazztraditionalpop",
       "description": "...",
-      "related": ["Traditional Pop", "bluegrass"]
-    },
-    "Easy Listening": {
-      "label": "Easy Listening",
-      "taxonomy": "jazztraditionalpop",
-      "description": "...",
-      "related": ["country", "singersongwriter"]
-    },
-    "Traditional Pop": { 
-      "label": "Traditional Pop",
-      "taxonomy": "jazztraditionalpop",
-      "description": "...",
-      "related": ["blues", "soul"]
-    },
-    "Vocal Jazz": { 
-      "label": "Vocal Jazz",
-      "taxonomy": "jazztraditionalpop",
-      "description": "...",
-      "related": ["blues", "soul"]
-    },
-    "Marching Band": { 
-      "label": "Marching Band",
-      "taxonomy": "jazztraditionalpop",
-      "description": "...",
-      "related": ["blues", "soul"]
+      "related": ["Traditional Pop"]
     }
   }
 }
