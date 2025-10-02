@@ -11093,7 +11093,7 @@
   "rank": 3,
   "tracks": [
     {
-      "title": "The Ketchup Song",
+      "title": "The Ketchup Song (Asereje)",
       "youtubeId": "AMT698ArSfQ"
     },
     {
@@ -11101,13 +11101,13 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Las Ketchup (Asereje)"],
+  "artists": ["Las Ketchup"],
   "countryCode": ["Spain"],
   "genretaxonomy": "dance",
   "primarygenre": "Dance-Pop",
   "subgenres": ["Flamenco Pop", "Vocal Surf", "Rumba Flamenca"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2002-4",
@@ -11277,228 +11277,228 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Angels Brought Me Here",
+      "youtubeId": "mMo67Nb-jeA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Guy Sebastian"],
+  "countryCode": ["Malaysia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Soft Rock",
+  "subgenres": ["Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2003-2",
   "chartYear": 2003,
-  "releaseYear": 2003,
-  "rank": 1,
+  "releaseYear": 2002,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lose Yourself",
+      "youtubeId": "xFYQQPAOz7Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Eminem"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Hardcore Hip Hop",
+  "subgenres": ["Film Soundtrack", "Conscious Hip Hop", "Rap Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 12
 },
 {
   "id": "2003-3",
   "chartYear": 2003,
   "releaseYear": 2003,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Where Is the Love?",
+      "youtubeId": "WpYeekQkAdc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Black Eyed Peas"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "2003-4",
-  "chartYear": 2003,
-  "releaseYear": 2003,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "2003-5",
-  "chartYear": 2003,
-  "releaseYear": 2003,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "2003-6",
-  "chartYear": 2003,
-  "releaseYear": 2003,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Conscious Hip Hop", "Political Hip Hop", "Contemporary R&B", "Post-Britpop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2003-7",
   "chartYear": 2003,
   "releaseYear": 2003,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lost Without You",
+      "youtubeId": "YMYUYtsUGgg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Delta Goodrem"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 2
+},
+{
+  "id": "2003-4",
+  "chartYear": 2003,
+  "releaseYear": 2002,
+  "rank": 4,
+  "tracks": [
+    {
+      "title": "Born to Try",
+      "youtubeId": "qTBOJ71ypRw"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Delta Goodrem"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "rock",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Singer-Songwriter"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2003-8",
   "chartYear": 2003,
-  "releaseYear": 2003,
-  "rank": 1,
+  "releaseYear": 2002,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Ketchup Song (Asereje)",
+      "youtubeId": "AMT698ArSfQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Las Ketchup"],
+  "countryCode": ["Spain"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Flamenco Pop", "Vocal Surf", "Rumba Flamenca"],
+  "peakPos": 1,
+  "weeksOnChart": 3
+},
+{
+  "id": "2003-5",
+  "chartYear": 2003,
+  "releaseYear": 2003,
+  "rank": 5,
+  "tracks": [
+    {
+      "title": "In da Club",
+      "youtubeId": "5qm8PH4xAss"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["50 Cent"],
+  "countryCode": ["USA"],
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Gangsta Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 5
+},
+{
+  "id": "2003-6",
+  "chartYear": 2003,
+  "releaseYear": 2003,
+  "rank": 6,
+  "tracks": [
+    {
+      "title": "Bring Me to Life",
+      "youtubeId": "vyzO-5vt48g"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Evanescence"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Nu Metal",
+  "subgenres": ["Rap Metal", "Gothic Metal", "Christian Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2003-9",
   "chartYear": 2003,
-  "releaseYear": 2003,
-  "rank": 1,
+  "releaseYear": 2002,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Nu Flow",
+      "youtubeId": "mhj0Q8wUlqs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Big Brovaz"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap", "Cabaret", "Dark Cabaret"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2003-10",
   "chartYear": 2003,
   "releaseYear": 2003,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Ignition (Remix)",
+      "youtubeId": "hqwieO9A9Kk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["R. Kelly"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Hip Hop Soul", "Pop Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2004-1",
@@ -16382,6 +16382,7 @@
     }
   }
 }
+
 
 
 
