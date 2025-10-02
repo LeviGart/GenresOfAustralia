@@ -11507,227 +11507,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "What About Me",
+      "youtubeId": "DYjl1GFrWD8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Shannon Noll"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2004-2",
   "chartYear": 2004,
   "releaseYear": 2004,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Left Outside Alone",
+      "youtubeId": "uzR5jM9UeJA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Anastacia"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Post-Grunge"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2004-3",
   "chartYear": 2004,
   "releaseYear": 2004,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Black Betty",
+      "youtubeId": "I_2D8Eo15wE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Spiderbait"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Hard Rock",
+  "subgenres": ["Alternative Metal", "Southern Metal", "Post-Grunge", "Cowpunk", "Garage Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2004-4",
   "chartYear": 2004,
   "releaseYear": 2004,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Milkshake",
+      "youtubeId": "6AwXKJoKJz4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kelis"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Electroclash", "Electropop", "Folkhop", "Pop Rap", "Experimental Hip Hop", "Dance-Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2004-5",
   "chartYear": 2004,
   "releaseYear": 2004,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "F**k It (I Don't Want You Back)",
+      "youtubeId": "QYwyaCd8MyI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Eamon"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Hip Hop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2004-6",
   "chartYear": 2004,
-  "releaseYear": 2004,
-  "rank": 1,
+  "releaseYear": 2003,
+  "rank": 6,
   "tracks": [
     {
       "title": "Song Title A",
-      "youtubeId": "a"
+      "youtubeId": "Bu0LKfB3CR8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Superstar"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Dance-Pop", "Synth Funk", "Nu-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2004-7",
   "chartYear": 2004,
-  "releaseYear": 2004,
-  "rank": 1,
+  "releaseYear": 2003,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "My Immortal",
+      "youtubeId": "5anLPw0Efmo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Evanescence"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Piano Rock",
+  "subgenres": ["Symphonic Rock", "Singer-Songwriter"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "2004-8",
   "chartYear": 2004,
   "releaseYear": 2004,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "These Kids",
+      "youtubeId": "TF_dwlt3_CM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Joel Turner & The Modern Day Poets"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "hip hop",
+  "primarygenre": "Hip Hop",
+  "subgenres": ["Pop Rap", "Beatboxing"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2004-9",
   "chartYear": 2004,
-  "releaseYear": 2004,
-  "rank": 1,
+  "releaseYear": 2003,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Shut Up",
+      "youtubeId": "KRzMtlZjXpU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Black Eyed Peas"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hip hop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Contemporary R&B", "Dance-Pop", "Hip Hop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2004-10",
   "chartYear": 2004,
   "releaseYear": 2004,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Suga Suga",
+      "youtubeId": "6rgStv12dwA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Baby Bash"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Contemporary R&B", "Hip Hop Soul"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
@@ -16382,6 +16382,7 @@
     }
   }
 }
+
 
 
 
