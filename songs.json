@@ -11733,103 +11733,103 @@
 {
   "id": "2005-1",
   "chartYear": 2005,
-  "releaseYear": 2005,
+  "releaseYear": 2004,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Prayer",
+      "youtubeId": "Gd58QfrJ_Q0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Anthony Callea"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Classical Crossover",
+  "subgenres": ["Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2005-2",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": ""Don't Cha"",
+      "youtubeId": "YNSxNsr4wmA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Pussycat Dolls", "Busta Rhymes"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Dance-Pop", "Pop Rap", "Crunk"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2005-3",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lonely",
+      "youtubeId": "6EEW-9NDM5k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Akon"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Chipmunk Soul", "Pop Rap", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2005-4",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Axel F",
+      "youtubeId": "k85mRPqvMbE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Crazy Frog"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Eurodance",
+  "subgenres": ["Novelty", "Musical Parody", "Euro Trance", "Euro House", "Musical Comedy"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2005-5",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Over and Over",
       "youtubeId": "a"
     },
     {
@@ -11837,45 +11837,45 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Nelly", "Tim McGraw"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2005-6",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Switch",
+      "youtubeId": "uzUozo1628U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Will Smith"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Dance-Pop", "Dancehall"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2005-7",
   "chartYear": 2005,
-  "releaseYear": 2005,
-  "rank": 1,
+  "releaseYear": 2004,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Let Me Love You",
       "youtubeId": "a"
     },
     {
@@ -11883,82 +11883,82 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Mario"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Hip Hop Soul"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2005-8",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Nasty Girl",
+      "youtubeId": "2zY9Oa5DZj4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Nitty"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": null,
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2005-9",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Feel Good Inc.",
+      "youtubeId": "HyHNuVaZJ-k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Gorillaz"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Alternative Rock",
+  "subgenres": ["Abstract Hip Hop", "Hip Hop", "Pop Rap", "Trip Hop", "Funk", "Breakstep", "Neo-Psychedelia", "Folk Pop"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2005-10",
   "chartYear": 2005,
   "releaseYear": 2005,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Don't Phunk with My Heart",
+      "youtubeId": "8QK7LvXBGTE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Black Eyed Peas"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Breakbeat", "Folkhop", "Dance-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2006-1",
@@ -16382,6 +16382,7 @@
     }
   }
 }
+
 
 
 
