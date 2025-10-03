@@ -9472,7 +9472,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "dance",
   "primarygenre": "Dance-Pop",
-  "subgenres": ["Hip House", "Disco Rap", "Funk House"],
+  "subgenres": ["Hip House", "Disco Rap", "Funky House"],
   "peakPos": 1,
   "weeksOnChart": 1
 },
@@ -11286,7 +11286,7 @@
     }
   ],
   "artists": ["Guy Sebastian"],
-  "countryCode": ["Malaysia"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
   "primarygenre": "Soft Rock",
   "subgenres": ["Adult Contemporary"],
@@ -11358,7 +11358,7 @@
   "countryCode": ["Australia"],
   "genretaxonomy": "rock",
   "primarygenre": "Singer-Songwriter",
-  "subgenres": ["Adult Contemporary"],
+  "subgenres": ["Adult Contemporary", "Soft Rock"],
   "peakPos": 1,
   "weeksOnChart": 2
 },
@@ -11381,7 +11381,7 @@
   "countryCode": ["Australia"],
   "genretaxonomy": "rock",
   "primarygenre": "Adult Contemporary",
-  "subgenres": ["Singer-Songwriter"],
+  "subgenres": ["Singer-Songwriter", "Soft Rock"],
   "peakPos": 1,
   "weeksOnChart": 1
 },
@@ -11554,7 +11554,7 @@
   "tracks": [
     {
       "title": "Black Betty",
-      "youtubeId": "I_2D8Eo15wE"
+      "youtubeId": "nU1VfYYKMDk"
     },
     {
       "title": null,
@@ -11749,7 +11749,7 @@
   "countryCode": ["Australia"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Classical Crossover",
-  "subgenres": ["Adult Contemporary"],
+  "subgenres": ["Adult Contemporary", "Opera"],
   "peakPos": 1,
   "weeksOnChart": 5
 },
@@ -11830,7 +11830,7 @@
   "tracks": [
     {
       "title": "Over and Over",
-      "youtubeId": "a"
+      "youtubeId": "n3htOCjafTc"
     },
     {
       "title": null,
@@ -11876,7 +11876,7 @@
   "tracks": [
     {
       "title": "Let Me Love You",
-      "youtubeId": "a"
+      "youtubeId": "H64QG4UsrGI"
     },
     {
       "title": null,
@@ -11963,231 +11963,231 @@
 {
   "id": "2006-1",
   "chartYear": 2006,
-  "releaseYear": 2006,
+  "releaseYear": 2005,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Wish I Was a Punk Rocker (With Flowers in My Hair)",
+      "youtubeId": "tLyw7jytykE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Sandi Thom"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Stomp and Holler",
+  "subgenres": ["Contemporary R&B", "Pop Soul", "A cappella", "Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 10
 },
 {
   "id": "2006-2",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Flaunt It",
+      "youtubeId": "pZVFuy377Rk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["TV Rock", "Seany B"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electro House",
+  "subgenres": ["Electroclash", "Power Pop", "Dance-Punk Revival"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2006-3",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hips Don't Lie",
+      "youtubeId": "DUT5rEU6pqM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Shakira", "Wyclef Jean"],
+  "countryCode": ["Colombia", "Haiti"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Latin Pop",
+  "subgenres": ["Dance-Pop", "Reggaetón", "Cumbia", "Latin Rap", "Cumbiatón", "Pop Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "2006-4",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "SexyBack",
+      "youtubeId": "3gOHvDP_vCs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Justin Timberlake", "Timbaland"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Dance-Pop", "Electroclash", "Contemporary R&B", "Electro Hop", "Crunk", "Ballroom"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2006-5",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Don't Feel Like Dancin'",
+      "youtubeId": "4H5I6y1Qvz0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Scissor Sisters"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Disco", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2006-6",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "This Time I Know It's for Real",
+      "youtubeId": "pk9wLmioJGY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Young Divas"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Nu-Disco", "Diva House", "Disco"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2006-7",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Forever Young",
+      "youtubeId": "rQi8wEHMm5Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Youth Group"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Indie Pop",
+  "subgenres": ["Jangle Pop", "Dream Pop", "Indie Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2006-8",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Wasabi",
+      "youtubeId": "Xf2a3uVmc8k"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": "Eye of the Tiger",
+      "youtubeId": "b8JGNYI3oGc"
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Lee Harding"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Punk",
+  "subgenres": ["Power Pop", "Teen Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2006-9",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Who Knew",
+      "youtubeId": "NJWIbIe0N90"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["P!nk"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Power Pop", "Post-Grunge"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2006-10",
   "chartYear": 2006,
   "releaseYear": 2006,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Promiscuous",
+      "youtubeId": "0J3vgcE5i2o"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Nelly Furtado", "Timbaland"],
+  "countryCode": ["Canada", "USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Rap", "Contemporary R&B", "Electro Hop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -12197,458 +12197,458 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Big Girls Don't Cry",
+      "youtubeId": "agrXgrAgQ0U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Fergie"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Adult Contemporary", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "2007-2",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Girlfriend",
+      "youtubeId": "Bg59q4puhmg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Avril Lavigne"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Pop Rock", "Pop Punk", "Pep Band", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2007-3",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Umbrella",
+      "youtubeId": "CvBfHwUxHIk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Rihanna", "Jay-Z"],
+  "countryCode": ["Barbados", "USA"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap", "Electropop", "Boom Bap"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2007-4",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Straight Lines",
+      "youtubeId": "47P3bzefCVI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Silverchair"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Alternative Rock",
+  "subgenres": ["Pop Rock", "Big Music", "Piano Rock", "Post-Britpop", "Art Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2007-5",
   "chartYear": 2007,
-  "releaseYear": 2007,
-  "rank": 1,
+  "releaseYear": 2006,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lips of an Angel",
+      "youtubeId": "RiSfTyrvJlg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Hinder"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Post-Grunge",
+  "subgenres": ["Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2007-6",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Apologize",
+      "youtubeId": "ZSM3w1v-A_Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Timbaland", "OneRepublic"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Beatboxing", "Post-Britpop", "Alt-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2007-7",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Grace Kelly",
+      "youtubeId": "0CGVgAYJyjk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Mika"],
+  "countryCode": ["Lebanon"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Sunshine Pop", "Glam Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2007-8",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Candyman",
+      "youtubeId": "-ScjucUV8v0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Christina Aguilera"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Swing Revival",
+  "subgenres": ["Jazz Pop", "Pop Soul", "Boogie Woogie"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2007-9",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Sweet Escape",
+      "youtubeId": "O0lf_fE3HwA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Gwen Stefani", "Akon"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Contemporary R&B", "Brill Building"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2007-10",
   "chartYear": 2007,
   "releaseYear": 2007,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Beautiful Girls",
+      "youtubeId": "MrTz5xjmso4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Sean Kingston"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Pop Soul", "Contemporary R&B", "Doo-Wop", "Brill Building", "Atlanta Bass", "Dancehall"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2008-1",
   "chartYear": 2008,
-  "releaseYear": 2008,
+  "releaseYear": 2007,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Low",
+      "youtubeId": "U2waT9TxPU0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Flo Rida", "T-Pain"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Film Soundtrack", "Miami Bass", "Crunk", "Dirty South", "Electro Hop", "Jook"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2008-2",
   "chartYear": 2008,
   "releaseYear": 2008,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "So What",
+      "youtubeId": "FJfFZqTlWrQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["P!nk"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
-},
-{
-  "id": "2008-3",
-  "chartYear": 2008,
-  "releaseYear": 2008,
-  "rank": 1,
-  "tracks": [
-    {
-      "title": "Song Title A",
-      "youtubeId": "a"
-    },
-    {
-      "title": null,
-      "youtubeId": null
-    }
-  ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Dance-Pop", "Power Pop", "Electropop", "Glam Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2008-4",
   "chartYear": 2008,
-  "releaseYear": 2008,
-  "rank": 1,
+  "releaseYear": 2007,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bleeding Love",
+      "youtubeId": "Vzo-EL_62fQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Leona Lewis"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2008-5",
   "chartYear": 2008,
   "releaseYear": 2008,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Sex on Fire",
+      "youtubeId": "RF0HhrwIwp0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kings Of Leon"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Post-Punk Revival",
+  "subgenres": ["Alternative Rock", "Pop Rock", "Big Music", "Hard Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 4
+},
+{
+  "id": "2008-3",
+  "chartYear": 2008,
+  "releaseYear": 2008,
+  "rank": 3,
+  "tracks": [
+    {
+      "title": "Sweet About Me",
+      "youtubeId": "qvuyYj5ROmk"
+    },
+    {
+      "title": null,
+      "youtubeId": null
+    }
+  ],
+  "artists": ["Gabriella Cilmi"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Jazz Pop", "Skiffle", "Cocktail Nation"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2008-6",
   "chartYear": 2008,
   "releaseYear": 2008,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Kissed a Girl",
+      "youtubeId": "tAp9BKosZXs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Katy Perry"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Dance", "Electropop", "Dance-Pop", "New Rave"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2008-7",
   "chartYear": 2008,
   "releaseYear": 2008,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Just Dance",
+      "youtubeId": "2Abk1jAONjw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lady Gaga", "Colby O'Donis"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Pop Rap", "Electroclash", "Electro Hop", "Electro House"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2008-8",
   "chartYear": 2008,
-  "releaseYear": 2008,
-  "rank": 1,
+  "releaseYear": 2007,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "No Air",
+      "youtubeId": "WBKnpyoFEBo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Jordin Sparks", "Chris Brown"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Electropop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2008-9",
   "chartYear": 2008,
   "releaseYear": 2008,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I'm Yours",
+      "youtubeId": "EkHTsc9PU2A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Jason Mraz"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Pop Reggae", "Folk Pop", "Tropical Rock"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2008-10",
   "chartYear": 2008,
   "releaseYear": 2008,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "All Summer Long",
+      "youtubeId": "aSkFygPCTwE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kid Rock"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Bro-Country",
+  "subgenres": ["Pop Rock", "Mashup", "Country Rock", "Southern Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2009-1",
@@ -12657,227 +12657,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Gotta Feeling",
+      "youtubeId": "uSD4vsh1zDA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Black Eyed Peas"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Electro Hop", "Electro House", "Pop Rap", "Hip House"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2009-2",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Sexy Bitch",
+      "youtubeId": "N9hazmsUxrM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["David Guetta", "Akon"],
+  "countryCode": ["France", "USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electro House",
+  "subgenres": ["Dance-Pop", "Electro Hop", "Hip House", "Electropop", "Dutch House"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2009-3",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love Story",
+      "youtubeId": "8xg3vE8Ie_E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Taylor Swift"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Country Pop", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2009-4",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Boom Boom Pow",
+      "youtubeId": "4m48GqaOz90"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Black Eyed Peas"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Dance-Pop", "Electro Hop", "Drone", "Miami Bass", "Techno Bass", "Electropop", "Jook"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2009-5",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Right Round",
+      "youtubeId": "CcCw1ggftuQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Flo Rida", "Ke$ha"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Dance-Pop", "Electro Hop", "Electropop", "Electro House", "Futuristic Swag"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2009-6",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Like It Like That",
+      "youtubeId": "QYz-CjqaOG0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Guy Sebastian"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["New Jack Swing"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2009-7",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Halo",
+      "youtubeId": "bnVUHWCynig"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Beyoncé"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Adult Contemporary", "Alt-Pop", "Gospel", "Electropop"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2009-8",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Meet Me Halfway",
+      "youtubeId": "I7HahVwYpwo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Black Eyed Peas"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Synthpop", "Dance-Pop", "Pop Rap", "Contemporary R&B", "Electro Hop", "Europop", "Art Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2009-9",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "TiK ToK",
+      "youtubeId": "iP6XpLQM2Cs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Ke$ha"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Dance-Pop", "Electro Hop", "Pop Rap", "Electro House", "Bitpop", "Electroclash"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2009-10",
   "chartYear": 2009,
   "releaseYear": 2009,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Last Day on Earth",
+      "youtubeId": "KhQ5seprs6s"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Kate Miller-Heidke"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Adult Contemporary", "Soft Rock"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
@@ -12887,226 +12887,226 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love the Way You Lie",
+      "youtubeId": "uelHwf8o7_U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Eminem", "Rihanna"],
+  "countryCode": ["USA", "Barbados"],
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Contemporary R&B", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2010-2",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "OMG",
+      "youtubeId": "1RnPB76mjxI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Usher", "will.i.am"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Dance-Pop", "Electro Hop", "Pop Rap", "Atlanta Bass", "Football Chant", "Hip House"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2010-3",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Dynamite",
+      "youtubeId": "VUjdiDeJ0xg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Taio Cruz"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Electro Hop", "Electro House"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2010-4",
   "chartYear": 2010,
-  "releaseYear": 2010,
-  "rank": 1,
+  "releaseYear": 2009,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hey, Soul Sister",
+      "youtubeId": "kVpv8-5XWOI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Train"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Stomp and Holler"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2010-5",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "California Gurls",
+      "youtubeId": "F57P9C4SAW4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Katy Perry", "Snoop Dogg"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Pop Rap", "Nu-Disco", "Funktronica"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2010-6",
   "chartYear": 2010,
-  "releaseYear": 2010,
-  "rank": 1,
+  "releaseYear": 2009,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Fireflies",
+      "youtubeId": "psuRGfAaju4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Owl City"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Indietronica",
+  "subgenres": ["Synthpop", "Electropop", "Bitpop", "Alt-Pop", "Pop Rock", "Glitch Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2010-7",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Only Girl (In the World)",
+      "youtubeId": "pa14VNsdSYM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Rihanna"],
+  "countryCode": ["Barbados"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Dance-Pop", "Electro House", "Festival Progressive House", "Euro House"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2010-8",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Just the Way You Are",
+      "youtubeId": "LjhCEhWiKXk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bruno Mars"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2010-9",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Teenage Dream",
+      "youtubeId": "98WtmW-lfeE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Katy Perry"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Pop Rock", "Synthpop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2010-10",
   "chartYear": 2010,
   "releaseYear": 2010,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "DJ Got Us Fallin' in Love",
+      "youtubeId": "C-dvTjK_07c"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Usher", "Pitbull"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Electro House", "Electro Hop", "Pop Rap", "Vocal Trance"],
   "peakPos": null,
   "weeksOnChart": null
 },
@@ -13117,458 +13117,458 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Party Rock Anthem",
+      "youtubeId": "KQ6zr6kCPj8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["LMFAO", "Lauren Bennett", "GoonRock"],
+  "countryCode": ["USA", "UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Electro House", "Electro House", "Fidget House", "Pop Rap", "Dutch House", "Festival Progressive House"],
+  "peakPos": 1,
+  "weeksOnChart": 10
 },
 {
   "id": "2011-2",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Somebody That I Used to Know",
+      "youtubeId": "8UVNT4wvIGY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Gotye", "Kimbra"],
+  "countryCode": ["Australia", "New Zealand"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Indie Pop",
+  "subgenres": ["Art Pop", "Alt-Pop", "Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2011-3",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Moves Like Jagger",
+      "youtubeId": "iEPTlhBmwRg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Maroon 5", "Christina Aguilera"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Funktronica", "Electropop", "Electro House", "Funky House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2011-4",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Someone Like You",
+      "youtubeId": "hLQl3WQQoQ0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Adele"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Singer-Songwriter", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2011-5",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Rolling In the Deep",
+      "youtubeId": "rYEDA3JcQqw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Adele"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Blue-Eyed Soul", "Soul Blues"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2011-6",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Sexy and I Know It",
+      "youtubeId": "wyx6JDQCslE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["LMFAO"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electro House",
+  "subgenres": ["Pop Rap", "Comedy Rap", "Electro Hop", "Dutch House", "Acid House"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "2011-7",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Give Me Everything",
+      "youtubeId": "EPo5wWmKEaI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Pitbull", "Ne-Yo", "Afrojack", "Nayer"],
+  "countryCode": ["USA", "Netherlands"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Pop Rap", "Electro Hop", "Hip House", "Electro House", "Dutch House", "Dance-Pop", "Festival Progressive House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2011-8",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Born This Way",
+      "youtubeId": "wV1FrqwZyKw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lady Gaga"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Dance-Pop", "Electro House", "French Electro", "Electroclash", "Europop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2011-9",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Price Tag",
+      "youtubeId": "qMxX-QOV9tI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Jessie J", "B.o.B"],
+  "countryCode": ["UK", "USA"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap", "Pop Reggae", "Dance-Pop", "Pop Soul"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2011-10",
   "chartYear": 2011,
   "releaseYear": 2011,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "On the Floor",
+      "youtubeId": "t4H_Zoh7G5A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Jennifer Lopez", "Pitbull"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electro House", "Electro Hop", "Romanian Popcorn", "Lambada", "Ibiza Trance", "Hip House", "Big Room House"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2012-1",
   "chartYear": 2012,
-  "releaseYear": 2012,
+  "releaseYear": 2011,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Call Me Maybe",
+      "youtubeId": "fWNaR-rxAic"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Carly Rae Jepsen"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Teen Pop",
+  "subgenres": ["Dance-Pop", "Euro-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2012-2",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Gangnam Style",
+      "youtubeId": "9bZkp7q19f0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["PSY"],
+  "countryCode": ["South Korea"],
+  "genretaxonomy": "dance",
+  "primarygenre": "K-Pop",
+  "subgenres": ["Electropop", "Dance-Pop", "Electro Hop", "Hip House", "Dutch House", "Comedy Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2012-3",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Battle Scars",
+      "youtubeId": "4ka1Lgd3SAI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Guy Sebastian", "Lupe Fiasco"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2012-4",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Whistle",
+      "youtubeId": "cSnkWzZ7ZAA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Flo Rida"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Rap", "Contemporary R&B", "Electropop", "Electro Hop"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2012-5",
   "chartYear": 2012,
-  "releaseYear": 2012,
-  "rank": 1,
+  "releaseYear": 2011,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Wild Ones",
+      "youtubeId": "bpOR_HuHRNs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Flo Rida", "Sia"],
+  "countryCode": ["USA", "Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pop Rap", "Electro Hop", "Electropop", "Electro House", "Funky House"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2012-6",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Starships",
+      "youtubeId": "SeIJmciN8mo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Nicki Minaj"],
+  "countryCode": ["Trinidad and Tobago"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electropop", "Electro Hop", "Pop Rap", "Electro House", "Festival Progressive House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2012-7",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Boom Boom",
+      "youtubeId": "NCFAC-pBgOk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Justice Crew"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Electro Hop", "Electro House", "Pop Rap", "Electropop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2012-8",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Skinny Love",
+      "youtubeId": "aNzCDt2eidg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Birdy"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Chamber Pop",
+  "subgenres": ["Adult Contemporary", "Indie Folk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2012-9",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Thrift Shop",
+      "youtubeId": "QK8mJJJvaes"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Macklemore", "Ryan Lewis", "Wanz"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Comedy Rap", "Twerk", "Jerk Rap", "Snap"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2012-10",
   "chartYear": 2012,
   "releaseYear": 2012,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Don't You Worry Child",
+      "youtubeId": "1y6smkh6c-0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Swedish House Mafia", "John Martin"],
+  "countryCode": ["Sweden"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Festival Progressive House",
+  "subgenres": null,
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2013-1",
@@ -13577,191 +13577,191 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Roar",
+      "youtubeId": "CevxZvSJLk8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Katy Perry"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "2013-2",
   "chartYear": 2013,
   "releaseYear": 2013,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Blurred Lines",
+      "youtubeId": "yyDUC1LUXSU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Robin Thicke", "T.I.", "Pharrell Williams"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Dance-Pop", "Pop Rap", "Disco", "Go-Go", "Hip Hop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2013-3",
   "chartYear": 2013,
-  "releaseYear": 2013,
-  "rank": 1,
+  "releaseYear": 2012,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Let Her Go",
+      "youtubeId": "RBumgq5yVrA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Passenger"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Singer-Songwriter", "Chamber Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2013-4",
   "chartYear": 2013,
   "releaseYear": 2013,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Wake Me Up",
+      "youtubeId": "IcrbM1l_BoI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Avicii"],
+  "countryCode": ["Sweden"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Festival Progressive House",
+  "subgenres": ["Stomp and Holler", "Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2013-5",
   "chartYear": 2013,
   "releaseYear": 2013,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Royals",
+      "youtubeId": "nlcIKh6sBtc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Lorde"],
+  "countryCode": ["New Zealand"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alt-Pop",
+  "subgenres": ["Alternative R&B", "Indietronica"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2013-6",
   "chartYear": 2013,
   "releaseYear": 2013,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Just Give Me a Reason",
+      "youtubeId": "OpQFFLBMEPI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["P!nk", "Nate Ruess"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Piano Rock", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2013-7",
   "chartYear": 2013,
   "releaseYear": 2013,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Get Lucky",
+      "youtubeId": "CCHdMIEGaaM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Daft Punk", "Pharrell Williams"],
+  "countryCode": ["France", "USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2013-8",
   "chartYear": 2013,
   "releaseYear": 2013,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Counting Stars",
+      "youtubeId": "hT_nvWreIhg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["OneRepublic"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Indie Pop", "Stomp and Holler", "Blue-Eyed Soul", "Indietronica"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2013-9",
   "chartYear": 2013,
-  "releaseYear": 2013,
-  "rank": 1,
+  "releaseYear": 2011,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Can't Hold Us",
       "youtubeId": "a"
     },
     {
@@ -13769,91 +13769,91 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Macklemore", "Ryan Lewis", "Ray Dalton"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Dance-Pop", "Fanfare", "Neo-Soul", "Pop Soul", "Worldbeat"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2013-10",
   "chartYear": 2013,
-  "releaseYear": 2013,
-  "rank": 1,
+  "releaseYear": 2012,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Impossible",
+      "youtubeId": "Mhj15W23IjA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["James Arthur"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Soul", "Adult Contemporary"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2014-1",
   "chartYear": 2014,
-  "releaseYear": 2014,
+  "releaseYear": 2013,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Happy",
+      "youtubeId": "ZbZSe6N_BXs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Pharrell Williams"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Film Soundtrack", "Contemporary R&B", "Motwon Sound"],
+  "peakPos": 1,
+  "weeksOnChart": 12
 },
 {
   "id": "2014-2",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "All About That Bass",
+      "youtubeId": "7PCkvCPvDXk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Meghan Trainor"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Bubblegum",
+  "subgenres": ["Doo-Wop", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2014-3",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Shake It Off",
       "youtubeId": "a"
     },
     {
@@ -13861,45 +13861,45 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Taylor Swift"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Pep Band", "Teen Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2014-4",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Geronimo",
+      "youtubeId": "UL_EXAyGCkw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Sheppard"],
+  "countryCode": ["Australia"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Indie Pop", "Stomp and Holler", "Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2014-5",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Que Sera",
       "youtubeId": "a"
     },
     {
@@ -13907,252 +13907,252 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Justice Crew"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Boy Band", "Pop Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "2014-6",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Chandelier",
+      "youtubeId": "2vjPBrBU-TM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Sia"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Alt-Pop", "Contemporary R&B", "Jerk Rap"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2014-7",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Thinking Out Loud",
+      "youtubeId": "lp-EO5I60KA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Adult Contemporary", "Smooth Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2014-8",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stay With Me",
+      "youtubeId": "pB-5XG-DbAA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Sam Smith"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Adult Contemporary", "Blue-Eyed Soul"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "2014-9",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Freaks",
+      "youtubeId": "r1dquH_KOQc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Timmy Trumpet", "Savage"],
+  "countryCode": ["Australia", "New Zealand"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Melbourne Bounce",
+  "subgenres": ["Big Room House", "Hip House", "Pop Rap", "Electro Hop"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2014-10",
   "chartYear": 2014,
   "releaseYear": 2014,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Ugly Heart",
+      "youtubeId": "BxRQNO8vg2Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["G.R.L."],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Stomp and Holler", "Teen Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2015-1",
   "chartYear": 2015,
-  "releaseYear": 2015,
+  "releaseYear": 2014,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Uptown Funk",
+      "youtubeId": "OPf0YbXqDm0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Mark Ronson", "Bruno Mars"],
+  "countryCode": ["UK", "USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synth Funk",
+  "subgenres": ["Dance-Pop", "Disco Rap", "Minneapolis Sound", "P-Funk"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2015-2",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Cheerleader (Felix Jaehn Remix)",
+      "youtubeId": "jGflUbPQfW8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["OMI", "Felix Jaehn"],
+  "countryCode": ["Jamacia", "Germany"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Tropical House",
+  "subgenres": ["Dance-Pop", "Afrobeats", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2015-3",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "See You Again",
+      "youtubeId": "RgKAFK5djSk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Wiz Khalifa", "Charlie Puth"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Film Soundtrack", "Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2015-4",
   "chartYear": 2015,
-  "releaseYear": 2015,
-  "rank": 1,
+  "releaseYear": 2014,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Take Me To Church",
+      "youtubeId": "PVjiKRfKpPI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Hozier"],
+  "countryCode": ["Ireland"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Chamber Pop", "Blue-Eyed Soul"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2015-5",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Hello",
+      "youtubeId": "YQHsXMglC9A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Adele"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul", "Singer-Songwriter"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2015-6",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Lean On",
       "youtubeId": "a"
     },
     {
@@ -14160,105 +14160,105 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Major Lazer", "DJ Snake", "MØ"],
+  "countryCode": ["Jamacia", "France", "Denmark"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Moombahton",
+  "subgenres": ["Electropop", "Dancehall", "Tropical House", "Twerk"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2015-7",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love Me Like You Do",
+      "youtubeId": "AJtDXIazrMo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ellie Goulding"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Film Soundtrack", "Alt-Pop", "Adult Contemporary"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2015-8",
   "chartYear": 2015,
-  "releaseYear": 2015,
-  "rank": 1,
+  "releaseYear": 2014,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Shut Up and Dance",
+      "youtubeId": "6JCLY0Rlx6Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Walk the Moon"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Dance", "Dance-Pop", "New Wave", "Power Pop", "Big Music", "New Rave"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2015-9",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "What Do You Mean?",
+      "youtubeId": "DK_0jXPuIr0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Justin Bieber"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Tropical House",
+  "subgenres": ["Dance-Pop", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2015-10",
   "chartYear": 2015,
   "releaseYear": 2015,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "FourFiveSeconds",
+      "youtubeId": "kt0g4dWxEBoa"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Rihanna", "Kanye West", "Paul McCartney"],
+  "countryCode": ["Barbados", "USA", "UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Folk Pop", "Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2016-1",
@@ -14267,7 +14267,7 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Closer",
       "youtubeId": "a"
     },
     {
@@ -14275,91 +14275,91 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Chainsmokers", "Halsey"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Future Bass",
+  "subgenres": ["Electropop", "Dance-Pop", "Alt-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 9
 },
 {
   "id": "2016-2",
   "chartYear": 2016,
   "releaseYear": 2016,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "One Dance",
+      "youtubeId": "mym4sKoAnKs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Drake", "Wizkid", "Kyla"],
+  "countryCode": ["Canada", "Nigeria", "Germany"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Afrobeats", "Dancehall"],
+  "peakPos": 1,
+  "weeksOnChart": 7
 },
 {
   "id": "2016-3",
   "chartYear": 2016,
-  "releaseYear": 2016,
-  "rank": 1,
+  "releaseYear": 2015,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "7 Years",
+      "youtubeId": "LHCob76kigA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Lukas Graham"],
+  "countryCode": ["Denmark"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Pop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2016-4",
   "chartYear": 2016,
   "releaseYear": 2016,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Never Be like You",
+      "youtubeId": "-KPnyf8vwXI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Flume", "Kai"],
+  "countryCode": ["Australia", "Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Future Bass",
+  "subgenres": ["Alternative R&B", "Alt-Pop", "Wonky", "Electropop", "Trap [EDM]", "Glitch Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2016-5",
   "chartYear": 2016,
   "releaseYear": 2016,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "Don't Let Me Down",
       "youtubeId": "a"
     },
     {
@@ -14367,128 +14367,128 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["The Chainsmokers", "Dayla"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Trap [EDM]",
+  "subgenres": ["Electropop", "Contemporary R&B", "Festival Trap", "Alt-Pop", "Future Bass"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2016-6",
   "chartYear": 2016,
   "releaseYear": 2016,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "This Is What You Came For",
+      "youtubeId": "kOkQ4T5WO9E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Calvin Harris", "Rihanna"],
+  "countryCode": ["UK", "Barbados"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Future House", "Tropical House"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2016-7",
   "chartYear": 2016,
   "releaseYear": 2016,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Can't Stop the Feeling!",
+      "youtubeId": "ru0K8uYEZWw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Justin Timberlake"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Film Soundtrack", "Synth Funk", "Nu-Disco"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2016-8",
   "chartYear": 2016,
-  "releaseYear": 2016,
-  "rank": 1,
+  "releaseYear": 2015,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Cheap Thrills",
+      "youtubeId": "nYh-n7EOtMA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Sia", "Sean Paul"],
+  "countryCode": ["Australia", "Jamacia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dancehall",
+  "subgenres": ["Electropop", "Dance-Pop", "Moombahton", "Pop Rap"],
+  "peakPos": 6,
   "weeksOnChart": null
 },
 {
   "id": "2016-9",
   "chartYear": 2016,
-  "releaseYear": 2016,
-  "rank": 1,
+  "releaseYear": 2015,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stressed Out",
+      "youtubeId": "pXRviuL6vMY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Twenty One Pilots"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Alt-Pop", "Trip Hop", "Electropop", "Rocksteady"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2016-10",
   "chartYear": 2016,
-  "releaseYear": 2016,
-  "rank": 1,
+  "releaseYear": 2015,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Love Yourself",
+      "youtubeId": "pb4hWWMlFYg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Justin Bieber"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Contemporary R&B", "Singer-Songwriter", "Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 4
 },
 {
   "id": "2017-1",
@@ -14497,227 +14497,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Shape of You",
+      "youtubeId": "JGwWNGJdvx8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Dancehall", "Contemporary R&B", "Afrobeats", "Tropical House"],
+  "peakPos": 1,
+  "weeksOnChart": 15
 },
 {
   "id": "2017-2",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Despacito (Remix)",
+      "youtubeId": "dr_GAJZviR0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Luis Fonsi", "Daddy Yankee", "Justin Bieber"],
+  "countryCode": ["Puerto Rico", "Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Reggaetón",
+  "subgenres": ["Latin Pop", "Cumbia Pop", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 13
 },
 {
   "id": "2017-3",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Castle on the Hill",
+      "youtubeId": "K0ibBPhiaG0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Big Music", "Folk Pop", "Heartland Rock", "Singer-Songwriter"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2017-4",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Perfect",
+      "youtubeId": "2Vv-BfVoq4g"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Ed Sheeran"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": null,
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2017-5",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Something Just like This",
+      "youtubeId": "FM7MFYoylVs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["The Chainsmokers", "Coldplay"],
+  "countryCode": ["USA", "UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Future Bass", "Medlodic Bass"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2017-6",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Thunder",
+      "youtubeId": "fKopy74weus"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Imagine Dragons"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Alt-Pop", "Trap [EDM]", "Snap"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2017-7",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Galway Girl",
+      "youtubeId": "87gWaABqGYs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Irish Folk Music", "Dance-Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2017-8",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "HUMBLE.",
+      "youtubeId": "tvTRZJ-4EyI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Kendrick Lamar"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Trap", "Crunk"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2017-9",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Glorious",
+      "youtubeId": "7OrLroFa0AI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Macklemore", "Skylar Grey"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": null,
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2017-10",
   "chartYear": 2017,
   "releaseYear": 2017,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "There's Nothing Holdin' Me Back",
+      "youtubeId": "dT2owtxkU8k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Shawn Mendes"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Dance-Pop", "Folk Pop"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
@@ -14727,227 +14727,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Youngblood",
+      "youtubeId": "-RJSbO8UZVY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["5 Seconds of Summer"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Electropop",
+  "subgenres": ["Alt-Pop", "Pop Rock", "Synthpop", "New Wave"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2018-2",
   "chartYear": 2018,
   "releaseYear": 2018,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "God's Plan",
+      "youtubeId": "xpVfcZ0ZcFM"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Drake"],
+  "countryCode": ["Canada"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Trap", "Cloud Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 11
 },
 {
   "id": "2018-3",
   "chartYear": 2018,
-  "releaseYear": 2018,
-  "rank": 1,
+  "releaseYear": 2017,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Perfect",
+      "youtubeId": "txapREGWHp0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Ed Sheeran"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "jazztraditionalpop",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": null,
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2018-4",
   "chartYear": 2018,
   "releaseYear": 2018,
-  "rank": 1,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Be Alright",
+      "youtubeId": "I0czvJ_jikg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Dean Lewis"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Adult Contemporary", "Folk Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2018-5",
   "chartYear": 2018,
-  "releaseYear": 2018,
-  "rank": 1,
+  "releaseYear": 2017,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Meant to Be",
+      "youtubeId": "zDo0H8Fm7d0"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Bebe Rexha", "Florida Georgia Line"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Bro-Country",
+  "subgenres": ["Trap", "Contemporary R&B"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2018-6",
   "chartYear": 2018,
-  "releaseYear": 2018,
-  "rank": 1,
+  "releaseYear": 2017,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Fall Apart",
+      "youtubeId": "nqfVoTMEosw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Post Malone"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alternative R&B",
+  "subgenres": ["Emo Rap", "Singer-Songwriter"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2018-7",
   "chartYear": 2018,
   "releaseYear": 2018,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Psycho",
+      "youtubeId": "au2n7VVGv_c"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Post Malone", "Ty Dolla $ign"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Alternative R&B", "Cloud Rap", "Trap", "Trap Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2018-8",
   "chartYear": 2018,
   "releaseYear": 2018,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Girls Like You",
+      "youtubeId": "aJOTlE1K90k"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Maroon 5", "Cardi B"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap", "Alt-Pop"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2018-9",
   "chartYear": 2018,
   "releaseYear": 2018,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Shotgun",
+      "youtubeId": "v_B3qkp4nO4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["George Ezra"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Pop Soul", "Funk Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2018-10",
   "chartYear": 2018,
   "releaseYear": 2018,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Eastside",
+      "youtubeId": "56WBK4ZK_cw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Benny Blanco", "Halsey", "Khalid"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Alt-Pop", "Dancehall"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
@@ -14957,687 +14957,687 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Old Town Road (Remix)",
+      "youtubeId": "r7qovpFAGrQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lil Nas X", "Billy Ray Cyrus"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Country Rap",
+  "subgenres": ["Trap", "Pop Rap", "Bro-Country", "Outlaw Country"],
+  "peakPos": 1,
+  "weeksOnChart": 13
 },
 {
   "id": "2019-2",
   "chartYear": 2019,
   "releaseYear": 2019,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Dance Monkey",
+      "youtubeId": "q0hyYWKXF0Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Tones and I"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Alt-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 21
 },
 {
   "id": "2019-3",
   "chartYear": 2019,
   "releaseYear": 2019,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bad Guy",
+      "youtubeId": "DyDfgMOUjCI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Billie Eilish"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Alt-Pop",
+  "subgenres": ["Dance-Pop", "Trap", "Tech House", "No Melody", "Microhouse"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2019-4",
   "chartYear": 2019,
-  "releaseYear": 2019,
-  "rank": 1,
+  "releaseYear": 2018,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Sunflower",
+      "youtubeId": "ApXoWvfEYVU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Post Malone", "Swae Lee"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alternative R&B",
+  "subgenres": ["Film Soundtrack", "Synthpop", "Alt-Pop", "Pop Rap", "Chillwave"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2019-5",
   "chartYear": 2019,
-  "releaseYear": 2019,
-  "rank": 1,
+  "releaseYear": 2018,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Someone You Loved",
+      "youtubeId": "zABLecsR5UE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Lewis Capaldi"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Singer-Songwriter", "Pop Soul"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "2019-6",
   "chartYear": 2019,
   "releaseYear": 2019,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Don't Care",
+      "youtubeId": "y83x7MgzWOA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ed Sheeran", "Justin Bieber"],
+  "countryCode": ["UK", "Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Afrobeats",
+  "subgenres": ["Dance-Pop", "Contemporary R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2019-7",
   "chartYear": 2019,
-  "releaseYear": 2019,
-  "rank": 1,
+  "releaseYear": 2018,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Wow.",
+      "youtubeId": "393C3pr2ioY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Post Malone"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Hyphy", "Trap", "Ratchet"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2019-8",
   "chartYear": 2019,
   "releaseYear": 2019,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Señorita",
+      "youtubeId": "Pkh8UtuejGw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Shawn Mendes", "Camila Cabello"],
+  "countryCode": ["Canada", "Cuba"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Latin Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2019-9",
   "chartYear": 2019,
-  "releaseYear": 2019,
-  "rank": 1,
+  "releaseYear": 2018,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Shallow",
+      "youtubeId": "bo_efYhYU2A"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lady Gaga", "Bradley Cooper"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Contemporary Country",
+  "subgenres": ["Film Soundtrack", "Adult Contemporary", "Soft Rock", "Country Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2019-10",
   "chartYear": 2019,
   "releaseYear": 2019,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "7 Rings",
+      "youtubeId": "QYh6mYIJG2Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Ariana Grande"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Pop Rap", "Trap"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2020-1",
   "chartYear": 2020,
-  "releaseYear": 2020,
+  "releaseYear": 2019,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Blinding Lights",
+      "youtubeId": "4NRXx6U8ABQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Weeknd"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Synthwave"],
+  "peakPos": 1,
+  "weeksOnChart": 11
 },
 {
   "id": "2020-2",
   "chartYear": 2020,
-  "releaseYear": 2020,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Roses (Imanbek Remix)",
+      "youtubeId": "2zToEPpFEN8"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["SAINt JHN", "Imanbek"],
+  "countryCode": ["USA", "Kazakhstan"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Slap House",
+  "subgenres": ["Alternative R&B"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2020-3",
   "chartYear": 2020,
-  "releaseYear": 2020,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Don't Start Now",
+      "youtubeId": "oygrmJFKYZY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Dua Lipa"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Nu-Disco",
+  "subgenres": ["Dance-Pop", "Funktronica", "Funky House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2020-4",
   "chartYear": 2020,
-  "releaseYear": 2020,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Dance Monkey",
+      "youtubeId": "q0hyYWKXF0Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Tones and I"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Alt-Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2020-5",
   "chartYear": 2020,
   "releaseYear": 2020,
-  "rank": 1,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Rockstar",
+      "youtubeId": "83xBPCw5hh4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Dababy", "Roddy Ricch"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Trap",
+  "subgenres": ["Pop Rap"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2020-6",
   "chartYear": 2020,
   "releaseYear": 2020,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Watermelon Sugar",
+      "youtubeId": "E07s5ZYygMg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Harry Styles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Pop Soul", "Funk Rock", "Synth Funk", "Dance-Pop", "Psychedelic Pop"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "2020-7",
   "chartYear": 2020,
-  "releaseYear": 2020,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Circles",
+      "youtubeId": "wXhTHyIgQ_U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Post Malone"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Indie Pop",
+  "subgenres": ["Alt-Pop", "Soft Rock", "Countrypolitan"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2020-8",
   "chartYear": 2020,
-  "releaseYear": 2020,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Before You Go",
+      "youtubeId": "Jtauh8GcxBY"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Lewis Capaldi"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Adult Contemporary",
+  "subgenres": ["Singer-Songwriter", "Pop Soul", "Stomp and Holler"],
+  "peakPos": 7,
   "weeksOnChart": null
 },
 {
   "id": "2020-9",
   "chartYear": 2020,
   "releaseYear": 2020,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Intentions",
+      "youtubeId": "3AyMjyHu1bA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Justin Bieber", "Quavo"],
+  "countryCode": ["Canada", "USA"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Trap Soul", "Pop Rap", "Trap", "Cloud Rap"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2020-10",
   "chartYear": 2020,
   "releaseYear": 2020,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Say So",
+      "youtubeId": "pok8H_KF1FA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Doja Cat"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Contemporary R&B", "Nu-Disco", "Disco", "Pop Rap", "Disco Rap", "Funktronica", "Synth Funk"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "2021-1",
   "chartYear": 2021,
-  "releaseYear": 2021,
+  "releaseYear": 2020,
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Heat Waves",
+      "youtubeId": "mRD0-GxqHVo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Glass Animals"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alt-Pop",
+  "subgenres": ["Alternative R&B", "Trap"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2021-2",
   "chartYear": 2021,
   "releaseYear": 2021,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stay",
+      "youtubeId": "kTJczUoc26U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Kid LAROI", "Justin Bieber"],
+  "countryCode": ["Australia", "Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Dance-Pop", "Contemporary R&B", "Dancefloor Drum and Bass"],
+  "peakPos": 1,
+  "weeksOnChart": 14
 },
 {
   "id": "2021-3",
   "chartYear": 2021,
   "releaseYear": 2021,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Drivers License",
+      "youtubeId": "ZmDBbnmKpqQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Olivia Rodrigo"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Alt-Pop", "Bedroom Pop", "Teen Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2021-4",
   "chartYear": 2021,
-  "releaseYear": 2021,
-  "rank": 1,
+  "releaseYear": 2020,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Without You",
+      "youtubeId": "SJOKlqJho8U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Kid LAROI"],
+  "countryCode": ["Australia"],
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Folk Pop",
+  "subgenres": ["Singer-Songwriter", "Acoustic Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2021-5",
   "chartYear": 2021,
-  "releaseYear": 2021,
-  "rank": 1,
+  "releaseYear": 2020,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Levitating",
+      "youtubeId": "TUVcZfQe-Kw"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Dua Lipa", "Dababy"],
+  "countryCode": ["UK", "USA"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Nu-Disco", "Disco Rap", "Pop Rap", "Funktronica"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "2021-6",
   "chartYear": 2021,
   "releaseYear": 2021,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Good 4 U",
+      "youtubeId": "gNi_6U5Pm_o"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Olivia Rodrigo"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Alternative Rock", "Pop Punk", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2021-7",
   "chartYear": 2021,
   "releaseYear": 2021,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bad Habits",
+      "youtubeId": "orJSJGHjBLI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Slap House"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2021-8",
   "chartYear": 2021,
-  "releaseYear": 2021,
-  "rank": 1,
+  "releaseYear": 2020,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Save Your Tears",
+      "youtubeId": "XXYlFuWEuKI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["The Weeknd"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Synthwave", "New Wave", "Alternative R&B"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2021-9",
   "chartYear": 2021,
   "releaseYear": 2021,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Kiss Me More",
+      "youtubeId": "0EVVKs6DQLo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Doja Cat", "SZA"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Contemporary R&B", "Nu-Disco"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2021-10",
   "chartYear": 2021,
-  "releaseYear": 2021,
-  "rank": 1,
+  "releaseYear": 2020,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "The Business",
+      "youtubeId": "nCg3ufihKyU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Tiësto"],
+  "countryCode": ["Netherlands"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Slap House",
+  "subgenres": ["Deep House"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
@@ -15647,227 +15647,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "As It Was",
+      "youtubeId": "H5v3kku4y6Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Harry Styles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Indie Pop",
+  "subgenres": ["Pop Rock", "Synthpop", "New Wave", "Jangle Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2022-2",
   "chartYear": 2022,
-  "releaseYear": 2022,
-  "rank": 1,
+  "releaseYear": 2020,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Heat Waves",
+      "youtubeId": "mRD0-GxqHVo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Glass Animals"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alt-Pop",
+  "subgenres": ["Alternative R&B", "Trap"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2022-3",
   "chartYear": 2022,
-  "releaseYear": 2022,
-  "rank": 1,
+  "releaseYear": 2021,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stay",
+      "youtubeId": "kTJczUoc26U"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["The Kid LAROI", "Justin Bieber"],
+  "countryCode": ["Australia", "Canada"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Dance-Pop", "Contemporary R&B", "Dancefloor Drum and Bass"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2022-4",
   "chartYear": 2022,
-  "releaseYear": 2022,
-  "rank": 1,
+  "releaseYear": 2021,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": 	"Cold Heart (Pnau remix)",
+      "youtubeId": "qod03PVTLqk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Dua Lipa", "Elton John", "PNAU"],
+  "countryCode": ["UK", "Australia"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Deep House", "Nu-Disco", "Mashup", "Euro-Disco"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2022-5",
   "chartYear": 2022,
-  "releaseYear": 2022,
-  "rank": 1,
+  "releaseYear": 2021,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Bad Habits",
+      "youtubeId": "orJSJGHjBLI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Slap House"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2022-6",
   "chartYear": 2022,
-  "releaseYear": 2022,
-  "rank": 1,
+  "releaseYear": 2021,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Shivers",
+      "youtubeId": "Il0S8BoucSA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Ed Sheeran"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Contemporary R&B"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "2022-7",
   "chartYear": 2022,
-  "releaseYear": 2022,
-  "rank": 1,
+  "releaseYear": 2021,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Where Are You Now",
+      "youtubeId": "PoP2Sa7wYNQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["Lost Frequencies", "Calum Scott"],
+  "countryCode": ["Belgium", "UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Tropical House", "Slap House"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "2022-8",
   "chartYear": 2022,
   "releaseYear": 2022,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "First Class",
+      "youtubeId": "yQBImEeXNZ4"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Jack Harlow"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "hiphop",
+  "primarygenre": "Pop Rap",
+  "subgenres": ["Atlanta Bass", "Contemporary R&B", "Trap", "Bounce"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2022-9",
   "chartYear": 2022,
   "releaseYear": 2022,
-  "rank": 1,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "I Ain't Worried",
+      "youtubeId": "mNEUkkoUoIA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["OneRepublic"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Film Soundtrack", "Dance-Pop", "Indie Pop", "Big Beat", "Breakbeat", "Yacht Rock"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2022-10",
   "chartYear": 2022,
   "releaseYear": 2022,
-  "rank": 1,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "About Damn Time",
+      "youtubeId": "IXXxciRUMzE"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Lizzo"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Disco",
+  "subgenres": ["Dance-Pop", "Disco Rap", "Funktronica", "Pop Rap", "Synth Funk"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
@@ -15877,227 +15877,227 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Flowers",
+      "youtubeId": "G7KNmW9a75Y"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Miley Cyrus"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Boogie", "Nu-Disco", "Yacht Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 12
 },
 {
   "id": "2023-2",
   "chartYear": 2023,
   "releaseYear": 2023,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Last Night",
+      "youtubeId": "TyjgBxIVmEc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Morgan Wallen"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Bro-Country",
+  "subgenres": ["Country Pop", "Contemporary Country"],
+  "peakPos": 1,
+  "weeksOnChart": 8
 },
 {
   "id": "2023-3",
   "chartYear": 2023,
   "releaseYear": 2023,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Kill Bill",
+      "youtubeId": "SQnc1QibapQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["SZA"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alt-Pop",
+  "subgenres": ["Psychedelic Pop", "Bedroom Pop", "Neo-Soul", "Alternative R&B", "Trip Hop", "Indie Surf"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2023-4",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2022,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Anti Hero",
+      "youtubeId": "b1kbLwvqugk"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Taylor Swift"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Alt-Pop", "Chillwave"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2023-5",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2022,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Boy's a liar",
+      "youtubeId": "aU_hj-wT3biU"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["PinkPantheress"],
+  "countryCode": ["UK"],
+  "genretaxonomy": "dance",
+  "primarygenre": "Dance-Pop",
+  "subgenres": ["Baltimore Club", "Bitpop", "Jersey Club", "Contemporary R&B"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2023-6",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2016,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Die For You",
+      "youtubeId": "uPD0QOGTmMI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["The Weeknd"],
+  "countryCode": ["Canada"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Synthpop", "Sophisti-Pop"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
   "id": "2023-7",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2022,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Something In The Orange",
+      "youtubeId": "lA8F9sIhGdg"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Zach Bryan"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Americana",
+  "subgenres": ["Singer-Songwriter", "Contemporary Country"],
+  "peakPos": 6,
   "weeksOnChart": null
 },
 {
   "id": "2023-8",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Cruel Summer",
+      "youtubeId": "ic8j13piAhQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Taylor Swift"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Electropop", "Alt-Pop", "Synthwave", "Contemporary R&B", "Future Bass"],
+  "peakPos": 2,
   "weeksOnChart": null
 },
 {
   "id": "2023-9",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2022,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "As It Was",
+      "youtubeId": "H5v3kku4y6Q"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
+  "artists": ["Harry Styles"],
+  "countryCode": ["UK"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "primarygenre": "Indie Pop",
+  "subgenres": ["Pop Rock", "Synthpop", "New Wave", "Jangle Pop"],
+  "peakPos": 5,
   "weeksOnChart": null
 },
 {
   "id": "2023-10",
   "chartYear": 2023,
-  "releaseYear": 2023,
-  "rank": 1,
+  "releaseYear": 2022,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Escapism.",
+      "youtubeId": "Dll6VJ2C7wo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "artists": ["RAYE", "070 Shake"],
+  "countryCode": ["UK", "USA"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Alternative R&B",
+  "subgenres": ["Pop Rap", "Pop Soul", "Neo-Soul", "Trip Hop", "Boom Bap", "Hip Hop Soul"],
+  "peakPos": 3,
   "weeksOnChart": null
 },
 {
@@ -16107,145 +16107,145 @@
   "rank": 1,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Beautiful Things",
+      "youtubeId": "Oa_RSwwpPaA"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Benson Boone"],
   "countryCode": ["USA"],
   "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "primarygenre": "Pop Rock",
+  "subgenres": ["Power Pop", "Post-Grunge", "Christian Rock", "Blues Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 6
 },
 {
   "id": "2024-2",
   "chartYear": 2024,
   "releaseYear": 2024,
-  "rank": 1,
+  "rank": 2,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "A Bar Song (Tipsy)",
+      "youtubeId": "t7bQwwqW-Hc"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Shaboozey"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Stomp and Holler", "Contemporary Country", "Bro-Country"],
+  "peakPos": 1,
+  "weeksOnChart": 5
 },
 {
   "id": "2024-3",
   "chartYear": 2024,
   "releaseYear": 2024,
-  "rank": 1,
+  "rank": 3,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Espresso",
+      "youtubeId": "eVli-tstM5E"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Sabrina Carpenter"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Nu-Disco",
+  "subgenres": ["Dance-Pop", "Boogie", "Funktronica"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2024-4",
   "chartYear": 2024,
-  "releaseYear": 2024,
-  "rank": 1,
+  "releaseYear": 2022,
+  "rank": 4,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Stick Season",
+      "youtubeId": "JKrDdsgXuso"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Noah Kahan"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Singer-Songwriter",
+  "subgenres": ["Stomp and Holler"],
+  "peakPos": 1,
+  "weeksOnChart": 3
 },
 {
   "id": "2024-5",
   "chartYear": 2024,
-  "releaseYear": 2024,
-  "rank": 1,
+  "releaseYear": 2023,
+  "rank": 5,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Lose Control",
+      "youtubeId": "FkOpwodhROI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Teddy Swims"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Neo-Soul", "Deep Soul", "Pop Rock", "Contemporary R&B", "Country Soul"],
+  "peakPos": 4,
   "weeksOnChart": null
 },
 {
   "id": "2024-6",
   "chartYear": 2024,
   "releaseYear": 2024,
-  "rank": 1,
+  "rank": 6,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Birds of a Feather",
+      "youtubeId": "V9PVRfjEBTI"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Billie Eilish"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Alt-Pop",
+  "subgenres": ["Indie Pop", "Chillwave", "Dream Pop", "Sophisti-Pop", "Pop Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2024-7",
   "chartYear": 2024,
   "releaseYear": 2024,
-  "rank": 1,
+  "rank": 7,
   "tracks": [
     {
-      "title": "Song Title A",
+      "title": "I Had Some Help",
       "youtubeId": "a"
     },
     {
@@ -16253,82 +16253,82 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Post Malone", "Morgan Wallen"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "countryfolk",
+  "primarygenre": "Country Pop",
+  "subgenres": ["Pop Rock", "Contemporary Country", "Country Rock", "Power Pop"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2024-8",
   "chartYear": 2024,
   "releaseYear": 2024,
-  "rank": 1,
+  "rank": 8,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Too Sweet",
+      "youtubeId": "NTpbbQUBbuo"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
-  "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "artists": ["Hozier"],
+  "countryCode": ["Ireland"],
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Pop Soul",
+  "subgenres": ["Pop Rock", "Alt-Pop", "Indie Rock", "Blues Rock"],
+  "peakPos": 1,
+  "weeksOnChart": 1
 },
 {
   "id": "2024-9",
   "chartYear": 2024,
-  "releaseYear": 2024,
-  "rank": 1,
+  "releaseYear": 2019,
+  "rank": 9,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Cruel Summer",
+      "youtubeId": "ic8j13piAhQ"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Taylor Swift"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "dance",
+  "primarygenre": "Synthpop",
+  "subgenres": ["Electropop", "Alt-Pop", "Synthwave", "Contemporary R&B", "Future Bass"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 },
 {
   "id": "2024-10",
   "chartYear": 2024,
   "releaseYear": 2024,
-  "rank": 0,
+  "rank": 10,
   "tracks": [
     {
-      "title": "Song Title A",
-      "youtubeId": "a"
+      "title": "Million Dollar Baby",
+      "youtubeId": "Zf1d8SGuxfs"
     },
     {
       "title": null,
       "youtubeId": null
     }
   ],
-  "artists": ["Artist One"],
+  "artists": ["Tommy Richman"],
   "countryCode": ["USA"],
-  "genretaxonomy": "rock",
-  "primarygenre": "Traditional Pop",
-  "subgenres": ["Swing"],
-  "peakPos": null,
-  "weeksOnChart": null
+  "genretaxonomy": "soulrnb",
+  "primarygenre": "Contemporary R&B",
+  "subgenres": ["Synth Funk", "Phonk", "Dirty South", "Memphis Rap", "Mobb Music", "Hip Hop Soul"],
+  "peakPos": 1,
+  "weeksOnChart": 2
 }
 ],
 
@@ -16382,7 +16382,6 @@
     }
   }
 }
-
 
 
 
