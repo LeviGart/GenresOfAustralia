@@ -12,6 +12,11 @@ d3.json("./songs.json").then(dataset => {
   const ranks = d3.range(1, 11);
   const taxonomyOrder = ["hiphop","dance","soulrnb","rock","countryfolk","jazztraditionalpop"];
 
+  // Genres of Australia logo
+
+
+
+
   // Collect all genres (primary + subgenres)
   const allGenresSet = new Set();
   songs.forEach(s => {
@@ -29,6 +34,7 @@ d3.json("./songs.json").then(dataset => {
       genreCounts[g] = (genreCounts[g] || 0) + 1;
     });
   });
+  
   // Track visibility state
   let genreVisibility = {};
   allGenresList.forEach(g => { genreVisibility[g] = true; });
@@ -41,16 +47,19 @@ d3.json("./songs.json").then(dataset => {
   const tooltip = d3.select("body").append("div").attr("id", "tooltip");
 
   // Legend (Taxonomy labels)
-  const legend = d3.select(".legend");
-  Object.entries(taxonomy).forEach(([key, info]) => {
-    legend.append("span")
-      .attr("class", "genre-badge clickable-taxonomy")
-      .style("background-color", info.color)
-      .attr("data-taxonomy", key)
-      .text(info.label)
-      .on("click", () => showTaxonomyPanel(key))
-      .append("title").text(info.description || "");
-  });
+const legend = d3.select(".legend");
+
+Object.entries(taxonomy).forEach(([key, info]) => {
+  legend.append("span")
+    .attr("class", "genre-badge clickable-taxonomy")
+    .style("background-color", "transparent")      // remove fill
+    .style("border", `2px solid ${info.color}`)   // dynamic border color
+    .attr("data-taxonomy", key)
+    .text(info.label)
+    .on("click", () => showTaxonomyPanel(key))
+    .append("title")
+    .text(info.description || "");
+});
 
   // Sort controls
   d3.selectAll("input[name=sortMode]").on("change", function() {
@@ -192,7 +201,7 @@ function isSongVisible(song) {
         cell.classed("empty", true).style("background-color", "");
         return;
       }
-      cell.style("background-color", taxonomy[song.genretaxonomy]?.color || "#333");
+      cell.style("background-color", taxonomy[song.genretaxonomy]?.color || "#2c292b");
     }
     // Tooltip + click handlers
     cell.on("mouseenter", function (event) {
@@ -202,10 +211,10 @@ function isSongVisible(song) {
         combinedTitle += " / " + song.tracks[1].title;
       }
       tooltip.classed("visible", true).html(`
-        ${combinedTitle}<br>
-        ${song.artists.join(", ")}<br><br>
-        Rank #${song.rank} for ${song.chartYear}<br><br>
-        ${song.primarygenre}<br>
+        <h2>${combinedTitle}</h2>
+        <p>${song.artists.join(" • ")}</p>
+        <p>Rank ${song.rank} for ${song.chartYear} </p>
+        <p>${song.primarygenre}</p>
       `)
       .style("left", (event.pageX + 10) + "px")
       .style("top", (event.pageY + 10) + "px");
@@ -229,10 +238,45 @@ function isSongVisible(song) {
 
   function openSidePanel() {
     d3.select("#side-panel").classed("open", true);
+    
   }
   function closeSidePanel() {
     d3.select("#side-panel").classed("open", false);
   }
+  ////////pushing the table ////
+
+function openSidePanel() {
+  const sidePanel = d3.select("#side-panel");
+  sidePanel.classed("open", true);
+
+  const chartWrapper = d3.select(".chart-wrapper");
+  const sidePanelWidth = document.querySelector("#side-panel").offsetWidth;
+
+  // Shift slightly and scale down just a bit
+  const translateAmount = sidePanelWidth / 5;
+  const scaleAmount = 0.87; 
+
+  chartWrapper
+    .style("transition", "transform 0.3s ease")
+    .style("transform", `translateX(-${translateAmount}px) scale(${scaleAmount})`);
+}
+
+function closeSidePanel() {
+  const sidePanel = d3.select("#side-panel");
+  sidePanel.classed("open", false);
+
+  const chartWrapper = d3.select(".chart-wrapper");
+
+  // Reset to normal position and scale
+  chartWrapper
+    .style("transition", "transform 0.3s ease")
+    .style("transform", "translateX(0) scale(1)");
+}
+///////old
+  //function openSidePanel() {
+    //d3.select("#side-panel").classed("open", true);  }
+  //function closeSidePanel() {
+   // d3.select("#side-panel").classed("open", false);}
 
   function rerenderCurrentPanel(resetScroll = false) {
     if (!currentPanel.type) return;
@@ -271,7 +315,7 @@ function isSongVisible(song) {
     // Build clickable genre spans
     const genreSpans = [song.primarygenre, ...(song.subgenres || [])]
       .map(g => `<span class="clickable-genre" data-genre="${g}">${g}</span>`)
-      .join(", ");
+      .join(" • ");
     // Peak chart info
     let peakInfo = "";
     if (song.peakPos) {
@@ -290,23 +334,33 @@ function isSongVisible(song) {
     const tax = taxonomy[song.genretaxonomy];
     // Fill modal content
     d3.select("#modal-content").html(`
-      <h2>${combinedTitle}</h2>
-      ${song.artists.join(", ")} <br>
-      ${song.countryCode.join(", ")}<br><br>
-      Released in ${song.releaseYear}<br>
-      <p>#${song.rank} Year End Position For ${song.chartYear}</p>
-      ${peakInfo ? `<p>${peakInfo}</p>` : ""}<br>
-      ${tax ? `<div class="genre-badge clickable-taxonomy" 
-      style="background-color:${tax.color}" 
-      data-taxonomy="${song.genretaxonomy}">
-      ${tax.label}
-      </div>` : ""}
-      <p>${genreSpans}</p>
       <div id="video-container">${videoHtml(currentTrack)}</div>
+      <h1 style="display:inline; font-weight: 700; margin-right: 8px;">
+        ${combinedTitle}
+      </h1>
+      <h2 style="display:inline; font-weight: 600; font-size: 1.2rem;">
+        (${song.releaseYear})
+      </h2>
+      <p>
+        <span class="artists">${song.artists.join(" • ")}</span>
+        <span class="country" style="margin-left:8px;">(${song.countryCode.join(" • ")})</span>
+      </p>
+      
+      <p>Rank #${song.rank} for ${song.chartYear}  •  ${peakInfo ? `${peakInfo}` : ""}</p>
+      <br>
+      
+        <p>${genreSpans} </p>
+        <br>
+        <p>${tax ? `<div class="genre-badge clickable-taxonomy" 
+        style="background-color:transparent; border:2px solid ${tax.color}" 
+        data-taxonomy="${song.genretaxonomy}">
+        ${tax.label}
+        </div>` : ""}</p> 
+      
       <div class="modal-controls">
-        <button id="prev-song">&#8592; Prev</button>
+<button id="prev-song"><span class="icon">&#x25C0;</span><span class="label">Prev</span></button>
         ${toggleButtonHtml}
-        <button id="next-song">Next &#8594;</button>
+<button id="next-song"><span class="label">Next</span><span class="icon">&#x25B6;</span></button>
       </div>
     `);
 
@@ -468,12 +522,12 @@ if (!sortBtn.empty()) {
 }
 // taxonomy side panel
 function getSortButtonLabel() {
-  if (genreSortMode === "az") return "Sort by A-Z ↑";
-  if (genreSortMode === "za") return "Sort by A-Z ↓";
-  if (genreSortMode === "popular") return "Sort by Popularity ↓";
-  if (genreSortMode === "unpopular") return "Sort by Popularity ↑";
-  return "[Sort]"; // fallback
-}  
+  if (genreSortMode === "az") return `Sort A-Z <span class="icon">&#x25BC;</span>`;  
+  if (genreSortMode === "za") return `Sort A-Z <span class="icon">&#x25B2;</span>`;  
+  if (genreSortMode === "popular") return `Sort Popularity <span class="icon">&#x25BC;</span>`;
+  if (genreSortMode === "unpopular") return `Sort Popularity <span class="icon">&#x25B2;</span>`;
+  return `[Sort]`;
+}
 function showTaxonomyPanel(taxKey, resetScroll = true) {
     currentPanel = { type: "taxonomy", key: taxKey };
     const info = taxonomy[taxKey];
@@ -495,14 +549,14 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     d3.select("#side-panel-body").html(`
          <div>
         <input type="checkbox" class="taxonomy-toggle" data-taxonomy="${taxKey}" ${taxonomyVisibility[taxKey] !== false ? "checked" : ""}>
-        <span class="genre-badge clickable-taxonomy" style="background-color:${info.color}" data-taxonomy="${taxKey}">${info.label}</span>
+        <span class="genre-badge clickable-taxonomy" style="background-color:transparent; border:2px solid ${info.color}" data-taxonomy="${taxKey}">${info.label}</span>
+
       </div>
       <p>${info.description || ""}</p>
       <h4>Related genres:</h4>
       <ul>${relatedHtml}</ul>
       <h4>All genres in dataset:</h4>
-      <p><button id="toggle-all-genres">${toggleAllLabel}</button></P>
-      <p><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
+      <p><button id="toggle-all-genres">${toggleAllLabel}</button> <button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
       <ul>${renderAllGenresList()}</ul>
       <h4>"""Completed Genres:"""</h4>
       <ul>${renderFeaturedGenresList()}</ul>
@@ -528,14 +582,14 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     // if no detailed info is supplied for the genre
     if (!g) {
       d3.select("#side-panel-body").html(`
-        <h2>
+        <h1>
           <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
           ${resolvedKey} <span class="genre-count">[${genreCounts[resolvedKey] || 0}]</span>
-        </h2>
+        </h1>
         <p>No info on this genre.</p>
-        <h4>All genres in dataset:</h4>
-        <p><button id="toggle-all-genres">${toggleAllLabel}</button></P>
-        <p><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
+        <br>
+        <h2>All genres in dataset:</h2>
+        <p><button id="toggle-all-genres">${toggleAllLabel}</button> <button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
         <ul>${renderAllGenresList()}</ul>
         <h4>"""Completed Genres:"""</h4>
         <ul>${renderFeaturedGenresList()}</ul>
@@ -549,7 +603,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     // taxonomy badge and related genres list
     const taxInfo = taxonomy[g.taxonomy];
     const taxBadge = taxInfo
-      ? `<span class="genre-badge clickable-taxonomy" style="background-color:${taxInfo.color}" data-taxonomy="${g.taxonomy}">${taxInfo.label}</span>`
+      ? `<span class="genre-badge clickable-taxonomy" style="background-color:transparent; border:2px solid ${taxInfo.color}" data-taxonomy="${g.taxonomy}">${taxInfo.label}</span>`
       : `<span class="genre-badge clickable-taxonomy" data-taxonomy="${g.taxonomy}">${g.taxonomy}</span>`;
 
     const relatedHtml = Array.isArray(g.related) && g.related.length
@@ -572,8 +626,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
       <h4>Related genres:</h4>
       <ul>${relatedHtml}</ul>
       <h4>All genres in dataset:</h4>
-      <p><button id="toggle-all-genres">${toggleAllLabel}</button></P>
-      <p><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
+      <p><button id="toggle-all-genres">${toggleAllLabel}</button><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
       <ul>${renderAllGenresList()}</ul>
       <h4>"""Completed Genres:"""</h4>
       <ul>${renderFeaturedGenresList()}</ul>
