@@ -8,17 +8,23 @@
   <title>Genres of Australia 1954-2024</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="app.js" defer></script>
+  <link rel="stylesheet" href="https://use.typekit.net/jrx8vqr.css">
   <link rel="stylesheet" href="reset.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <div class="chart-wrapper">
   <div class="chart-container">
+      <div id="page-logo">
+    <img src="Genresofaustralialogo.svg" id="logo-img">
+  </div>
     <div class="legend"></div>
     <!-- Sort controls -->
     <div class="sort-controls">
       <label><input type="radio" name="sortMode" value="chart" checked> Sort by chart position</label>
       <label><input type="radio" name="sortMode" value="genre"> Sort by genre</label>
     </div>
+  </div>
   </div>
 
   <!-- Song Modal -->
