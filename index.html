@@ -14,11 +14,15 @@
 </head>
 <body>
   <div class="chart-wrapper">
+    <button id="open-side-panel"
+">☰</button>
   <div class="chart-container">
       <div id="page-logo">
     <img src="Genresofaustralialogo.svg" id="logo-img">
   </div>
-    <div class="legend"></div>
+  <!--<p> <h1>Top 10 Singles on Australian Charts From 1954 to 2024</h1> </p>  -->
+  <div class="legend"></div>
+    
     <!-- Sort controls -->
     <div class="sort-controls">
       <label><input type="radio" name="sortMode" value="chart" checked> Sort by chart position</label>
@@ -36,11 +40,18 @@
   </div>
 
   <!-- Side Panel for Genres/Taxonomies -->
-  <div id="side-panel">
-    <div class="side-panel-content">
-      <span id="side-panel-close">&times;</span>
-      <div id="side-panel-body"></div>
+<div id="side-panel">
+  <div class="side-panel-content">
+    <span id="side-panel-close">&times;</span>
+
+    <div id="side-panel-header">
+      <span class="panel-tab active" data-tab="genres">Genres</span>
+      <span class="panel-tab" data-tab="countries">Countries</span>
+      <span class="panel-tab" data-tab="artists">Artists</span>
     </div>
+
+    <div id="side-panel-body"></div>
   </div>
+</div>
 </body>
 </html>
