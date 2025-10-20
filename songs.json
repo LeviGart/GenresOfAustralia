@@ -2637,7 +2637,7 @@
       "youtubeId": null
     }
   ],
-  "artists": ["Eddie Hodges"],
+  "artists": ["Elvis Presley"],
   "countryCode": ["USA"],
   "genretaxonomy": "jazztraditionalpop",
   "primarygenre": "Gospel",
@@ -10691,7 +10691,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "soulrnb",
   "primarygenre": "Contemporary R&B",
-  "subgenres": ["Dance-Pop", "Hip Hop Soul", "2-Step", "Dance-Pop"],
+  "subgenres": ["Dance-Pop", "Hip Hop Soul", "2-Step"],
   "peakPos": 1,
   "weeksOnChart": 4
 },
@@ -14245,7 +14245,7 @@
   "tracks": [
     {
       "title": "FourFiveSeconds",
-      "youtubeId": "kt0g4dWxEBoa"
+      "youtubeId": "kt0g4dWxEBo"
     },
     {
       "title": null,
