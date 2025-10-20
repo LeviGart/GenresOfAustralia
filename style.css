@@ -54,7 +54,7 @@ body {
 
 #page-logo {
 
-  max-width: 1200px; /* match your chart width */
+  max-width: 1200px; 
   margin: 0 auto; 
 }
 
@@ -130,16 +130,16 @@ td:hover {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 10;
   overflow: auto;
   background-color:  rgba(23, 20, 20, 0.6);
 }
 .modal-box {
   background: #2c292b;
-  margin: 1%auto;       /* slightly smaller top/bottom margin for more space */
-  padding: 25px;          /* optional: a bit more padding */
-  width: 95%;             /* make it wider */
-  max-width: 900px;       /* allow a larger max size */
+  margin: 1%auto;       
+  padding: 25px;         
+  width: 95%;             
+  max-width: 900px;       
   position: relative;
 }
 #modal-close {
@@ -168,7 +168,7 @@ td:hover {
   margin-top: 12px;
 }
 .modal-controls button {
-  all: unset;                         /* remove default browser styles */
+  all: unset;                         
   font-family: "tablet-gothic", sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -176,25 +176,26 @@ td:hover {
   cursor: pointer;
   padding: 0.2em 0.5em;
   background: none;
-  border: 2px solid #b6c5d5;          /* match other elements */
+  border: 2px solid #b6c5d5;         
   color: #b6c5d5;
   transition: all 0.2s ease;
   display: inline-block;
   margin: 0.25em 0;
+  justify-content: center;
 }
 
 .modal-controls button:hover {
   background-color: #b6c5d5;
-  color: #231f20;                     /* invert text on hover for contrast */
+  color: #231f20;                     
 }
 
 
 .modal-controls .icon {
-  margin-right: 8px;  /* for prev */
+  margin-right: 8px; 
 }
 
 .modal-controls .icon:last-child {
-  margin-left: 8px;   /* for next */
+  margin-left: 8px;   
 }
 
 /* ===== Genre Badges ===== */
@@ -211,7 +212,8 @@ td:hover {
   flex-wrap: wrap;
   gap: 6px;
   justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* ===== Side Panel ===== */
@@ -237,13 +239,20 @@ td:hover {
 }
 #side-panel-close {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
   cursor: pointer;
 }
 
 .genre-count {
+  color: #b6c5d5;
+  font-size: 0.85em;
+  margin-left: 6px;
+  opacity: 0.7;
+}
+
+.country-count {
   color: #b6c5d5;
   font-size: 0.85em;
   margin-left: 6px;
@@ -275,7 +284,7 @@ td:hover {
 
 /* ===== Sort Controls ===== */
 .sort-controls {
-  margin: 10px 0;
+  margin: 20px 20px;
   text-align: center;
 }
 .sort-controls label {
@@ -301,19 +310,29 @@ td:hover {
 
 /* ===== Form Controls (restore after reset) ===== */
 input[type="checkbox"],
-input[type="radio"],
-button,
-select,
-textarea {
-  all: revert;
-  appearance: auto;
-  cursor: pointer;
-}
-
 input[type="radio"] {
-  accent-color: #231f20; 
+  appearance: none;            /* remove default look */
+  width: 15px;
+  height: 15px;
+  border: 2px solid #b6c5d5;   /* stroke color */
+  background-color: transparent;
+  border-radius: 50%;          
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px;
+  transition: all 0.2s ease;
 }
 
+/* Hover effect */
+input[type="radio"]:hover {
+  border-color: #ffffff;
+}
+
+/* Checked (filled) state */
+input[type="radio"]:checked {
+  background-color: #b6c5d5;   /* fill */
+  border-color: #b6c5d5;       /* match border */
+}
 
 
 /* ===== Side panel text styling ===== */
@@ -354,4 +373,45 @@ button .icon {
 .chart-wrapper {
   transition: transform 0.3s ease;
   transform-origin: top left;
+}
+
+#side-panel-header {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.panel-tab {
+  cursor: pointer;
+  font-weight: 600;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.panel-tab.active {
+  opacity: 1;
+}
+
+.panel-tab:hover {
+  opacity: 1;
+}
+
+#open-side-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  padding: 8px 14px;
+  font-size: 30px;
+  background-color: #333;
+  color: #b6c5d5;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#open-side-panel:hover {
+  background-color: #555;
+  transform: scale(1.05);
 }
