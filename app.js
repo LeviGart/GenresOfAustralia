@@ -727,6 +727,9 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     }
     currentPanel = { type: "genre", key: resolvedKey };
 
+    d3.selectAll(".panel-tab").classed("active", false);
+    d3.select(".panel-tab[data-tab='genres']").classed("active", true);
+
     const g = genres[resolvedKey];
     const toggleAllLabel = getToggleAllLabel();
     // if no detailed info is supplied for the genre
