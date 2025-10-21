@@ -59,7 +59,6 @@ d3.json("./songs.json").then(dataset => {
   Object.entries(taxonomy).forEach(([key, info]) => {
     legend.append("span")
       .attr("class", "genre-badge clickable-taxonomy")
-      .style("background-color", "transparent")
       .style("border", `2px solid ${info.color}`)
       .attr("data-taxonomy", key)
       .text(info.label)
@@ -284,25 +283,31 @@ let firstOpen = true;
 d3.select("#open-side-panel").on("click", () => {
   if (firstOpen) {
     firstOpen = false;
-    showGenrePanel("Pop Rock");  // replace with exact key used in your genres dataset
+    renderHelpPanel(); 
   } else {
-    openSidePanel();
+    openSidePanel(); 
   }
 });
 
   // --- Side panel tabs ---
-  d3.selectAll(".panel-tab").on("click", function() {
-    const tab = d3.select(this).attr("data-tab");
-    d3.selectAll(".panel-tab").classed("active", false);
-    d3.select(this).classed("active", true);
+d3.selectAll(".panel-tab").on("click", function() {
+  const tab = d3.select(this).attr("data-tab");
+  d3.selectAll(".panel-tab").classed("active", false);
+  d3.select(this).classed("active", true);
 
-    if (tab === "genres") {
-      if (currentPanel.type === "genre") showGenrePanel(currentPanel.key, false);
-      else if (currentPanel.type === "taxonomy") showTaxonomyPanel(currentPanel.key, false);
-      else d3.select("#side-panel-body").html("<p>Select a genre or taxonomy to view details.</p>");
-    } else if (tab === "countries") renderCountriesPanel();
-    else if (tab === "artists") renderArtistsPanel();
-  });
+  if (tab === "genres") {
+    if (currentPanel.type === "genre") showGenrePanel(currentPanel.key, false);
+    else if (currentPanel.type === "taxonomy") showTaxonomyPanel(currentPanel.key, false);
+    else {
+  const defaultGenre = "Pop Rock";
+  currentPanel = { type: "genre", key: defaultGenre };
+  showGenrePanel(defaultGenre, true);
+}
+  } 
+  else if (tab === "countries") renderCountriesPanel();
+  else if (tab === "artists") renderArtistsPanel();
+  else if (tab === "help") renderHelpPanel();
+});
 
 function getToggleAllLabelFor(obj) {
   const allChecked = Object.values(obj).every(v => v);
@@ -327,8 +332,16 @@ function getSortButtonLabelFor(mode) {
   let sorted = Object.entries(countryCounts);
   if (countrySortMode === "az") sorted.sort((a,b) => a[0].localeCompare(b[0]));
   else if (countrySortMode === "za") sorted.sort((a,b) => b[0].localeCompare(a[0]));
-  else if (countrySortMode === "popular") sorted.sort((a,b) => b[1]-a[1]);
-  else if (countrySortMode === "unpopular") sorted.sort((a,b) => a[1]-b[1]);
+  else if (countrySortMode === "popular") sorted.sort((a,b) => {
+  const diff = b[1] - a[1];
+  if (diff !== 0) return diff;
+  return a[0].localeCompare(b[0]);
+  });
+  else if (countrySortMode === "unpopular") sorted.sort((a,b) => {
+  const diff = a[1] - b[1];
+  if (diff !== 0) return diff;
+  return a[0].localeCompare(b[0]);
+});
 
   d3.select("#side-panel-body").html(`
     <h2>Countries</h2>
@@ -383,8 +396,17 @@ function renderArtistsPanel() {
   let sorted = Object.entries(artistCounts);
   if (artistSortMode === "az") sorted.sort((a,b) => a[0].localeCompare(b[0]));
   else if (artistSortMode === "za") sorted.sort((a,b) => b[0].localeCompare(a[0]));
-  else if (artistSortMode === "popular") sorted.sort((a,b) => b[1]-a[1]);
-  else if (artistSortMode === "unpopular") sorted.sort((a,b) => a[1]-b[1]);
+  else if (artistSortMode === "popular") sorted.sort((a,b) => {
+  const diff = b[1] - a[1];
+  if (diff !== 0) return diff;
+  return a[0].localeCompare(b[0]);
+});
+
+  else if (artistSortMode === "unpopular") sorted.sort((a,b) => {
+  const diff = a[1] - b[1];
+  if (diff !== 0) return diff;
+  return a[0].localeCompare(b[0]);
+});
 
   d3.select("#side-panel-body").html(`
     <h2>Artists</h2>
@@ -432,6 +454,76 @@ d3.select("#toggle-all-artists").on("click", () => {
 
   openSidePanel();
 }
+
+// --- Help panel ---
+
+function renderHelpPanel() {
+  d3.selectAll(".panel-tab").classed("active", false);
+  d3.select('.panel-tab[data-tab="help"]').classed("active", true);
+
+const taxonomyBadgesHTML = Object.entries(taxonomy)
+  .map(([key, info]) => `
+    <div class="taxonomy-item" style="margin-top: 8px;">
+      <span class="genre-badge clickable-taxonomy"
+            data-taxonomy="${key}"
+            style="border-color: ${info.color}">
+        ${info.label}
+      </span>
+    </div>
+  `).join("");
+
+  d3.select("#side-panel-body").html(`
+      <h2>About This Project</h2>
+      <br>
+      <p>Genres of Australia is an interactive data visualisation of the top 10 singles on Australian charts for each year from 1954 to 2024.</p>
+      <br>
+      <p>The aim is to highlights the trends, popularity, and the diversity of genres that have shaped Australians’ favourite songs over the last 70 years.</p>
+      <br>
+      <br>
+      <h2>How to Use</h2>
+      <br>
+      <p>Click the checkboxes above the chart to sort songs by chart position (#1 to #10) or by genre, grouping songs within the same categories.</p>
+      <br>
+      <p>Click any cell to view song details and its video.</p>
+      <br>
+      <p>Click any genre or genre category to see its description and related genres.</p>
+      <br>
+      <p>Select specific genres, countries, or artists to build your own custom visualisation.</p>
+      <br>
+      <br>
+      <h2>Genres</h2>
+      <br>
+      <p>Each of the 700+ songs has been assigned to one of six main genre categories:</p>
+      <br>
+      <div class="taxonomy-badges">${taxonomyBadgesHTML}</div>
+      <br>
+      <p>Assignment is based on the song’s subgenres, artist background, and influences, determined at my discretion.</p>
+      <br>
+      <br>
+      <h2>Chart Data</h2>
+      <br>
+      <p>Data was sourced from The Kent Music Report (1954–1988) and ARIA (1988–2024):</p>
+      <br>
+      <p><a target="_blank"  href="https://www.aria.com.au/charts/2024/singles-chart">ARIA year end charts</a></p>
+      <br>
+      <p><a target="_blank"  href="https://australian-charts.com/search.asp?cat=s&search=">Australian Chart Archives</a></p>
+      <br>
+      <br>
+      <h2>Genre Data</h2>
+      <br>
+      <p>Genre information was sourced from aggregate and user-voted websites:</p>
+      <br>
+      <p><a target="_blank"  href="https://rateyourmusic.com/genres/">Rate Your Music</a></p>
+      <br>
+      <p><a target="_blank"  href="https://www.discogs.com/">Discogs</a></p>
+      <br>
+      <br>
+      <p>Designed and built by Levi. </p>
+  `);
+  bindGenreClicks();
+  openSidePanel();
+}
+
 
   // Song modal
   function showSongModal(songIndex) {
@@ -487,21 +579,27 @@ d3.select("#toggle-all-artists").on("click", () => {
       <h2 style="display:inline; font-weight: 600; font-size: 1.2rem;">
         (${song.releaseYear})
       </h2>
+      <br>
       <p>
         <span class="artists">${song.artists.join(" • ")}</span>
         <span class="country" style="margin-left:8px;">(${song.countryCode.join(" • ")})</span>
       </p>
-      
+      <br>
       <p>Rank #${song.rank} for ${song.chartYear}  •  ${peakInfo ? `${peakInfo}` : ""}</p>
       <br>
-      
-        <p>${genreSpans} </p>
-        <br>
-        <p>${tax ? `<div class="genre-badge clickable-taxonomy" 
+              <p>${tax ? `<div class="genre-badge clickable-taxonomy" 
         style="background-color:transparent; border:2px solid ${tax.color}" 
         data-taxonomy="${song.genretaxonomy}">
         ${tax.label}
         </div>` : ""}</p> 
+
+        <br>
+      <p> 
+      
+      ${genreSpans} 
+      
+      </p>
+        <br>
       
       <div class="modal-controls">
 <button id="prev-song"><span class="icon">&#x25C0;</span><span class="label">Prev</span></button>
@@ -584,9 +682,17 @@ function renderAllGenresList() {
   } else if (genreSortMode === "za") {
     sorted.sort((a, b) => b.toLowerCase().localeCompare(a.toLowerCase()));
   } else if (genreSortMode === "popular") {
-    sorted.sort((a, b) => (genreCounts[b] || 0) - (genreCounts[a] || 0));
+    sorted.sort((a, b) => {
+  const diff = (genreCounts[b] || 0) - (genreCounts[a] || 0);
+  if (diff !== 0) return diff; // primary: popularity
+  return a.toLowerCase().localeCompare(b.toLowerCase()); // secondary: A-Z
+});
   } else if (genreSortMode === "unpopular") {
-    sorted.sort((a, b) => (genreCounts[a] || 0) - (genreCounts[b] || 0));
+    sorted.sort((a, b) => {
+  const diff = (genreCounts[a] || 0) - (genreCounts[b] || 0);
+  if (diff !== 0) return diff; // primary: least popular
+  return a.toLowerCase().localeCompare(b.toLowerCase()); // secondary: A-Z
+});
   }
 
   return sorted.map(gKey => {
@@ -676,6 +782,11 @@ function getSortButtonLabel() {
 }
 function showTaxonomyPanel(taxKey, resetScroll = true) {
     currentPanel = { type: "taxonomy", key: taxKey };
+    
+    // Activate the Genres tab whenever a taxonomy badge is clicked
+    d3.selectAll(".panel-tab").classed("active", false);
+    d3.select(".panel-tab[data-tab='genres']").classed("active", true);
+
     const info = taxonomy[taxKey];
     if (!info) return;
 
@@ -695,7 +806,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     d3.select("#side-panel-body").html(`
          <div>
         <input type="checkbox" class="taxonomy-toggle" data-taxonomy="${taxKey}" ${taxonomyVisibility[taxKey] !== false ? "checked" : ""}>
-        <span class="genre-badge clickable-taxonomy" style="background-color:transparent; border:2px solid ${info.color}" data-taxonomy="${taxKey}">${info.label}</span>
+        <span class="genre-badge clickable-taxonomy" style="border:2px solid ${info.color}" data-taxonomy="${taxKey}">${info.label}</span>
 
       </div>
       <p>${info.description || ""}</p>
@@ -798,4 +909,8 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     if (resetScroll) d3.select("#side-panel").node().scrollTop = 0;
     bindGenreClicks();
   }
+
+
+
+  
   });
