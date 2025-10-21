@@ -583,7 +583,7 @@
   "tracks": [
     {
       "title": "Mack the Knife",
-      "youtubeId": "28ULUQgxJ5M"
+      "youtubeId": "fZ0OOHLWo4w"
     },
     {
       "title": null,
@@ -652,7 +652,7 @@
   "tracks": [
     {
       "title": "The Rock and Roll Waltz",
-      "youtubeId": "pJcJIK5olDo"
+      "youtubeId": "LLuVovdzfak"
     },
     {
       "title": null,
@@ -744,7 +744,7 @@
   "tracks": [
     {
       "title": "Love Letters in the Sand",
-      "youtubeId": "2ENzT9k1LRs"
+      "youtubeId": "gRDLTF0djHg"
     },
     {
       "title": null,
@@ -767,7 +767,7 @@
   "tracks": [
     {
       "title": "Round and Round",
-      "youtubeId": "lz_B8JP2pA8"
+      "youtubeId": "p390Aog0Ffc"
     },
     {
       "title": null,
@@ -790,7 +790,7 @@
   "tracks": [
     {
       "title": "Singing the Blues",
-      "youtubeId": "wJA8b3esxfE"
+      "youtubeId": "MgZLUGFWiVM"
     },
     {
       "title": null,
@@ -836,7 +836,7 @@
   "tracks": [
     {
       "title": "A White Sport Coat (and a Pink Carnation)",
-      "youtubeId": "zD8MnvyAi6I"
+      "youtubeId": "EDAYCOH2fwE"
     },
     {
       "title": null,
@@ -978,7 +978,7 @@
     },
     {
       "title": null,
-      "youtubeId": "ah637P0_cts"
+      "youtubeId": "ZPnd2UKrh6c"
     }
   ],
   "artists": ["Domenico Modugno", "Dean Martin"],
@@ -1066,7 +1066,7 @@
   "tracks": [
     {
       "title": "He's Got the Whole World in His Hands",
-      "youtubeId": "cqb3NSiSwoc"
+      "youtubeId": "2Zz8iHOdu0c"
     },
     {
       "title": null,
@@ -1089,7 +1089,7 @@
   "tracks": [
     {
       "title": "Twilight Time",
-      "youtubeId": "UGwa2tw7Vws"
+      "youtubeId": "v9XfxU0ZWDU"
     },
     {
       "title": null,
@@ -1158,7 +1158,7 @@
   "tracks": [
     {
       "title": "Smoke Gets in Your Eyes",
-      "youtubeId": "vfBboBz3yoc"
+      "youtubeId": "H2di83WAOhU"
     },
     {
       "title": null,
@@ -1480,7 +1480,7 @@
   "tracks": [
     {
       "title": "Clap Your Hands",
-      "youtubeId": "uJJNskqgYwA"
+      "youtubeId": "FyRBcx-J7XU"
     },
     {
       "title": null,
@@ -1687,7 +1687,7 @@
   "tracks": [
     {
       "title": "Hello Mary Lou",
-      "youtubeId": "AMVQCHgpYmI"
+      "youtubeId": "FgnBqzqJL1c"
     },
     {
       "title": null,
@@ -1744,7 +1744,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "countryfolk",
   "primarygenre": "Scottish Folk",
-  "subgenres": ["Traditional Pop"],
+  "subgenres": ["Traditional Pop", "Pipe Band"],
   "peakPos": 1,
   "weeksOnChart": 1
 },
@@ -10752,8 +10752,8 @@
       "youtubeId": "r1FFfBp9zsc"
     },
     {
-      "title": null,
-      "youtubeId": null
+      "title": 1,
+      "youtubeId": 2
     }
   ],
   "artists": ["Madison Avenue"],
@@ -12681,7 +12681,7 @@
   "tracks": [
     {
       "title": "Sexy Bitch",
-      "youtubeId": "N9hazmsUxrM"
+      "youtubeId": "UecZcIxLgBo"
     },
     {
       "title": null,
@@ -13402,7 +13402,7 @@
     }
   ],
   "artists": ["Guy Sebastian", "Lupe Fiasco"],
-  "countryCode": ["Australia"],
+  "countryCode": ["Australia", "USA"],
   "genretaxonomy": "soulrnb",
   "primarygenre": "Contemporary R&B",
   "subgenres": ["Pop Rap"],
