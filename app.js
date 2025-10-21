@@ -588,7 +588,7 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
       <p>Rank #${song.rank} for ${song.chartYear}  •  ${peakInfo ? `${peakInfo}` : ""}</p>
       <br>
               <p>${tax ? `<div class="genre-badge clickable-taxonomy" 
-        style="background-color:transparent; border:2px solid ${tax.color}" 
+        style="border:2px solid ${tax.color}" 
         data-taxonomy="${song.genretaxonomy}">
         ${tax.label}
         </div>` : ""}</p> 
@@ -870,7 +870,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     // taxonomy badge and related genres list
     const taxInfo = taxonomy[g.taxonomy];
     const taxBadge = taxInfo
-      ? `<span class="genre-badge clickable-taxonomy" style="background-color:transparent; border:2px solid ${taxInfo.color}" data-taxonomy="${g.taxonomy}">${taxInfo.label}</span>`
+      ? `<span class="genre-badge clickable-taxonomy" style="border:2px solid ${taxInfo.color}" data-taxonomy="${g.taxonomy}">${taxInfo.label}</span>`
       : `<span class="genre-badge clickable-taxonomy" data-taxonomy="${g.taxonomy}">${g.taxonomy}</span>`;
 
     const relatedHtml = Array.isArray(g.related) && g.related.length
