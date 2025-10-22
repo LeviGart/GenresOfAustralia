@@ -3837,7 +3837,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "countryfolk",
   "primarygenre": "Folk Pop",
-  "subgenres": ["Conjunto andino", "Indigenous Andean Music", "Huayno"],
+  "subgenres": ["Conjunto Andino", "Indigenous Andean Music", "Huayno"],
   "peakPos": 1,
   "weeksOnChart": 4
 },
@@ -3998,7 +3998,7 @@
   "countryCode": ["Australia"],
   "genretaxonomy": "rock",
   "primarygenre": "Novelty",
-  "subgenres": ["Surf Rock", "Chipmunk"],
+  "subgenres": ["Surf Rock"],
   "peakPos": 1,
   "weeksOnChart": 7
 },
@@ -6988,7 +6988,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "dance",
   "primarygenre": "Dance-Pop",
-  "subgenres": ["Pop Soul", "Bubblegum", "Motwon Sound"],
+  "subgenres": ["Pop Soul", "Bubblegum", "Motown Sound"],
   "peakPos": 1,
   "weeksOnChart": 7
 },
@@ -7356,7 +7356,7 @@
   "countryCode": ["UK"],
   "genretaxonomy": "rock",
   "primarygenre": "Pop Rock",
-  "subgenres": ["Pop Soul", "Motwon Sound", "Hard Rock"],
+  "subgenres": ["Pop Soul", "Motown Sound", "Hard Rock"],
   "peakPos": 1,
   "weeksOnChart": 2
 },
@@ -7379,7 +7379,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "soulrnb",
   "primarygenre": "Pop Soul",
-  "subgenres": ["Contemporary R&B", "Dance-Pop", "Motwon Sound"],
+  "subgenres": ["Contemporary R&B", "Dance-Pop", "Motown Sound"],
   "peakPos": 1,
   "weeksOnChart": 3
 },
@@ -13819,7 +13819,7 @@
   "countryCode": ["USA"],
   "genretaxonomy": "soulrnb",
   "primarygenre": "Pop Soul",
-  "subgenres": ["Film Soundtrack", "Contemporary R&B", "Motwon Sound"],
+  "subgenres": ["Film Soundtrack", "Contemporary R&B", "Motown Sound"],
   "peakPos": 1,
   "weeksOnChart": 12
 },
@@ -16338,51 +16338,795 @@
     "jazztraditionalpop": {
       "label": "Jazz & Traditional Pop",
       "color": "#e6bb21",
-      "description": "...",
-      "related": ["Easy Listening"]
+      "description": "Rooted in early 20th-century songcraft and performance, this taxonomy covers the smooth vocals, swing rhythms, and orchestral arrangements that shaped pre-rock popular music.",
+      "related": ["Traditional Pop", "Easy Listening", "Vocal Jazz", "Jazz Pop", "Brill Building", "Doo-Wop"]
       
     },
     "countryfolk": {
       "label": "Country & Folk",
       "color": "#f47b3b",
-      "description": "...",
-      "subgenres": ["Country Pop"]
+      "description": "Drawing from rural storytelling and acoustic traditions, Country & Folk blends heartfelt lyricism and simple melodies, ranging from old-time ballads to polished country pop.",
+      "related": ["Country Pop", "Folk Pop", "Nashville Sound", "Countrypolitan"]
     },
     "rock": {
       "label": "Rock",
       "color": "#dd3b40",
-      "description": "...",
-      "subgenres": ["Rock & Roll", "Alternative Rock"]
+      "description": "Evolving from 1950s rhythm and blues, Rock centers on electric guitars, drums, and a strong backbeat, encompassing everything from early rock & roll to modern alternative sounds.",
+      "related": ["Pop Rock", "Soft Rock", "Rock & Roll", "Hard Rock", "Glam Rock", "Alternative Rock"]
     },
     "soulrnb": {
       "label": "Soul & R&B",
       "color": "#882e86",
-      "description": "...",
-      "subgenres": ["Contemporary R&B", "Neo-Soul"]
+      "description": "Built on rhythm, groove, and emotional expression, Soul & R&B highlight smooth vocals, gospel influence, and the evolution to contemporary production styles.",
+      "related": ["Contemporary R&B", "Pop Soul", "Blue-Eyed Soul", "Smooth Soul", "Neo-Soul"]
     },
     "dance": {
       "label": "Dance & Electronic",
       "color": "#3770b8",
-      "description": "...",
-      "subgenres": ["Disco", "Dance-Pop", "Electropop"]
+      "description": "Driven by rhythm and technology, Dance & Electronic music spans disco to modern EDM, defined by synthesizers, drum machines, and production designed for movement.",
+      "related": ["Dance-Pop", "Synthpop", "Electropop", "Disco", "Electro House", "Eurodance"]
     },
     "hiphop": {
       "label": "Hip-hop",
       "color": "#76ac42",
-      "description": "...",
-      "subgenres": ["Boom Bap", "Pop Rap"]
+      "description": "Hip Hop fuses rhythmic beats and spoken lyrics, evolving from early disco rap into diverse global forms like trap and pop rap.",
+      "related": ["Pop Rap", "Hip Hop", "Trap", "Disco Rap"]
     }
   },
-  "genres": {
-    "Doo-Wop": {
-      "label": "Doo-Wop",
-      "taxonomy": "jazztraditionalpop",
-      "description": "...",
-      "related": ["Traditional Pop"]
-    }
+"genres": {
+  "2-Step": {
+    "label": "2-Step",
+    "taxonomy": "dance",
+    "genreGroup": ["House"],
+    "description": "Originating in London and popular in the late 1990s; jittery, shuffling rhythms rarely following a four-on-the-floor pattern.",
+    "link": "https://rateyourmusic.com/genre/2-step/",
+    "related": ["Garage House"]
+  },
+  "A cappella": {
+    "label": "A cappella",
+    "taxonomy": "Other",
+    "genreGroup": ["Other"],
+    "description": "Any kind of vocal performance without instrumental accompaniment.",
+    "link": "https://rateyourmusic.com/genre/a-cappella/",
+    "related": ["Spoken Word"]
+  },
+  "Abstract Hip Hop": {
+    "label": "Abstract Hip Hop",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop"],
+    "description": "Uses much more abstract lyricism than what is considered conventional within the genre, typically through metaphors, symbolism, and cryptic meanings.",
+    "link": "https://rateyourmusic.com/genre/abstract-hip-hop/",
+    "related": ["Experimental Hip Hop"]
+  },
+  "Acid Breaks": {
+    "label": "Acid Breaks",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance", "Breakbeat"],
+    "description": "Incorporates prominent 'squelching' resonant low pass filter sounds typical to Acid House into syncopated, broken rhythms between 110–150 BPM.",
+    "link": "https://rateyourmusic.com/genre/acid-breaks/",
+    "related": ["Acid House", "Breakbeat"]
+  },
+  "Acid House": {
+    "label": "Acid House",
+    "taxonomy": "dance",
+    "genreGroup": ["House"],
+    "description": "Emerged in the mid-1980s, characterised by repetitive basslines created with the distinctive modulated 'squelching' sound of the Roland TB-303 synthesiser.",
+    "link": "https://rateyourmusic.com/genre/acid-house/",
+    "related": ["Chicago House"]
+  },
+  "Acoustic Rock": {
+    "label": "Acoustic Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock"],
+    "description": "Rock with acoustic instrumentation, as opposed to the typical electric instrumentation.",
+    "link": "https://rateyourmusic.com/genre/acoustic-rock/",
+    "related": []
+  },
+  "Adult Contemporary": {
+    "label": "Adult Contemporary",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Slow to midtempo with a light and soothing tone, emerged as a successful radio format in the late 1970s and early 1980s.",
+    "link": "https://rateyourmusic.com/genre/adult-contemporary/",
+    "related": ["Soft Rock", "Easy Listening"]
+  },
+  "Afrobeats": {
+    "label": "Afrobeats",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop", "Regional"],
+    "description": "Originated in West Africa during the early 2010s and includes elements from Pop Rap, Contemporary R&B, and Dancehall.",
+    "link": "https://rateyourmusic.com/genre/afrobeats/",
+    "related": ["Pop Rap", "Contemporary R&B", "Dancehall"]
+  },
+  "Alt-Pop": {
+    "label": "Alt-Pop",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Emerged in the late 2000s and early 2010s, combines chart Pop conventions with alternative/indie genre sensibilities, sometimes on a more minimal and contemplative atmosphere, often extracted from Alternative R&B.",
+    "link": "https://rateyourmusic.com/genre/alt-pop/",
+    "related": ["Alternative R&B", "Indie Pop", "Chamber Pop", "Indietronica", "Art Pop", "Contemporary R&B", "Electropop", "Downtempo"]
+  },
+  "Alternative Dance": {
+    "label": "Alternative Dance",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance"],
+    "description": "Incorporates rhythms and synthesizers from Electronic Dance Music within the context of Alternative Rock and related styles; predominantly popular in the 1990s.",
+    "link": "https://rateyourmusic.com/genre/alternative-dance/",
+    "related": ["Alternative Rock", "Indie Rock", "Grebo", "New Rave", "Synthpop", "Electro-Disco", "Post-Punk", "Acid House", "Baggy"]
+  },
+  "Alternative Metal": {
+    "label": "Alternative Metal",
+    "taxonomy": "rock",
+    "genreGroup": ["Metal"],
+    "description": "Mid-tempo style emphasizing melodicism and rhythmic heaviness; branches outside of the stylistic conventions of Metal.",
+    "link": "https://rateyourmusic.com/genre/alternative-metal/",
+    "related": ["Alternative Rock", "Funk Metal", "Nu Metal", "Rap Metal"]
+  },
+  "Alternative R&B": {
+    "label": "Alternative R&B",
+    "taxonomy": "soulrnb",
+    "genreGroup": ["R&B"],
+    "description": "Deviating from the traditional styles of Contemporary R&B and featuring smooth, reverberated, Electronic-influenced production with heavy bass and often reverberated vocals.",
+    "link": "https://rateyourmusic.com/genre/alternative-randb/",
+    "related": ["Contemporary R&B", "Dream Pop"]
+  },
+  "Alternative Rock": {
+    "label": "Alternative Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock"],
+    "description": "Performed with a less commercial sensibility, utilizing more eccentric, Punk-influenced sounds, moodier or quirkier lyricism, and sometimes ample amounts of distortion, often paired with Pop-influenced songwriting.",
+    "link": "https://rateyourmusic.com/genre/alternative-rock/",
+    "related": ["Alternative Dance", "Baggy", "Dream Pop", "Geek Rock", "Grunge", "Indie Rock", "Jangle Pop", "Post-Britpop", "Post-Grunge"]
+  },
+  "American Folk": {
+    "label": "American Folk",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Folk", "Country", "Regional"],
+    "description": "Traces back through the history of European and West African settlement and migration to North America, including parts of northern Mexico and Canada in addition to the United States.",
+    "link": "https://rateyourmusic.com/genre/american-folk-music/",
+    "related": ["Appalachian Folk Music", "Country Blues", "Old-Time", "Rhythm & Blues", "Traditional Country", "Zydeco"]
+  },
+  "Americana": {
+    "label": "Americana",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Regional"],
+    "description": "Incorporates a broad swath of American Folk Music and Contemporary Folk influences, evolving alongside Alt-Country.",
+    "link": "https://rateyourmusic.com/genre/americana/",
+    "related": ["American Folk", "Contemporary Folk", "Roots Rock", "Cowpunk", "Indie Rock", "Tex-Mex"]
+  },
+  "AOR": {
+    "label": "AOR",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock"],
+    "description": "Adult Oriented Rock. Emerged in the late 1970s and early 1980s as an amalgamation of Hard Rock, Pop Rock, and Progressive Rock; characterized by a rich, layered sound, slick production and a heavy reliance on commercial melodic hooks.",
+    "link": "https://rateyourmusic.com/genre/aor/",
+    "related": ["Hard Rock", "Pop Rock", "Progressive Rock", "Synthpop", "New Wave", "Power Pop"]
+  },
+  "Appalachian Folk Music": {
+    "label": "Appalachian Folk Music",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Folk", "Regional"],
+    "description": "Folk of the Appalachian Mountains in the Eastern United States.",
+    "link": "https://rateyourmusic.com/genre/appalachian-folk-music/",
+    "related": ["Old-Time", "American Folk"]
+  },
+  "Art Pop": {
+    "label": "Art Pop",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Inventive, idiosyncratic, or artistically ambitious, often experimenting with unconventional musical elements and conceptual approaches while retaining accessibility.",
+    "link": "",
+    "related": ["Art Rock"]
+  },
+  "Art Rock": {
+    "label": "Art Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock"],
+    "description": "Attempts to expand the bounds of Rock within conventional structures, often using outside influences or experimentation for conceptual or thematic purpose.",
+    "link": "https://rateyourmusic.com/genre/art-rock/",
+    "related": []
+  },
+  "Atlanta Bass": {
+    "label": "Atlanta Bass",
+    "taxonomy": "dance",
+    "genreGroup": ["Hip Hop", "Dance"],
+    "description": "Originated in Atlanta, slower tempos and a more melodic approach than Miami Bass.",
+    "link": "https://rateyourmusic.com/genre/atlanta-bass/",
+    "related": ["Miami Bass", "Contemporary R&B", "Crunk", "Snap"]
+  },
+  "Australian Folk Music": {
+    "label": "Australian Folk Music",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Folk", "Regional"],
+    "description": "Folk traditions of the European colonists and convicts in Australia.",
+    "link": "https://rateyourmusic.com/genre/australian-folk-music/",
+    "related": ["Irish Folk Music", "Scottish Folk Music"]
+  },
+  "Baggy": {
+    "label": "Baggy",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance", "Regional"],
+    "description": "Blends Dance and Funk-based grooves with a laid-back, psychedelic atmosphere; frequently features jangly guitars, looping basslines, four-bar drum patterns, and a hypnotic, carefree feel that originated in the Madchester scene of the late 1980s.",
+    "link": "https://rateyourmusic.com/genre/baggy/",
+    "related": ["Acid House", "Alternative Dance", "Psychedelic Pop", "Psychedelic Rock", "Indie Pop", "Jangle Pop", "Grebo", "Neo-Psychedelia", "Alternative Rock", "Funk"]
+  },
+  "Bakersfield Sound": {
+    "label": "Bakersfield Sound",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Regional"],
+    "description": "A genre of Country music from the 1950s, named after its origin in Bakersfield, California. It is based heavily on electric instrumentation and a defined backbeat, like incorporating Rock & Roll into country.",
+    "link": "https://rateyourmusic.com/genre/bakersfield-sound/",
+    "related": ["Honky Tonk", "Rock & Roll"]
+  },
+  "Balearic Beat": {
+    "label": "Balearic Beat",
+    "taxonomy": "dance",
+    "genreGroup": ["House", "Regional"],
+    "description": "Variety of relaxed, laid-back music that originates from the Balearic Islands off the coast of Spain, and particularly the club scene in Ibiza.",
+    "link": "https://rateyourmusic.com/genre/balearic-beat/",
+    "related": []
+  },
+  "Ballroom": {
+    "label": "Ballroom",
+    "taxonomy": "dance",
+    "genreGroup": ["House"],
+    "description": "Emerging from the predominantly Black and LGBT Harlem ballroom culture, characterized by hard-hitting rhythms, generally improvised chanting by MCs known as commentators, and a distinctive crash sample.",
+    "link": "https://rateyourmusic.com/genre/ballroom/",
+    "related": ["House", "Baltimore Club"]
+  },
+  "Baltimore Club": {
+    "label": "Baltimore Club",
+    "taxonomy": "dance",
+    "genreGroup": ["House"],
+    "description": "Drew on the 'booty bass' syncopation of Miami Bass, combined with Breakbeat rhythms around 130 BPM and chopped up vocal samples as found in Ghetto House.",
+    "link": "https://rateyourmusic.com/genre/baltimore-club/",
+    "related": ["Miami Bass", "Breakbeat", "Go-Go"]
+  },
+  "Barbershop": {
+    "label": "Barbershop",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Other"],
+    "description": "Harmonized singing consisting of four vocal elements: the 'lead' (2nd tenor), the 1st tenor, the baritone, and the bass.",
+    "link": "https://rateyourmusic.com/genre/barbershop/",
+    "related": []
+  },
+  "Baroque Pop": {
+    "label": "Baroque Pop",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Harmonized singing consisting of four vocal elements: the 'lead' (2nd tenor), the 1st tenor, the baritone, and the bass.",
+    "link": "https://rateyourmusic.com/genre/barbershop/",
+    "related": ["Pop Rock", "Chamber Pop"]
+  },
+  "Beat": {
+    "label": "Beat",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock", "Beat"],
+    "description": "Emerged in the early 1960s in the United Kingdom, drawing on Rock & Roll and the late 1950s Skiffle revival in a simple guitar-band format with strong melodies.",
+    "link": "https://rateyourmusic.com/genre/beat/",
+    "related": ["Rock & Roll", "Skiffle", "Merseybeat", "Freakbeat"]
+  },
+  "Beatboxing": {
+    "label": "Beatboxing",
+    "taxonomy": "Other",
+    "genreGroup": ["Other"],
+    "description": "Form of vocal percussion developed during the 1980s, primarily involving the art of producing drum beats, rhythm, and musical sounds using one's mouth, lips, tongue, voice, and more.",
+    "link": "https://rateyourmusic.com/genre/beatboxing/",
+    "related": []
+  },
+  "Bedroom Pop": {
+    "label": "Bedroom Pop",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Named for solo producers and singer-songwriters from the 2010s onward who created intimate, 'authentic' music in their own homes, outside of a traditional studio environment.",
+    "link": "https://rateyourmusic.com/genre/bedroom-pop/",
+    "related": ["Indie Pop", "Contemporary R&B", "Alternative R&B", "Indie Folk", "Indietronica", "Chillwave", "Psychedelic Pop", "Sophisti-Pop"]
+  },
+  "Big Band": {
+    "label": "Big Band",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Jazz"],
+    "description": "Commonly associated with the golden era of Swing in the 1930s and 1940s, performed by a large ensemble including brass, woodwinds, and usually a rhythm section.",
+    "link": "https://rateyourmusic.com/genre/big-band/",
+    "related": ["Swing", "Vocal Jazz"]
+  },
+  "Big Beat": {
+    "label": "Big Beat",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance"],
+    "description": "Popular in Britain during the late 1990s, driven by edited breakbeats and prominent basslines.",
+    "link": "https://rateyourmusic.com/genre/big-beat/",
+    "related": ["Breakbeat"]
+  },
+  "Big Music": {
+    "label": "Big Music",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock"],
+    "description": "Rooted in Post-Punk and popular in the 1980s, with anthemic songwriting and a grandiose, stadium-ready sound.",
+    "link": "https://rateyourmusic.com/genre/big-music/",
+    "related": ["Post-Punk", "Pop Rock", "New Wave"]
+  },
+  "Big Room House": {
+    "label": "Big Room House",
+    "taxonomy": "dance",
+    "genreGroup": ["House"],
+    "description": "Energetic, festival-oriented style characterized by heavy reverb, intense build-ups, strong kicks, minimalistic drop melodies, and sparse, raw breakdowns.",
+    "link": "https://rateyourmusic.com/genre/big-room-house/",
+    "related": ["Electro House", "House", "Dutch House", "Tech House", "Progressive House", "Festival Progressive House"]
+  },
+  "Bitpop": {
+    "label": "Bitpop",
+    "taxonomy": "dance",
+    "genreGroup": ["Pop", "Electronic"],
+    "description": "Fuses Bit Music with additional synths, beats, guitars and modern production values, emphasizing highly catchy melodies and relatively fast tempos.",
+    "link": "https://rateyourmusic.com/genre/bitpop/",
+    "related": ["Synthpop"]
+  },
+  "Blue-Eyed Soul": {
+    "label": "Blue-Eyed Soul",
+    "taxonomy": "soulrnb",
+    "genreGroup": ["Pop", "R&B", "Soul"],
+    "description": "Usually refers to a Pop or Pop Rock song that contains strong Gospel-like elements, primarily popularized by white American and British singers in the 1960s through the 1980s.",
+    "link": "https://rateyourmusic.com/genre/blue-eyed-soul/",
+    "related": ["Pop Rock", "Gospel", "Rhythm & Blues", "Brill Building"]
+  },
+  "Blues Rock": {
+    "label": "Blues Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock", "Blues"],
+    "description": "Rock that relies on the chords/scales and instrumental improvisation of Blues.",
+    "link": "https://rateyourmusic.com/genre/blues-rock/",
+    "related": ["Boogie Rock"]
+  },
+  "Bolero": {
+    "label": "Bolero",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Jazz", "Regional"],
+    "description": "Ballad with a 2/4 time signature that appeared in eastern Cuba towards the end of the 19th century.",
+    "link": "https://rateyourmusic.com/genre/bolero/",
+    "related": ["Vocal Jazz"]
+  },
+  "Boogie": {
+    "label": "Boogie",
+    "taxonomy": "dance",
+    "genreGroup": ["Disco", "R&B"],
+    "description": "Continuation of the Disco sound with increased influence from Funk, Synth Funk, and R&B and a slower tempo, often featuring drum machines and filter modulated synthesizers.",
+    "link": "https://rateyourmusic.com/genre/boogie/",
+    "related": ["Disco", "Funk", "Synth Funk"]
+  },
+  "Boogie Rock": {
+    "label": "Boogie Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock"],
+    "description": "Straightforward groove-oriented style influenced by Rock & Roll and Boogie Woogie.",
+    "link": "https://rateyourmusic.com/genre/boogie-rock/",
+    "related": ["Blues Rock", "Rock & Roll", "Boogie Woogie", "Southern Rock"]
+  },
+  "Boogie Woogie": {
+    "label": "Boogie Woogie",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Blues", "R&B"],
+    "description": "Early, uptempo Blues featuring the piano as the main instrument, with soloing and improvisation played over the top of a repetitive eight note bassline.",
+    "link": "https://rateyourmusic.com/genre/boogie-woogie/",
+    "related": ["Big Band", "Rhythm & Blues", "Swing"]
+  },
+  "Boom Bap": {
+    "label": "Boom Bap",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop"],
+    "description": "Production style identified by an acoustic-sounding drum pattern of a kick drum on the downbeat followed by a cracking snare on the upbeat.",
+    "link": "https://rateyourmusic.com/genre/boom-bap/",
+    "related": ["Hip Hop"]
+  },
+    "Bounce": {
+    "label": "Bounce",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop", "Regional"],
+    "description": "Developed in New Orleans in the early 1990s, initially defined by a slow to midtempo beat with a double-time hi-hat on top.",
+    "link": "https://rateyourmusic.com/genre/bounce/",
+    "related": ["Hip Hop"]
+  },
+  "Boy Band": {
+    "label": "Boy Band",
+    "taxonomy": "soulrnb",
+    "genreGroup": ["Pop", "R&B"],
+    "description": "Male vocal groups often put together by talent managers or record producers.",
+    "link": "https://rateyourmusic.com/genre/boy-band/",
+    "related": ["Teen Pop", "Contemporary R&B"]
+  },
+  "Breakbeat": {
+    "label": "Breakbeat",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance", "Electronic", "Breakbeat"],
+    "description": "Umbrella of affiliated Electronic Dance Music styles broadly featuring prominent syncopated drum patterns (called breakbeats) that emerged from Breakbeat Hardcore's initial influence, not including styles directly related to Drum and Bass and Jungle.",
+    "link": "https://rateyourmusic.com/genre/breakbeat/",
+    "related": []
+  },
+  "Breakstep": {
+    "label": "Breakstep",
+    "taxonomy": "dance",
+    "genreGroup": ["Breakbeat", "Dance", "Garage"],
+    "description": "Hard-hitting Breakbeat rhythms and heavy, rolling basslines.",
+    "link": "https://rateyourmusic.com/genre/breakstep/",
+    "related": ["Breakbeat", "UK Garage"]
+  },
+  "Brill Building": {
+    "label": "Brill Building",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Pop"],
+    "description": "Elaborate, polished, and typically melodramatic composition and arrangement associated with the songwriting teams at the Brill office building during the late 1950s and early 1960s.",
+    "link": "https://rateyourmusic.com/genre/brill-building/",
+    "related": ["Rhythm & Blues"]
+  },
+  "British Dance Band": {
+    "label": "British Dance Band",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Jazz", "Regional"],
+    "description": "Came from the dancehalls of the 1920s and 1930s, combining a British take on Jazz with the Music Hall tradition.",
+    "link": "https://rateyourmusic.com/genre/british-dance-band/",
+    "related": ["Music Hall"]
+  },
+  "British Rhythm & Blues": {
+    "label": "British Rhythm & Blues",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock", "R&B", "Regional"],
+    "description": "A style infusing Rock and R&B that was hugely popular in the United Kingdom between 1963 and 1966.",
+    "link": "https://rateyourmusic.com/genre/british-rhythm-and-blues/",
+    "related": ["Rock & Roll", "Rhythm & Blues", "Beat"]
+  },
+  "Bro-Country": {
+    "label": "Bro-Country",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country"],
+    "description": "21st century style with an often party-oriented sound and lyrical content, taking strong influence from Hard Rock, Hip Hop and Pop.",
+    "link": "https://rateyourmusic.com/genre/bro-country/",
+    "related": ["Hard Rock", "Hip Hop"]
+  },
+  "Bubblegum": {
+    "label": "Bubblegum",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Upbeat, catchy, simple, and targeted at children and young teens; especially popular in the 1960s and 1970s.",
+    "link": "https://rateyourmusic.com/genre/bubblegum/",
+    "related": []
+  },
+  "Bubblegum Dance": {
+    "label": "Bubblegum Dance",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance"],
+    "description": "Playful, childlike style with a Bubblegum-like atmosphere that often incorporates high-pitched, light-hearted, and usually female-fronted vocals.",
+    "link": "https://rateyourmusic.com/genre/bubblegum-dance/",
+    "related": ["Eurodance", "Bubblegum", "Dance-Pop"]
+  },
+  "Cabaret": {
+    "label": "Cabaret",
+    "taxonomy": "Other",
+    "genreGroup": ["Comedy"],
+    "description": "Entertainment featuring Comedy, song, dance, and theatre.",
+    "link": "",
+    "related": ["Dark Cabaret"]
+  },
+  "Calypso": {
+    "label": "Calypso",
+    "taxonomy": "Other",
+    "genreGroup": ["Regional"],
+    "description": "Genre from Trinidad and Tobago featuring a brass section and percussion.",
+    "link": "https://rateyourmusic.com/genre/calypso/",
+    "related": ["Ska"]
+  },
+  "Canzone Napoletana": {
+    "label": "Canzone Napoletana",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Regional", "Folk"],
+    "description": "Sung in the Neapolitan language by a male voice with instrumental accompaniment, originating in the Italian city of Naples and the surrounding regions.",
+    "link": "https://rateyourmusic.com/genre/canzone-napoletana/",
+    "related": ["Italian Folk Music"]
+  },
+  "Celtic Folk Music": {
+    "label": "Celtic Folk Music",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Regional", "Folk"],
+    "description": "Derived from Celtic traditions of Ireland, Scotland, Wales, Cornwall, the Isle of Man, Brittany, Galicia, Cantabria, Asturias, and Trás-os-Montes (Portugal).",
+    "link": "https://rateyourmusic.com/genre/celtic-folk-music/",
+    "related": ["Irish Folk Music"]
+  },
+  "Chamber Pop": {
+    "label": "Chamber Pop",
+    "taxonomy": "Other",
+    "genreGroup": ["Pop"],
+    "description": "Based on the smooth and melodic songwriting of Lounge and other Easy Listening, as well as the orchestration of Baroque Pop and the production styles of other 1960s pop genres.",
+    "link": "https://rateyourmusic.com/genre/chamber-pop/",
+    "related": ["Easy Listening", "Lounge", "Baroque Pop"]
+  },
+  "Chicago House": {
+    "label": "Chicago House",
+    "taxonomy": "dance",
+    "genreGroup": ["House", "Regional"],
+    "description": "Umbrella term for a broad variety of House that originated from Chicago in the (mostly mid-to-late) 1980s and early 90s.",
+    "link": "https://rateyourmusic.com/genre/chicago-house/",
+    "related": ["Synthpop", "Italo-Disco", "Funk", "Acid House"]
+  },
+  "Children's Music": {
+    "label": "Children's Music",
+    "taxonomy": "Other",
+    "genreGroup": ["Other"],
+    "description": "Music recorded for an intended audience of children.",
+    "link": "https://rateyourmusic.com/genre/childrens-music/",
+    "related": []
+  },
+  "Chillwave": {
+    "label": "Chillwave",
+    "taxonomy": "dance",
+    "genreGroup": ["Electronic"],
+    "description": "Emulates vintage aesthetics and popular musical styles of the 1980s/1990s altered by modern recording technology to create a hazy dreamlike atmosphere.",
+    "link": "https://rateyourmusic.com/genre/chillwave/",
+    "related": ["Indietronica", "Synthpop", "Synth Funk", "Downtempo", "Dream Pop", "Indie Pop", "Neo-Psychedelia"]
+  },
+  "Chipmunk Soul": {
+    "label": "Chipmunk Soul",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop", "Soul"],
+    "description": "Sped-up vocal samples and slick, soulful production.",
+    "link": "https://rateyourmusic.com/genre/chipmunk-soul/",
+    "related": ["Hip Hop"]
+  },
+  "Christian Rock": {
+    "label": "Christian Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock", "Christian"],
+    "description": "Incorporates Christian lyrics, with topics such as faith, metaphysics, or biblical characters.",
+    "link": "https://rateyourmusic.com/genre/christian-rock/",
+    "related": []
+  },
+  "Classical Crossover": {
+    "label": "Classical Crossover",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Pop"],
+    "description": "Takes specific Western Classical Music conventions and applies them into a straightforward Pop context for mainstream appeal.",
+    "link": "https://rateyourmusic.com/genre/classical-crossover/",
+    "related": ["Easy Listening", "Adult Contemporary"]
+  },
+  "Close Harmony": {
+    "label": "Close Harmony",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country"],
+    "description": "Traditional two-part harmony singing performed mostly by brothers.",
+    "link": "https://rateyourmusic.com/genre/close-harmony/",
+    "related": []
+  },
+  "Cloud Rap": {
+    "label": "Cloud Rap",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop"],
+    "description": "Emerged in the early 2010s, known for its relaxed, dream-like, and reverb-heavy production style, taking influence from Chillwave, and producers' obscure sample choices.",
+    "link": "https://rateyourmusic.com/genre/cloud-rap/",
+    "related": ["Chillwave", "Trap", "Alternative R&B"]
+  },
+  "Cocktail Nation": {
+    "label": "Cocktail Nation",
+    "taxonomy": "jazztraditionalpop",
+    "genreGroup": ["Other"],
+    "description": "Decidedly ironic take on Lounge that emerged in the early 1990s.",
+    "link": "https://rateyourmusic.com/genre/cocktail-nation/",
+    "related": ["Easy Listening", "Lounge", "Space Age Pop"]
+  },
+  "Comedy Rap": {
+    "label": "Comedy Rap",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop", "Comedy"],
+    "description": "Primarily intended to be humorous, through the use of comedic lyrics, production, delivery, or other musical aspects.",
+    "link": "https://rateyourmusic.com/genre/comedy-rap/",
+    "related": ["Hip Hop"]
+  },
+  "Comedy Rock": {
+    "label": "Comedy Rock",
+    "taxonomy": "rock",
+    "genreGroup": ["Rock", "Comedy"],
+    "description": "Roughly defined as a mix of Rock or any of its subgenres with elements of Comedy such as Satire and Musical Parody, as well as concepts of Novelty.",
+    "link": "https://rateyourmusic.com/genre/comedy-rock/",
+    "related": ["Musical Parody", "Satire", "Novelty"]
+  },
+  "Conjunto Andino": {
+    "label": "Conjunto Andino",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Folk", "Regional"],
+    "description": "Urban folk ensembles using musical instruments of Andean Indigenous origin or association; despite frequent association with Indigenous villages, they bear little resemblance to the Indigenous expressions of the Southern Andes.",
+    "link": "https://rateyourmusic.com/genre/conjunto-andino/",
+    "related": ["Indigenous Andean Music"]
+  },
+  "Conscious Hip Hop": {
+    "label": "Conscious Hip Hop",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop"],
+    "description": "Artists whose lyrics deal with social issues.",
+    "link": "https://rateyourmusic.com/genre/conscious-hip-hop/",
+    "related": ["Hip Hop"]
+  },
+  "Contemporary Country": {
+    "label": "Contemporary Country",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country"],
+    "description": "Incorporates both heavily Pop-influenced styles, and the more pop-averse movement of Neo-Traditionalist Country.",
+    "link": "https://rateyourmusic.com/genre/contemporary-country/",
+    "related": ["Contemporary Folk"]
+  },
+  "Contemporary Folk": {
+    "label": "Contemporary Folk",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Folk"],
+    "description": "Generally acoustic and rooted in modernized Traditional Folk Music, originated with the 20th century American folk revival.",
+    "link": "https://rateyourmusic.com/genre/contemporary-folk/",
+    "related": ["American Folk", "Old-Time", "Country Blues", "Singer-Songwriter"]
+  },
+  "Contemporary R&B": {
+    "label": "Contemporary R&B",
+    "taxonomy": "soulrnb",
+    "genreGroup": ["R&B"],
+    "description": "Soulful, passionate and melismatic vocals originally derived from popular Soul and Disco, and by smooth, lush and often synthesized production variously influenced by Hip Hop, Funk, and related strands of Pop.",
+    "link": "https://rateyourmusic.com/genre/contemporary-randb/",
+    "related": ["Disco", "Hip Hop", "Funk"]
+  },
+  "Country Blues": {
+    "label": "Country Blues",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Blues"],
+    "description": "Various styles of Blues originating in the rural US South, typically relying on expressive vocal delivery and featuring simple, usually acoustic instrumentation.",
+    "link": "https://rateyourmusic.com/genre/country-blues/",
+    "related": ["American Folk"]
+  },
+  "Country Boogie": {
+    "label": "Country Boogie",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country"],
+    "description": "Uptempo style built around the Boogie Woogie rhythm, with strong beats and prominent electric guitar leads, made popular in the 1940s.",
+    "link": "https://rateyourmusic.com/genre/country-boogie/",
+    "related": ["Boogie Woogie"]
+  },
+  "Country Gospel": {
+    "label": "Country Gospel",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Gospel"],
+    "description": "Traditional Country style that heavily incorporates Gospel music.",
+    "link": "https://rateyourmusic.com/genre/country-gospel/",
+    "related": ["Nashville Sound", "Countrypolitan", "Urban Cowboy", "Bro-Country"]
+  },
+  "Country Pop": {
+    "label": "Country Pop",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Pop"],
+    "description": "Combination of Country with Pop to appeal to a larger audience.",
+    "link": "https://rateyourmusic.com/genre/country-pop/",
+    "related": []
+  },
+  "Country Rap": {
+    "label": "Country Rap",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Hip Hop"],
+    "description": "Combines the flow, production-emphasis, and demeanor of Hip Hop with the lyrical content and general approach of Country.",
+    "link": "https://rateyourmusic.com/genre/country-rap/",
+    "related": ["Hip Hop", "Country Pop"]
+  },
+  "Country Rock": {
+    "label": "Country Rock",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Rock"],
+    "description": "Combination of contemporary Rock with more traditional American Country.",
+    "link": "https://rateyourmusic.com/genre/country-rock/",
+    "related": ["Close Harmony", "Folk Rock", "Roots Rock", "Blues Rock"]
+  },
+  "Country Soul": {
+    "label": "Country Soul",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Soul"],
+    "description": "Combining the gritty horn-driven sound of Southern Soul with the textures and aesthetics of Country.",
+    "link": "https://rateyourmusic.com/genre/country-soul/",
+    "related": ["Southern Soul", "Gospel", "Rhythm & Blues"]
+  },
+  "Countrypolitan": {
+    "label": "Countrypolitan",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Pop"],
+    "description": "Emphasizes Pop-oriented orchestration and songwriting while reducing the role of Country instrumentation and rhythms; often featuring lush string arrangements and group backing vocals.",
+    "link": "https://rateyourmusic.com/genre/countrypolitan/",
+    "related": ["Country Pop", "Nashville Sound", "Traditional Pop"]
+  },
+  "Cowpunk": {
+    "label": "Cowpunk",
+    "taxonomy": "countryfolk",
+    "genreGroup": ["Country", "Rock", "Punk"],
+    "description": "Mixes together Country Rock, Rockabilly, and Contemporary Folk with the familiar punk sound.",
+    "link": "https://rateyourmusic.com/genre/cowpunk/",
+    "related": ["Country Rock", "Rockabilly", "Contemporary Folk"]
+  },
+  "Crunk": {
+    "label": "Crunk",
+    "taxonomy": "hiphop",
+    "genreGroup": ["Hip Hop"],
+    "description": "Originating from the southern United States and reliant on drum machines and synthesizer stabs to create an energetic, often dance-oriented sound.",
+    "link": "https://rateyourmusic.com/genre/crunk/",
+    "related": ["Hip Hop"]
+  },
+  "Cumbia": {
+    "label": "Cumbia",
+    "taxonomy": "dance",
+    "genreGroup": ["Regional", "Folk"],
+    "description": "Danceable folk genre formed during the 19th century in Colombia and eastern Panama.",
+    "link": "https://rateyourmusic.com/genre/cumbia/",
+    "related": []
+  },
+  "Cumbia Pop": {
+    "label": "Cumbia Pop",
+    "taxonomy": "Other",
+    "genreGroup": ["Regional", "Pop", "Reggae"],
+    "description": "Developed in the Río de la Plata region in the mid-2010s, featuring Latin Pop influences and lyrics related to romance, youth, and fun.",
+    "link": "https://rateyourmusic.com/genre/cumbia-pop/",
+    "related": ["Latin Pop", "Reggaetón", "Cumbia"]
+  },
+  "Cumbiatón": {
+    "label": "Cumbiatón",
+    "taxonomy": "dance",
+    "genreGroup": ["Regional", "Reggae"],
+    "description": "Combining Reggaetón with Cumbia mexicana, and less frequently with other forms of traditional Mexican Music.",
+    "link": "https://rateyourmusic.com/genre/cumbiaton/",
+    "related": ["Cumbia", "Reggaetón"]
+  },
+  "Dance-Pop": {
+    "label": "Dance-Pop",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance", "Pop"],
+    "description": "Simple, yet catchy melodies and throbbing beats inspired initially by Disco and later various House styles.",
+    "link": "https://rateyourmusic.com/genre/dance-pop/",
+    "related": ["Disco", "House"]
+  },
+  "Dance-Punk": {
+    "label": "Dance-Punk",
+    "taxonomy": "dance",
+    "genreGroup": ["Punk", "Dance"],
+    "description": "Mixes the energy of Punk Rock with the danceable rhythms of Funk and Disco.",
+    "link": "https://rateyourmusic.com/genre/dance-punk/",
+    "related": ["Punk Rock", "Funk", "Disco"]
+  },
+  "Dance-Punk Revival": {
+    "label": "Dance-Punk Revival",
+    "taxonomy": "dance",
+    "genreGroup": ["Punk", "Dance"],
+    "description": "Punchy and danceable variant of Post-Punk Revival that features Electronic instrumentation and influence from Alternative Dance.",
+    "link": "https://rateyourmusic.com/genre/dance-punk-revival/",
+    "related": ["Post-Punk Revival", "Alternative Dance"]
+  },
+  "Dancefloor Drum and Bass": {
+    "label": "Dancefloor Drum and Bass",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance"],
+    "description": "Emerged in the late 2000s as a more accessible and polished style with melodic, prominent synth leads derived from Jump-Up and punchy, often synthesized drums.",
+    "link": "https://rateyourmusic.com/genre/dancefloor-drum-and-bass/",
+    "related": ["Jump-Up"]
+  },
+  "Dancehall": {
+    "label": "Dancehall",
+    "taxonomy": "dance",
+    "genreGroup": ["Dance", "Reggae"],
+    "description": "Developed from Reggae in the late 1970s, when Roots Reggae became more stripped-down, with an increased emphasis on pure rhythm.",
+    "link": "https://rateyourmusic.com/genre/dancehall/",
+    "related": ["Ragga", "Digital Dancehall"]
+  },
+  "Dark Cabaret": {
+    "label": "Dark Cabaret",
+    "taxonomy": "Other",
+    "genreGroup": ["Comedy"],
+    "description": "Dark, moody style incorporating elements of Cabaret in a modern context, with varied instrumentation.",
+    "link": "https://rateyourmusic.com/genre/dark-cabaret/",
+    "related": ["Cabaret"]
+  },
+  "Deep House": {
+    "label": "Deep House",
+    "taxonomy": "dance",
+    "genreGroup": ["House"],
+    "description": "Emerged in the United States during the mid-1980s, featuring a relaxed tempo and influences from Jazz, Funk, and Soul.",
+    "link": "https://rateyourmusic.com/genre/deep-house/",
+    "related": ["Funk", "House", "Chicago House", "Tech House", "Progressive House"]
   }
-}
-
+}}
 
 
 
