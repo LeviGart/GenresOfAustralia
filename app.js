@@ -477,7 +477,7 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
       <br>
       <p>Genres of Australia is an interactive data visualisation of the top 10 singles on Australian charts for each year from 1954 to 2024.</p>
       <br>
-      <p>The aim is to highlights the trends, popularity, and the diversity of genres that have shaped Australians’ favourite songs over the last 70 years.</p>
+      <p>The aim is to highlight the trends, popularity, and the diversity of genres that have shaped Australians’ favourite songs over the last 70 years.</p>
       <br>
       <br>
       <h2>How to Use</h2>
@@ -491,13 +491,18 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
       <p>Select specific genres, countries, or artists to build your own custom visualisation.</p>
       <br>
       <br>
-      <h2>Genres</h2>
+      <h2>Genre Categories</h2>
       <br>
       <p>Each of the 700+ songs has been assigned to one of six main genre categories:</p>
       <br>
       <div class="taxonomy-badges">${taxonomyBadgesHTML}</div>
       <br>
       <p>Assignment is based on the song’s subgenres, artist background, and influences, determined at my discretion.</p>
+      <br>
+      <br>
+      <h2>Sub Genres</h2>
+      <br>
+      <p>Sub genres for each single are ordered left to right from most to least influential, and take into account both the A and B side</p>
       <br>
       <br>
       <h2>Chart Data</h2>
@@ -661,16 +666,46 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
     return allChecked ? "Hide all" : "Show all";
   }
 
-  function renderFeaturedGenresList() {
-    return Object.entries(genres)
-      .filter(([key, g]) => g.description && g.description.trim() !== "")
-      .map(([gKey, g]) => `
-        <li>
-          <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
-          <span class="clickable-genre" data-genre="${gKey}">${g.label}</span>
-        </li>
-      `).join("");
-  }
+
+///organised genre list
+
+function renderFeaturedGenresList() {
+  const grouped = {};
+
+  // Build a map: genreGroup → list of genres
+  Object.entries(genres).forEach(([gKey, g]) => {
+    const groups = Array.isArray(g.genreGroup) ? g.genreGroup : [g.genreGroup];
+    groups.forEach(group => {
+      if (!group) return;
+      if (!grouped[group]) grouped[group] = [];
+      grouped[group].push([gKey, g]);
+    });
+  });
+
+  const sortedGroups = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+
+  // Build HTML for each group
+  return sortedGroups.map(group => {
+    const groupGenres = grouped[group]
+      .sort((a, b) => a[1].label.localeCompare(b[1].label))
+      .map(([gKey, g]) => {
+        const count = genreCounts[gKey] || 0; // 🔹 show how many songs that genre has
+        return `
+          <li class="genre-item" style="display:flex; align-items:center; gap:6px; margin:4px 0;">
+            <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
+            <span class="clickable-genre" data-genre="${gKey}">
+              ${g.label}
+            </span>
+            <span class="genre-count">[${count}]</span>
+          </li>`;
+      }).join("");
+
+    return `
+      <h2 style="margin-top:10px; margin-bottom:4px;">${group}</h2>
+      <ul>${groupGenres}</ul>
+    `;
+  }).join("");
+}
 
 
   
@@ -806,29 +841,43 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     d3.select("#side-panel-body").html(`
          <div>
         <input type="checkbox" class="taxonomy-toggle" data-taxonomy="${taxKey}" ${taxonomyVisibility[taxKey] !== false ? "checked" : ""}>
-        <span class="genre-badge clickable-taxonomy" style="border:2px solid ${info.color}" data-taxonomy="${taxKey}">${info.label}</span>
+        <span class="genre-badge clickable-taxonomy" data-taxonomy="${taxKey}" style="border: 2px solid ${info.color}">${info.label} </span>
 
       </div>
+      <br>
       <p>${info.description || ""}</p>
       <br>
-      <h2>Related genres:</h2>
+      <h2>Key Genres:</h2>
+      <br>
       <ul>${relatedHtml}</ul>
       <br>
-      <h2>All Genres</h2>
+      <h2>
+        <span id="genre-list-mode" style="margin-right:8px;" class="panel-tab active" data-tab-mode="all">All Genres</span>
+      </h2>
       <br>
-      <p><button id="toggle-all-genres">${toggleAllLabel}</button> <button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
+      <p>
+        <button id="toggle-all-genres">${toggleAllLabel}</button>
+        <button id="sort-genres-btn">${getSortButtonLabel()}</button>
+      </p>
       <br>
-      <ul>${renderAllGenresList()}</ul>
-      <h4>"""Completed Genres:"""</h4>
+      <ul id="genre-list">${renderAllGenresList()}</ul>
+      <br>
+      <h2>Organised Genres</h2>
+      <br>
       <ul>${renderFeaturedGenresList()}</ul>
     `);
 
     openSidePanel();
     if (resetScroll) d3.select("#side-panel").node().scrollTop = 0;
     bindGenreClicks();
+    d3.select("#genre-list-mode").on("click", function() {
+      d3.selectAll("#genre-list-mode").classed("active", true);
+      d3.select("#genre-list").html(renderAllGenresList());
+    });
   }
 
-  // genre side panel
+  // genre side panel ////////
+
   function showGenrePanel(genreKey, resetScroll = true) {
     // resolve case sensitivity if needed/ consistency with them all and json
     let resolvedKey = genreKey;
@@ -846,10 +895,10 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     // if no detailed info is supplied for the genre
     if (!g) {
       d3.select("#side-panel-body").html(`
-        <h1>
+        <h2>
           <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
           ${resolvedKey} <span class="genre-count">[${genreCounts[resolvedKey] || 0}]</span>
-        </h1>
+        </h2>
         <br>
         <p>No info on this genre.</p>
         <br>
@@ -858,7 +907,9 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
         <p><button id="toggle-all-genres">${toggleAllLabel}</button> <button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
         <br>
         <ul>${renderAllGenresList()}</ul>
-        <h4>"""Completed Genres:"""</h4>
+        <br>
+        <h2>Organised Genres</h2>
+        <br>
         <ul>${renderFeaturedGenresList()}</ul>
       `);
       openSidePanel();
@@ -881,7 +932,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
           </li>
         `).join("")
       : "<li>None listed</li>";
-
+        //featured genres
     // Fill side panel body with genre info, taxonomy badge, related genres, and lists
     d3.select("#side-panel-body").html(`
       <h2>
@@ -893,15 +944,23 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
       <br>
       <p>${g.description || ""}</p>
       <br>
-      <h4>Related genres:</h4>
+      ${g.link ? `<p><a href="${g.link}" target="_blank">Learn more</a></p>` : ""}
+      <br>
+      <h2>Related genres:</h2>
+      <br>
       <ul>${relatedHtml}</ul>
       <br>
-      <h4>All Genres</h4>
+      <h2>All Genres</h2>
       <br>
-      <p><button id="toggle-all-genres">${toggleAllLabel}</button><button id="sort-genres-btn">${getSortButtonLabel()}</button></p>
+            <p>
+        <button id="toggle-all-genres">${toggleAllLabel}</button>
+        <button id="sort-genres-btn">${getSortButtonLabel()}</button>
+      </p>
       <br>
       <ul>${renderAllGenresList()}</ul>
-      <h4>"""Completed Genres:"""</h4>
+      <br>
+      <h2>Organised Genres</h2>
+      <br>
       <ul>${renderFeaturedGenresList()}</ul>
     `);
 
