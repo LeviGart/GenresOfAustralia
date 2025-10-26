@@ -1,5 +1,4 @@
 
-/* Base body styles */
 body {
   font-family: "tablet-gothic", sans-serif;
   font-weight: 200;
@@ -11,7 +10,6 @@ body {
   padding: 0;
 }
 
-/* Paragraphs */
 p {
   font-family: "tablet-gothic", sans-serif;
   font-weight: 300;
@@ -21,7 +19,6 @@ p {
   
 }
 
-/* Headings */
 h1 {
   font-family: "tablet-gothic", sans-serif;
   font-weight: 700;
@@ -38,15 +35,12 @@ h2 {
  
 }
 
-
-/* ===== Base ===== */
 body {
   font-family: sans-serif;
   background: #231f20;
   color: #b6c5d5;
 }
 
-/* ===== Chart Table ===== */
 .chart-container {
   position: relative;
   margin: 0 auto;
@@ -56,8 +50,6 @@ a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-
-
 
 #page-logo {
 
@@ -92,9 +84,6 @@ td:hover {
   position: relative;
 }
 
-
-
-/* ===== X Axis Timeline ===== */
 .timeline-row .timeline-cell {
   text-align: center;
   vertical-align: top;
@@ -116,7 +105,6 @@ td:hover {
 }
 
 
-/* ===== Tooltip ===== */
 #tooltip {
   position: absolute;
   background: rgba(23, 20, 20, 0.95);
@@ -132,7 +120,6 @@ td:hover {
   opacity: 1;
 }
 
-/* ===== Modal ===== */
 #modal {
   display: none;
   position: fixed;
@@ -205,7 +192,6 @@ td:hover {
   margin-left: 8px;   
 }
 
-/* ===== Genre Badges ===== */
 .genre-badge {
   background-color: transparent;
   border-width: 2px;
@@ -213,7 +199,6 @@ td:hover {
   padding: 4px 8px;
   display: inline-block;
 }
-
 
 .legend {
   display: flex;
@@ -224,7 +209,6 @@ td:hover {
   margin-top: 20px;
 }
 
-/* ===== Side Panel ===== */
 #side-panel {
   position: fixed;
   top: 0;
@@ -267,10 +251,8 @@ td:hover {
   opacity: 0.7;
 }
 
-
-/* Side panel buttons (Show all / Sort) */
 #side-panel button {
-  all: unset;                         /* remove default browser styles */
+  all: unset;                         
   font-family: "tablet-gothic", sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -278,7 +260,7 @@ td:hover {
   cursor: pointer;
   padding: 0.2em 0.5em;
   background: none;
-  border: 2px solid #b6c5d5;          /* match other elements */
+  border: 2px solid #b6c5d5;          
   color: #b6c5d5;
   transition: all 0.2s ease;
   display: inline-block;
@@ -287,10 +269,9 @@ td:hover {
 
 #side-panel button:hover {
   background-color: #b6c5d5;
-  color: #231f20;                     /* invert text on hover for contrast */
+  color: #231f20;                    
 }
 
-/* ===== Sort Controls ===== */
 .sort-controls {
   margin: 20px 20px;
   text-align: center;
@@ -300,7 +281,6 @@ td:hover {
   cursor: pointer;
 }
 
-/* ===== Clickable Elements ===== */
 .clickable-genre {
   cursor: pointer;
   text-decoration: none;
@@ -318,13 +298,12 @@ td:hover {
   color: #2c292b;
 }
 
-/* ===== Form Controls (restore after reset) ===== */
 input[type="checkbox"],
 input[type="radio"] {
-  appearance: none;            /* remove default look */
+  appearance: none;            
   width: 15px;
   height: 15px;
-  border: 2px solid #b6c5d5;   /* stroke color */
+  border: 2px solid #b6c5d5;   
   background-color: transparent;
   border-radius: 50%;          
   cursor: pointer;
@@ -333,29 +312,24 @@ input[type="radio"] {
   transition: all 0.2s ease;
 }
 
-/* Hover effect */
 input[type="radio"]:hover {
  opacity: 0.5;
 }
 
-/* Checked (filled) state */
 input[type="radio"]:checked {
-  background-color: #b6c5d5;   /* fill */
-  border-color: #b6c5d5;       /* match border */
+  background-color: #b6c5d5;   
+  border-color: #b6c5d5;      
 }
-
-
-/* ===== Side panel text styling ===== */
 
 #side-panel-body li {
   margin: 0.25em 0;
 }
 
 input[type="checkbox"] {
-  appearance: none;         /* remove default styling */
+  appearance: none;         
   width: 15px;
   height: 15px;
-  border: 2px solid #b6c5d5; /* stroke color */
+  border: 2px solid #b6c5d5; 
   background-color: transparent;
   cursor: pointer;
   position: relative;
@@ -364,20 +338,18 @@ input[type="checkbox"] {
   transition: all 0.2s ease;
 }
 
-/* Hover effect */
 input[type="checkbox"]:hover {
   opacity: 0.5;
 }
 
-/* Checked state */
 input[type="checkbox"]:checked {
-  background-color: #b6c5d5;  /* fill color */
-  border-color: #b6c5d5;      /* ensure border matches fill */
+  background-color: #b6c5d5;  
+  border-color: #b6c5d5;      
 }
 
 button .icon {
-  margin-left: 8px;   /* spacing between label and triangle */
-  font-size: 1rem;    /* optional, adjust to match text size */
+  margin-left: 8px;   
+  font-size: 1rem;    
 }
 
 .chart-wrapper {
