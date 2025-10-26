@@ -18,7 +18,7 @@ d3.json("./songs.json").then(dataset => {
   const ranks = d3.range(1, 11);
   const taxonomyOrder = ["hiphop","dance","soulrnb","rock","countryfolk","jazztraditionalpop"];
 
-  // Collect all genres (primary + subgenres)
+  // Collect all genres from json
   const allGenresSet = new Set();
   songs.forEach(s => {
     if (s.primarygenre) allGenresSet.add(s.primarygenre);
@@ -26,7 +26,7 @@ d3.json("./songs.json").then(dataset => {
   });
   const allGenresList = Array.from(allGenresSet).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
-  // Count how many times each genre appears (primary or sub)
+  // Count genres
   let genreCounts = {};
   songs.forEach(s => {
     [s.primarygenre, ...(s.subgenres || [])].forEach(g => {
@@ -35,7 +35,7 @@ d3.json("./songs.json").then(dataset => {
     });
   });
   
-  // Track visibility state
+  // Track visibility for genres
   let genreVisibility = {};
   allGenresList.forEach(g => { genreVisibility[g] = true; });
 
@@ -43,7 +43,6 @@ d3.json("./songs.json").then(dataset => {
   Object.keys(taxonomy).forEach(t => { taxonomyVisibility[t] = true; });
 
   // Track visibility for countries and artists
-  // false by default for better user experience
   let countryVisibility = {};
   let artistVisibility = {};
   songs.forEach(s => {
@@ -54,7 +53,7 @@ d3.json("./songs.json").then(dataset => {
   // Tooltip
   const tooltip = d3.select("body").append("div").attr("id", "tooltip");
 
-  // Legend (Taxonomy labels)
+  // Legend 
   const legend = d3.select(".legend");
   Object.entries(taxonomy).forEach(([key, info]) => {
     legend.append("span")
@@ -101,7 +100,7 @@ d3.json("./songs.json").then(dataset => {
     currentSongList = [];
 
     if (sortMode === "chart") {
-      // Chart mode: strict rank order
+      // Chart mode 1-10
       const rowMap = {};
       ranks.forEach(rank => {
         rowMap[rank] = tbody.append("tr");
@@ -117,7 +116,7 @@ d3.json("./songs.json").then(dataset => {
         });
       });
     } else {
-      // Taxonomy mode: visible songs pinned to bottom
+      // Taxonomy mode with visible songs pinned to bottom
       const songsByYear = {};
       years.forEach(year => {
         const yearSongs = songs.filter(d => d.chartYear === year);
@@ -135,12 +134,9 @@ d3.json("./songs.json").then(dataset => {
         visible.sort(sorter);
         hidden.sort(sorter);
 
-        // Hidden first, visible last → visible pinned to bottom
         songsByYear[year] = [...hidden, ...visible];
       });
-      // Determine max rows needed (longest year column)
       const maxRows = d3.max(Object.values(songsByYear), arr => arr.length) || 0;
-      // Build table row by row
       for (let rowIndex = 0; rowIndex < maxRows; rowIndex++) {
         const tr = tbody.append("tr");
         years.forEach(year => {
@@ -148,7 +144,7 @@ d3.json("./songs.json").then(dataset => {
           appendCell(tr, song);
         });
       }
-      // Build navigation order (column-major)
+      // Navigation order
       years.forEach(year => {
         for (let rowIndex = 0; rowIndex < maxRows; rowIndex++) {
           const song = songsByYear[year][rowIndex];
@@ -156,18 +152,14 @@ d3.json("./songs.json").then(dataset => {
         }
       });
     }
-  // Add timeline row (everyime the table rebuilds itself)
+// Timeline
 const timelineRow = tbody.append("tr").attr("class", "timeline-row");
 
 years.forEach((year, i) => {
   const cell = timelineRow.append("td")
     .attr("class", "timeline-cell");
-
-  // Always draw a notch 
   cell.append("div")
     .attr("class", "timeline-notch");
-
-  // Add label if it's the first year, last year, or a decade
   if (year === years[0] || year === years[years.length - 1] || year % 10 === 0) {
     cell.append("div")
       .attr("class", "timeline-label")
@@ -176,7 +168,7 @@ years.forEach((year, i) => {
 });
   }
 
-// Check if a song should be visible (genres + taxonomies)
+// Genre Filtering
 function isSongVisible(song) {
   const songGenres = [song.primarygenre, ...(song.subgenres || [])];
   const songCountries = song.countryCode || [];
@@ -187,7 +179,6 @@ function isSongVisible(song) {
   const anyCountryChecked = Object.values(countryVisibility).some(v => v);
   const anyArtistChecked = Object.values(artistVisibility).some(v => v);
 
-  // Genre + taxonomy filtering
   let genreOk = false;
   if (!anyTaxChecked) {
     genreOk = songGenres.some(g => genreVisibility[g]);
@@ -204,7 +195,7 @@ function isSongVisible(song) {
   return genreOk && countryOk && artistOk;
 }
 
-  // Append a single table cell for a song
+  // Single table cell for each song
   function appendCell(row, song) {
     const cell = row.append("td").attr("class", "chart-cell").classed("empty", !song);
     if (song) {
@@ -246,7 +237,8 @@ function isSongVisible(song) {
   function closeSidePanel() {
     d3.select("#side-panel").classed("open", false);
   }
-  ////////pushing the table ////
+
+// Push Table
 
 function openSidePanel() {
   const sidePanel = d3.select("#side-panel");
@@ -255,7 +247,6 @@ function openSidePanel() {
   const chartWrapper = d3.select(".chart-wrapper");
   const sidePanelWidth = document.querySelector("#side-panel").offsetWidth;
 
-  // Shift slightly and scale down just a bit
   const translateAmount = sidePanelWidth / 5;
   const scaleAmount = 0.87; 
 
@@ -289,7 +280,8 @@ d3.select("#open-side-panel").on("click", () => {
   }
 });
 
-  // --- Side panel tabs ---
+
+// Side panel tabs
 d3.selectAll(".panel-tab").on("click", function() {
   const tab = d3.select(this).attr("data-tab");
   d3.selectAll(".panel-tab").classed("active", false);
@@ -323,12 +315,11 @@ function getSortButtonLabelFor(mode) {
 }
 
 
-   // --- Countries panel ---
+// Countries panel
   function renderCountriesPanel() {
   const countryCounts = {};
   songs.forEach(s => (s.countryCode || []).forEach(c => { countryCounts[c] = (countryCounts[c] || 0) + 1; }));
 
-  // Sort based on countrySortMode
   let sorted = Object.entries(countryCounts);
   if (countrySortMode === "az") sorted.sort((a,b) => a[0].localeCompare(b[0]));
   else if (countrySortMode === "za") sorted.sort((a,b) => b[0].localeCompare(a[0]));
@@ -387,7 +378,7 @@ d3.select("#toggle-all-countries").on("click", () => {
 
   openSidePanel();
 }
-// --- Artists panel ---
+// Artists panel 
 
 function renderArtistsPanel() {
   const artistCounts = {};
@@ -442,7 +433,7 @@ d3.select("#toggle-all-artists").on("click", () => {
   buildTable();
 });
 
-// Artists Sort
+// Sort Artists
 
   d3.select("#sort-artists-btn").on("click", () => {
     if (artistSortMode === "az") artistSortMode = "za";
@@ -455,7 +446,7 @@ d3.select("#toggle-all-artists").on("click", () => {
   openSidePanel();
 }
 
-// --- Help panel ---
+// Help panel 
 
 function renderHelpPanel() {
   d3.selectAll(".panel-tab").classed("active", false);
@@ -473,7 +464,10 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
   `).join("");
 
   d3.select("#side-panel-body").html(`
-      <h2>About This Project</h2>
+      <p> Best viewed in Google Chrome or Microsoft Edge </p>  
+      <br>
+      <br>
+    <h2>About This Project</h2>
       <br>
       <p>Genres of Australia is an interactive data visualisation of the top 10 singles on Australian charts for each year from 1954 to 2024.</p>
       <br>
@@ -523,29 +517,29 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
       <p><a target="_blank"  href="https://www.discogs.com/">Discogs</a></p>
       <br>
       <br>
-      <p>Designed and built by Levi. </p>
+      <p>Designed and built by Levi Gartner. </p>
   `);
   bindGenreClicks();
   openSidePanel();
 }
 
 
-  // Song modal
+// Song modal
   function showSongModal(songIndex) {
     const song = currentSongList[songIndex];
     if (!song) return;
-    // Build combined title (A-side / B-side if present)
+
+    // Mutliple releases
     let combinedTitle = song.tracks[0].title;
     if (song.tracks.length > 1 && song.tracks[1].title) {
       combinedTitle += " / " + song.tracks[1].title;
     }
-    // Track switching (A/B sides)
     const hasSecondTrack = song.tracks.length > 1 && song.tracks[1].youtubeId;
     const hasSecondTitle = hasSecondTrack && !!song.tracks[1].title;
 
     let currentSide = "A";
     let currentTrack = song.tracks[0];
-    // Helper to embed YouTube video. nocookie version
+    // Embed YouTube video. nocookie version
     const videoHtml = (track) => `
       <div class="video-wrapper">
         <iframe
@@ -613,7 +607,6 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
       </div>
     `);
 
-    // Bind taxonomy + genre clicks inside modal
     bindGenreClicks();
 
     d3.selectAll(".clickable-genre").on("click", function() {
@@ -639,7 +632,7 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
       });
     }
 
-    // Prev/Next navigation (only among visible songs)
+    // Prev/Next navigation (only visible songs)
     const visibleSongs = getVisibleSongs();
     const visibleIndex = visibleSongs.indexOf(song);
 
@@ -660,19 +653,18 @@ const taxonomyBadgesHTML = Object.entries(taxonomy)
     d3.select("#modal").style("display", "block");
   }
 
-  // Return correct label for the "Show/Hide All" button
+  // Correct label for the "Show/Hide All" button
   function getToggleAllLabel() {
     const allChecked = Object.values(genreVisibility).every(v => v);
     return allChecked ? "Hide all" : "Show all";
   }
 
 
-///organised genre list
+//organised genre list
 
 function renderFeaturedGenresList() {
   const grouped = {};
 
-  // Build a map: genreGroup → list of genres
   Object.entries(genres).forEach(([gKey, g]) => {
     const groups = Array.isArray(g.genreGroup) ? g.genreGroup : [g.genreGroup];
     groups.forEach(group => {
@@ -684,12 +676,11 @@ function renderFeaturedGenresList() {
 
   const sortedGroups = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
 
-  // Build HTML for each group
   return sortedGroups.map(group => {
     const groupGenres = grouped[group]
       .sort((a, b) => a[1].label.localeCompare(b[1].label))
       .map(([gKey, g]) => {
-        const count = genreCounts[gKey] || 0; // 🔹 show how many songs that genre has
+        const count = genreCounts[gKey] || 0; // show how many songs that genre has
         return `
           <li class="genre-item" style="display:flex; align-items:center; gap:6px; margin:4px 0;">
             <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
@@ -772,15 +763,12 @@ function renderAllGenresList() {
       const allChecked = Object.values(genreVisibility).every(v => v);
       const newState = !allChecked;
 
-      // Toggle all genres
       Object.keys(genreVisibility).forEach(k => { genreVisibility[k] = newState; });
 
-      // Also toggle taxonomy checkboxes to match
       Object.keys(taxonomyVisibility).forEach(t => {
         taxonomyVisibility[t] = newState;
       });
 
-      // Update UI checkboxes in the panel
       d3.selectAll(".genre-toggle").property("checked", newState);
       d3.selectAll(".taxonomy-toggle").property("checked", newState);
 
@@ -802,12 +790,11 @@ if (!sortBtn.empty()) {
     else if (genreSortMode === "popular") genreSortMode = "unpopular";
     else genreSortMode = "az";
 
-    // Rerender panel (button label will come from getSortButtonLabel)
     rerenderCurrentPanel(true);
   });
 }
 }
-// taxonomy side panel
+// Taxonomy side panel
 function getSortButtonLabel() {
   if (genreSortMode === "az") return `Sort A-Z <span class="icon">&#x25BC;</span>`;  
   if (genreSortMode === "za") return `Sort A-Z <span class="icon">&#x25B2;</span>`;  
@@ -876,7 +863,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
     });
   }
 
-  // genre side panel ////////
+  // Genre side panel 
 
   function showGenrePanel(genreKey, resetScroll = true) {
     // resolve case sensitivity if needed/ consistency with them all and json
@@ -932,7 +919,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true) {
           </li>
         `).join("")
       : "<li>None listed</li>";
-        //featured genres
+
     // Fill side panel body with genre info, taxonomy badge, related genres, and lists
     d3.select("#side-panel-body").html(`
       <h2>
