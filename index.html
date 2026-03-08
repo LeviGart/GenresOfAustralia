@@ -9,45 +9,54 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="app.js" defer></script>
   <link rel="stylesheet" href="https://use.typekit.net/jrx8vqr.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"/>
   <link rel="stylesheet" href="reset.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="chart-wrapper">
-    <button id="open-side-panel">☰</button>
-  <div class="chart-container">
-      <div id="page-logo">
-    <img src="Genresofaustralialogo.svg" id="logo-img">
-  </div>
-  <div class="legend"></div>
-    
-  <div class="sort-controls">
-      <label><input type="radio" name="sortMode" value="chart" checked> Sort by chart position</label>
-      <label><input type="radio" name="sortMode" value="genre"> Sort by genre</label>
+  <div class="page-wrapper">
+    <header class="main-header">
+      <div class="header-content">
+        <img src="genresofaustralialogo2026.svg" alt="Genres of Australia" class="logo-image" />
+        <div class="taxonomy-bar taxonomy-bar-header"></div>
+      </div>
+    </header>
+    <div class="header-divider"></div>
+
+    <div class="main-container">
+      <div class="chart-area">
+        <div class="chart-wrapper">
+          <div class="chart-container">
+            <div class="sort-controls">
+              <div class="chart-controls-row">
+                <div id="chart-sort-control"></div>
+                <span id="song-info">
+                  <button id="toggle-all-global">Hide all</button>
+                  <span id="song-count"></span>
+                  <span id="chart-transport">
+                    <button id="prev-first" title="Previous song" aria-label="Previous song"><span class="play-icon"></span></button>
+                    <button id="play-first" title="Play video" aria-label="Play video"><span class="play-icon"></span></button>
+                    <button id="next-first" title="Next song" aria-label="Next song"><span class="play-icon"></span></button>
+                  </span>
+                </span>
+              </div>
+              <div id="chart-rank-header" class="chart-rank-header" aria-label="Chart rank headers"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-column">
+        <div class="context-cell" id="song-modal-cell" style="display:none;"></div>
+        <div class="context-cell" id="info-cell"></div>
+        <div class="context-cell" id="genres-cell"></div>
+        <div class="context-cell" id="countries-cell"></div>
+        <div class="context-cell" id="artists-cell"></div>
+        <div class="context-cell" id="about-cell"></div>
+        <div class="context-credit">Created by <a href="https://levigartner.myportfolio.com/" target="_blank" rel="noopener noreferrer">Levi Gartner</a></div>
+      </div>
     </div>
   </div>
-  </div>
 
-  <div id="modal" style="display:none;">
-    <div class="modal-box">
-      <span id="modal-close">&times;</span>
-      <div id="modal-content"></div>
-    </div>
-  </div>
-
-<div id="side-panel">
-  <div class="side-panel-content">
-    <span id="side-panel-close">&times;</span>
-
-    <div id="side-panel-header">
-      <span class="panel-tab active" data-tab="genres">Genres</span>
-      <span class="panel-tab" data-tab="countries">Countries</span>
-      <span class="panel-tab" data-tab="artists">Artists</span>
-      <span class="panel-tab" data-tab="help">Help</span>
-    </div>
-
-    <div id="side-panel-body"></div>
-  </div>
-</div>
 </body>
 </html>
