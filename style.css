@@ -1,3 +1,7 @@
+html,
+body {
+  height: 100%;
+}
 
 body {
   font-family: "tablet-gothic", sans-serif;
@@ -8,6 +12,175 @@ body {
   background: var(--site-background);
   margin: 0;
   padding: 0;
+  /* Use app-level scroll containers so content never scrolls behind a transparent header. */
+  overflow: hidden;
+}
+
+:root {
+  /* Taxonomy colors (from songs.json -> taxonomy.*.color), stored as RGB for easy alpha. */
+  --tax-jazztraditionalpop-rgb: 230, 187, 33;
+  --tax-countryfolk-rgb: 244, 123, 59;
+  --tax-rock-rgb: 221, 59, 64;
+  --tax-soulrnb-rgb: 136, 46, 134;
+  --tax-dance-rgb: 55, 112, 184;
+  --tax-hiphop-rgb: 118, 172, 66;
+
+  --bg-square-alpha: 0.14;
+  --bg-square-alpha-strong: 0.22;
+
+}
+
+.site-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--site-background);
+}
+
+.site-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55vh;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(182, 197, 213, 0.14) 0%,
+    rgba(35, 31, 32, 0) 100%
+  );
+}
+
+.site-bg::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  background-image: linear-gradient(
+    0deg,
+    rgba(182, 197, 213, 0.08) 0%,
+    rgba(35, 31, 32, 0) 100%
+  );
+}
+
+.site-bg .squares {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.site-bg .square {
+  width: 14px;
+  height: 14px;
+  transform: translateY(110%);
+  background: rgba(var(--tax-hiphop-rgb), var(--bg-square-alpha));
+  border-radius: 3px;
+  filter: blur(0px);
+  animation: bg-squares 12s linear infinite;
+  will-change: transform;
+}
+
+.site-bg .square:nth-child(2) {
+  height: 22px;
+  width: 40px;
+  animation-delay: 1s;
+  animation-duration: 18s;
+  filter: blur(3px);
+  background: rgba(var(--tax-dance-rgb), var(--bg-square-alpha));
+}
+
+.site-bg .square:nth-child(3) {
+  height: 30px;
+  width: 14px;
+  animation-delay: 1.5s;
+  animation-duration: 10s;
+  filter: blur(1px);
+  background: rgba(var(--tax-soulrnb-rgb), var(--bg-square-alpha));
+}
+
+.site-bg .square:nth-child(4) {
+  height: 14px;
+  width: 22px;
+  animation-delay: 0.5s;
+  animation-duration: 14s;
+  filter: blur(2px);
+  background: rgba(var(--tax-rock-rgb), var(--bg-square-alpha));
+}
+
+.site-bg .square:nth-child(5) {
+  height: 18px;
+  width: 30px;
+  animation-delay: 4s;
+  animation-duration: 12s;
+  filter: blur(1.5px);
+  background: rgba(var(--tax-countryfolk-rgb), var(--bg-square-alpha));
+}
+
+.site-bg .square:nth-child(6) {
+  height: 36px;
+  width: 30px;
+  animation-delay: 2s;
+  animation-duration: 11s;
+  filter: blur(1px);
+  background: rgba(var(--tax-jazztraditionalpop-rgb), var(--bg-square-alpha-strong));
+}
+
+.site-bg .square:nth-child(7) {
+  height: 72px;
+  width: 30px;
+  animation-duration: 15s;
+  filter: blur(2px);
+  background: rgba(var(--tax-hiphop-rgb), var(--bg-square-alpha-strong));
+}
+
+.site-bg .square:nth-child(8) {
+  height: 14px;
+  width: 44px;
+  animation-delay: 5s;
+  animation-duration: 20s;
+  filter: blur(4px);
+  background: rgba(var(--tax-dance-rgb), var(--bg-square-alpha));
+}
+
+.site-bg .square:nth-child(9) {
+  height: 22px;
+  width: 30px;
+  animation-duration: 10s;
+  filter: blur(0.5px);
+  background: rgba(var(--tax-soulrnb-rgb), var(--bg-square-alpha));
+}
+
+.site-bg .square:nth-child(10) {
+  height: 44px;
+  width: 34px;
+  animation-delay: 6s;
+  animation-duration: 14s;
+  filter: blur(1px);
+  background: rgba(var(--tax-rock-rgb), var(--bg-square-alpha-strong));
+}
+
+@keyframes bg-squares {
+  from {
+    transform: translateY(110%) rotate(-50deg);
+  }
+  to {
+    transform: translateY(calc(-100vh - 110%)) rotate(20deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bg .square {
+    animation: none;
+    transform: none;
+    opacity: 0.35;
+  }
 }
 
 :root {
@@ -16,9 +189,62 @@ body {
   --page-side-padding: clamp(12px, 2.2vw, 28px);
   --chart-area-max-width: 1200px;
   --left-column-max-width: 520px;
-  --chart-container-padding: 24px;
+  --chart-container-padding: clamp(10px, 1.6vw, 24px);
   --content-top-gap: 10px;
   --year-column-width: 88px;
+  --year-label-side-padding: clamp(10px, 1.6vw, 24px);
+  --accordion-pill-height: 50px;
+  --taxonomy-pill-width: 200px;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --year-column-width: 64px;
+    --year-label-side-padding: clamp(6px, 1vw, 14px);
+  }
+  .year-label {
+    font-size: 1.05rem;
+    padding: 0 var(--year-label-side-padding);
+  }
+}
+
+
+@media (max-width: 1100px) {
+      .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 10000;
+      }
+    .context-column {
+      border-right: none;
+    }
+  :root {
+    --year-column-width: 48px;
+    --year-label-side-padding: clamp(3px, 0.6vw, 8px);
+  }
+  .year-label {
+    font-size: 0.92rem;
+    padding: 0 var(--year-label-side-padding);
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --year-column-width: 30px;
+    --year-label-side-padding: 2px;
+  }
+  .logo-image {
+    display: block;
+    height: 36px;
+    max-width: 220px;
+  }
+  .year-label {
+    font-size: 0.86rem;
+    padding: 0 var(--year-label-side-padding);
+  }
+  .main-header {
+    height: 80px;
+  }
 }
 
 .page-wrapper {
@@ -30,7 +256,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--site-background);
+  height: 100vh;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .main-header {
@@ -41,10 +271,10 @@ body {
   flex-shrink: 0;
   width: 100%;
   margin-left: 0;
-  z-index: 40;
-  background: var(--site-background);
+  /* Keep header (and its menu overlay) above sticky chart controls. */
+  z-index: 200;
+  background: transparent;
 }
-
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -61,6 +291,93 @@ body {
   height: 50px;
   width: auto;
   max-width: 300px;
+  transition: max-width 0.2s, height 0.2s;
+  z-index: 1000;
+}
+
+.menu-overlay-panel {
+  width: 100%;
+  margin-top: 60px;  
+  max-width: 900px;
+  /* Keep overlay content within the viewport, below the fixed header gutter. */
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.menu-overlay {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(35,31,32,0.92);
+    z-index: 100;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .menu-overlay-close {
+    background: none;
+    border: none;
+    color: #b6c5d5;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 101;
+  }
+  
+  .menu-icon {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    margin-left: 0;
+  }
+  .menu-icon.open .menu-icon-bar:nth-child(1) {
+    transform: rotate(45deg) translate(8.5px, 8.5px);
+    background: #b6c5d5;
+  }
+  .menu-icon.open .menu-icon-bar:nth-child(2) {
+    opacity: 0;
+    background: #b6c5d5;
+  }
+  .menu-icon.open .menu-icon-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(8.5px, -8.5px);
+    background: #b6c5d5;
+  }
+
+
+.menu-icon-bar {
+  width: 28px;
+  height: 4px;
+  background: #b6c5d5;
+  border-radius: 2px;
+  margin: 4px 0;
+  transition: all 0.2s ease;
 }
 
 .accordion-panel {
@@ -71,19 +388,23 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 2px solid #3a3738;
   width: 100%;
   box-sizing: border-box;
   padding: 12px 14px;
   border-radius: 24px;
-  background: #3a3738;
-  border: #b6c5d5 solid 1px;
+  background: #2c292b;
+  border: 1px solid #3a3738;
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
 .accordion-header:hover {
   background: #484446;
+}
+
+/* Keep every non-song accordion header pill exactly the same height. */
+.accordion-panel:not([data-accordion-key="song"]) .accordion-header {
+  height: var(--accordion-pill-height);
 }
 
 .accordion-panel.is-open[data-accordion-key="genres"] .accordion-header,
@@ -93,14 +414,14 @@ body {
   position: static;
   top: auto;
   z-index: auto;
-  background: #3a3738;
+  background: #2c292b;
 }
 
 .accordion-panel.is-open[data-accordion-key="genres"] .accordion-header:hover,
 .accordion-panel.is-open[data-accordion-key="countries"] .accordion-header:hover,
 .accordion-panel.is-open[data-accordion-key="artists"] .accordion-header:hover,
 .accordion-panel.is-open[data-accordion-key="about"] .accordion-header:hover {
-  background: #484446;
+  background: #2c292b;
 }
 
 .accordion-toggle {
@@ -155,12 +476,47 @@ body {
   align-items: center;
   gap: 8px;
   margin-left: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .accordion-title-meta .selected-main-row {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.accordion-title-meta .genre-badge {
+  width: var(--taxonomy-pill-width);
+  flex: 0 1 auto;
+  max-width: var(--taxonomy-pill-width);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.accordion-title-meta .selected-main-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accordion-title-meta .genre-count {
+  flex: 0 0 auto;
+}
+
+.selected-main-row .genre-badge {
+  flex: 0 1 auto;
+  width: var(--taxonomy-pill-width);
+  max-width: var(--taxonomy-pill-width);
+  text-align: center;
 }
 
 .accordion-summary {
@@ -190,15 +546,25 @@ body {
 }
 
 #song-modal-cell .accordion-panel[data-accordion-key="song"] .accordion-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 8px;
   position: relative;
+}
+
+#song-modal-cell .accordion-panel[data-accordion-key="song"] .accordion-toggle-arrow {
+  margin-left: 0;
+  justify-self: end;
 }
 
 #song-modal-cell .accordion-panel[data-accordion-key="song"] .accordion-body {
   position: static;
   width: 100%;
-  background: #3a3738;
+  background: #2c292b;
   box-sizing: border-box;
 }
+
 
 #song-modal-cell .accordion-panel[data-accordion-key="song"].is-open .song-compact-meta {
   display: none;
@@ -210,7 +576,7 @@ body {
 
 #song-modal-cell .accordion-panel[data-accordion-key="song"].is-open .song-compact-controls {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 8px;
   width: 100%;
@@ -241,6 +607,8 @@ body {
   font-size: 1.2rem;
   line-height: 1.2;
 }
+
+
 
 .organized-groups {
   display: flex;
@@ -341,6 +709,9 @@ body {
   font-size: 1.2rem;
   line-height: 1;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #toggle-side:hover,
@@ -370,10 +741,14 @@ body {
   cursor: pointer;
 }
 #toggle-all-global,
+#toggle-all-global-overlay,
 #toggle-all-genres,
+#toggle-all-categories,
 #toggle-all-countries,
 #toggle-all-artists,
 #genre-view-btn,
+#song-count-btn,
+#sort-chart-btn,
 #song-count-btn,
 #sort-chart-btn,
 #sort-genres-btn,
@@ -384,17 +759,20 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 96px;
-  padding: 4px 8px;
+  width: auto;
+  padding: 4px 12px;
+  min-height: 36px;
+  box-sizing: border-box;
   border: 1px solid #b6c5d5;
   color: #b6c5d5;
   text-align: center;
+  white-space: nowrap;
+  line-height: 1.2;
   font-size: 1.2rem;
   border-radius: 24px;
+  flex: 0 0 auto;
   transition: background-color 0.2s ease;
 }
-#toggle-all-global:hover,
-#toggle-all-genres:hover,
 #toggle-all-countries:hover,
 #toggle-all-artists:hover,
 #genre-view-btn:hover,
@@ -408,7 +786,7 @@ body {
 }
 
 #genre-view-btn {
-  width: 170px;
+  width: auto;
   justify-content: center;
   margin-left: 0;
   text-align: center;
@@ -418,7 +796,7 @@ body {
 #sort-genres-btn,
 #sort-countries-btn,
 #sort-artists-btn {
-  width: 140px;
+  width: auto;
   justify-content: center;
   margin-left: 0;
   text-align: center;
@@ -426,7 +804,7 @@ body {
 }
 
 #sort-chart-btn {
-  width: 240px;
+  width: auto;
   justify-content: center;
   margin-left: 0;
   text-align: center;
@@ -436,24 +814,41 @@ body {
 .sort-dropdown {
   position: relative;
   display: inline-flex;
-  width: 140px;
+  width: auto;
+  flex: 0 0 auto;
+  z-index: 1;
   vertical-align: middle;
 }
 
+.sort-dropdown.is-open {
+  z-index: 40;
+}
+
 .sort-dropdown[data-sort-dropdown="genre-view"] {
-  width: 170px;
+  width: auto;
 }
 
 .sort-dropdown[data-sort-dropdown="chart"] {
-  width: 240px;
+  width: auto;
 }
 
 .sort-dropdown[data-sort-dropdown="song-count"] {
-  width: 240px;
+  width: auto;
 }
 
+.sort-dropdown-title {
+  font-size: 1.24rem;
+  font-weight: 600;
+  color: #b6c5d5;
+  padding: 4px 10px 2px 10px;
+  text-align: left;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+
 #song-count-btn {
-  width: 240px;
+  width: auto;
   justify-content: center;
   margin-left: 0;
   text-align: center;
@@ -462,17 +857,16 @@ body {
 
 .sort-dropdown-menu {
   position: absolute;
-  top: calc(100% - 15px);
+  top: 48px;
   left: 0;
   z-index: 1;
-  width: 100%;
-  min-width: 100%;
+  width: auto;
+  min-width: unset;
   background-color: #3a3738;
   box-sizing: border-box;
   border: 1px solid #b6c5d5;
-  border-top: none;
-  border-radius: 0 0 16px 16px;
-  padding: 24px 6px 6px;
+  border-radius: 16px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -491,6 +885,7 @@ body {
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
 }
 
+
 .sort-dropdown-option {
   all: unset;
   border: none;
@@ -499,9 +894,15 @@ body {
   padding: 4px 10px;
   text-align: center;
   cursor: pointer;
+  background: none;
 }
 
 .sort-dropdown-option:hover {
+  background-color: #b6c5d5;
+  color: #231f20;
+}
+
+.sort-dropdown-option--selected {
   background-color: #b6c5d5;
   color: #231f20;
 }
@@ -513,13 +914,28 @@ body {
   text-align: left;
   cursor: default;
   user-select: none;
+  white-space: nowrap;
+  width: auto;
 }
 
 .panel-controls-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#categories-cell ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#categories-cell li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #play-first,
@@ -584,9 +1000,9 @@ body {
   background-color: #3a3738;
   width: calc(100% + (2 * var(--page-side-padding)));
   margin-left: calc(-1 * var(--page-side-padding));
-  position: sticky;
+  position: fixed;
   top: var(--header-sticky-offset);
-  z-index: 39;
+  z-index: 199;
   margin-bottom: 0px;
 }
 
@@ -601,7 +1017,7 @@ body {
 }
 
 .taxonomy-bar .genre-badge {
-  width: 200px;
+  width: var(--taxonomy-pill-width);
   box-sizing: border-box;
   text-align: center;
 }
@@ -609,6 +1025,15 @@ body {
 .taxonomy-bar-header {
   margin-left: auto;
   justify-content: flex-end;
+}
+
+/* When header taxonomies are visible (wide screens), keep them in one row side-by-side. */
+@media (min-width: 1101px) {
+  .taxonomy-bar-header {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 
@@ -702,6 +1127,10 @@ td:hover {
   text-overflow: clip;
 }
 
+#tooltip .tooltip-artist-line {
+  white-space: nowrap;
+}
+
 #tooltip p {
   margin: 0;
 }
@@ -771,11 +1200,12 @@ td:hover {
   min-height: calc(1.4em * 2);
 }
 
-/* Marquee styling for song title when modal is open and title overflows container */
+/* Selected song title sizing: shrink to fit one line, then clamp to two lines at minimum size. */
 
 #song-modal-cell .song-body-content > h1 {
   display: block !important;
   font-size: 3rem;
+  line-height: 1.05;
   font-weight: 800;
   text-transform: uppercase;
   max-width: 100%;
@@ -785,31 +1215,9 @@ td:hover {
   margin: 0;
 }
 
-#song-modal-cell .song-title-marquee-track {
-  display: inline-block;
-  white-space: nowrap;
-  transform: translateX(0);
-}
-
-#song-modal-cell .song-title-marquee.is-marquee-running .song-title-marquee-track {
-  animation: song-title-marquee var(--marquee-duration, 9s) ease-in-out infinite alternate;
-}
-
-@keyframes song-title-marquee {
-  0%,
-  14% {
-    transform: translateX(0);
-  }
-  86%,
-  100% {
-    transform: translateX(calc(-1 * var(--marquee-shift, 0px)));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #song-modal-cell .song-title-marquee.is-marquee-running .song-title-marquee-track {
-    animation: none;
-  }
+#song-modal-cell .song-selected-title-text {
+  display: block;
+  width: 100%;
 }
 
 
@@ -909,10 +1317,15 @@ td:hover {
   justify-content: flex-start;
   gap: 20px;
   position: sticky;
-  top: calc(var(--header-sticky-offset) - 1px);
-  z-index: 18;
-  background-color: #3a3738;
-  padding: 16px 0;
+  top: 0;
+  z-index: 1;
+  background-color: #2c292b;
+  /* Expand to the full chart container width (including its padding). */
+  margin: calc(-1 * var(--chart-container-padding)) calc(-1 * var(--chart-container-padding)) 0;
+  padding: 16px var(--chart-container-padding);
+  border-left: #3a3738 solid 1px;
+  border-top: #3a3738 solid 1px;
+  border-right: #3a3738 solid 1px;
 }
 
 .chart-controls-row {
@@ -922,7 +1335,7 @@ td:hover {
   gap: 8px;
   flex-wrap: wrap;
   row-gap: 8px;
-  padding: 0 16px;
+  padding: 0;
 }
 
 .chart-rank-header {
@@ -997,12 +1410,6 @@ td:hover {
   transform: translateX(-50%);
 }
 
-@media (max-width: 980px) {
-  .chart-controls-row {
-    justify-content: center;
-  }
-}
-
 .sort-controls label {
   margin: 0 15px;
   cursor: pointer;
@@ -1033,6 +1440,7 @@ input[type="radio"] {
   appearance: none;            
   width: 15px;
   height: 15px;
+  flex: 0 0 15px;
   border: 2px solid #b6c5d5;   
   background-color: transparent;
   border-radius: 50%;          
@@ -1094,8 +1502,10 @@ button .icon {
   max-width: var(--chart-area-max-width);
   margin: 0 auto;
   padding: var(--chart-container-padding);
-  background-color: #3a3738;
+  background-color: #2c292b;
+  border: #3a3738 solid 1px;
   position: relative;
+  
 }
 
 .main-container {
@@ -1104,13 +1514,14 @@ button .icon {
   align-items: stretch;
   width: 100%;
   flex: 1;
-  overflow: visible;
+  overflow: hidden;
   margin: 0 auto; /* centered */
   gap: 15px;
   padding: 0; /* no padding here */
   padding-top: 0;
+  min-height: 0;
   
-} 
+}
 
 .chart-area {
   order: 2;
@@ -1119,9 +1530,13 @@ button .icon {
   /* Chart centering container (remove for uncapped/full-bleed chart behavior) */
   width: 100%;
   position: relative;
-  overflow: visible;
-  margin-top: var(--content-top-gap);
-  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(182, 197, 213, 0.75) transparent;
+  min-height: 0;
+  padding-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1137,7 +1552,7 @@ button .icon {
   gap: 0;
   padding: 0px 10px 0 0;
   position: sticky;
-  top: calc(var(--header-sticky-offset) + 1px);
+  top: 0;
   align-self: flex-start;
   height: calc(100vh - var(--header-sticky-offset) - 1px);
   max-height: calc(100vh - var(--header-sticky-offset) - 1px);
@@ -1145,6 +1560,19 @@ button .icon {
   overflow-x: hidden;
   border-right: 1px solid #3a3738;
   scrollbar-gutter: stable;
+}
+
+.chart-area::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chart-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chart-area::-webkit-scrollbar-thumb {
+  background-color: rgba(182, 197, 213, 0.75);
+  border-radius: 999px;
 }
 
 .context-column::-webkit-scrollbar {
@@ -1160,35 +1588,133 @@ button .icon {
   border-radius: 999px;
 }
 
+.overlay-song-count {
+  display: none;
+}
+
 .context-column {
   scrollbar-width: thin;
   scrollbar-color: rgba(182, 197, 213, 0.75) transparent;
 }
 
-@media (max-width: 800px) {
-  .context-column {
-    flex: 0 0 100%;
+@media (max-width: 1100px) {
+      .menu-icon {
+        display: flex !important;
+      }
+      .logo-image {
+        min-width: 120px;
+      }
+      .header-content {
+        gap: 8px;
+        padding-right: calc(20px + 80px);
+      }
+    .main-header {
+      /* Keep the overlay (which lives inside the header) above sticky chart controls. */
+      z-index: 10000;
+    }
+
+  .chart-controls-row {
+    justify-content: center;
+  }
+
+  /* Keep chart controls + rank header visible while scrolling on mobile. */
+  .sort-controls {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+  }
+  /* On mobile, move Show/Hide all + "X songs" into the overlay; keep sort + transport on the chart. */
+  #song-count-host,
+  #toggle-all-global {
+    display: none;
+  }
+
+  .overlay-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1000;
+    padding: 0 0 12px 0;
     width: 100%;
+  }
+
+  .overlay-song-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* Ensure the dropdown menu is always above overlay content when opened. */
+  .overlay-song-count .sort-dropdown.is-open {
+    z-index: 1001;
+  }
+  .overlay-song-count .sort-dropdown-menu {
+    z-index: 1002;
+  }
+
+  .menu-icon {
+    display: flex !important;
+  }
+
+  .taxonomy-bar-header {
+    display: none;
+  }
+
+  .main-container {
+    flex-direction: column;
+  }
+
+  /* Make the overlay panel a fixed-height column so the header doesn't increase overall height. */
+  .menu-overlay-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* hide sidebar when mobile */
+  .context-column {
+    display: none;
+  }
+
+  /* show it when inside overlay */
+  .menu-overlay-panel .context-column {
+    display: flex;
     position: static;
-    top: auto;
-    align-self: auto;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
     max-height: none;
-    overflow: visible;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-right: none;
+    padding: 0;
+    align-items: center;
+    max-width: 1100px;
+  }
+
+  .menu-overlay-panel .context-cell {
+    width: 100%;
+    max-width: 900px;
   }
 }
 
 .context-cell {
   border: none;
   border-radius: 24px;
-  background: #3a3738;
+  background: #2c292b;
+  border: 1px solid #3a3738;
   overflow-y: visible;
   position: relative;
   margin-top: var(--content-top-gap);
   z-index: 10;
   flex-shrink: 0;
 }
-
 
 .context-credit {
   margin-top: 25px;
@@ -1205,7 +1731,7 @@ button .icon {
   text-decoration: underline;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
   .taxonomy-bar-header {
     display: none;
   }
@@ -1214,7 +1740,6 @@ button .icon {
   }
   .main-container {
     flex-direction: column;
-    overflow-y: auto;
   }
   .context-column {
     width: 100%;
@@ -1222,9 +1747,6 @@ button .icon {
   }
   .context-credit {
     position: static;
-  }
-  .chart-area {
-    overflow: visible;
   }
 
   .accordion-panel.is-open[data-accordion-key="genres"] .accordion-header,
@@ -1249,7 +1771,7 @@ button .icon {
 
 /* year labels column */
 .year-label {
-  padding: 0 24px;
+  padding: 0 var(--year-label-side-padding);
   text-align: left;
   vertical-align: middle;
   font-size: 1.24rem;
@@ -1291,4 +1813,11 @@ button .icon {
   background: #b6c5d5;
   transform: translateY(-50%);
 }
+
+@media (max-width: 1200px), (min-width: 1200px) and (min-resolution: 2dppx) {
+  .chart-table .year-label::after {
+    display: none;
+  }
+}
+
 
