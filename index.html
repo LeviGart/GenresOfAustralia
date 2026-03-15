@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="author" content="Levi Gartner"/>
   <link rel="icon" type="image/svg+xml" href="Webicon.svg"/>
-  <title>Genres of Australia 1954-2024</title>
+  <title>Genres of Australia</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="app.js" defer></script>
   <link rel="stylesheet" href="https://use.typekit.net/jrx8vqr.css">
@@ -14,11 +14,39 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <div class="site-bg" aria-hidden="true">
+    <div class="squares">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+  </div>
   <div class="page-wrapper">
     <header class="main-header">
       <div class="header-content">
+        <button class="menu-icon" id="menu-toggle" aria-label="Open menu" style="display:none">
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+        </button>
         <img src="genresofaustralialogo2026.svg" alt="Genres of Australia" class="logo-image" />
         <div class="taxonomy-bar taxonomy-bar-header"></div>
+        <div class="menu-overlay" id="menu-overlay" style="display:none">
+          <div class="menu-overlay-panel">
+            <div class="overlay-topbar" aria-label="Overlay song count">
+              <div class="overlay-song-count" id="song-count-overlay-host" aria-label="Showing songs"></div>
+              <button id="toggle-all-global-overlay">Hide all</button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </header>
     <div class="header-divider"></div>
@@ -29,15 +57,15 @@
           <div class="chart-container">
             <div class="sort-controls">
               <div class="chart-controls-row">
-                <div id="chart-sort-control"></div>
+                <div id="chart-sort-control-host"><div id="chart-sort-control"></div></div>
+                <span id="chart-transport-host"><span id="chart-transport">
+                  <button id="prev-first" title="Previous song" aria-label="Previous song"><span class="play-icon"></span></button>
+                  <button id="play-first" title="Play video" aria-label="Play video"><span class="play-icon"></span></button>
+                  <button id="next-first" title="Next song" aria-label="Next song"><span class="play-icon"></span></button>
+                </span></span>
                 <span id="song-info">
                   <button id="toggle-all-global">Hide all</button>
-                  <span id="song-count"></span>
-                  <span id="chart-transport">
-                    <button id="prev-first" title="Previous song" aria-label="Previous song"><span class="play-icon"></span></button>
-                    <button id="play-first" title="Play video" aria-label="Play video"><span class="play-icon"></span></button>
-                    <button id="next-first" title="Next song" aria-label="Next song"><span class="play-icon"></span></button>
-                  </span>
+                  <span id="song-count-host"><span id="song-count"></span></span>
                 </span>
               </div>
               <div id="chart-rank-header" class="chart-rank-header" aria-label="Chart rank headers"></div>
@@ -50,6 +78,7 @@
         <div class="context-cell" id="song-modal-cell" style="display:none;"></div>
         <div class="context-cell" id="info-cell"></div>
         <div class="context-cell" id="genres-cell"></div>
+        <div class="context-cell" id="categories-cell"></div>
         <div class="context-cell" id="countries-cell"></div>
         <div class="context-cell" id="artists-cell"></div>
         <div class="context-cell" id="about-cell"></div>
