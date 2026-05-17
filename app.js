@@ -2,17 +2,25 @@ d3.json("./songs.json").then(dataset => {
   const songs = dataset.songs;
   const taxonomy = dataset.taxonomy || {};
   const genres = dataset.genres || {};
+  const descriptors = dataset.descriptors || {};
 
   let currentSongList = [];
   let sortMode = "chart"; // chart
+  let topSongsMode = "chart";
   let currentPanel = { type: null, key: null };
   let genreSortMode = "popular"; // az, za, popular, unpopular
   let countrySortMode = "popular";  // az, za, popular, unpopular
   let artistSortMode = "popular";
+  let descriptorSortMode = "popular";
   let selectedYear = null;
   let selectedRank = null;
   let genreListView = "organized"; // "all" or "organized"
   let organizedGroupState = {};
+  let descriptorListView = "organized"; // "all" or "organized"
+  let organizedDescriptorGroupState = {};
+  let organizedDescriptorSubgroupState = {};
+  let mustContainAllSelectedGenres = false;
+  let mustContainAllSelectedDescriptors = false;
   let selectedSongIndex = -1;
   let selectedSongRef = null;
   let selectedSongSide = "A";
@@ -21,13 +29,17 @@ d3.json("./songs.json").then(dataset => {
   let songTitleFitResizeBound = false;
   let songTitleFitResizeRaf = 0;
   let songTitleMaxRenderedHeight = 0;
+  let ratingMinFilter = 0.5;
+  let ratingMaxFilter = 5;
   const accordionState = {
     song: true,
     selected: true,
     genres: false,
+    descriptors: false,
     categories: false,
     countries: false,
     artists: false,
+    ratings: false,
     about: false
   };
 
@@ -49,15 +61,14 @@ d3.json("./songs.json").then(dataset => {
   // Collect all genres from json
   const allGenresSet = new Set();
   songs.forEach(s => {
-    if (s.primarygenre) allGenresSet.add(s.primarygenre);
-    if (Array.isArray(s.subgenres)) s.subgenres.forEach(g => allGenresSet.add(g));
+    getAllSongGenres(s).forEach(g => allGenresSet.add(g));
   });
   const allGenresList = Array.from(allGenresSet).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
   // Count genres
   let genreCounts = {};
   songs.forEach(s => {
-    [s.primarygenre, ...(s.subgenres || [])].forEach(g => {
+    getAllSongGenres(s).forEach(g => {
       if (!g) return;
       genreCounts[g] = (genreCounts[g] || 0) + 1;
     });
@@ -70,6 +81,26 @@ d3.json("./songs.json").then(dataset => {
   let taxonomyVisibility = {};
   Object.keys(taxonomy).forEach(t => { taxonomyVisibility[t] = true; }); /* default shown */
 
+  // Collect all descriptors from json (both sides)
+  const allDescriptorsSet = new Set();
+  songs.forEach(s => {
+    getAllSongDescriptors(s).forEach(d => allDescriptorsSet.add(d));
+  });
+  const allDescriptorsList = Array.from(allDescriptorsSet).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+  // Count descriptors
+  let descriptorCounts = {};
+  songs.forEach(s => {
+    getAllSongDescriptors(s).forEach(d => {
+      if (!d) return;
+      descriptorCounts[d] = (descriptorCounts[d] || 0) + 1;
+    });
+  });
+
+  // Track visibility for descriptors - default to SHOWN (true)
+  let descriptorVisibility = {};
+  allDescriptorsList.forEach(d => { descriptorVisibility[d] = true; }); /* default shown */
+
   // Track visibility for countries and artists
   let countryVisibility = {};
   let artistVisibility = {};
@@ -78,10 +109,107 @@ d3.json("./songs.json").then(dataset => {
     (s.artists || []).forEach(a => { artistVisibility[a] = true; });
   });
 
+  function formatVisibleTotalCount(visibleCount, totalCount) {
+    const visible = Number(visibleCount) || 0;
+    const total = Number(totalCount) || 0;
+    if (total <= 0) return "0/0";
+    const safeVisible = Math.min(Math.max(0, visible), total);
+    return `${safeVisible}/${total}`;
+  }
+
+  let visibleSongCountsCache = {
+    songs: 0,
+    genres: {},
+    descriptors: {},
+    taxonomy: {},
+    countries: {},
+    artists: {}
+  };
+
+  function recomputeVisibleSongCountsCache() {
+    const visibleSongs = getVisibleSongs();
+
+    const genreCounts = {};
+    const descriptorCounts = {};
+    const taxonomyCounts = {};
+    const countryCounts = {};
+    const artistCounts = {};
+
+    visibleSongs.forEach((song) => {
+      getAllSongGenres(song).forEach((g) => {
+        if (!g) return;
+        genreCounts[g] = (genreCounts[g] || 0) + 1;
+      });
+
+      getAllSongDescriptors(song).forEach((d) => {
+        if (!d) return;
+        descriptorCounts[d] = (descriptorCounts[d] || 0) + 1;
+      });
+
+      const t = song?.genretaxonomy;
+      if (t) taxonomyCounts[t] = (taxonomyCounts[t] || 0) + 1;
+
+      const countries = song?.countryCode;
+      if (Array.isArray(countries)) {
+        countries.forEach((c) => {
+          if (!c) return;
+          countryCounts[c] = (countryCounts[c] || 0) + 1;
+        });
+      } else if (typeof countries === "string" && countries) {
+        countryCounts[countries] = (countryCounts[countries] || 0) + 1;
+      }
+
+      const artists = song?.artists;
+      if (Array.isArray(artists)) {
+        artists.forEach((a) => {
+          if (!a) return;
+          artistCounts[a] = (artistCounts[a] || 0) + 1;
+        });
+      } else if (typeof artists === "string" && artists) {
+        artistCounts[artists] = (artistCounts[artists] || 0) + 1;
+      }
+    });
+
+    visibleSongCountsCache = {
+      songs: visibleSongs.length,
+      genres: genreCounts,
+      descriptors: descriptorCounts,
+      taxonomy: taxonomyCounts,
+      countries: countryCounts,
+      artists: artistCounts
+    };
+  }
+
+  let selectedGenreKeysCache = null;
+  let selectedDescriptorKeysCache = null;
+
+  function invalidateSelectedFilterKeysCache() {
+    selectedGenreKeysCache = null;
+    selectedDescriptorKeysCache = null;
+  }
+
+  function getSelectedGenreKeys() {
+    if (!selectedGenreKeysCache) {
+      selectedGenreKeysCache = Object.keys(genreVisibility).filter((k) => genreVisibility[k]);
+    }
+    return selectedGenreKeysCache;
+  }
+
+  function getSelectedDescriptorKeys() {
+    if (!selectedDescriptorKeysCache) {
+      selectedDescriptorKeysCache = Object.keys(descriptorVisibility).filter((k) => descriptorVisibility[k]);
+    }
+    return selectedDescriptorKeysCache;
+  }
+
   // Tooltip
   const tooltip = d3.select("body").append("div").attr("id", "tooltip");
   let activeTooltipCell = null;
   let tooltipRepositionRaf = 0;
+
+  function isMobileTooltipDisabled() {
+    return window.matchMedia && window.matchMedia("(hover: none), (pointer: coarse), (max-width: 1100px)").matches;
+  }
 
   function syncTooltipMaxWidth(cellNode) {
     const tooltipNode = tooltip.node();
@@ -327,7 +455,7 @@ d3.json("./songs.json").then(dataset => {
     return `background-color: ${safeColor}; border-color: ${safeColor}; color: ${textColor};`;
   }
 
-  // Taxonomy badges in header (desktop) and above chart (mobile)
+  // Taxonomy badges (rendered anywhere `.taxonomy-bar` exists)
   d3.selectAll(".taxonomy-bar").each(function() {
     const legend = d3.select(this);
     legend.html("");
@@ -550,8 +678,28 @@ d3.json("./songs.json").then(dataset => {
     if (visibleSongs.length === 0) return;
 
     const selectedSong = currentSongList[selectedSongIndex];
-    const currentVisibleIndex = visibleSongs.indexOf(selectedSong);
+    const visibleSides = getVisibleSidesForSong(selectedSong);
+    const currentSide = selectedSongSide;
 
+    // Check if we can switch to the other side on the current song
+    let switchToSide = null;
+    if (step > 0) { // next
+      if (currentSide === 'A' && visibleSides.includes('B')) {
+        switchToSide = 'B';
+      }
+    } else { // prev
+      if (currentSide === 'B' && visibleSides.includes('A')) {
+        switchToSide = 'A';
+      }
+    }
+
+    if (switchToSide) {
+      showSongModal(selectedSongIndex, switchToSide, false, true, true);
+      return;
+    }
+
+    // Move to next/prev song - always start on side A if visible, otherwise B
+    const currentVisibleIndex = visibleSongs.indexOf(selectedSong);
     let targetVisibleIndex;
     if (currentVisibleIndex === -1) {
       targetVisibleIndex = step > 0 ? 0 : visibleSongs.length - 1;
@@ -562,7 +710,10 @@ d3.json("./songs.json").then(dataset => {
     const targetSong = visibleSongs[targetVisibleIndex];
     const targetSongIndex = currentSongList.indexOf(targetSong);
     if (targetSongIndex !== -1) {
-      showSongModal(targetSongIndex, "A", false, true, true);
+      // Always start on the preferred side for the new song
+      const targetVisibleSides = getVisibleSidesForSong(targetSong);
+      const startingSide = targetVisibleSides.includes('A') ? 'A' : 'B';
+      showSongModal(targetSongIndex, startingSide, false, true, true);
     }
   }
 
@@ -581,14 +732,14 @@ d3.json("./songs.json").then(dataset => {
 
       const selectedVisibleSongIndex = currentSongList.indexOf(selectedSong);
       if (selectedVisibleSongIndex !== -1) {
-        showSongModal(selectedVisibleSongIndex, "A", true, true);
+        showSongModal(selectedVisibleSongIndex, getPreferredVisibleSongSide(selectedSong), true, true);
         return;
       }
     }
 
     const firstVisibleSongIndex = currentSongList.indexOf(visibleSongs[0]);
     if (firstVisibleSongIndex !== -1) {
-      showSongModal(firstVisibleSongIndex, "A", true, true);
+      showSongModal(firstVisibleSongIndex, getPreferredVisibleSongSide(visibleSongs[0]), true, true);
     }
   }
 
@@ -726,6 +877,7 @@ d3.json("./songs.json").then(dataset => {
   // global utility functions
   function clearMainPanels() {
     d3.select("#genres-cell").html("");
+    d3.select("#descriptors-cell").html("");
     d3.select("#categories-cell").html("");
     d3.select("#countries-cell").html("");
     d3.select("#artists-cell").html("");
@@ -733,7 +885,7 @@ d3.json("./songs.json").then(dataset => {
     d3.selectAll(".nav-tab").classed("active", false);
     updateContextColumn();
   }
-  function updateContextColumn() {
+function updateContextColumn() {
     const allCells = d3.selectAll(".context-cell").nodes();
     allCells.forEach(n => {
       const html = n.innerHTML.trim();
@@ -744,6 +896,33 @@ d3.json("./songs.json").then(dataset => {
         d3.select(n).style("display", null);
       }
     });
+  }
+
+  function refreshRenderedContextPanels({ preserveScroll = true } = {}) {
+    const panels = [
+      { selector: "#genres-cell", render: renderGenreListCell },
+      { selector: "#descriptors-cell", render: renderDescriptorsListCell },
+      { selector: "#categories-cell", render: renderCategoriesPanel },
+      { selector: "#countries-cell", render: renderCountriesPanel },
+      { selector: "#artists-cell", render: renderArtistsPanel },
+      { selector: "#ratings-cell", render: renderRatingsPanel }
+    ];
+
+    panels.forEach(({ selector, render }) => {
+      const node = d3.select(selector).node();
+      if (!node) return;
+      if (!node.innerHTML || node.innerHTML.trim().length === 0) return;
+
+      const priorScrollTop = preserveScroll ? node.scrollTop : 0;
+      try {
+        render();
+      } catch (error) {
+        console.error("Panel refresh failed:", selector, error);
+      }
+      if (preserveScroll) node.scrollTop = priorScrollTop;
+    });
+
+    updateContextColumn();
   }
 
   function scrollLeftPanelToTop() {
@@ -928,7 +1107,7 @@ d3.json("./songs.json").then(dataset => {
       const panel = d3.select(this.closest(".accordion-panel"));
       const panelKey = panel.attr("data-accordion-key");
 
-      const interactiveTarget = event.target.closest("button, input, a, label, .clickable-genre, .clickable-taxonomy");
+      const interactiveTarget = event.target.closest("button, input, a, label, .clickable-genre, .clickable-descriptor, .clickable-taxonomy, .clickable-country, .clickable-artist");
       if (interactiveTarget) return;
 
       const nowOpen = !accordionState[panelKey];
@@ -938,23 +1117,29 @@ d3.json("./songs.json").then(dataset => {
     updateContextColumn();
   }
   function updateStatusBar() {
-    const visibleCount = getVisibleSongs().length;
+    const visibleCount = visibleSongCountsCache.songs;
     const genreCount = Object.values(genreVisibility).filter(v => v).length;
     const taxonomyCount = Object.values(taxonomyVisibility).filter(v => v).length;
+    const descriptorCount = Object.values(descriptorVisibility).filter(v => v).length;
     const countryCount = Object.values(countryVisibility).filter(v => v).length;
     const artistCount = Object.values(artistVisibility).filter(v => v).length;
     const totalGenres = Object.keys(genreVisibility).length;
     const totalTaxonomies = Object.keys(taxonomyVisibility).length;
+    const totalDescriptors = Object.keys(descriptorVisibility).length;
     const totalCountries = Object.keys(countryVisibility).length;
     const totalArtists = Object.keys(artistVisibility).length;
 
-    const genreCountText = totalGenres > 0 && genreCount === totalGenres ? `${genreCount} (All)` : `${genreCount}`;
-    const taxonomyAllEffective = totalTaxonomies > 0 && (taxonomyCount === 0 || taxonomyCount === totalTaxonomies);
-    const countryAllEffective = totalCountries > 0 && (countryCount === 0 || countryCount === totalCountries);
-    const artistAllEffective = totalArtists > 0 && (artistCount === 0 || artistCount === totalArtists);
-    const taxonomyCountText = taxonomyAllEffective ? `${totalTaxonomies} (All)` : `${taxonomyCount}`;
-    const countryCountText = countryAllEffective ? `${totalCountries} (All)` : `${countryCount}`;
-    const artistCountText = artistAllEffective ? `${totalArtists} (All)` : `${artistCount}`;
+    const fractionText = (count, total, { zeroMeansAll = false } = {}) => {
+      if (!Number.isFinite(total) || total <= 0) return "0/0";
+      const effectiveCount = (zeroMeansAll && count === 0) ? total : count;
+      return `${effectiveCount}/${total}`;
+    };
+
+    const genreCountText = fractionText(genreCount, totalGenres, { zeroMeansAll: false });
+    const taxonomyCountText = fractionText(taxonomyCount, totalTaxonomies, { zeroMeansAll: true });
+    const descriptorCountText = fractionText(descriptorCount, totalDescriptors, { zeroMeansAll: false });
+    const countryCountText = fractionText(countryCount, totalCountries, { zeroMeansAll: true });
+    const artistCountText = fractionText(artistCount, totalArtists, { zeroMeansAll: true });
     const selectedYearText = selectedYear === null ? "All" : selectedYear;
     const selectedRankText = sortMode === "chart"
       ? (selectedRank === null ? "All" : `#${selectedRank}`)
@@ -973,6 +1158,7 @@ d3.json("./songs.json").then(dataset => {
           <div class="song-count-dropdown-row">Years: ${selectedYearText}</div>
           <div class="song-count-dropdown-row">Ranks: ${selectedRankText}</div>
           <div class="song-count-dropdown-row">Genres: ${genreCountText}</div>
+          <div class="song-count-dropdown-row">Descriptors: ${descriptorCountText}</div>
           <div class="song-count-dropdown-row">Categories: ${taxonomyCountText}</div>
           <div class="song-count-dropdown-row">Countries: ${countryCountText}</div>
           <div class="song-count-dropdown-row">Artists: ${artistCountText}</div>
@@ -994,30 +1180,47 @@ d3.json("./songs.json").then(dataset => {
 
     syncToggleAllButtonLabels();
   }
-  function toggleAllGlobal() {
-    const allChecked = Object.values(genreVisibility).every(v => v) &&
+function toggleAllGlobal() {
+  const allChecked = Object.values(genreVisibility).every(v => v) &&
                        Object.values(taxonomyVisibility).every(v => v) &&
+                       Object.values(descriptorVisibility).every(v => v) &&
                        Object.values(countryVisibility).every(v => v) &&
                        Object.values(artistVisibility).every(v => v);
-    const newState = !allChecked;
+  const newState = !allChecked;
 
-    // "Show all" should also clear chart year/rank filters.
-    if (newState) {
-      selectedYear = null;
-      selectedRank = null;
-    }
+  // "Show all" should also clear chart year/rank filters.
+  if (newState) {
+    selectedYear = null;
+    selectedRank = null;
+    ratingMinFilter = 0.5;
+    ratingMaxFilter = 5;
+    mustContainAllSelectedGenres = false;
+    mustContainAllSelectedDescriptors = false;
+    d3.selectAll("#genres-must-contain-all, #descriptors-must-contain-all").property("checked", false);
+  }
 
     Object.keys(genreVisibility).forEach(k => genreVisibility[k] = newState);
     Object.keys(taxonomyVisibility).forEach(k => taxonomyVisibility[k] = newState);
+    Object.keys(descriptorVisibility).forEach(k => descriptorVisibility[k] = newState);
     Object.keys(countryVisibility).forEach(k => countryVisibility[k] = newState);
     Object.keys(artistVisibility).forEach(k => artistVisibility[k] = newState);
-    d3.selectAll(".genre-toggle, .taxonomy-toggle, .country-toggle, .artist-toggle").property("checked", newState);
+    invalidateSelectedFilterKeysCache();
+    d3.selectAll(".genre-toggle, .taxonomy-toggle, .descriptor-toggle, .country-toggle, .artist-toggle").property("checked", newState);
+    syncOrganizedGroupCheckboxes();
+    syncOrganizedDescriptorGroupCheckboxes();
+    syncOrganizedDescriptorSubgroupCheckboxes();
     renderChartRankHeader();
     buildTable();
     rerenderCurrentPanel(false);
     updateStatusBar();
   }
   function getChartScrollContainer() {
+    // The chart scroll container is the element that actually scrolls the chart table.
+    // CSS may move scrolling between `.chart-area` and `.chart-container`, so prefer
+    // whichever currently has overflow/scroll content.
+    const chartContainerNode = d3.select(".chart-container").node();
+    if (chartContainerNode) return chartContainerNode;
+
     return d3.select(".chart-area").node() || document.scrollingElement || document.documentElement;
   }
 
@@ -1052,7 +1255,6 @@ d3.json("./songs.json").then(dataset => {
 
   function scrollSelectedTileToTop(selectedCellNode) {
     if (!selectedCellNode) return;
-    if (window.matchMedia("(max-width: 800px)").matches) return;
 
     const scroller = getChartScrollContainer();
     const selectedRowGap = 8;
@@ -1129,7 +1331,7 @@ d3.json("./songs.json").then(dataset => {
   renderChartSortControl();
   renderChartRankHeader();
   // populate static context cells (all available, collapsed by default)
-  [renderGenreListCell, renderCategoriesPanel, renderCountriesPanel, renderArtistsPanel, renderAboutPanel].forEach((renderFn) => {
+  [renderGenreListCell, renderDescriptorsListCell, renderCategoriesPanel, renderCountriesPanel, renderArtistsPanel, renderRatingsPanel, renderAboutPanel].forEach((renderFn) => {
     try {
       renderFn();
     } catch (error) {
@@ -1252,36 +1454,74 @@ d3.json("./songs.json").then(dataset => {
     }
     syncSelectedSongCellSelection();
     // update helpers after rebuilding
+    recomputeVisibleSongCountsCache();
     updateStatusBar();
+    refreshRenderedContextPanels({ preserveScroll: true });
     updateContextColumn();
     syncYearLabelText();
   }
 
 // Genre Filtering
 function isSongVisible(song) {
-  const songGenres = [song.primarygenre, ...(song.subgenres || [])];
+  const songGenres = getAllSongGenres(song);
+  const songDescriptors = getAllSongDescriptors(song);
   const songCountries = song.countryCode || [];
   const songArtists = song.artists || [];
 
   const anyTaxChecked = Object.values(taxonomyVisibility).some(v => v);
-  const anyGenreChecked = Object.values(genreVisibility).some(v => v);
+  const selectedGenres = getSelectedGenreKeys();
+  const anyGenreChecked = selectedGenres.length > 0;
   const anyCountryChecked = Object.values(countryVisibility).some(v => v);
   const anyArtistChecked = Object.values(artistVisibility).some(v => v);
+  const selectedDescriptors = getSelectedDescriptorKeys();
+  const anyDescriptorChecked = selectedDescriptors.length > 0;
+
+  const songGenreSet = mustContainAllSelectedGenres ? new Set(songGenres) : null;
+  const songDescriptorSet = mustContainAllSelectedDescriptors ? new Set(songDescriptors) : null;
 
   let genreOk = false;
   if (!anyTaxChecked) {
-    genreOk = songGenres.some(g => genreVisibility[g]);
+    // With no taxonomy filter active, at least one checked genre must match.
+    // If no genres are checked, show none.
+    if (!anyGenreChecked) genreOk = false;
+    else if (mustContainAllSelectedGenres) {
+      if (selectedGenres.length > songGenreSet.size) genreOk = false;
+      else genreOk = selectedGenres.every((g) => songGenreSet.has(g));
+    } else {
+      genreOk = songGenres.some(g => genreVisibility[g]);
+    }
   } else {
     const taxOk = taxonomyVisibility[song.genretaxonomy];
-    if (!anyGenreChecked && taxOk) genreOk = true;
-    else genreOk = taxOk && songGenres.some(g => genreVisibility[g]);
+    if (!taxOk) genreOk = false;
+    else if (!anyGenreChecked) genreOk = true;
+    else if (mustContainAllSelectedGenres) {
+      if (selectedGenres.length > songGenreSet.size) genreOk = false;
+      else genreOk = selectedGenres.every((g) => songGenreSet.has(g));
+    } else {
+      genreOk = songGenres.some(g => genreVisibility[g]);
+    }
   }
 
   // Country + artist filtering
   const countryOk = !anyCountryChecked || songCountries.some(c => countryVisibility[c]);
   const artistOk = !anyArtistChecked || songArtists.some(a => artistVisibility[a]);
 
-  return genreOk && countryOk && artistOk;
+  let descriptorOk = false;
+  if (!anyDescriptorChecked) descriptorOk = true;
+  else if (mustContainAllSelectedDescriptors) {
+    if (selectedDescriptors.length > songDescriptorSet.size) descriptorOk = false;
+    else descriptorOk = selectedDescriptors.every((d) => songDescriptorSet.has(d));
+  } else {
+    descriptorOk = songDescriptors.some(d => descriptorVisibility[d]);
+  }
+
+  // Side visibility must satisfy the intersection of side-aware filters (genre/descriptor/rating).
+  // This avoids showing a song when (e.g.) one side matches the genre filter but the *other* side
+  // is the only one that matches the rating range.
+  const visibleSides = getVisibleSidesForSong(song);
+  const sideOk = Array.isArray(visibleSides) && visibleSides.length > 0;
+
+  return genreOk && descriptorOk && countryOk && artistOk && sideOk;
 }
 
   // Single table cell for each song
@@ -1294,28 +1534,59 @@ function isSongVisible(song) {
         return;
       }
       cell.style("background-color", taxonomy[song.genretaxonomy]?.color || "#2c292b");
+
+      // Print/title helpers: store which side(s) are currently "visible" under the genre filter.
+      // This lets print/export or any CSS that surfaces titles show A, B, or A/B correctly.
+      const visibleSides = getVisibleSidesForSong(song);
+      const titleA = song?.tracks?.[0]?.title || "";
+      const titleB = song?.tracks?.[1]?.title || "";
+      const combinedTitle = titleB ? `${titleA} / ${titleB}` : titleA;
+      const effectiveSide = getEffectiveVisibleSongSide(song);
+      const preferredTitle = effectiveSide === "B" ? (titleB || titleA) : titleA;
+      const printTitle = visibleSides.length === 2 ? combinedTitle : getSongTitleForSides(song, visibleSides);
+
+      cell
+        .attr("data-visible-sides", visibleSides.join(""))
+        .attr("data-title-a", titleA)
+        .attr("data-title-b", titleB)
+        .attr("data-title-combined", combinedTitle)
+        .attr("data-title-preferred", preferredTitle)
+        .attr("data-title-print", printTitle)
+        .attr("title", null);
+
+      cell.append("span")
+        .attr("class", "chart-cell-print-title")
+        .text(printTitle);
     }
     // Tooltip 
     cell.on("mouseenter", function () {
-      if (!song) return;
-      let combinedTitle = song.tracks[0].title;
-      if (song.tracks.length > 1 && song.tracks[1].title) combinedTitle += " / " + song.tracks[1].title;
+      if (!song || isMobileTooltipDisabled()) return;
+      const hoverSide = getEffectiveVisibleSongSide(song);
+      const track = hoverSide === "B" ? song.tracks?.[1] : song.tracks?.[0];
+      const trackTitle = getFilteredHoverTitleForSong(song) || track?.title || song.tracks?.[0]?.title || "";
+
       activeTooltipCell = this;
+      const artistSeparator = getSongArtistSeparator(song);
+      const filteredArtists = getFilteredHoverArtistsForSong(song);
+      const sideGenres = getSongGenresForSide(song, hoverSide);
+      const sideGenreList = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])].filter(Boolean);
+      const genreLabel = sideGenreList.find(g => genreVisibility[g]) || sideGenres.primarygenre || song.primarygenre || "";
       tooltip.classed("visible", true).html(`
-        <h2>${combinedTitle}</h2>
-        <p class="tooltip-artist-line">${song.artists.join(" • ")}</p>
-        <p class="tooltip-rank-genre-line">#${song.rank} for ${song.chartYear} • ${song.primarygenre}</p>
+        <h2>${trackTitle}</h2>
+        <p class="tooltip-artist-line">${filteredArtists.join(artistSeparator)}</p>
+        <p class="tooltip-rank-genre-line">#${song.rank} for ${song.chartYear} • ${genreLabel}</p>
       `);
       syncTooltipMaxWidth(this);
       fitTooltipTextToWidth();
       positionTooltipForCell(this);
     })
     .on("mousemove", function() {
-      if (!song) return;
+      if (!song || isMobileTooltipDisabled()) return;
       activeTooltipCell = this;
       queueTooltipReposition();
     })
     .on("mouseleave", function() {
+      if (isMobileTooltipDisabled()) return;
       if (activeTooltipCell === this) activeTooltipCell = null;
       tooltip.classed("visible", false);
     })
@@ -1324,6 +1595,8 @@ function isSongVisible(song) {
       let songIndex = currentSongList.indexOf(song);
       if (songIndex === -1) songIndex = currentSongList.findIndex(s => s.chartYear === song.chartYear && s.rank === song.rank);
       if (songIndex === -1) return;
+      const visibleSides = getVisibleSidesForSong(song);
+      const clickSide = visibleSides.includes("A") ? "A" : visibleSides[0] || "A";
 
       const isMobileOverlay = window.matchMedia && window.matchMedia("(max-width: 1100px)").matches;
       if (isMobileOverlay) {
@@ -1334,7 +1607,7 @@ function isSongVisible(song) {
         }
       }
 
-      showSongModal(songIndex, "A", false, false, true);
+      showSongModal(songIndex, clickSide, false, false, true);
     });
   }
 
@@ -1368,6 +1641,9 @@ function isSongVisible(song) {
     if (!currentPanel.type) return;
     if (currentPanel.type === "taxonomy") showTaxonomyPanel(currentPanel.key, resetScroll, false);
     else if (currentPanel.type === "genre") showGenrePanel(currentPanel.key, resetScroll, false);
+    else if (currentPanel.type === "descriptor") showDescriptorPanel(currentPanel.key, resetScroll, false);
+    else if (currentPanel.type === "country") showCountryPanel(currentPanel.key, resetScroll, false);
+    else if (currentPanel.type === "artist") showArtistPanel(currentPanel.key, resetScroll, false);
   }
 
 
@@ -1381,6 +1657,7 @@ function getToggleAllLabelFor(obj) {
 function syncToggleAllButtonLabels() {
   const allGlobalChecked = Object.values(genreVisibility).every(v => v) &&
                            Object.values(taxonomyVisibility).every(v => v) &&
+                           Object.values(descriptorVisibility).every(v => v) &&
                            Object.values(countryVisibility).every(v => v) &&
                            Object.values(artistVisibility).every(v => v);
 
@@ -1389,6 +1666,7 @@ function syncToggleAllButtonLabels() {
 
   d3.selectAll("#toggle-all-global, #toggle-all-global-overlay").text(allGlobalChecked ? "Hide all" : "Show all");
   d3.select("#toggle-all-genres").text(allGenresChecked ? "Hide all" : "Show all");
+  d3.select("#toggle-all-descriptors").text(Object.values(descriptorVisibility).every(v => v) ? "Hide all" : "Show all");
   d3.select("#toggle-all-categories").text(Object.values(taxonomyVisibility).every(v => v) ? "Hide all" : "Show all");
   d3.select("#toggle-all-countries").text(getToggleAllLabelFor(countryVisibility));
   d3.select("#toggle-all-artists").text(getToggleAllLabelFor(artistVisibility));
@@ -1444,6 +1722,30 @@ function renderGenreViewDropdownHtml(currentView) {
       </button>
       <div class="sort-dropdown-menu">
         <div class="sort-dropdown-title">Genres</div>
+        ${options}
+      </div>
+    </div>
+  `;
+}
+
+function getDescriptorListViewText(view) {
+  return view === "all" ? "Full List" : "Sorted";
+}
+
+function renderDescriptorViewDropdownHtml(currentView) {
+  const allViews = ["organized", "all"];
+  const options = allViews.map(view => {
+    const selected = view === currentView ? ' sort-dropdown-option--selected' : '';
+    return `<button type="button" class="sort-dropdown-option${selected}" data-descriptor-view="${view}">${getDescriptorListViewText(view)}</button>`;
+  }).join("");
+
+  return `
+    <div class="sort-dropdown" data-sort-dropdown="descriptor-view">
+      <button type="button" id="descriptor-view-btn" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        ${getDescriptorListViewText(currentView)} <span class="icon">&#x25BE;</span>
+      </button>
+      <div class="sort-dropdown-menu">
+        <div class="sort-dropdown-title">Descriptors</div>
         ${options}
       </div>
     </div>
@@ -1511,6 +1813,33 @@ function bindGenreViewDropdown() {
   });
 }
 
+function bindDescriptorViewDropdown() {
+  const root = d3.select('[data-sort-dropdown="descriptor-view"]');
+  if (root.empty()) return;
+
+  const trigger = root.select(".sort-dropdown-trigger");
+  trigger.on("click", function(event) {
+    event.stopPropagation();
+    const isOpen = root.classed("is-open");
+    closeAllSortDropdowns();
+    if (!isOpen) {
+      root.classed("is-open", true);
+      trigger.attr("aria-expanded", "true");
+    }
+  });
+
+  root.selectAll(".sort-dropdown-option").on("click", function(event) {
+    event.stopPropagation();
+    const nextView = d3.select(this).attr("data-descriptor-view");
+    if (nextView && nextView !== descriptorListView) {
+      descriptorListView = nextView;
+      renderDescriptorsListCell();
+      return;
+    }
+    closeAllSortDropdowns();
+  });
+}
+
 function getFlagIconClass(countryCode) {
   const normalized = String(countryCode || "").trim().toUpperCase();
   if (!normalized) return "";
@@ -1533,7 +1862,6 @@ function getFlagIconClass(countryCode) {
     HAITI: "HT",
     IRELAND: "IE",
     ITALY: "IT",
-    JAMACIA: "JM",
     JAMAICA: "JM",
     KAZAKHSTAN: "KZ",
     LEBANON: "LB",
@@ -1554,12 +1882,11 @@ function getFlagIconClass(countryCode) {
   return `fi fi-${isoCode.toLowerCase()}`;
 }
 
-d3.select(document)
+  d3.select(document)
   .on("click.sortDropdown", () => closeAllSortDropdowns())
   .on("keydown.sortDropdown", function(event) {
     if (event.key === "Escape") closeAllSortDropdowns();
   });
-
 
 // Categories (taxonomy) panel
 function renderCategoriesPanel() {
@@ -1572,6 +1899,7 @@ function renderCategoriesPanel() {
   const toggleAllLabel = allChecked ? "Hide all" : "Show all";
 
   const categoriesBodyHtml = `
+    <p class="panel-description">The base genres used to categorise the songs.</p>
     <div class="panel-controls-row">
       <button id="toggle-all-categories">${toggleAllLabel}</button>
     </div>
@@ -1580,30 +1908,34 @@ function renderCategoriesPanel() {
       ${orderedKeys.map(tKey => {
         const info = taxonomy[tKey] || {};
         const label = info.label || tKey;
-        const count = songs.filter(s => s.genretaxonomy === tKey).length;
+        const totalCount = songs.filter(s => s.genretaxonomy === tKey).length;
+        const visibleCount = visibleSongCountsCache.taxonomy[tKey] || 0;
         return `
           <li>
             <input type="checkbox" class="taxonomy-toggle" data-taxonomy="${tKey}" ${taxonomyVisibility[tKey] !== false ? "checked" : ""}>
             <span class="genre-badge clickable-taxonomy" data-taxonomy="${tKey}" style="${getTaxonomyBadgeStyle(info.color || "")}">${label}</span>
-            <span class="genre-count">${count}</span>
+            <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
           </li>
         `;
       }).join("")}
     </ul>
   `;
 
+  const totalCategories = orderedKeys.length;
+  const visibleCategories = orderedKeys.reduce((count, tKey) => count + ((visibleSongCountsCache.taxonomy[tKey] || 0) > 0 ? 1 : 0), 0);
+
   renderAccordionCell("#categories-cell", {
     key: "categories",
     title: "Categories",
+    headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleCategories, totalCategories)}</span>`,
     bodyHtml: categoriesBodyHtml
   });
 
   d3.select("#toggle-all-categories").on("click", () => {
-    const currentlyAllChecked = Object.values(taxonomyVisibility).every(v => v);
-    const newState = !currentlyAllChecked;
-    Object.keys(taxonomyVisibility).forEach(k => { taxonomyVisibility[k] = newState; });
-    d3.selectAll(".taxonomy-toggle").property("checked", newState);
-    d3.select("#toggle-all-categories").text(newState ? "Hide all" : "Show all");
+    toggleAllVisibility(taxonomyVisibility);
+    refreshAllFilterToggleCheckboxes();
+    syncOrganizedGroupCheckboxes();
+    renderChartRankHeader();
     buildTable();
     rerenderCurrentPanel(false);
     updateStatusBar();
@@ -1615,7 +1947,7 @@ function renderCategoriesPanel() {
 }
 
 // Countries panel
-  function renderCountriesPanel() {
+function renderCountriesPanel() {
   const countryCounts = {};
   songs.forEach(s => (s.countryCode || []).forEach(c => { countryCounts[c] = (countryCounts[c] || 0) + 1; }));
 
@@ -1634,47 +1966,49 @@ function renderCategoriesPanel() {
 });
 
   const countriesBodyHtml = `
+    <p class="panel-description">Filter the chart by artist country.</p>
     <div class="panel-controls-row">
       <button id="toggle-all-countries">${getToggleAllLabelFor(countryVisibility)}</button>
       ${renderSortDropdownHtml("countries", countrySortMode)}
     </div>
     <br>
     <ul>
-      ${sorted.map(([c,count]) => {
+      ${sorted.map(([c,totalCount]) => {
         const flagClass = getFlagIconClass(c);
+        const visibleCount = visibleSongCountsCache.countries[c] || 0;
         return `
         <li>
-          <input type="checkbox" class="country-toggle" data-country="${c}" ${countryVisibility[c] ? "checked" : ""}>
+          <input type="checkbox" class="country-toggle" data-country="${c}" ${countryVisibility[c] !== false ? "checked" : ""}>
           <span class="country-label">
             ${flagClass ? `<span class="country-flag ${flagClass}" aria-hidden="true"></span>` : ""}
-            <span>${c}</span>
+            <span class="clickable-country" data-country="${c}">${c}</span>
           </span>
-          <span class="genre-count">${count}</span>
+          <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
         </li>`;
       }).join("")}
     </ul>
   `;
 
+  const totalCountries = sorted.length;
+  const visibleCountries = sorted.reduce((count, [c]) => count + ((visibleSongCountsCache.countries[c] || 0) > 0 ? 1 : 0), 0);
+
   renderAccordionCell("#countries-cell", {
     key: "countries",
     title: "Countries",
+    headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleCountries, totalCountries)}</span>`,
     bodyHtml: countriesBodyHtml
   });
 
-  d3.selectAll(".country-toggle").on("change", function() {
-    const c = d3.select(this).attr("data-country");
-    countryVisibility[c] = this.checked;
-    buildTable();
-  });
   updateContextColumn();
   // Toggle all countries
 d3.select("#toggle-all-countries").on("click", () => {
-  const allChecked = Object.values(countryVisibility).every(v => v);
-  const newState = !allChecked;
-  Object.keys(countryVisibility).forEach(k => countryVisibility[k] = newState);
-  d3.selectAll(".country-toggle").property("checked", newState);
-  d3.select("#toggle-all-countries").text(getToggleAllLabelFor(countryVisibility));
+  toggleAllVisibility(countryVisibility);
+  refreshAllFilterToggleCheckboxes();
+  renderChartRankHeader();
   buildTable();
+  rerenderCurrentPanel(false);
+  updateStatusBar();
+  syncToggleAllButtonLabels();
 });
   bindSortDropdown(
     "countries",
@@ -1682,6 +2016,8 @@ d3.select("#toggle-all-countries").on("click", () => {
     (mode) => { countrySortMode = mode; },
     renderCountriesPanel
   );
+
+  bindGenreClicks();
 }
 // Artists panel 
 
@@ -1705,41 +2041,45 @@ function renderArtistsPanel() {
 });
 
   const artistsBodyHtml = `
+    <p class="panel-description">Filter the chart by artists.</p>
     <div class="panel-controls-row">
       <button id="toggle-all-artists">${getToggleAllLabelFor(artistVisibility)}</button>
       ${renderSortDropdownHtml("artists", artistSortMode)}
     </div>
     <br>
     <ul>
-      ${sorted.map(([a,count]) => `
+      ${sorted.map(([a, totalCount]) => {
+        const visibleCount = visibleSongCountsCache.artists[a] || 0;
+        return `
         <li>
-          <input type="checkbox" class="artist-toggle" data-artist="${a}" ${artistVisibility[a] ? "checked" : ""}>
-          <span>${a}</span> <span class="genre-count">${count}</span>
-        </li>`).join("")}
+          <input type="checkbox" class="artist-toggle" data-artist="${a}" ${artistVisibility[a] !== false ? "checked" : ""}>
+          <span class="clickable-artist" data-artist="${a}">${a}</span> <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
+        </li>`;
+      }).join("")}
     </ul>
   `;
+
+  const totalArtists = sorted.length;
+  const visibleArtists = sorted.reduce((count, [a]) => count + ((visibleSongCountsCache.artists[a] || 0) > 0 ? 1 : 0), 0);
 
   renderAccordionCell("#artists-cell", {
     key: "artists",
     title: "Artists",
+    headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleArtists, totalArtists)}</span>`,
     bodyHtml: artistsBodyHtml
   });
 
-  d3.selectAll(".artist-toggle").on("change", function() {
-    const a = d3.select(this).attr("data-artist");
-    artistVisibility[a] = this.checked;
-    buildTable();
-  });
   updateContextColumn();
 // Toggle all Artists
 
 d3.select("#toggle-all-artists").on("click", () => {
-  const allChecked = Object.values(artistVisibility).every(v => v);
-  const newState = !allChecked;
-  Object.keys(artistVisibility).forEach(k => artistVisibility[k] = newState);
-  d3.selectAll(".artist-toggle").property("checked", newState);
-  d3.select("#toggle-all-artists").text(getToggleAllLabelFor(artistVisibility));
+  toggleAllVisibility(artistVisibility);
+  refreshAllFilterToggleCheckboxes();
+  renderChartRankHeader();
   buildTable();
+  rerenderCurrentPanel(false);
+  updateStatusBar();
+  syncToggleAllButtonLabels();
 });
   bindSortDropdown(
     "artists",
@@ -1747,6 +2087,162 @@ d3.select("#toggle-all-artists").on("click", () => {
     (mode) => { artistSortMode = mode; },
     renderArtistsPanel
   );
+
+  bindGenreClicks();
+}
+
+// Ratings panel
+function renderRatingsPanel() {
+  const minRating = 0.5;
+  const maxRating = 5;
+  // Visual tick marks only (no snapping).
+  const tickStep = 0.25;
+
+  const clampToRange = (value) => {
+    const v = Number(value);
+    if (!Number.isFinite(v)) return minRating;
+    return Math.min(maxRating, Math.max(minRating, v));
+  };
+
+  ratingMinFilter = clampToRange(ratingMinFilter);
+  ratingMaxFilter = clampToRange(ratingMaxFilter);
+  if (ratingMinFilter > ratingMaxFilter) ratingMinFilter = ratingMaxFilter;
+
+  const formatLabel = (value) => {
+    const v = Number(value);
+    if (!Number.isFinite(v)) return "";
+    if (Math.abs(v - Math.round(v)) < 1e-9) return String(Math.round(v));
+    return v.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+  };
+
+  const allTicks = [];
+  for (let v = minRating; v <= maxRating + 1e-9; v += tickStep) {
+    allTicks.push(Number(v.toFixed(2)));
+  }
+
+  const tickHtml = allTicks.map((v) => {
+    const pct = ((v - minRating) / (maxRating - minRating)) * 100;
+    return `<span class="rating-range-tick" style="left:${pct}%"></span>`;
+  }).join("");
+
+  const labels = [];
+  for (let v = minRating; v <= maxRating + 1e-9; v += 0.5) {
+    labels.push(Number(v.toFixed(2)));
+  }
+
+  const labelsHtml = labels.map((v) => {
+    const pct = ((v - minRating) / (maxRating - minRating)) * 100;
+    return `<span class="rating-range-label" style="left:${pct}%">${formatLabel(v)}</span>`;
+  }).join("");
+
+  const ratingsBodyHtml = `
+    <p class="panel-description">Filter the chart by RYM rating (weighted average of available single/track ratings).</p>
+    <div class="rating-range">
+      <div class="rating-range-header">
+        <span class="rating-range-value" id="rating-range-value"></span>
+        <button type="button" id="rating-reset">Reset</button>
+      </div>
+      <div class="rating-range-slider" id="rating-range-slider">
+        <div class="rating-range-track"></div>
+        <div class="rating-range-highlight" id="rating-range-highlight"></div>
+        <input type="range" id="rating-range-min" min="${minRating}" max="${maxRating}" step="any" value="${ratingMinFilter}">
+        <input type="range" id="rating-range-max" min="${minRating}" max="${maxRating}" step="any" value="${ratingMaxFilter}">
+        <div class="rating-range-ticks">${tickHtml}</div>
+      </div>
+      <div class="rating-range-labels">${labelsHtml}</div>
+    </div>
+  `;
+
+  const rangeText = `${formatLabel(ratingMinFilter)}\u2013${formatLabel(ratingMaxFilter)}`;
+
+  renderAccordionCell("#ratings-cell", {
+    key: "ratings",
+    title: "Ratings",
+    headerMetaHtml: `<span class="genre-count">${rangeText}</span>`,
+    bodyHtml: ratingsBodyHtml
+  });
+
+  updateContextColumn();
+
+  const minInput = d3.select("#rating-range-min");
+  const maxInput = d3.select("#rating-range-max");
+  const valueEl = d3.select("#rating-range-value");
+  const highlightEl = d3.select("#rating-range-highlight");
+  const sliderEl = d3.select("#rating-range-slider");
+
+  const syncUi = () => {
+    const minVal = clampToRange(minInput.property("value"));
+    const maxVal = clampToRange(maxInput.property("value"));
+    const leftPct = ((minVal - minRating) / (maxRating - minRating)) * 100;
+    const rightPct = 100 - ((maxVal - minRating) / (maxRating - minRating)) * 100;
+
+    valueEl.text(`${formatLabel(minVal)} \u2192 ${formatLabel(maxVal)} stars`);
+    highlightEl.style("left", `${leftPct}%`).style("right", `${rightPct}%`);
+
+    // Keep the closest thumb above the other when crossing.
+    const minNode = minInput.node();
+    const maxNode = maxInput.node();
+    if (minNode && maxNode) {
+      if (minVal >= maxVal) {
+        minNode.style.zIndex = "3";
+        maxNode.style.zIndex = "2";
+      } else {
+        minNode.style.zIndex = "2";
+        maxNode.style.zIndex = "3";
+      }
+    }
+  };
+
+  const applyRatingFilter = () => {
+    renderChartRankHeader();
+    buildTable();
+    rerenderCurrentPanel(false);
+    updateStatusBar();
+    syncToggleAllButtonLabels();
+  };
+
+  const onMinInput = () => {
+    const nextMin = clampToRange(minInput.property("value"));
+    const currentMax = clampToRange(maxInput.property("value"));
+    ratingMinFilter = Math.min(nextMin, currentMax);
+    if (nextMin > currentMax) minInput.property("value", ratingMinFilter);
+    syncUi();
+  };
+
+  const onMaxInput = () => {
+    const currentMin = clampToRange(minInput.property("value"));
+    const nextMax = clampToRange(maxInput.property("value"));
+    ratingMaxFilter = Math.max(nextMax, currentMin);
+    if (nextMax < currentMin) maxInput.property("value", ratingMaxFilter);
+    syncUi();
+  };
+
+  minInput.on("input", onMinInput);
+  maxInput.on("input", onMaxInput);
+  // Apply immediately on release (no snapping).
+  const applyOnRelease = () => {
+    ratingMinFilter = clampToRange(minInput.property("value"));
+    ratingMaxFilter = clampToRange(maxInput.property("value"));
+    if (ratingMinFilter > ratingMaxFilter) ratingMinFilter = ratingMaxFilter;
+    minInput.property("value", ratingMinFilter);
+    maxInput.property("value", ratingMaxFilter);
+    syncUi();
+    applyRatingFilter();
+  };
+
+  minInput.on("change", applyOnRelease);
+  maxInput.on("change", applyOnRelease);
+
+  d3.select("#rating-reset").on("click", () => {
+    ratingMinFilter = minRating;
+    ratingMaxFilter = maxRating;
+    minInput.property("value", ratingMinFilter);
+    maxInput.property("value", ratingMaxFilter);
+    syncUi();
+    applyRatingFilter();
+  });
+
+  syncUi();
 }
 
 
@@ -1766,7 +2262,7 @@ function renderAboutPanel() {
 
   const aboutBodyHtml = `
       <br>
-      <p>Genres of Australia is an interactive data visualisation of the top 10 singles on Australian charts for each year from 1954 to 2024.</p>
+      <p>Genres of Australia is an interactive data visualisation of the top 10 singles on Australian charts for each year from 1954 to 2025.</p>
       <br>
       <p>The aim is to highlight the trends, popularity, and the diversity of genres that have shaped Australians’ favourite songs over the last 70 years.</p>
       <br>
@@ -1793,21 +2289,21 @@ function renderAboutPanel() {
       <br>
       <h2>Sub Genres</h2>
       <br>
-      <p>Sub genres for each single are ordered left to right from most to least influential, and take into account both the A and B side</p>
+      <p>Sub genres for each single are ordered left to right from most to least influential</p>
       <br>
       <br>
       <h2>Chart Data</h2>
       <br>
-      <p>Data was sourced from The Kent Music Report (1954–1988) and ARIA (1988–2024):</p>
+      <p>Data was sourced from The Kent Music Report (1954–1988) and ARIA (1988–2025):</p>
       <br>
-      <p><a target="_blank"  href="https://www.aria.com.au/charts/2024/singles-chart">ARIA year end charts</a></p>
+      <p><a target="_blank"  href="https://www.aria.com.au/charts/2025/singles-chart">ARIA year end charts</a></p>
       <br>
       <p><a target="_blank"  href="https://australian-charts.com/search.asp?cat=s&search=">Australian Chart Archives</a></p>
       <br>
       <br>
       <h2>Genre Data</h2>
       <br>
-      <p>Genre information was sourced from aggregate and user-voted websites:</p>
+      <p>Genre information and assignment are sourced from aggregate and user-voted websites:</p>
       <br>
       <p><a target="_blank"  href="https://rateyourmusic.com/genres/">Rate Your Music</a></p>
       <br>
@@ -1858,7 +2354,15 @@ function renderAboutPanel() {
     const hasSecondTrack = song.tracks.length > 1 && song.tracks[1].youtubeId;
     const hasSecondTitle = hasSecondTrack && !!song.tracks[1].title;
 
-    selectedSongSide = hasSecondTrack && side === "B" ? "B" : "A";
+    const visibleSides = getVisibleSidesForSong(song);
+    if (!hasSecondTrack) {
+      selectedSongSide = "A";
+    } else {
+      const requested = String(side || "A").toUpperCase() === "B" ? "B" : "A";
+      if (visibleSides.includes(requested)) selectedSongSide = requested;
+      else if (visibleSides.includes("A")) selectedSongSide = "A";
+      else selectedSongSide = "B";
+    }
     const currentTrack = selectedSongSide === "B" ? song.tracks[1] : song.tracks[0];
     const selectedSideTitle = currentTrack?.title || combinedTitle;
 
@@ -1884,21 +2388,45 @@ function renderAboutPanel() {
     `;
     };
     // Build clickable genre spans
-    const genreSpans = [song.primarygenre, ...(song.subgenres || [])]
+    const sideGenres = getSongGenresForSide(song, selectedSongSide);
+    const genreSpans = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])]
+      .filter(Boolean)
       .map(g => `<span class="clickable-genre" data-genre="${g}">${g}</span>`)
       .join(" • ");
-    const artistCountryPairsHtml = (song.artists || [])
-      .map((artist, index) => {
-        const countries = song.countryCode || [];
-        const country = countries[index] || (countries.length === 1 ? countries[0] : "");
+    const descriptorSpans = getSongDescriptorsForSide(song, selectedSongSide)
+      .filter(Boolean)
+      .map(d => `<span class="clickable-descriptor" data-descriptor="${d}">${d}</span>`)
+      .join(" • ");
+    const descriptorsRowHtml = descriptorSpans ? `<p class="song-descriptors-row">${descriptorSpans}</p>` : "";
+
+    // Build ratings row
+    const ratings = getSongRatingsForSide(song, selectedSongSide);
+    let ratingsRowHtml = "";
+    if (ratings.primary || ratings.single || ratings.track) {
+      const formatRating = (rating, label) => {
+        if (!rating || typeof rating.score !== 'number' || typeof rating.votes !== 'number' || rating.votes <= 0) {
+          return `${label}: no data`;
+        }
+        return `${label}: ${rating.score.toFixed(2)}/5 from ${rating.votes} rating${rating.votes > 1 ? 's' : ''}`;
+      };
+
+      const primaryText = ratings.primary ? `RYM rating ${ratings.primary.score.toFixed(2)}/5 from ${ratings.primary.votes} rating${ratings.primary.votes > 1 ? 's' : ''}` : 'RYM rating: no data';
+      const singleText = formatRating(ratings.single, 'single rating');
+      const trackText = formatRating(ratings.track, 'track rating');
+
+      ratingsRowHtml = `<p class="song-ratings-row"><span class="primary-rating">${primaryText}</span><br><span class="secondary-ratings">${singleText}, ${trackText}</span></p>`;
+    }
+
+    const artistCountryPairsHtml = getArtistsForSide(song, selectedSongSide)
+      .map(({ artist, country }) => {
         const flagClass = country ? getFlagIconClass(country) : "";
         const flagHtml = flagClass
-          ? `<span class="country-flag ${flagClass}" title="${country}" aria-label="${country}" role="img"></span>`
+          ? `<span class="country-flag ${flagClass} clickable-country" data-country="${country}" title="${country}" aria-label="${country}" role="img"></span>`
           : "";
 
-        return `<span class="artist-country-pair"><span class="artist-name">${artist}</span>${flagHtml}</span>`;
+        return `<span class="artist-country-pair"><span class="artist-name clickable-artist" data-artist="${artist}">${artist}</span>${flagHtml}</span>`;
       })
-      .join(" • ");
+      .join(getSongArtistSeparator(song));
     // Peak chart info
     let peakInfo = "";
     if (song.peakPos) {
@@ -1930,16 +2458,19 @@ function renderAboutPanel() {
         <div class="song-taxonomy-row">${tax ? `<div class="genre-badge clickable-taxonomy" style="${getTaxonomyBadgeStyle(tax.color)}" data-taxonomy="${song.genretaxonomy}">${tax.label}</div>` : ""}</div>
         <div class="song-gap-full" aria-hidden="true"></div>
         <p class="song-genres-row">${genreSpans}</p>
+        ${descriptorsRowHtml}
+        ${descriptorsRowHtml ? '<div class="song-gap-full" aria-hidden="true"></div>' : ''}
+        ${ratingsRowHtml}
       </div>
     `;
 
     const songSummaryHtml = `
       <div class="song-compact-meta">
         <span class="song-compact-title">${selectedSideTitle}</span>
-        <span class="song-compact-artist">${song.artists.join(" • ")}</span>
+        <span class="song-compact-artist">${getArtistsForSide(song, selectedSongSide).map(d => d.artist).join(getSongArtistSeparator(song))}</span>
       </div>
       <div class="song-compact-controls">
-        ${hasSecondTrack ? `<button id="compact-toggle-side" title="Toggle side">${currentSideOrVersionLabel}</button>` : ""}
+        ${(hasSecondTrack && visibleSides.length === 2) ? `<button id="compact-toggle-side" title="Toggle side">${currentSideOrVersionLabel}</button>` : ""}
         <div class="song-compact-transport">
           <button id="compact-prev-song" title="Previous song" aria-label="Previous song"><span class="play-icon">${getStepButtonIconSvg("prev")}</span></button>
           <button id="compact-play" title="Play video" aria-label="Play video"><span class="play-icon">${getPlayButtonIconSvg(false)}</span></button>
@@ -2001,7 +2532,7 @@ function renderAboutPanel() {
       moveNextSong();
     });
 
-    if (hasSecondTrack) {
+    if (hasSecondTrack && visibleSides.length === 2) {
       d3.select("#compact-toggle-side").on("click", function(event) {
         event.stopPropagation();
         toggleSongSide();
@@ -2043,6 +2574,12 @@ function renderFeaturedGenresList() {
     if (organizedGroupState[group] === undefined) organizedGroupState[group] = false;
     const isOpen = organizedGroupState[group];
 
+    const groupGenreKeys = grouped[group].map(([gKey]) => gKey);
+    const groupCheckedCount = groupGenreKeys.reduce((count, gKey) => count + (genreVisibility[gKey] !== false ? 1 : 0), 0);
+    const groupAllChecked = groupGenreKeys.length > 0 && groupCheckedCount === groupGenreKeys.length;
+    const groupItemCountTotal = groupGenreKeys.length;
+    const groupItemCountVisible = groupGenreKeys.reduce((count, gKey) => count + ((visibleSongCountsCache.genres[gKey] || 0) > 0 ? 1 : 0), 0);
+
     const groupGenres = grouped[group]
       .sort((a, b) => {
         const [aKey, aInfo] = a;
@@ -2052,23 +2589,26 @@ function renderFeaturedGenresList() {
         return aLabel.localeCompare(bLabel);
       })
       .map(([gKey, g]) => {
-        const count = genreCounts[gKey] || 0; // show how many songs that genre has
+        const totalCount = genreCounts[gKey] || 0; // show how many songs that genre has
+        const visibleCount = visibleSongCountsCache.genres[gKey] || 0;
         return `
           <li class="genre-item" style="display:flex; align-items:center; gap:6px; margin:4px 0;">
             <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
             <span class="clickable-genre" data-genre="${gKey}">
               ${getGenreLabel(gKey, g)}
             </span>
-            <span class="genre-count">${count}</span>
+            <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
           </li>`;
       }).join("");
 
     return `
-      <div class="organized-group ${isOpen ? "is-open" : "is-closed"}" data-organized-group="${group}">
-        <button type="button" class="organized-group-toggle" data-organized-group="${group}" aria-expanded="${isOpen ? "true" : "false"}">
+      <div class="organized-group ${isOpen ? "is-open" : "is-closed"}" data-organized-group="${group}" data-organized-group-genres="${groupGenreKeys.join("|")}">
+        <div class="organized-group-toggle" data-organized-group="${group}" role="button" tabindex="0" aria-expanded="${isOpen ? "true" : "false"}">
+          <input type="checkbox" class="organized-group-checkbox" data-organized-group="${group}" aria-label="Toggle all genres in ${group}" ${groupAllChecked ? "checked" : ""}>
           <span class="organized-group-title">${group}</span>
+          <span class="organized-group-count">${formatVisibleTotalCount(groupItemCountVisible, groupItemCountTotal)}</span>
           <span class="organized-group-arrow">&#x203A;</span>
-        </button>
+        </div>
         <div class="organized-group-body">
           <ul>${groupGenres}</ul>
         </div>
@@ -2077,6 +2617,25 @@ function renderFeaturedGenresList() {
   }).join("");
 }
 
+
+function syncOrganizedGroupCheckboxes() {
+  d3.selectAll(".organized-group").each(function() {
+    const container = d3.select(this);
+    const keysAttr = container.attr("data-organized-group-genres") || "";
+    const groupGenreKeys = keysAttr.split("|").map(v => v.trim()).filter(Boolean);
+    if (groupGenreKeys.length === 0) return;
+
+    const checkboxNode = container.select(".organized-group-checkbox").node();
+    if (!checkboxNode) return;
+
+    const checkedCount = groupGenreKeys.reduce((count, gKey) => count + (genreVisibility[gKey] !== false ? 1 : 0), 0);
+    const anyChecked = checkedCount > 0;
+    const allChecked = checkedCount === groupGenreKeys.length;
+
+    checkboxNode.checked = allChecked;
+    checkboxNode.indeterminate = anyChecked && !allChecked;
+  });
+}
 
   
 function renderAllGenresList() {
@@ -2088,25 +2647,48 @@ function renderAllGenresList() {
     sorted.sort((a, b) => b.toLowerCase().localeCompare(a.toLowerCase()));
   } else if (genreSortMode === "popular") {
     sorted.sort((a, b) => {
-  const diff = (genreCounts[b] || 0) - (genreCounts[a] || 0);
-  if (diff !== 0) return diff; // primary: popularity
-  return a.toLowerCase().localeCompare(b.toLowerCase()); // secondary: A-Z
-});
+      const visibleA = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[a] || 0) : (genreCounts[a] || 0);
+      const visibleB = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[b] || 0) : (genreCounts[b] || 0);
+      const diffVisible = visibleB - visibleA;
+      if (diffVisible !== 0) return diffVisible; // primary: visible popularity
+
+      if (mustContainAllSelectedGenres) {
+        const totalA = genreCounts[a] || 0;
+        const totalB = genreCounts[b] || 0;
+        const diffTotal = totalB - totalA;
+        if (diffTotal !== 0) return diffTotal; // secondary: total popularity
+      }
+
+      return a.toLowerCase().localeCompare(b.toLowerCase()); // tertiary: A-Z
+    });
   } else if (genreSortMode === "unpopular") {
     sorted.sort((a, b) => {
-  const diff = (genreCounts[a] || 0) - (genreCounts[b] || 0);
-  if (diff !== 0) return diff; // primary: least popular
-  return a.toLowerCase().localeCompare(b.toLowerCase()); // secondary: A-Z
-});
+      const countA = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[a] || 0) : (genreCounts[a] || 0);
+      const countB = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[b] || 0) : (genreCounts[b] || 0);
+
+      const diff = countA - countB;
+      if (diff !== 0) return diff; // primary: least popular
+
+      if (mustContainAllSelectedGenres) {
+        const totalA = genreCounts[a] || 0;
+        const totalB = genreCounts[b] || 0;
+        // For ties in visible counts, keep overall-most higher.
+        const diffTotal = totalB - totalA;
+        if (diffTotal !== 0) return diffTotal;
+      }
+
+      return a.toLowerCase().localeCompare(b.toLowerCase()); // tertiary: A-Z
+    });
   }
 
   return sorted.map(gKey => {
     const manual = genres[gKey];
-    const count = genreCounts[gKey] || 0;
+    const totalCount = genreCounts[gKey] || 0;
+    const visibleCount = visibleSongCountsCache.genres[gKey] || 0;
     return `<li>
       <input type="checkbox" class="genre-toggle" data-genre="${gKey}" ${genreVisibility[gKey] !== false ? "checked" : ""}>
       <span class="clickable-genre" data-genre="${gKey}">${manual ? manual.label : gKey}</span>
-      <span class="genre-count">${count}</span>
+      <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
     </li>`;
   }).join("");
 }
@@ -2123,22 +2705,45 @@ function renderGenreListCell() {
   const sortButtonHtml = genreListView === "all"
     ? renderSortDropdownHtml("genres", genreSortMode)
     : "";
+  const genresDescription = genreListView === "all"
+    ? "Browse all genres in the database."
+    : "Browse grouped and organised genres.";
+
+  const mustContainAllGenresRowHtml = `
+    <div class="panel-controls-row panel-controls-row--checkbox">
+      <label class="must-contain-all-toggle">
+        <input type="checkbox" id="genres-must-contain-all" ${mustContainAllSelectedGenres ? "checked" : ""}>
+        <span>Must contain all selected genres</span>
+      </label>
+    </div>
+  `;
 
   const genresBodyHtml = `
+     <p class="panel-description">${genresDescription}</p>
      <div class="panel-controls-row">${viewButtonHtml}
        <button id="toggle-all-genres">${toggleAllLabel}</button>
        ${sortButtonHtml}
      </div>
+     ${mustContainAllGenresRowHtml}
     <br>
      ${listContainer}
   `;
 
+  const totalGenres = allGenresList.length;
+  const visibleGenres = allGenresList.reduce((count, gKey) => count + ((visibleSongCountsCache.genres[gKey] || 0) > 0 ? 1 : 0), 0);
+
   renderAccordionCell("#genres-cell", {
     key: "genres",
     title: "Genres",
+    headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleGenres, totalGenres)}</span>`,
     bodyHtml: genresBodyHtml
   });
   bindGenreViewDropdown();
+
+  d3.select("#genres-must-contain-all").on("change", function() {
+    mustContainAllSelectedGenres = !!this.checked;
+    buildTable();
+  });
 
   function setOrganizedGroupState(container, nowOpen, immediate = false) {
     const bodyNode = container.select(".organized-group-body").node();
@@ -2196,24 +2801,61 @@ function renderGenreListCell() {
     setOrganizedGroupState(container, !!organizedGroupState[group], true);
   });
 
-  d3.selectAll(".organized-group-toggle").on("click", function() {
+  d3.selectAll(".organized-group-toggle").on("click", function(event) {
+    // Ignore clicks on the group checkbox (it has its own handler).
+    if (event && (event.target?.closest?.(".organized-group-checkbox"))) return;
     const group = d3.select(this).attr("data-organized-group");
     organizedGroupState[group] = !organizedGroupState[group];
     const container = d3.select(this.closest(".organized-group"));
     setOrganizedGroupState(container, organizedGroupState[group]);
   });
+
+  d3.selectAll(".organized-group-toggle").on("keydown", function(event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    const group = d3.select(this).attr("data-organized-group");
+    organizedGroupState[group] = !organizedGroupState[group];
+    const container = d3.select(this.closest(".organized-group"));
+    setOrganizedGroupState(container, organizedGroupState[group]);
+  });
+
+  d3.selectAll(".organized-group-checkbox")
+    .on("click", function(event) {
+      event.stopPropagation();
+    })
+    .on("change", function(event) {
+      event.stopPropagation();
+      const container = d3.select(this.closest(".organized-group"));
+      const keysAttr = container.attr("data-organized-group-genres") || "";
+      const groupGenreKeys = keysAttr.split("|").map(v => v.trim()).filter(Boolean);
+      const newState = !!this.checked;
+
+      groupGenreKeys.forEach((gKey) => {
+        genreVisibility[gKey] = newState;
+        d3.selectAll(`.genre-toggle[data-genre="${gKey}"]`).property("checked", newState);
+      });
+
+      invalidateSelectedFilterKeysCache();
+      buildTable();
+      rerenderCurrentPanel(false);
+      syncOrganizedGroupCheckboxes();
+    });
+
+  syncOrganizedGroupCheckboxes();
   
   bindGenreClicks();
   updateContextColumn();
   d3.select("#toggle-all-genres").on("click", function() {
-      const allChecked = Object.values(genreVisibility).every(v => v);
-      const newState = !allChecked;
-      Object.keys(genreVisibility).forEach(k => { genreVisibility[k] = newState; });
-      Object.keys(taxonomyVisibility).forEach(t => { taxonomyVisibility[t] = newState; });
-      d3.selectAll(".genre-toggle").property("checked", newState);
-      d3.selectAll(".taxonomy-toggle").property("checked", newState);
+      toggleAllGenreVisibility();
+      mustContainAllSelectedGenres = false;
+      d3.select("#genres-must-contain-all").property("checked", false);
+      refreshAllFilterToggleCheckboxes();
+      syncOrganizedGroupCheckboxes();
+      renderChartRankHeader();
       buildTable();
       rerenderCurrentPanel(false);
+      updateStatusBar();
+      syncToggleAllButtonLabels();
   });
   const sortGenresBtn = d3.select("#sort-genres-btn");
   if (!sortGenresBtn.empty()) {
@@ -2226,22 +2868,606 @@ function renderGenreListCell() {
   }
 }
 
-  function bindGenreClicks() {
+// Organised descriptor list
+function renderFeaturedDescriptorsList() {
+  const visibleSongs = getVisibleSongs();
+  const songDescriptorSetCache = new WeakMap();
+
+  const getSongDescriptorSet = (song) => {
+    if (songDescriptorSetCache.has(song)) return songDescriptorSetCache.get(song);
+    const set = new Set(getAllSongDescriptors(song).map(d => String(d || "").toLowerCase()));
+    songDescriptorSetCache.set(song, set);
+    return set;
+  };
+
+  const songHasAnyDescriptor = (song, descriptorKeys) => {
+    if (!song || !descriptorKeys || descriptorKeys.length === 0) return false;
+    const descriptorSet = getSongDescriptorSet(song);
+    return descriptorKeys.some((dKey) => descriptorSet.has(String(dKey || "").toLowerCase()));
+  };
+
+  const getDescriptorLabel = (key, info) => {
+    if (info && typeof info.label === "string" && info.label.trim().length > 0) return info.label;
+    return key;
+  };
+
+  const grouped = {};
+  const ungroupedDescriptors = [];
+
+  allDescriptorsList.forEach((dKey) => {
+    const meta = descriptors[dKey];
+
+    const groups = Array.isArray(meta?.descriptorGroup)
+      ? meta.descriptorGroup
+      : (meta?.descriptorGroup ? [meta.descriptorGroup] : []);
+    const resolvedGroups = groups.map(g => String(g || "").trim()).filter(Boolean);
+
+    const subgroups = Array.isArray(meta?.descriptorSubgroup)
+      ? meta.descriptorSubgroup
+      : (meta?.descriptorSubgroup ? [meta.descriptorSubgroup] : []);
+    const resolvedSubgroups = subgroups.map(sg => String(sg || "").trim()).filter(Boolean);
+
+    // If there's no group, list the descriptor at the top level (no "Other" bucket).
+    if (resolvedGroups.length === 0) {
+      ungroupedDescriptors.push([dKey, meta]);
+      return;
+    }
+
+    resolvedGroups.forEach((group) => {
+      if (!grouped[group]) grouped[group] = { __ungrouped: [], __subgroups: {} };
+
+      // If no subgroup, list directly under the group (no "Other" subgroup).
+      if (resolvedSubgroups.length === 0) {
+        grouped[group].__ungrouped.push([dKey, meta]);
+        return;
+      }
+
+      resolvedSubgroups.forEach((subgroup) => {
+        if (!grouped[group].__subgroups[subgroup]) grouped[group].__subgroups[subgroup] = [];
+        grouped[group].__subgroups[subgroup].push([dKey, meta]);
+      });
+    });
+  });
+
+  const sortedGroups = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+
+  const renderDescriptorItemsHtml = (items) => {
+    const list = Array.isArray(items) ? items.slice() : [];
+    return list
+      .sort((a, b) => {
+        const [aKey, aInfo] = a;
+        const [bKey, bInfo] = b;
+        const aLabel = getDescriptorLabel(aKey, aInfo);
+        const bLabel = getDescriptorLabel(bKey, bInfo);
+        return aLabel.localeCompare(bLabel);
+      })
+      .map(([dKey, d]) => {
+        const totalCount = descriptorCounts[dKey] || 0;
+        const visibleCount = visibleSongCountsCache.descriptors[dKey] || 0;
+        return `
+          <li class="descriptor-item" style="display:flex; align-items:center; gap:6px; margin:4px 0;">
+            <input type="checkbox" class="descriptor-toggle" data-descriptor="${dKey}" ${descriptorVisibility[dKey] !== false ? "checked" : ""}>
+            <span class="clickable-descriptor" data-descriptor="${dKey}">
+              ${getDescriptorLabel(dKey, d)}
+            </span>
+            <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
+          </li>`;
+      })
+      .join("");
+  };
+
+  const groupedHtml = sortedGroups.map(group => {
+    if (organizedDescriptorGroupState[group] === undefined) organizedDescriptorGroupState[group] = false;
+    const isOpen = organizedDescriptorGroupState[group];
+
+    const groupBucket = grouped[group] || { __ungrouped: [], __subgroups: {} };
+    const groupUngroupedItems = groupBucket.__ungrouped || [];
+    const subgroups = groupBucket.__subgroups || {};
+
+    // Create combined list of descriptors and subgroups, sorted alphabetically
+    const combinedItems = [];
+
+    // Add ungrouped descriptors
+    groupUngroupedItems.forEach(([dKey, meta]) => {
+      const label = getDescriptorLabel(dKey, meta);
+      combinedItems.push({ type: 'descriptor', name: label, data: [dKey, meta] });
+    });
+
+    // Add subgroups
+    Object.keys(subgroups).forEach(subgroupName => {
+      combinedItems.push({ type: 'subgroup', name: subgroupName, data: subgroups[subgroupName] });
+    });
+
+    // Sort combined items alphabetically by name
+    combinedItems.sort((a, b) => a.name.localeCompare(b.name));
+
+    const groupDescriptorKeys = Array.from(new Set([
+      ...groupUngroupedItems.map(([dKey]) => dKey),
+      ...Object.keys(subgroups).flatMap((name) => (subgroups[name] || []).map(([dKey]) => dKey))
+    ]));
+
+    const groupItemCountTotal = groupDescriptorKeys.length;
+    const groupItemCountVisible = groupDescriptorKeys.reduce(
+      (count, dKey) => count + ((visibleSongCountsCache.descriptors[dKey] || 0) > 0 ? 1 : 0),
+      0
+    );
+
+    const combinedHtml = combinedItems.map(item => {
+      if (item.type === 'descriptor') {
+        const [dKey, d] = item.data;
+        const totalCount = descriptorCounts[dKey] || 0;
+        const visibleCount = visibleSongCountsCache.descriptors[dKey] || 0;
+        return `
+          <ul>
+            <li class="descriptor-item" style="display:flex; align-items:center; gap:6px; margin:4px 0;">
+              <input type="checkbox" class="descriptor-toggle" data-descriptor="${dKey}" ${descriptorVisibility[dKey] !== false ? "checked" : ""}>
+              <span class="clickable-descriptor" data-descriptor="${dKey}">
+                ${item.name}
+              </span>
+              <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
+            </li>
+          </ul>`;
+      } else if (item.type === 'subgroup') {
+        const subgroupName = item.name;
+        const items = item.data;
+        const subgroupKey = `${group}::${subgroupName}`;
+        if (organizedDescriptorSubgroupState[subgroupKey] === undefined) organizedDescriptorSubgroupState[subgroupKey] = false;
+        const isSubOpen = organizedDescriptorSubgroupState[subgroupKey];
+
+        const subgroupDescriptorKeys = items.map(([dKey]) => dKey);
+        const subgroupCheckedCount = subgroupDescriptorKeys.reduce((count, dKey) => count + (descriptorVisibility[dKey] !== false ? 1 : 0), 0);
+        const subgroupAllChecked = subgroupDescriptorKeys.length > 0 && subgroupCheckedCount === subgroupDescriptorKeys.length;
+
+        const subgroupItemCountTotal = songs.reduce((count, song) => count + (songHasAnyDescriptor(song, subgroupDescriptorKeys) ? 1 : 0), 0);
+        const subgroupItemCountVisible = visibleSongs.reduce((count, song) => count + (songHasAnyDescriptor(song, subgroupDescriptorKeys) ? 1 : 0), 0);
+
+        const descriptorListHtml = renderDescriptorItemsHtml(items);
+
+        return `
+          <div class="organized-descriptor-subgroup ${isSubOpen ? "is-open" : "is-closed"}"
+               data-organized-descriptor-subgroup="${subgroupName}"
+               data-organized-descriptor-subgroup-parent="${group}"
+               data-organized-descriptor-subgroup-keys="${subgroupDescriptorKeys.join("|")}">
+            <div class="organized-descriptor-subgroup-toggle"
+                 data-organized-descriptor-subgroup="${subgroupName}"
+                 data-organized-descriptor-subgroup-parent="${group}"
+                 role="button"
+                 tabindex="0"
+                 aria-expanded="${isSubOpen ? "true" : "false"}">
+              <input type="checkbox"
+                     class="organized-descriptor-subgroup-checkbox"
+                     data-organized-descriptor-subgroup="${subgroupName}"
+                     data-organized-descriptor-subgroup-parent="${group}"
+                     aria-label="Toggle all descriptors in ${subgroupName}"
+                     ${subgroupAllChecked ? "checked" : ""}>
+              <span class="organized-descriptor-subgroup-title">${subgroupName}</span>
+              <span class="organized-descriptor-subgroup-count">${formatVisibleTotalCount(subgroupItemCountVisible, subgroupItemCountTotal)}</span>
+              <span class="organized-descriptor-subgroup-arrow">&#x203A;</span>
+            </div>
+            <div class="organized-descriptor-subgroup-body">
+              <ul>${descriptorListHtml}</ul>
+            </div>
+          </div>
+        `;
+      }
+    }).join("");
+
+    return `
+      <div class="organized-descriptor-group ${isOpen ? "is-open" : "is-closed"}" data-organized-descriptor-group="${group}" data-organized-descriptor-group-keys="${groupDescriptorKeys.join("|")}">
+        <div class="organized-descriptor-group-toggle" data-organized-descriptor-group="${group}" role="button" tabindex="0" aria-expanded="${isOpen ? "true" : "false"}">
+          <span class="organized-descriptor-group-title">${group}</span>
+          <span class="organized-descriptor-group-count">${formatVisibleTotalCount(groupItemCountVisible, groupItemCountTotal)}</span>
+          <span class="organized-descriptor-group-arrow">&#x203A;</span>
+        </div>
+        <div class="organized-descriptor-group-body">
+          <div class="organized-descriptor-group-items">
+            ${combinedHtml}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const ungroupedHtml = ungroupedDescriptors.length
+    ? `<div class="organized-descriptor-ungrouped"><ul>${renderDescriptorItemsHtml(ungroupedDescriptors)}</ul></div>`
+    : "";
+
+  return `${ungroupedHtml}${groupedHtml}`;
+}
+
+function syncOrganizedDescriptorGroupCheckboxes() {
+  d3.selectAll(".organized-descriptor-group").each(function() {
+    const container = d3.select(this);
+    const keysAttr = container.attr("data-organized-descriptor-group-keys") || "";
+    const groupDescriptorKeys = keysAttr.split("|").map(v => v.trim()).filter(Boolean);
+    if (groupDescriptorKeys.length === 0) return;
+
+    const checkboxNode = container.select(".organized-descriptor-group-checkbox").node();
+    if (!checkboxNode) return;
+
+    const checkedCount = groupDescriptorKeys.reduce((count, dKey) => count + (descriptorVisibility[dKey] !== false ? 1 : 0), 0);
+    const anyChecked = checkedCount > 0;
+    const allChecked = checkedCount === groupDescriptorKeys.length;
+
+    checkboxNode.checked = allChecked;
+    checkboxNode.indeterminate = anyChecked && !allChecked;
+  });
+}
+
+function syncOrganizedDescriptorSubgroupCheckboxes() {
+  d3.selectAll(".organized-descriptor-subgroup").each(function() {
+    const container = d3.select(this);
+    const keysAttr = container.attr("data-organized-descriptor-subgroup-keys") || "";
+    const subgroupDescriptorKeys = keysAttr.split("|").map(v => v.trim()).filter(Boolean);
+    if (subgroupDescriptorKeys.length === 0) return;
+
+    const checkboxNode = container.select(".organized-descriptor-subgroup-checkbox").node();
+    if (!checkboxNode) return;
+
+    const checkedCount = subgroupDescriptorKeys.reduce((count, dKey) => count + (descriptorVisibility[dKey] !== false ? 1 : 0), 0);
+    const anyChecked = checkedCount > 0;
+    const allChecked = checkedCount === subgroupDescriptorKeys.length;
+
+    checkboxNode.checked = allChecked;
+    checkboxNode.indeterminate = anyChecked && !allChecked;
+  });
+}
+
+function renderAllDescriptorsList() {
+  const getLabel = (key) => {
+    const meta = descriptors[key];
+    if (meta && typeof meta.label === "string" && meta.label.trim().length > 0) return meta.label;
+    return key;
+  };
+
+  let sorted = [...allDescriptorsList];
+
+  if (descriptorSortMode === "az") {
+    sorted.sort((a, b) => getLabel(a).toLowerCase().localeCompare(getLabel(b).toLowerCase()));
+  } else if (descriptorSortMode === "za") {
+    sorted.sort((a, b) => getLabel(b).toLowerCase().localeCompare(getLabel(a).toLowerCase()));
+  } else if (descriptorSortMode === "popular") {
+    sorted.sort((a, b) => {
+      const visibleA = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[a] || 0) : (descriptorCounts[a] || 0);
+      const visibleB = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[b] || 0) : (descriptorCounts[b] || 0);
+      const diffVisible = visibleB - visibleA;
+      if (diffVisible !== 0) return diffVisible;
+
+      if (mustContainAllSelectedDescriptors) {
+        const totalA = descriptorCounts[a] || 0;
+        const totalB = descriptorCounts[b] || 0;
+        const diffTotal = totalB - totalA;
+        if (diffTotal !== 0) return diffTotal;
+      }
+
+      return getLabel(a).toLowerCase().localeCompare(getLabel(b).toLowerCase());
+    });
+  } else if (descriptorSortMode === "unpopular") {
+    sorted.sort((a, b) => {
+      const countA = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[a] || 0) : (descriptorCounts[a] || 0);
+      const countB = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[b] || 0) : (descriptorCounts[b] || 0);
+
+      const diff = countA - countB;
+      if (diff !== 0) return diff;
+
+      if (mustContainAllSelectedDescriptors) {
+        const totalA = descriptorCounts[a] || 0;
+        const totalB = descriptorCounts[b] || 0;
+        const diffTotal = totalB - totalA;
+        if (diffTotal !== 0) return diffTotal;
+      }
+
+      return getLabel(a).toLowerCase().localeCompare(getLabel(b).toLowerCase());
+    });
+  }
+
+  return sorted.map(dKey => {
+    const meta = descriptors[dKey];
+    const totalCount = descriptorCounts[dKey] || 0;
+    const visibleCount = visibleSongCountsCache.descriptors[dKey] || 0;
+    return `<li>
+      <input type="checkbox" class="descriptor-toggle" data-descriptor="${dKey}" ${descriptorVisibility[dKey] !== false ? "checked" : ""}>
+      <span class="clickable-descriptor" data-descriptor="${dKey}">${meta ? meta.label : dKey}</span>
+      <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
+    </li>`;
+  }).join("");
+}
+
+function renderDescriptorsListCell() {
+  const allDescriptorsChecked = Object.values(descriptorVisibility).every(v => v);
+  const toggleAllLabel = allDescriptorsChecked ? "Hide all" : "Show all";
+
+  const listHTML = descriptorListView === "all" ? renderAllDescriptorsList() : renderFeaturedDescriptorsList();
+  const listContainer = descriptorListView === "all"
+    ? `<ul>${listHTML}</ul>`
+    : `<div class="organized-descriptor-groups">${listHTML}</div>`;
+
+  const viewButtonHtml = renderDescriptorViewDropdownHtml(descriptorListView);
+  const sortButtonHtml = descriptorListView === "all"
+    ? renderSortDropdownHtml("descriptors", descriptorSortMode)
+    : "";
+
+  const descriptorsDescription = descriptorListView === "all"
+    ? "Browse all descriptors in the database."
+    : "Browse descriptors grouped by type.";
+
+  const mustContainAllDescriptorsRowHtml = `
+    <div class="panel-controls-row panel-controls-row--checkbox">
+      <label class="must-contain-all-toggle">
+        <input type="checkbox" id="descriptors-must-contain-all" ${mustContainAllSelectedDescriptors ? "checked" : ""}>
+        <span>Must contain all selected descriptors</span>
+      </label>
+    </div>
+  `;
+
+  const descriptorsBodyHtml = `
+     <p class="panel-description">${descriptorsDescription}</p>
+     <div class="panel-controls-row">${viewButtonHtml}
+       <button id="toggle-all-descriptors">${toggleAllLabel}</button>
+       ${sortButtonHtml}
+     </div>
+     ${mustContainAllDescriptorsRowHtml}
+    <br>
+     ${listContainer}
+  `;
+
+  const totalDescriptors = allDescriptorsList.length;
+  const visibleDescriptors = allDescriptorsList.reduce((count, dKey) => count + ((visibleSongCountsCache.descriptors[dKey] || 0) > 0 ? 1 : 0), 0);
+
+  renderAccordionCell("#descriptors-cell", {
+    key: "descriptors",
+    title: "Descriptors",
+    headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleDescriptors, totalDescriptors)}</span>`,
+    bodyHtml: descriptorsBodyHtml
+  });
+
+  bindDescriptorViewDropdown();
+
+  d3.select("#descriptors-must-contain-all").on("change", function() {
+    mustContainAllSelectedDescriptors = !!this.checked;
+    buildTable();
+  });
+
+  function setOrganizedDescriptorGroupState(container, nowOpen, immediate = false) {
+    const bodyNode = container.select(".organized-descriptor-group-body").node();
+    if (!bodyNode) return;
+
+    container.classed("is-open", nowOpen).classed("is-closed", !nowOpen);
+    container.select(".organized-descriptor-group-toggle").attr("aria-expanded", nowOpen ? "true" : "false");
+
+    if (immediate) {
+      bodyNode.style.display = nowOpen ? "block" : "none";
+      bodyNode.style.maxHeight = nowOpen ? "none" : "0px";
+      bodyNode.style.opacity = nowOpen ? "1" : "0";
+      bodyNode.style.paddingTop = nowOpen ? "6px" : "0px";
+      return;
+    }
+
+    if (nowOpen) {
+      bodyNode.style.display = "block";
+      bodyNode.style.maxHeight = "0px";
+      bodyNode.style.opacity = "0";
+      bodyNode.style.paddingTop = "0px";
+      requestAnimationFrame(() => {
+        bodyNode.style.maxHeight = `${bodyNode.scrollHeight}px`;
+        bodyNode.style.opacity = "1";
+        bodyNode.style.paddingTop = "6px";
+      });
+      const onOpenEnd = (event) => {
+        if (event.propertyName !== "max-height") return;
+        bodyNode.style.maxHeight = "none";
+        bodyNode.removeEventListener("transitionend", onOpenEnd);
+      };
+      bodyNode.addEventListener("transitionend", onOpenEnd);
+    } else {
+      const currentHeight = bodyNode.scrollHeight;
+      bodyNode.style.maxHeight = `${currentHeight}px`;
+      bodyNode.style.opacity = "1";
+      bodyNode.style.paddingTop = "6px";
+      requestAnimationFrame(() => {
+        bodyNode.style.maxHeight = "0px";
+        bodyNode.style.opacity = "0";
+        bodyNode.style.paddingTop = "0px";
+      });
+      const onCloseEnd = (event) => {
+        if (event.propertyName !== "max-height") return;
+        bodyNode.style.display = "none";
+        bodyNode.removeEventListener("transitionend", onCloseEnd);
+      };
+      bodyNode.addEventListener("transitionend", onCloseEnd);
+    }
+  }
+
+  function setOrganizedDescriptorSubgroupState(container, nowOpen, immediate = false) {
+    const bodyNode = container.select(".organized-descriptor-subgroup-body").node();
+    if (!bodyNode) return;
+
+    container.classed("is-open", nowOpen).classed("is-closed", !nowOpen);
+    container.select(".organized-descriptor-subgroup-toggle").attr("aria-expanded", nowOpen ? "true" : "false");
+
+    if (immediate) {
+      bodyNode.style.display = nowOpen ? "block" : "none";
+      bodyNode.style.maxHeight = nowOpen ? "none" : "0px";
+      bodyNode.style.opacity = nowOpen ? "1" : "0";
+      bodyNode.style.paddingTop = nowOpen ? "6px" : "0px";
+      return;
+    }
+
+    if (nowOpen) {
+      bodyNode.style.display = "block";
+      bodyNode.style.maxHeight = "0px";
+      bodyNode.style.opacity = "0";
+      bodyNode.style.paddingTop = "0px";
+      requestAnimationFrame(() => {
+        bodyNode.style.maxHeight = `${bodyNode.scrollHeight}px`;
+        bodyNode.style.opacity = "1";
+        bodyNode.style.paddingTop = "6px";
+      });
+      const onOpenEnd = (event) => {
+        if (event.propertyName !== "max-height") return;
+        bodyNode.style.maxHeight = "none";
+        bodyNode.removeEventListener("transitionend", onOpenEnd);
+      };
+      bodyNode.addEventListener("transitionend", onOpenEnd);
+    } else {
+      const currentHeight = bodyNode.scrollHeight;
+      bodyNode.style.maxHeight = `${currentHeight}px`;
+      bodyNode.style.opacity = "1";
+      bodyNode.style.paddingTop = "6px";
+      requestAnimationFrame(() => {
+        bodyNode.style.maxHeight = "0px";
+        bodyNode.style.opacity = "0";
+        bodyNode.style.paddingTop = "0px";
+      });
+      const onCloseEnd = (event) => {
+        if (event.propertyName !== "max-height") return;
+        bodyNode.style.display = "none";
+        bodyNode.removeEventListener("transitionend", onCloseEnd);
+      };
+      bodyNode.addEventListener("transitionend", onCloseEnd);
+    }
+  }
+
+  d3.selectAll(".organized-descriptor-group").each(function() {
+    const container = d3.select(this);
+    const group = container.attr("data-organized-descriptor-group");
+    setOrganizedDescriptorGroupState(container, !!organizedDescriptorGroupState[group], true);
+  });
+
+  d3.selectAll(".organized-descriptor-subgroup").each(function() {
+    const container = d3.select(this);
+    const group = container.attr("data-organized-descriptor-subgroup-parent") || "";
+    const subgroup = container.attr("data-organized-descriptor-subgroup") || "";
+    const subgroupKey = `${group}::${subgroup}`;
+    setOrganizedDescriptorSubgroupState(container, !!organizedDescriptorSubgroupState[subgroupKey], true);
+  });
+
+  d3.selectAll(".organized-descriptor-group-toggle").on("click", function(event) {
+    const group = d3.select(this).attr("data-organized-descriptor-group");
+    organizedDescriptorGroupState[group] = !organizedDescriptorGroupState[group];
+    const container = d3.select(this.closest(".organized-descriptor-group"));
+    setOrganizedDescriptorGroupState(container, organizedDescriptorGroupState[group]);
+  });
+
+  d3.selectAll(".organized-descriptor-group-toggle").on("keydown", function(event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    const group = d3.select(this).attr("data-organized-descriptor-group");
+    organizedDescriptorGroupState[group] = !organizedDescriptorGroupState[group];
+    const container = d3.select(this.closest(".organized-descriptor-group"));
+    setOrganizedDescriptorGroupState(container, organizedDescriptorGroupState[group]);
+  });
+
+  d3.selectAll(".organized-descriptor-subgroup-toggle").on("click", function(event) {
+    if (event && (event.target?.closest?.(".organized-descriptor-subgroup-checkbox"))) return;
+    const subgroup = d3.select(this).attr("data-organized-descriptor-subgroup") || "";
+    const group = d3.select(this).attr("data-organized-descriptor-subgroup-parent") || "";
+    const subgroupKey = `${group}::${subgroup}`;
+    organizedDescriptorSubgroupState[subgroupKey] = !organizedDescriptorSubgroupState[subgroupKey];
+    const container = d3.select(this.closest(".organized-descriptor-subgroup"));
+    setOrganizedDescriptorSubgroupState(container, organizedDescriptorSubgroupState[subgroupKey]);
+  });
+
+  d3.selectAll(".organized-descriptor-subgroup-toggle").on("keydown", function(event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    const subgroup = d3.select(this).attr("data-organized-descriptor-subgroup") || "";
+    const group = d3.select(this).attr("data-organized-descriptor-subgroup-parent") || "";
+    const subgroupKey = `${group}::${subgroup}`;
+    organizedDescriptorSubgroupState[subgroupKey] = !organizedDescriptorSubgroupState[subgroupKey];
+    const container = d3.select(this.closest(".organized-descriptor-subgroup"));
+    setOrganizedDescriptorSubgroupState(container, organizedDescriptorSubgroupState[subgroupKey]);
+  });
+
+  syncOrganizedDescriptorGroupCheckboxes();
+  syncOrganizedDescriptorSubgroupCheckboxes();
+
+  d3.selectAll(".organized-descriptor-subgroup-checkbox")
+    .on("click", function(event) {
+      event.stopPropagation();
+    })
+    .on("change", function(event) {
+      event.stopPropagation();
+      const container = d3.select(this.closest(".organized-descriptor-subgroup"));
+      const keysAttr = container.attr("data-organized-descriptor-subgroup-keys") || "";
+      const subgroupDescriptorKeys = keysAttr.split("|").map(v => v.trim()).filter(Boolean);
+      const newState = !!this.checked;
+
+      subgroupDescriptorKeys.forEach((dKey) => {
+        descriptorVisibility[dKey] = newState;
+        d3.selectAll(`.descriptor-toggle[data-descriptor="${dKey}"]`).property("checked", newState);
+      });
+
+      invalidateSelectedFilterKeysCache();
+      buildTable();
+      rerenderCurrentPanel(false);
+      syncOrganizedDescriptorGroupCheckboxes();
+      syncOrganizedDescriptorSubgroupCheckboxes();
+    });
+
+  bindGenreClicks();
+  updateContextColumn();
+
+  d3.select("#toggle-all-descriptors").on("click", function() {
+    toggleAllVisibility(descriptorVisibility);
+    mustContainAllSelectedDescriptors = false;
+    d3.select("#descriptors-must-contain-all").property("checked", false);
+    refreshAllFilterToggleCheckboxes();
+    syncOrganizedDescriptorGroupCheckboxes();
+    syncOrganizedDescriptorSubgroupCheckboxes();
+    renderChartRankHeader();
+    buildTable();
+    rerenderCurrentPanel(false);
+    updateStatusBar();
+    syncToggleAllButtonLabels();
+  });
+
+  const sortDescriptorsBtn = d3.select("#sort-descriptors-btn");
+  if (!sortDescriptorsBtn.empty()) {
+    bindSortDropdown(
+      "descriptors",
+      () => descriptorSortMode,
+      (mode) => { descriptorSortMode = mode; },
+      renderDescriptorsListCell
+    );
+  }
+}
+
+function bindGenreClicks() {
     d3.selectAll(".clickable-genre").on("click", function() {
       closeSongAccordion();
       showGenrePanel(d3.select(this).attr("data-genre"), true);
+    });
+
+    d3.selectAll(".clickable-descriptor").on("click", function() {
+      closeSongAccordion();
+      showDescriptorPanel(d3.select(this).attr("data-descriptor"), true);
     });
 
     d3.selectAll(".clickable-taxonomy").on("click", function() {
       showTaxonomyPanel(d3.select(this).attr("data-taxonomy"), true);
     });
 
+    d3.selectAll(".clickable-country").on("click", function() {
+      closeSongAccordion();
+      showCountryPanel(d3.select(this).attr("data-country"), true);
+    });
+
+    d3.selectAll(".clickable-artist").on("click", function() {
+      closeSongAccordion();
+      showArtistPanel(d3.select(this).attr("data-artist"), true);
+    });
+
     d3.selectAll(".genre-toggle").on("change", function() {
       const gKey = d3.select(this).attr("data-genre");
       genreVisibility[gKey] = this.checked;
       d3.selectAll(`.genre-toggle[data-genre="${gKey}"]`).property("checked", this.checked);
+      invalidateSelectedFilterKeysCache();
+      syncOrganizedGroupCheckboxes();
       buildTable();
       rerenderCurrentPanel(false);
+      updateStatusBar();
+      syncToggleAllButtonLabels();
     });
 
     d3.selectAll(".taxonomy-toggle").on("change", function() {
@@ -2250,10 +3476,1016 @@ function renderGenreListCell() {
       d3.selectAll(`.taxonomy-toggle[data-taxonomy="${tKey}"]`).property("checked", this.checked);
       buildTable();
       rerenderCurrentPanel(false);
+      updateStatusBar();
+      syncToggleAllButtonLabels();
+    });
+
+    d3.selectAll(".descriptor-toggle").on("change", function() {
+      const dKey = d3.select(this).attr("data-descriptor");
+      descriptorVisibility[dKey] = this.checked;
+      d3.selectAll(`.descriptor-toggle[data-descriptor="${dKey}"]`).property("checked", this.checked);
+      invalidateSelectedFilterKeysCache();
+      syncOrganizedDescriptorGroupCheckboxes();
+      syncOrganizedDescriptorSubgroupCheckboxes();
+      buildTable();
+      rerenderCurrentPanel(false);
+      updateStatusBar();
+      syncToggleAllButtonLabels();
+    });
+
+    d3.selectAll(".country-toggle").on("change", function() {
+      const cKey = d3.select(this).attr("data-country");
+      if (!cKey) return;
+      countryVisibility[cKey] = this.checked;
+      d3.selectAll(".country-toggle")
+        .filter(function() { return d3.select(this).attr("data-country") === cKey; })
+        .property("checked", this.checked);
+      buildTable();
+      rerenderCurrentPanel(false);
+      updateStatusBar();
+      syncToggleAllButtonLabels();
+    });
+
+    d3.selectAll(".artist-toggle").on("change", function() {
+      const aKey = d3.select(this).attr("data-artist");
+      if (!aKey) return;
+      artistVisibility[aKey] = this.checked;
+      d3.selectAll(".artist-toggle")
+        .filter(function() { return d3.select(this).attr("data-artist") === aKey; })
+        .property("checked", this.checked);
+      buildTable();
+      rerenderCurrentPanel(false);
+      updateStatusBar();
+      syncToggleAllButtonLabels();
     });
 
 }
 // Taxonomy side panel
+function isOnlyVisibleSelected(visibilityMap, key) {
+  if (!visibilityMap || !key) return false;
+  const keys = Object.keys(visibilityMap);
+  if (keys.length === 0) return false;
+  return keys.every(k => (k === key ? visibilityMap[k] !== false : visibilityMap[k] === false));
+}
+
+function setOnlyVisibleSelected(visibilityMap, key, makeOnly) {
+  if (!visibilityMap) return;
+  Object.keys(visibilityMap).forEach(k => {
+    visibilityMap[k] = makeOnly ? (k === key) : true;
+  });
+  invalidateSelectedFilterKeysCache();
+}
+
+function setAllVisibility(visibilityMap, value) {
+  if (!visibilityMap) return;
+  Object.keys(visibilityMap).forEach(k => {
+    visibilityMap[k] = value;
+  });
+  invalidateSelectedFilterKeysCache();
+}
+
+function toggleAllVisibility(visibilityMap) {
+  if (!visibilityMap) return;
+  const allChecked = Object.values(visibilityMap).every(v => v);
+  setAllVisibility(visibilityMap, !allChecked);
+}
+
+function toggleAllGenreVisibility() {
+  const allChecked = Object.values(genreVisibility).every(v => v) &&
+                     Object.values(taxonomyVisibility).every(v => v);
+  const newState = !allChecked;
+  setAllVisibility(genreVisibility, newState);
+  setAllVisibility(taxonomyVisibility, newState);
+  invalidateSelectedFilterKeysCache();
+}
+
+function refreshAllFilterToggleCheckboxes() {
+  d3.selectAll(".genre-toggle").property("checked", function() {
+    const gKey = d3.select(this).attr("data-genre");
+    return genreVisibility[gKey] !== false;
+  });
+  d3.selectAll(".taxonomy-toggle").property("checked", function() {
+    const tKey = d3.select(this).attr("data-taxonomy");
+    return taxonomyVisibility[tKey] !== false;
+  });
+  d3.selectAll(".descriptor-toggle").property("checked", function() {
+    const dKey = d3.select(this).attr("data-descriptor");
+    return descriptorVisibility[dKey] !== false;
+  });
+  d3.selectAll(".country-toggle").property("checked", function() {
+    const cKey = d3.select(this).attr("data-country");
+    return countryVisibility[cKey] !== false;
+  });
+  d3.selectAll(".artist-toggle").property("checked", function() {
+    const aKey = d3.select(this).attr("data-artist");
+    return artistVisibility[aKey] !== false;
+  });
+}
+
+function showAllFilters() {
+  selectedYear = null;
+  selectedRank = null;
+  ratingMinFilter = 0.5;
+  ratingMaxFilter = 5;
+  setAllVisibility(genreVisibility, true);
+  setAllVisibility(taxonomyVisibility, true);
+  setAllVisibility(descriptorVisibility, true);
+  setAllVisibility(countryVisibility, true);
+  setAllVisibility(artistVisibility, true);
+  refreshAllFilterToggleCheckboxes();
+  syncOrganizedGroupCheckboxes();
+  syncOrganizedDescriptorGroupCheckboxes();
+  syncOrganizedDescriptorSubgroupCheckboxes();
+  renderChartRankHeader();
+  buildTable();
+  rerenderCurrentPanel(false);
+  updateStatusBar();
+  syncToggleAllButtonLabels();
+}
+
+function applyShowOnlyFilter(filterType, key) {
+  if (!filterType || !key) return;
+  selectedYear = null;
+  selectedRank = null;
+  // "Show only" should also clear rating filters back to full range.
+  ratingMinFilter = 0.5;
+  ratingMaxFilter = 5;
+
+  const maps = {
+    genre: genreVisibility,
+    taxonomy: taxonomyVisibility,
+    descriptor: descriptorVisibility,
+    country: countryVisibility,
+    artist: artistVisibility
+  };
+
+  Object.entries(maps).forEach(([type, visibilityMap]) => {
+    if (!visibilityMap) return;
+    if (type === filterType) {
+      setOnlyVisibleSelected(visibilityMap, key, true);
+    } else {
+      setAllVisibility(visibilityMap, true);
+    }
+  });
+
+  refreshAllFilterToggleCheckboxes();
+  syncOrganizedGroupCheckboxes();
+  syncOrganizedDescriptorGroupCheckboxes();
+  syncOrganizedDescriptorSubgroupCheckboxes();
+  renderChartRankHeader();
+  buildTable();
+  rerenderCurrentPanel(false);
+  updateStatusBar();
+  syncToggleAllButtonLabels();
+}
+
+function handleSelectedOnlyToggleButtonClick() {
+  const button = d3.select(this);
+  const type = button.attr("data-only-type");
+  if (!type) return;
+  const key = button.attr(`data-${type}`);
+  if (!key) return;
+
+  const maps = {
+    genre: genreVisibility,
+    taxonomy: taxonomyVisibility,
+    descriptor: descriptorVisibility,
+    country: countryVisibility,
+    artist: artistVisibility
+  };
+
+  const visibilityMap = maps[type];
+  const makeOnly = !isOnlyVisibleSelected(visibilityMap, key);
+  if (makeOnly) {
+    applyShowOnlyFilter(type, key);
+  } else {
+    showAllFilters();
+  }
+}
+
+function getWeeksAtNumberOneProxy(song) {
+  const weeks = Number(song?.weeksOnChart) || 0;
+  return song?.peakPos === 1 ? weeks : 0;
+}
+
+function getTopChartingSongs(songsList, limit = 3, options = {}) {
+  const resolveSides = typeof options.resolveSides === "function"
+    ? options.resolveSides
+    : () => ["A", "B"];
+
+  const baseList = Array.isArray(songsList) ? songsList : [];
+  const list = [];
+
+  // Alternative versions (same track, two artists) should appear as separate entries
+  // when filtered by artist/country/etc (resolveSides narrows to the relevant side).
+  baseList.forEach((song) => {
+    if (!song) return;
+    if (isAlternativeVersionSong(song)) {
+      const sides = Array.isArray(resolveSides(song)) ? resolveSides(song) : ["A", "B"];
+      const normalizedSides = Array.from(new Set(sides.map(s => (String(s).toUpperCase() === "B" ? "B" : "A"))));
+      normalizedSides.forEach((side) => {
+        list.push({ ...song, __topSongsSideOverride: side });
+      });
+      return;
+    }
+
+    list.push(song);
+  });
+
+  list.sort((a, b) => {
+    const rankA = Number(a?.rank) || 9999;
+    const rankB = Number(b?.rank) || 9999;
+    if (rankA !== rankB) return rankA - rankB;
+
+    const weeksAt1A = getWeeksAtNumberOneProxy(a);
+    const weeksAt1B = getWeeksAtNumberOneProxy(b);
+    if (weeksAt1A !== weeksAt1B) return weeksAt1B - weeksAt1A;
+
+    const weeksA = Number(a?.weeksOnChart) || 0;
+    const weeksB = Number(b?.weeksOnChart) || 0;
+    if (weeksA !== weeksB) return weeksB - weeksA;
+
+    const yearA = Number(a?.chartYear) || 0;
+    const yearB = Number(b?.chartYear) || 0;
+    return yearA - yearB;
+  });
+
+  return list.slice(0, Math.max(0, Number(limit) || 0));
+}
+
+function getSongBestRatingForSong(song, allowedSides = ["A", "B"]) {
+  const normalizedSides = Array.isArray(allowedSides)
+    ? allowedSides.map(s => String(s || "").toUpperCase())
+    : ["A", "B"];
+  const candidates = [];
+
+  normalizedSides.forEach((side) => {
+    const rating = getSongRatingsForSide(song, side).primary;
+    if (rating && typeof rating.score === "number" && typeof rating.votes === "number" && rating.votes > 0) {
+      candidates.push({ side, ...rating });
+    }
+  });
+
+  if (!candidates.length) return null;
+  candidates.sort((a, b) => {
+    if (a.score !== b.score) return b.score - a.score;
+    return b.votes - a.votes;
+  });
+  return candidates[0];
+}
+
+function getSongBestRatingSide(song, allowedSides = ["A", "B"]) {
+  const bestRating = getSongBestRatingForSong(song, allowedSides);
+  return bestRating ? bestRating.side : null;
+}
+
+function getSongRatingScoreForSong(song, allowedSides = ["A", "B"]) {
+  const bestRating = getSongBestRatingForSong(song, allowedSides);
+  return bestRating ? bestRating.score : null;
+}
+
+function getSongRatingVotesForSong(song, allowedSides = ["A", "B"]) {
+  const bestRating = getSongBestRatingForSong(song, allowedSides);
+  return bestRating ? bestRating.votes : 0;
+}
+
+function getTopRatedSongs(songsList, limit = 3, options = {}) {
+  const resolveSides = typeof options.resolveSides === "function"
+    ? options.resolveSides
+    : () => ["A", "B"];
+
+  const baseList = Array.isArray(songsList) ? songsList : [];
+  const list = [];
+
+  // Songs with multiple sides matching the filter should appear as separate entries in top-rated lists,
+  // each sorted by its own side rating (A vs B), instead of sharing the best-side rating.
+  // This applies to both alternative versions (same track, two artists) and A/B sides with different content.
+  baseList.forEach((song) => {
+    if (!song) return;
+    const sides = Array.isArray(resolveSides(song)) ? resolveSides(song) : ["A", "B"];
+    const normalizedSides = Array.from(new Set(sides.map(s => (String(s).toUpperCase() === "B" ? "B" : "A"))));
+    
+    // If multiple sides match the filter criteria, create separate entries for each
+    if (normalizedSides.length > 1 || isAlternativeVersionSong(song)) {
+      normalizedSides.forEach((side) => {
+        const score = getSongRatingScoreForSide(song, side);
+        if (score === null) return;
+        list.push({ ...song, __topSongsSideOverride: side });
+      });
+      return;
+    }
+
+    list.push(song);
+  });
+
+  list.sort((a, b) => {
+    const overrideA = a?.__topSongsSideOverride;
+    const overrideB = b?.__topSongsSideOverride;
+
+    const scoreA = overrideA
+      ? Number(getSongRatingScoreForSide(a, overrideA))
+      : Number(getSongRatingScoreForSong(a, resolveSides(a)));
+    const scoreB = overrideB
+      ? Number(getSongRatingScoreForSide(b, overrideB))
+      : Number(getSongRatingScoreForSong(b, resolveSides(b)));
+    if (scoreA !== scoreB) return scoreB - scoreA;
+
+    const votesA = overrideA
+      ? getSongRatingVotesForSide(a, overrideA)
+      : getSongRatingVotesForSong(a, resolveSides(a));
+    const votesB = overrideB
+      ? getSongRatingVotesForSide(b, overrideB)
+      : getSongRatingVotesForSong(b, resolveSides(b));
+    if (votesA !== votesB) return votesB - votesA;
+
+    const rankA = Number(a?.rank) || 9999;
+    const rankB = Number(b?.rank) || 9999;
+    if (rankA !== rankB) return rankA - rankB;
+
+    const yearA = Number(a?.chartYear) || 0;
+    const yearB = Number(b?.chartYear) || 0;
+    return yearA - yearB;
+  });
+
+  return list
+    .filter((song) => {
+      const overrideSide = song?.__topSongsSideOverride;
+      if (overrideSide) return getSongRatingScoreForSide(song, overrideSide) !== null;
+      return getSongRatingScoreForSong(song, resolveSides(song)) !== null;
+    })
+    .slice(0, Math.max(0, Number(limit) || 0));
+}
+
+function getSongGenresForSide(song, side = "A") {
+  const normalizedSide = (String(side || "A").toUpperCase() === "B") ? "B" : "A";
+
+  // Data model:
+  // - `primarygenre` + `subgenres` are always side A.
+  // - `GenresB` (array) is always side B (may be empty/missing).
+  if (normalizedSide === "B") {
+    const genresB = Array.isArray(song?.GenresB) ? song.GenresB.filter(Boolean) : [];
+    if (genresB.length > 0) {
+      return {
+        primarygenre: genresB[0] || null,
+        subgenres: genresB.slice(1)
+      };
+    }
+    // If no B-side genres are provided, inherit A-side genres (identical sides).
+    return {
+      primarygenre: song?.primarygenre || null,
+      subgenres: Array.isArray(song?.subgenres) ? song.subgenres : []
+    };
+  }
+
+  return {
+    primarygenre: song?.primarygenre || null,
+    subgenres: Array.isArray(song?.subgenres) ? song.subgenres : []
+  };
+}
+
+function getAllSongGenres(song) {
+  const a = getSongGenresForSide(song, "A");
+  const b = getSongGenresForSide(song, "B");
+  const set = new Set();
+
+  if (a.primarygenre) set.add(a.primarygenre);
+  (a.subgenres || []).forEach(g => g && set.add(g));
+  if (b.primarygenre) set.add(b.primarygenre);
+  (b.subgenres || []).forEach(g => g && set.add(g));
+
+  return Array.from(set);
+}
+
+function getSongDescriptorsForSide(song, side = "A") {
+  const normalizedSide = (String(side || "A").toUpperCase() === "B") ? "B" : "A";
+  if (!song) return [];
+
+  const listA = Array.isArray(song.descriptors) ? song.descriptors : [];
+  const listB = Array.isArray(song.descriptorsB) ? song.descriptorsB : [];
+
+  if (normalizedSide === "B") return listB.length ? listB : listA;
+  return listA;
+}
+
+function getAllSongDescriptors(song) {
+  const a = getSongDescriptorsForSide(song, "A");
+  const b = getSongDescriptorsForSide(song, "B");
+  const set = new Set();
+
+  (a || []).forEach(d => d && set.add(d));
+  (b || []).forEach(d => d && set.add(d));
+
+  return Array.from(set);
+}
+
+function songHasDescriptor(song, descriptorKey) {
+  if (!song || !descriptorKey) return false;
+  return getAllSongDescriptors(song).some(d => String(d).toLowerCase() === String(descriptorKey).toLowerCase());
+}
+
+function songHasGenre(song, genreKey) {
+  if (!song || !genreKey) return false;
+  return getAllSongGenres(song).some(g => String(g).toLowerCase() === String(genreKey).toLowerCase());
+}
+
+function songSideHasAnyVisibleGenre(song, side) {
+  const sideGenres = getSongGenresForSide(song, side);
+  const list = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])].filter(Boolean);
+  if (list.length === 0) return false;
+  return list.some(g => genreVisibility[g]);
+}
+
+function songSideHasAnyVisibleDescriptor(song, side) {
+  const descriptors = getSongDescriptorsForSide(song, side);
+  if (!descriptors || descriptors.length === 0) return false;
+  return descriptors.some(d => descriptorVisibility[d]);
+}
+
+function isGenreFilterActive() {
+  return !Object.values(genreVisibility).every(v => v);
+}
+
+function isDescriptorFilterActive() {
+  const values = Object.values(descriptorVisibility);
+  const anyVisible = values.some(v => v);
+  const allVisible = values.every(v => v);
+  return anyVisible && !allVisible;
+}
+
+function getVisibleSidesForSong(song) {
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+  const genreFilterActive = isGenreFilterActive();
+  const descriptorFilterActive = isDescriptorFilterActive();
+  const ratingFilterActive = ratingMinFilter > 0.5 || ratingMaxFilter < 5;
+  
+  if (!hasB) {
+    if (!genreFilterActive && !descriptorFilterActive && !ratingFilterActive) return ["A"];
+
+    const aContentOk = (!genreFilterActive && !descriptorFilterActive)
+      ? true
+      : (genreFilterActive && songSideHasAnyVisibleGenre(song, "A")) || (descriptorFilterActive && songSideHasAnyVisibleDescriptor(song, "A"));
+
+    let aRatingOk = true;
+    if (ratingFilterActive) {
+      const sideARating = getSongRatingScoreForSide(song, "A");
+      const aHasRating = sideARating !== null && Number.isFinite(Number(sideARating));
+      aRatingOk = aHasRating && sideARating >= ratingMinFilter && sideARating <= ratingMaxFilter;
+    }
+
+    return (aContentOk && aRatingOk) ? ["A"] : [];
+  }
+
+  if (!genreFilterActive && !descriptorFilterActive && !ratingFilterActive) return ["A", "B"];
+
+  // If genre/descriptor filters are inactive, both sides are "content-visible" by default.
+  const aContentOk = (!genreFilterActive && !descriptorFilterActive)
+    ? true
+    : (genreFilterActive && songSideHasAnyVisibleGenre(song, "A")) || (descriptorFilterActive && songSideHasAnyVisibleDescriptor(song, "A"));
+  const bContentOk = (!genreFilterActive && !descriptorFilterActive)
+    ? true
+    : (genreFilterActive && songSideHasAnyVisibleGenre(song, "B")) || (descriptorFilterActive && songSideHasAnyVisibleDescriptor(song, "B"));
+
+  let aRatingOk = true;
+  let bRatingOk = true;
+
+  if (ratingFilterActive) {
+    const sideARating = getSongRatingScoreForSide(song, "A");
+    const sideBRating = getSongRatingScoreForSide(song, "B");
+
+    const aHasRating = sideARating !== null && Number.isFinite(Number(sideARating));
+    const bHasRating = sideBRating !== null && Number.isFinite(Number(sideBRating));
+
+    // If rating filter is active and neither side has rating data, exclude the song.
+    if (!(aHasRating || bHasRating)) {
+      aRatingOk = false;
+      bRatingOk = false;
+    } else {
+      aRatingOk = aHasRating && sideARating >= ratingMinFilter && sideARating <= ratingMaxFilter;
+      bRatingOk = bHasRating && sideBRating >= ratingMinFilter && sideBRating <= ratingMaxFilter;
+    }
+  }
+
+  const sides = [];
+  if (aContentOk && aRatingOk) sides.push("A");
+  if (bContentOk && bRatingOk) sides.push("B");
+
+  return sides;
+}
+
+function getSongSidesContainingGenre(song, genreKey) {
+  const key = String(genreKey || "").trim().toLowerCase();
+  if (!key) return [];
+
+  const sides = [];
+  ["A", "B"].forEach((side) => {
+    const g = getSongGenresForSide(song, side);
+    const list = [g.primarygenre, ...(g.subgenres || [])]
+      .filter(Boolean)
+      .map(v => String(v).toLowerCase());
+    if (list.includes(key)) sides.push(side);
+  });
+
+  return sides;
+}
+
+function getSongSidesContainingDescriptor(song, descriptorKey) {
+  const key = String(descriptorKey || "").trim().toLowerCase();
+  if (!key) return [];
+
+  const sides = [];
+  ["A", "B"].forEach((side) => {
+    const list = getSongDescriptorsForSide(song, side)
+      .filter(Boolean)
+      .map(v => String(v).toLowerCase());
+    if (list.includes(key)) sides.push(side);
+  });
+
+  return sides;
+}
+
+function getSongSidesContainingArtist(song, artistName) {
+  const key = String(artistName || "").trim().toLowerCase();
+  if (!key) return [];
+
+  const artists = Array.isArray(song?.artists) ? song.artists : [];
+  if (!artists.length) return [];
+
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+
+  if (!hasB) {
+    if (artists.some(a => String(a || "").toLowerCase() === key)) {
+      return ["A"];
+    }
+    return [];
+  }
+
+  const normalizedArtists = artists.map(a => String(a || "").toLowerCase());
+
+  // Most songs treat collaborations as applying to the whole single (both sides).
+  // Only "alternative version" entries are truly side-specific by artist index.
+  if (!isAlternativeVersionSong(song)) {
+    return normalizedArtists.includes(key) ? ["A", "B"] : [];
+  }
+
+  // Alternative version: artist index maps to side A/B.
+  const sides = [];
+  if (normalizedArtists[0] === key) sides.push("A");
+  if (normalizedArtists[1] === key) sides.push("B");
+  if (sides.length) return sides;
+
+  // Fallback for incomplete data: if artist appears anywhere, allow both.
+  return normalizedArtists.includes(key) ? ["A", "B"] : [];
+}
+
+function getSongSidesContainingCountry(song, countryCode) {
+  const key = String(countryCode || "").trim().toLowerCase();
+  if (!key) return [];
+
+  const codes = song?.countryCode;
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+
+  // For most songs (including collaborations), countries apply to the whole single.
+  // Alternative versions can be side-specific (one artist per side).
+  if (hasB && !isAlternativeVersionSong(song)) {
+    if (Array.isArray(codes)) {
+      const normalizedCodes = codes.map(c => String(c || "").trim().toLowerCase());
+      return normalizedCodes.includes(key) ? ["A", "B"] : [];
+    }
+    if (typeof codes === "string" && String(codes || "").trim().toLowerCase() === key) {
+      return ["A", "B"];
+    }
+    return [];
+  }
+
+  const sides = [];
+  if (Array.isArray(codes)) {
+    if (String(codes[0] || "").trim().toLowerCase() === key) sides.push("A");
+    if (hasB && String(codes[1] || "").trim().toLowerCase() === key) sides.push("B");
+    if (sides.length) return sides;
+  }
+
+  if (typeof codes === "string" && String(codes || "").trim().toLowerCase() === key) {
+    return hasB ? ["A", "B"] : ["A"];
+  }
+
+  // fallback for country arrays of length 1: if the single country matches, apply it to both sides.
+  if (Array.isArray(codes) && codes.length === 1 && String(codes[0] || "").trim().toLowerCase() === key) {
+    return hasB ? ["A", "B"] : ["A"];
+  }
+
+  return [];
+}
+
+function getSongTitleForSides(song, sides) {
+  const titleA = song?.tracks?.[0]?.title || "Untitled";
+  const titleB = song?.tracks?.[1]?.title || "";
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+  if (!hasB) return titleA;
+
+  const normalized = Array.isArray(sides) ? sides : [];
+  const unique = Array.from(new Set(normalized.map(s => (String(s).toUpperCase() === "B" ? "B" : "A"))));
+
+  if (unique.length === 2) return titleB ? `${titleA} / ${titleB}` : titleA;
+  if (unique[0] === "B") return titleB || titleA;
+  return titleA;
+}
+
+function getSongRatingsForSide(song, side = "A") {
+  const normalizedSide = (String(side || "A").toUpperCase() === "B") ? "B" : "A";
+  const singleKey = `singleRating${normalizedSide}`;
+  const trackKey = `trackRating${normalizedSide}`;
+
+  const singleRating = song[singleKey];
+  const trackRating = song[trackKey];
+
+  let primaryScore = null;
+  let primaryVotes = 0;
+
+  const ratings = [];
+
+  if (singleRating && typeof singleRating.score === 'number' && typeof singleRating.votes === 'number' && singleRating.votes > 0) {
+    ratings.push(singleRating);
+  }
+
+  if (trackRating && typeof trackRating.score === 'number' && typeof trackRating.votes === 'number' && trackRating.votes > 0) {
+    ratings.push(trackRating);
+  }
+
+  if (ratings.length > 0) {
+    let totalWeightedScore = 0;
+    let totalVotes = 0;
+    ratings.forEach(r => {
+      totalWeightedScore += r.score * r.votes;
+      totalVotes += r.votes;
+    });
+    primaryScore = totalWeightedScore / totalVotes;
+    primaryVotes = totalVotes;
+  }
+
+  return {
+    primary: primaryScore !== null ? { score: primaryScore, votes: primaryVotes } : null,
+    single: singleRating || null,
+    track: trackRating || null
+  };
+}
+
+function getSongRatingScoreForSide(song, side = "A") {
+  const ratings = getSongRatingsForSide(song, side);
+  return ratings?.primary?.score || null;
+}
+
+function getSongRatingVotesForSide(song, side = "A") {
+  const ratings = getSongRatingsForSide(song, side);
+  return ratings?.primary?.votes || 0;
+}
+
+function isAlternativeVersionSong(song) {
+  const artists = Array.isArray(song?.artists) ? song.artists : [];
+  const trackA = song?.tracks?.[0];
+  const trackB = song?.tracks?.[1];
+  const hasBPlayable = !!trackB?.youtubeId;
+  if (!hasBPlayable) return false;
+  if (!trackA?.youtubeId) return false;
+  if (artists.length !== 2) return false;
+
+  const titleA = String(trackA?.title || "").trim().toLowerCase();
+  const titleB = String(trackB?.title || "").trim().toLowerCase();
+
+  // Alternative version: two artists + two youtube ids + one title (B missing or same as A).
+  if (!titleB) return true;
+  if (titleA && titleA === titleB) return true;
+  return false;
+}
+
+function getArtistsForSide(song, side = "A") {
+  const artists = Array.isArray(song?.artists) ? song.artists : [];
+  const countries = Array.isArray(song?.countryCode) ? song.countryCode : [];
+  const normalizedSide = (String(side || "A").toUpperCase() === "B") ? "B" : "A";
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+
+  if (!hasB) {
+    return artists
+      .map((artist, index) => {
+        if (!artist) return null;
+        const c = countries[index] || (countries.length === 1 ? countries[0] : "") || "";
+        return { artist, country: c };
+      })
+      .filter(Boolean);
+  }
+
+  if (artists.length <= 1) {
+    const a = artists[0] || "";
+    const c = countries[0] || "";
+    return a ? [{ artist: a, country: c }] : [];
+  }
+
+  // Collaborations list together on both sides, except for alternative versions.
+  if (!isAlternativeVersionSong(song)) {
+    return artists
+      .map((artist, index) => {
+        if (!artist) return null;
+        const c = countries[index] || (countries.length === 1 ? countries[0] : "") || "";
+        return { artist, country: c };
+      })
+      .filter(Boolean);
+  }
+
+  // Alternative version: one artist per side.
+  const index = normalizedSide === "B" ? 1 : 0;
+  const a = artists[index] || artists[0] || "";
+  const c = countries[index] || (countries.length === 1 ? countries[0] : "") || "";
+  return a ? [{ artist: a, country: c }] : [];
+}
+
+function getPreferredVisibleSongSide(song) {
+  const visibleSides = getVisibleSidesForSong(song);
+  if (visibleSides.length === 1) return visibleSides[0];
+  if (visibleSides.includes(selectedSongSide)) return selectedSongSide;
+  return visibleSides.includes("A") ? "A" : "B";
+}
+
+function getEffectiveVisibleSongSide(song) {
+  const visibleSides = getVisibleSidesForSong(song);
+  return visibleSides.length === 1 ? visibleSides[0] : getPreferredVisibleSongSide(song);
+}
+
+function getFilteredHoverTitleForSong(song) {
+  const sides = getVisibleSidesForSong(song);
+  return getSongTitleForSides(song, sides);
+}
+
+function getSongArtistSeparator(song, fallback = " • ") {
+  if (isAlternativeVersionSong(song)) return " / ";
+  return fallback;
+}
+
+function getFilteredHoverArtistsForSong(song) {
+  const artists = Array.isArray(song?.artists) ? song.artists : [];
+  if (!isAlternativeVersionSong(song)) {
+    return artists;
+  }
+
+  const visibleSides = getVisibleSidesForSong(song);
+  if (visibleSides.length === 2) {
+    return artists;
+  }
+
+  if (visibleSides.length === 1) {
+    const side = visibleSides[0];
+    const index = side === "B" ? 1 : 0;
+    return artists[index] ? [artists[index]] : artists;
+  }
+
+  return artists;
+}
+
+function buildTopSongsSectionHtmlForItem(songsList, options = {}) {
+  const topChartSongs = getTopChartingSongs(songsList, 3, options);
+  const topRatedSongs = getTopRatedSongs(songsList, 3, options);
+  return buildTopSongsSectionHtml(topChartSongs, topRatedSongs, options);
+}
+
+function buildTopSongsSectionHtml(topChartSongs, topRatedSongs, options = {}) {
+  const resolveSides = typeof options.resolveSides === "function"
+    ? options.resolveSides
+    : (song) => getVisibleSidesForSong(song);
+
+  const selectedMode = options.mode === "ratings" || topSongsMode === "ratings" ? "ratings" : "chart";
+
+  const chartRowsHtml = buildTopSongRowsHtml(topChartSongs, "chart", resolveSides);
+  const ratingRowsHtml = buildTopSongRowsHtml(topRatedSongs, "ratings", resolveSides);
+
+  const chartContentHtml = chartRowsHtml.length
+    ? `<ul class="top-songs-list top-songs-list--chart" style="display:${selectedMode === "chart" ? "" : "none"}">${chartRowsHtml}</ul>`
+    : `<p class="top-songs-empty top-songs-empty--chart" style="display:${selectedMode === "chart" ? "" : "none"}">No songs found.</p>`;
+
+  const ratingsContentHtml = ratingRowsHtml.length
+    ? `<ul class="top-songs-list top-songs-list--ratings" style="display:${selectedMode === "ratings" ? "" : "none"}">${ratingRowsHtml}</ul>`
+    : `<p class="top-songs-empty top-songs-empty--ratings" style="display:${selectedMode === "ratings" ? "" : "none"}">No rated songs found.</p>`;
+
+  return `
+    <div class="top-songs-section">
+      <div class="top-songs-section-header">
+        <h2>Top Songs</h2>
+        <div class="sort-dropdown top-songs-mode-dropdown" data-sort-dropdown="top-songs">
+          <button type="button" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            ${selectedMode === "ratings" ? "Ratings" : "Chart"} <span class="icon">&#x25BE;</span>
+          </button>
+          <div class="sort-dropdown-menu">
+            <div class="sort-dropdown-title">Top Songs</div>
+            <button type="button" class="sort-dropdown-option${selectedMode === "chart" ? " sort-dropdown-option--selected" : ""}" data-top-songs-mode="chart">Chart</button>
+            <button type="button" class="sort-dropdown-option${selectedMode === "ratings" ? " sort-dropdown-option--selected" : ""}" data-top-songs-mode="ratings">Ratings</button>
+          </div>
+        </div>
+      </div>
+      <p class="top-songs-disclaimer top-songs-disclaimer--chart" style="display:${selectedMode === "chart" ? "" : "none"}">Top ranked songs based on year end chart position and weeks at #1.</p>
+      <p class="top-songs-disclaimer top-songs-disclaimer--ratings" style="display:${selectedMode === "ratings" ? "" : "none"}">Top rated songs based on average weighted rating.</p>
+      ${chartContentHtml}
+      ${ratingsContentHtml}
+    </div>
+  `;
+}
+
+function buildTopSongRowsHtml(songs, mode, resolveSides) {
+  const list = Array.isArray(songs) ? songs : [];
+  return list.map((song) => {
+    const hasB = !!song?.tracks?.[1]?.youtubeId;
+    const titleA = song?.tracks?.[0]?.title || "Untitled";
+    const titleB = song?.tracks?.[1]?.title || "";
+    const year = song?.chartYear ?? "";
+    const rank = song?.rank ?? "";
+    const artists = Array.isArray(song?.artists) ? song.artists : [];
+    const artistSeparator = getSongArtistSeparator(song);
+    const isMultiVersionSameTrack = isAlternativeVersionSong(song);
+    const topSongsSideOverride = song?.__topSongsSideOverride;
+
+    let metaText = "";
+    if (mode === "chart") {
+      const peak = song?.peakPos ?? "";
+      const weeksAt1 = getWeeksAtNumberOneProxy(song);
+      const metaParts = [`#${rank}`, `${year}`];
+      if (Number.isFinite(Number(peak))) metaParts.push(`Peak #${peak}`);
+      if (weeksAt1 > 0) metaParts.push(`${weeksAt1}w at #1`);
+      metaText = metaParts.join("  •  ");
+    } else {
+      const relevantSides = typeof resolveSides === "function" ? resolveSides(song) : ["A", "B"];
+      const score = topSongsSideOverride
+        ? getSongRatingScoreForSide(song, topSongsSideOverride)
+        : getSongRatingScoreForSong(song, relevantSides);
+      const votes = topSongsSideOverride
+        ? getSongRatingVotesForSide(song, topSongsSideOverride)
+        : getSongRatingVotesForSong(song, relevantSides);
+      metaText = score !== null
+        ? `${score.toFixed(2)}/5 from ${votes} rating${votes === 1 ? "" : "s"}`
+        : "No rating data";
+    }
+
+    const artistRowHtml = (isMultiVersionSameTrack && topSongsSideOverride)
+      ? `
+        <div class="top-song-artists">
+          <span class="top-song-artists-text">${artists[topSongsSideOverride === "B" ? 1 : 0] || ""}</span>
+        </div>
+      `
+      : isMultiVersionSameTrack
+      ? `
+        <div class="top-song-artists">
+          <button type="button" class="top-song-artist-btn" data-song-year="${year}" data-song-rank="${rank}" data-song-side="A">${artists[0] || ""}</button>
+          <span class="top-song-artist-sep" aria-hidden="true">/</span>
+          <button type="button" class="top-song-artist-btn" data-song-year="${year}" data-song-rank="${rank}" data-song-side="B">${artists[1] || ""}</button>
+        </div>
+      `
+      : `
+        <div class="top-song-artists">
+          <span class="top-song-artists-text">${artists.join(artistSeparator)}</span>
+        </div>
+      `;
+
+    let sidesForTitle = resolveSides(song);
+    let normalizedSides = Array.isArray(sidesForTitle)
+      ? Array.from(new Set(sidesForTitle.map(s => (String(s).toUpperCase() === "B" ? "B" : "A"))))
+      : [];
+
+    if (mode === "ratings") {
+      if (topSongsSideOverride) {
+        normalizedSides = [topSongsSideOverride];
+      } else {
+        const bestSide = getSongBestRatingSide(song, normalizedSides.length ? normalizedSides : ["A", "B"]);
+        if (bestSide) normalizedSides = [bestSide];
+      }
+    }
+
+    const titleButtonsHtml = (() => {
+      if (isMultiVersionSameTrack) {
+        const side = topSongsSideOverride ? topSongsSideOverride : "A";
+        const baseTitle = getSongTitleForSides(song, [side]) || titleA;
+        return `<button type="button" class="top-song-btn" data-song-year="${year}" data-song-rank="${rank}" data-song-side="${side}">${baseTitle}</button>`;
+      }
+
+      if (!hasB || normalizedSides.length <= 1) {
+        const side = normalizedSides[0] || "A";
+        const displayTitle = getSongTitleForSides(song, [side]);
+        return `<button type="button" class="top-song-btn" data-song-year="${year}" data-song-rank="${rank}" data-song-side="${side}">${displayTitle}</button>`;
+      }
+
+      const safeTitleB = titleB || titleA;
+      return `
+        <button type="button" class="top-song-btn" data-song-year="${year}" data-song-rank="${rank}" data-song-side="A">${titleA}</button>
+        <span class="top-song-sep" aria-hidden="true">/</span>
+        <button type="button" class="top-song-btn top-song-btn--side" data-song-year="${year}" data-song-rank="${rank}" data-song-side="B">${safeTitleB}</button>
+      `;
+    })();
+
+    return `
+      <li class="top-song-row">
+        <div class="top-song-main">
+          <div class="top-song-title">
+            ${titleButtonsHtml}
+          </div>
+          ${artistRowHtml}
+        </div>
+        <span class="top-song-meta">${metaText}</span>
+      </li>
+    `;
+  }).join("");
+}
+
+function bindTopSongsModeDropdown(containerSelector = "#info-cell") {
+  const root = d3.select(containerSelector);
+  if (root.empty()) return;
+
+  root.selectAll('.sort-dropdown[data-sort-dropdown="top-songs"]').each(function() {
+    const dropdown = d3.select(this);
+    const trigger = dropdown.select(".sort-dropdown-trigger");
+    const options = dropdown.selectAll(".sort-dropdown-option");
+
+    const setMode = (mode) => {
+      options.classed("sort-dropdown-option--selected", function() {
+        return d3.select(this).attr("data-top-songs-mode") === mode;
+      });
+
+      trigger.html(`${mode === "ratings" ? "Ratings" : "Chart"} <span class="icon">&#x25BE;</span>`);
+      dropdown.attr("data-top-songs-mode", mode);
+
+      const parent = dropdown.node().closest(".top-songs-section");
+      if (!parent) return;
+      const section = d3.select(parent);
+
+      section.selectAll(".top-songs-list").style("display", "none");
+      section.selectAll(".top-songs-disclaimer").style("display", "none");
+      section.selectAll(".top-songs-empty").style("display", "none");
+
+      section.select(`.top-songs-list--${mode}`).style("display", null);
+      section.select(`.top-songs-disclaimer--${mode}`).style("display", null);
+      if (mode === "ratings") {
+        const ratingList = section.select(".top-songs-list--ratings");
+        if (ratingList.empty() || !ratingList.html().trim()) {
+          section.select(".top-songs-empty--ratings").style("display", null);
+        }
+      } else {
+        const chartList = section.select(".top-songs-list--chart");
+        if (chartList.empty() || !chartList.html().trim()) {
+          section.select(".top-songs-empty--chart").style("display", null);
+        }
+      }
+    };
+
+    trigger.on("click", function(event) {
+      event.stopPropagation();
+      const isOpen = dropdown.classed("is-open");
+      closeAllSortDropdowns();
+      if (!isOpen) {
+        dropdown.classed("is-open", true);
+        trigger.attr("aria-expanded", "true");
+      }
+    });
+
+    options.on("click", function(event) {
+      event.stopPropagation();
+      const nextMode = d3.select(this).attr("data-top-songs-mode");
+      if (nextMode) {
+        topSongsMode = nextMode;
+        setMode(nextMode);
+      }
+      closeAllSortDropdowns();
+    });
+
+    setMode(topSongsMode);
+  });
+}
+
+function resolveSongIndexByYearRank(chartYear, rank) {
+  const yearNum = Number(chartYear);
+  const rankNum = Number(rank);
+  if (!Number.isFinite(yearNum) || !Number.isFinite(rankNum)) return -1;
+
+  const matcher = (song) => song && Number(song.chartYear) === yearNum && Number(song.rank) === rankNum;
+  let idx = currentSongList.findIndex(matcher);
+  if (idx !== -1) return idx;
+
+  // If the current chart is filtered (year/rank), clear filters so the requested song is present.
+  // This avoids "wrong song" behavior caused by stale indices when the table is rebuilt.
+  const hadYearFilter = selectedYear !== null;
+  const hadRankFilter = selectedRank !== null;
+  if (hadYearFilter || hadRankFilter) {
+    selectedYear = null;
+    selectedRank = null;
+    buildTable();
+    idx = currentSongList.findIndex(matcher);
+  }
+  return idx;
+}
+
+function bindTopSongButtons(containerSelector = "#info-cell") {
+  d3.select(containerSelector).selectAll(".top-song-btn, .top-song-artist-btn").on("click", function() {
+    const side = d3.select(this).attr("data-song-side") || "A";
+    const year = d3.select(this).attr("data-song-year");
+    const rank = d3.select(this).attr("data-song-rank");
+    const songIndex = resolveSongIndexByYearRank(year, rank);
+    if (!Number.isFinite(songIndex) || songIndex < 0) return;
+    showSongModal(songIndex, side, false, true, true);
+  });
+}
+
 function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
   closeSongAccordion();
   if (forceOpen) accordionState.selected = true;
@@ -2270,31 +4502,39 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
     const relatedHtml = Array.isArray(info.related) && info.related.length
       ? info.related.map(r => {
           const g = genres[r];
-          const count = genreCounts[r] || 0;
+          const totalCount = genreCounts[r] || 0;
+          const visibleCount = visibleSongCountsCache.genres[r] || 0;
           return `
             <li>
               <input type="checkbox" class="genre-toggle" data-genre="${r}" ${genreVisibility[r] !== false ? "checked" : ""}>
-              <span class="clickable-genre" data-genre="${r}">${g ? g.label : r}</span> <span class="genre-count">${count}</span>
+              <span class="clickable-genre" data-genre="${r}">${g ? g.label : r}</span> <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
             </li>
           `;
         }).join("")
       : "";
 
     const relatedSectionHtml = relatedHtml ? `<h2>Key Genres:</h2><br><ul>${relatedHtml}</ul>` : "";
-    const taxonomyCount = songs.filter(s => s.genretaxonomy === taxKey).length;
+    const taxonomyCountTotal = songs.filter(s => s.genretaxonomy === taxKey).length;
+    const taxonomyCountVisible = visibleSongCountsCache.taxonomy[taxKey] || 0;
 
     const headerMetaHtml = `
       <div class="selected-main-row selected-main-row--summary">
         <input type="checkbox" class="taxonomy-toggle" data-taxonomy="${taxKey}" ${taxonomyVisibility[taxKey] !== false ? "checked" : ""}>
         <span class="genre-badge" style="${getTaxonomyBadgeStyle(info.color)}">${info.label}</span>
-        <span class="genre-count">${taxonomyCount}</span>
+        <span class="genre-count">${formatVisibleTotalCount(taxonomyCountVisible, taxonomyCountTotal)}</span>
       </div>
     `;
 
+    const taxonomyOnlySelected = isOnlyVisibleSelected(taxonomyVisibility, taxKey);
+    const taxonomyOnlyLabel = taxonomyOnlySelected ? "Show all" : "Show only";
+    const taxonomySongs = songs.filter(s => s && s.genretaxonomy === taxKey);
+    const topTaxSongsSectionHtml = buildTopSongsSectionHtmlForItem(taxonomySongs);
+
     const infoBodyHtml = `
+      <button type="button" class="selected-only-toggle" data-only-type="taxonomy" data-taxonomy="${taxKey}">${taxonomyOnlyLabel}</button>
       <p>${info.description || ""}</p>
-      <br>
-      ${relatedSectionHtml}
+      ${relatedSectionHtml ? `<br>${relatedSectionHtml}` : ""}
+      ${topTaxSongsSectionHtml}
     `;
 
     renderAccordionCell("#info-cell", {
@@ -2310,6 +4550,11 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
 
     
     bindGenreClicks();
+
+    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+
+    bindTopSongButtons("#info-cell");
+    bindTopSongsModeDropdown("#info-cell");
   }
 
   // Genre side panel 
@@ -2328,16 +4573,25 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
     const g = genres[resolvedKey];
     // if no detailed info is supplied for the genre
     if (!g) {
+      const genreOnlySelected = isOnlyVisibleSelected(genreVisibility, resolvedKey);
+      const genreOnlyLabel = genreOnlySelected ? "Show all" : "Show only";
+      const genreSongs = currentSongList.filter(s => songHasGenre(s, resolvedKey));
+      const topGenreSongsSectionHtml = buildTopSongsSectionHtmlForItem(genreSongs, {
+        resolveSides: (song) => getSongSidesContainingGenre(song, resolvedKey)
+      });
+
       const headerMetaHtml = `
         <div class="selected-main-row selected-main-row--summary">
           <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
           <span class="selected-main-label">${resolvedKey}</span>
-          <span class="genre-count">${genreCounts[resolvedKey] || 0}</span>
+          <span class="genre-count">${formatVisibleTotalCount(visibleSongCountsCache.genres[resolvedKey] || 0, genreCounts[resolvedKey] || 0)}</span>
         </div>
       `;
 
       const infoBodyHtml = `
+        <button type="button" class="selected-only-toggle" data-only-type="genre" data-genre="${resolvedKey}">${genreOnlyLabel}</button>
         <p>No info on this genre.</p>
+      ${topGenreSongsSectionHtml}
       `;
 
       renderAccordionCell("#info-cell", {
@@ -2349,6 +4603,11 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
 
       if (resetScroll) scrollLeftPanelToTop();
       bindGenreClicks();
+
+      d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+
+      bindTopSongButtons("#info-cell");
+      bindTopSongsModeDropdown("#info-cell");
       return;
     }
 
@@ -2362,7 +4621,7 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       ? g.related.map(r => `
           <li>
             <input type="checkbox" class="genre-toggle" data-genre="${r}" ${genreVisibility[r] !== false ? "checked" : ""}>
-            <span class="clickable-genre" data-genre="${r}">${genres[r]?.label || r}</span> <span class="genre-count">${genreCounts[r] || 0}</span>
+            <span class="clickable-genre" data-genre="${r}">${genres[r]?.label || r}</span> <span class="genre-count">${formatVisibleTotalCount(visibleSongCountsCache.genres[r] || 0, genreCounts[r] || 0)}</span>
           </li>
         `).join("")
       : "";
@@ -2373,18 +4632,22 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       <div class="selected-main-row selected-main-row--summary">
         <input type="checkbox" class="genre-toggle" data-genre="${resolvedKey}" ${genreVisibility[resolvedKey] !== false ? "checked" : ""}>
         <span class="selected-main-label">${g.label}</span>
-        <span class="genre-count">${genreCounts[resolvedKey] || 0}</span>
+        <span class="genre-count">${formatVisibleTotalCount(visibleSongCountsCache.genres[resolvedKey] || 0, genreCounts[resolvedKey] || 0)}</span>
       </div>
     `;
 
     const infoBodyHtml = `
-      <div>${taxBadge}</div>
-      <br>
+      <div class="selected-item-toolbar">
+        <button type="button" class="selected-only-toggle" data-only-type="genre" data-genre="${resolvedKey}">${isOnlyVisibleSelected(genreVisibility, resolvedKey) ? "Show all" : "Show only"}</button>
+
+      </div>
       <p>${g.description || ""}</p>
-      <br>
-      ${g.link ? `<p><a href="${g.link}" target="_blank">Learn more <span aria-hidden="true">🡥</span></a></p>` : ""}
-      <br>
-      ${relatedSectionHtml}
+      ${g.link ? `<p><a href="${g.link}" target="_blank" rel="noopener noreferrer">Learn more🡥</a></p>` : ""}
+      ${relatedSectionHtml ? `<br>${relatedSectionHtml}` : ""}
+      ${buildTopSongsSectionHtmlForItem(
+        songs.filter(s => songHasGenre(s, resolvedKey)),
+        { resolveSides: (song) => getSongSidesContainingGenre(song, resolvedKey) }
+      )}
     `;
 
     renderAccordionCell("#info-cell", {
@@ -2399,11 +4662,189 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
     
     
     bindGenreClicks();
+
+    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+
+    bindTopSongButtons("#info-cell");
+    bindTopSongsModeDropdown("#info-cell");
   }
 
 
 
-  
+  function showDescriptorPanel(descriptorKey, resetScroll = true, forceOpen = true) {
+    if (forceOpen) accordionState.selected = true;
+
+    let resolvedKey = descriptorKey;
+    if (!descriptors[descriptorKey]) {
+      const found = Object.keys(descriptors).find(k => k.toLowerCase() === String(descriptorKey).toLowerCase());
+      if (found) resolvedKey = found;
+    }
+    currentPanel = { type: "descriptor", key: resolvedKey };
+
+    const meta = descriptors[resolvedKey];
+
+    if (d3.select(".context-column").classed("empty")) {
+      d3.select(".context-column").classed("empty", false);
+    }
+
+    const descriptorOnlySelected = isOnlyVisibleSelected(descriptorVisibility, resolvedKey);
+    const descriptorOnlyLabel = descriptorOnlySelected ? "Show all" : "Show only";
+
+    const descriptorSongs = songs.filter(s => songHasDescriptor(s, resolvedKey));
+    const topDescriptorSongsSectionHtml = buildTopSongsSectionHtmlForItem(descriptorSongs, {
+      resolveSides: (song) => getSongSidesContainingDescriptor(song, resolvedKey)
+    });
+
+    const headerMetaHtml = `
+      <div class="selected-main-row selected-main-row--summary">
+        <input type="checkbox" class="descriptor-toggle" data-descriptor="${resolvedKey}" ${descriptorVisibility[resolvedKey] !== false ? "checked" : ""}>
+        <span class="selected-main-label">${meta?.label || resolvedKey}</span>
+        <span class="genre-count">${formatVisibleTotalCount(visibleSongCountsCache.descriptors[resolvedKey] || 0, descriptorCounts[resolvedKey] || 0)}</span>
+      </div>
+    `;
+
+    const infoBodyHtml = `
+      <button type="button" class="selected-only-toggle" data-only-type="descriptor" data-descriptor="${resolvedKey}">${descriptorOnlyLabel}</button>
+      <p>${meta?.description || "No info on this descriptor."}</p>
+      ${topDescriptorSongsSectionHtml}
+    `;
+
+    renderAccordionCell("#info-cell", {
+      key: "selected",
+      title: "",
+      headerMetaHtml,
+      bodyHtml: infoBodyHtml
+    });
+
+    if (resetScroll) scrollLeftPanelToTop();
+    bindGenreClicks();
+
+    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+
+    bindTopSongButtons("#info-cell");
+    bindTopSongsModeDropdown("#info-cell");
+  }
+
+  function showCountryPanel(countryCode, resetScroll = true, forceOpen = true) {
+    closeSongAccordion();
+    if (forceOpen) accordionState.selected = true;
+    const code = String(countryCode || "").trim();
+    if (!code) return;
+
+    currentPanel = { type: "country", key: code };
+
+    if (d3.select(".context-column").classed("empty")) {
+      d3.select(".context-column").classed("empty", false);
+    }
+
+    const countrySongsAll = songs.filter(s => {
+      const codes = s?.countryCode;
+      if (Array.isArray(codes)) return codes.includes(code);
+      if (typeof codes === "string") return codes === code;
+      return false;
+    });
+
+    const totalCount = countrySongsAll.length;
+    const visibleCount = visibleSongCountsCache.countries[code] || 0;
+    const flagClass = getFlagIconClass(code);
+
+    const headerMetaHtml = `
+      <div class="selected-main-row selected-main-row--summary">
+        <input type="checkbox" class="country-toggle" data-country="${code}" ${countryVisibility[code] !== false ? "checked" : ""}>
+        <span class="country-label">
+          ${flagClass ? `<span class="country-flag ${flagClass}" aria-hidden="true"></span>` : ""}
+          <span class="selected-main-label">${code}</span>
+        </span>
+        <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
+      </div>
+    `;
+
+    const onlySelected = isOnlyVisibleSelected(countryVisibility, code);
+    const onlyLabel = onlySelected ? "Show all" : "Show only";
+
+    const infoBodyHtml = `
+      <button type="button" class="selected-only-toggle" data-only-type="country" data-country="${code}">${onlyLabel}</button>
+      <p>Songs featuring artists from ${code}.</p>
+      ${buildTopSongsSectionHtmlForItem(countrySongsAll, {
+        resolveSides: (song) => getSongSidesContainingCountry(song, code)
+      })}
+    `;
+
+    renderAccordionCell("#info-cell", {
+      key: "selected",
+      title: "",
+      headerMetaHtml,
+      bodyHtml: infoBodyHtml
+    });
+
+    if (resetScroll) scrollLeftPanelToTop();
+
+    bindGenreClicks();
+
+    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+
+    bindTopSongButtons("#info-cell");
+    bindTopSongsModeDropdown("#info-cell");
+  }
+
+  function showArtistPanel(artistName, resetScroll = true, forceOpen = true) {
+    closeSongAccordion();
+    if (forceOpen) accordionState.selected = true;
+    const name = String(artistName || "").trim();
+    if (!name) return;
+
+    currentPanel = { type: "artist", key: name };
+
+    if (d3.select(".context-column").classed("empty")) {
+      d3.select(".context-column").classed("empty", false);
+    }
+
+    const artistSongsAll = songs.filter(s => {
+      const artists = s?.artists;
+      if (Array.isArray(artists)) return artists.includes(name);
+      if (typeof artists === "string") return artists === name;
+      return false;
+    });
+
+    const totalCount = artistSongsAll.length;
+    const visibleCount = visibleSongCountsCache.artists[name] || 0;
+
+    const headerMetaHtml = `
+      <div class="selected-main-row selected-main-row--summary">
+        <input type="checkbox" class="artist-toggle" data-artist="${name}" ${artistVisibility[name] !== false ? "checked" : ""}>
+        <span class="selected-main-label">${name}</span>
+        <span class="genre-count">${formatVisibleTotalCount(visibleCount, totalCount)}</span>
+      </div>
+    `;
+
+    const onlySelected = isOnlyVisibleSelected(artistVisibility, name);
+    const onlyLabel = onlySelected ? "Show all" : "Show only";
+
+    const infoBodyHtml = `
+      <button type="button" class="selected-only-toggle" data-only-type="artist" data-artist="${name}">${onlyLabel}</button>
+      <p>Songs by ${name}.</p>
+      ${buildTopSongsSectionHtmlForItem(artistSongsAll, {
+        resolveSides: (song) => getSongSidesContainingArtist(song, name)
+      })}
+    `;
+
+    renderAccordionCell("#info-cell", {
+      key: "selected",
+      title: "",
+      headerMetaHtml,
+      bodyHtml: infoBodyHtml
+    });
+
+    if (resetScroll) scrollLeftPanelToTop();
+
+    bindGenreClicks();
+
+    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+
+    bindTopSongButtons("#info-cell");
+    bindTopSongsModeDropdown("#info-cell");
+  }
+
   });
 // Menu overlay open/close logic with icon animation
 (function() {
@@ -2456,7 +4897,7 @@ menuOverlay.addEventListener('click', function(e) {
     // Reset scroll when clicking a selected genre inside overlay
     overlayPanel.addEventListener('click', function(e) {
       // target a selected genre button
-      if (e.target.matches('.clickable-genre, .clickable-taxonomy')) {
+      if (e.target.matches('.clickable-genre, .clickable-descriptor, .clickable-taxonomy, .clickable-country, .clickable-artist')) {
         overlayPanel.scrollTop = 0; // reset scroll
         const contextScroller = document.querySelector(".menu-overlay-panel .context-column");
         if (contextScroller) contextScroller.scrollTop = 0;
