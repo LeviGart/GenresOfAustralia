@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 128">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b6c5d5;
+      }
+
+      .cls-2 {
+        fill: #e6bb21;
+      }
+
+      .cls-3 {
+        fill: #76ac42;
+      }
+
+      .cls-4 {
+        fill: #f47b3b;
+      }
+
+      .cls-5 {
+        fill: #882e86;
+      }
+
+      .cls-6 {
+        fill: #3770b8;
+      }
+
+      .cls-7 {
+        fill: #dd3b40;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <polygon class="cls-6" points="272 0 272 48 256 48 256 64 272 64 272 80 256 80 256 88 272 88 272 128 232 128 232 0 272 0"/>
+      <path class="cls-5" d="M176,0v128h24v-40h8v40h16v-48h-16v-8h16V0h-48ZM200,64v-16h8v16h-8Z"/>
+      <polygon class="cls-2" points="56 0 56 48 24 48 24 88 40 88 40 80 32 80 32 64 56 64 56 128 0 128 0 0 56 0"/>
+      <polygon class="cls-7" points="168 0 168 128 152 128 152 104 144 104 144 88 136 88 136 128 112 128 112 0 136 0 136 24 144 24 144 48 152 48 152 0 168 0"/>
+      <polygon class="cls-4" points="104 0 104 48 88 48 88 64 104 64 104 80 88 80 88 88 104 88 104 128 64 128 64 0 104 0"/>
+      <polygon class="cls-1" points="456 48 456 80 440 80 440 88 456 88 456 104 440 104 440 128 416 128 416 48 456 48"/>
+      <path class="cls-1" d="M360,48v80h48V48h-48ZM384,88v-16h8v16h-8Z"/>
+      <polygon class="cls-3" points="320 0 320 48 304 48 304 56 320 56 320 128 280 128 280 88 304 88 304 80 280 80 280 0 320 0"/>
+      <path class="cls-1" d="M720,0v128h24v-40h8v40h16v-48h-16v-8h16V0h-48ZM744,64v-16h8v16h-8Z"/>
+      <polygon class="cls-1" points="712 0 712 48 696 48 696 128 672 128 672 48 656 48 656 0 712 0"/>
+      <polygon class="cls-1" points="600 0 600 128 552 128 552 0 576 0 576 48 584 48 584 0 600 0"/>
+      <polygon class="cls-1" points="648 0 648 48 632 48 632 56 648 56 648 128 608 128 608 88 632 88 632 80 608 80 608 0 648 0"/>
+      <path class="cls-1" d="M912,0v128h24v-40h8v40h16V0h-48ZM944,64h-8v-16h8v16Z"/>
+      <path class="cls-1" d="M776,0v128h24v-40h8v40h16V0h-48ZM808,64h-8v-16h8v16Z"/>
+      <polygon class="cls-1" points="872 88 872 128 832 128 832 0 856 0 856 88 872 88"/>
+      <rect class="cls-1" x="880" width="24" height="128"/>
+      <path class="cls-1" d="M496,0v128h24v-40h8v40h16V0h-48ZM528,64h-8v-16h8v16Z"/>
+    </g>
+  </g>
+</svg>
