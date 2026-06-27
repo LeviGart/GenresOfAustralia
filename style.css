@@ -2648,7 +2648,7 @@ input[type="checkbox"]:indeterminate:hover {
 }
 
 .chart-area {
-  order: 2;
+  order: 3;
   flex: 2 1 0;
   min-width: 0;
   width: 100%;
@@ -2661,11 +2661,46 @@ input[type="checkbox"]:indeterminate:hover {
   align-items: stretch;
 } 
 
+.panel-resizer {
+  order: 2;
+  flex: 0 0 18px;
+  width: 18px;
+  min-width: 18px;
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  cursor: col-resize;
+  touch-action: none;
+  position: relative;
+  z-index: 30;
+  background: var(--color-bg);
+}
+
+.panel-resizer::before {
+  content: "";
+  width: 1px;
+  background: var(--color-surface-border);
+  transition: background-color 0.16s ease, width 0.16s ease;
+}
+
+.panel-resizer:hover::before,
+.panel-resizer:focus-visible::before,
+body.is-resizing-side-panel .panel-resizer::before {
+  width: 2px;
+  background: var(--color-fg);
+}
+
+body.is-resizing-side-panel {
+  cursor: col-resize;
+  user-select: none;
+}
+
 .context-column { 
   order: 1; 
   flex: 1 1 0; 
   min-width: 0; 
-  max-width: 800px; 
+  max-width: none; 
   display: flex; 
   flex-direction: row; 
   gap: 0; 
@@ -2680,8 +2715,10 @@ input[type="checkbox"]:indeterminate:hover {
 } 
 
 .context-nav {
-  flex: 0 0 20%;
+  flex: 0 0 160px;
+  width: 160px;
   min-width: 160px;
+  max-width: 160px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -3020,6 +3057,10 @@ input[type="checkbox"]:indeterminate:hover {
 
   .chart-controls-row {
     justify-content: center;
+  }
+
+  .panel-resizer {
+    display: none;
   }
 
   .panel-heading {
