@@ -12,8 +12,12 @@ d3.json("./songs.json").then(dataset => {
   let countrySortMode = "popular";  // az, za, popular, unpopular
   let artistSortMode = "popular";
   let descriptorSortMode = "popular";
-  let selectedYear = null;
-  let selectedRank = null;
+  let sortGenresByVisible = false;
+  let sortDescriptorsByVisible = false;
+  let sortCountriesByVisible = false;
+  let sortArtistsByVisible = false;
+  let selectedYear = [];
+  let selectedRank = [];
   let genreListView = "organized"; // "all" or "organized"
   let organizedGroupState = {};
   let descriptorListView = "organized"; // "all" or "organized"
@@ -21,19 +25,24 @@ d3.json("./songs.json").then(dataset => {
   let organizedDescriptorSubgroupState = {};
   let mustContainAllSelectedGenres = false;
   let mustContainAllSelectedDescriptors = false;
+  let showAllExcludingSelectedGenres = false;
+  let showAllExcludingSelectedDescriptors = false;
   let selectedSongIndex = -1;
   let selectedSongRef = null;
   let selectedSongSide = "A";
+  let selectedSongVariant = "chart";
   let isCurrentVideoPlaying = false;
   let youtubeMessageListenerBound = false;
-  let songTitleFitResizeBound = false;
-  let songTitleFitResizeRaf = 0;
-  let songTitleMaxRenderedHeight = 0;
+  let currentVideoTime = 0;
+  let currentVideoDuration = 0;
+  let isVideoScrubbing = false;
   let ratingMinFilter = 0.5;
   let ratingMaxFilter = 5;
+  let lastClickedHistogramBin = null;
+  let lastClickedYearFilter = null;
+  let lastClickedRankFilter = null;
   const accordionState = {
     song: true,
-    selected: true,
     genres: false,
     descriptors: false,
     categories: false,
@@ -43,9 +52,103 @@ d3.json("./songs.json").then(dataset => {
     about: false
   };
 
+  const panelSelectedState = {
+    genres: null,
+    descriptors: null,
+    categories: null,
+    countries: null,
+    artists: null
+  };
+
+  function getPanelForSelectionType(type) {
+    if (type === "taxonomy") return "categories";
+    if (type === "genre") return "genres";
+    if (type === "descriptor") return "descriptors";
+    if (type === "country") return "countries";
+    if (type === "artist") return "artists";
+    return null;
+  }
+
+  function renderPanelSelectedBlockHtml(panelKey) {
+    const state = panelSelectedState[panelKey];
+    if (!state) return "";
+
+    const cardAccentStyle = state.headerBorderColor
+      ? ` style="${getTaxonomyContainerAccentStyle(state.headerBorderColor)}"`
+      : "";
+
+    return `
+      <div class="panel-selected" data-panel-selected="${panelKey}"${cardAccentStyle}>
+        <div class="panel-selected-header">
+          <div class="panel-selected-header-meta">
+            ${state.headerMetaHtml || ""}
+          </div>
+          <button type="button" class="panel-selected-close" data-panel-selected-close="${panelKey}" aria-label="Close selected">
+            <span class="close-icon-mask" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="panel-selected-body">
+          ${state.bodyHtml || ""}
+        </div>
+      </div>
+    `;
+  }
+
+  function bindPanelSelectedBlockInteractions(panelKey, { rerender, containerSelector }) {
+    const container = d3.select(containerSelector);
+    if (container.empty()) return;
+
+    container.selectAll(`[data-panel-selected-close="${panelKey}"]`).on("click", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      panelSelectedState[panelKey] = null;
+      if (getPanelForSelectionType(currentPanel.type) === panelKey) currentPanel = { type: null, key: null };
+
+      if (typeof rerender === "function") rerender();
+      updateContextColumn();
+    });
+
+    container.selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
+    bindTopSongButtons(containerSelector);
+    bindTopSongsModeDropdown(containerSelector);
+  }
+
   const years = Array.from(new Set(songs.map(d => d.chartYear))).sort((a, b) => a - b);
-  const ranks = d3.range(1, 11);
+  const maxRankInData = Math.max(
+    10,
+    d3.max(songs, d => Number(d?.rank)) || 0
+  );
+  let ranks = d3.range(1, maxRankInData + 1);
+  selectedRank = selectedRank.filter(rank => rank <= maxRankInData);
   const taxonomyOrder = ["hiphop","dance","soulrnb","rock","countryfolk","jazztraditionalpop"];
+
+  function hasSelectedValue(selectedValues, value) {
+    return Array.isArray(selectedValues) && selectedValues.includes(value);
+  }
+
+  function hasAnySelectedValue(selectedValues) {
+    return Array.isArray(selectedValues) && selectedValues.length > 0;
+  }
+
+  function addOrRepeatToggleSelectedValue(selectedValues, value, lastClickedValue) {
+    const list = Array.isArray(selectedValues) ? selectedValues : [];
+    const isSelected = list.includes(value);
+    const repeatedClick = isSelected && lastClickedValue === value;
+    return {
+      values: repeatedClick
+        ? []
+        : (isSelected ? list : [...list, value].sort((a, b) => a - b)),
+      lastClicked: repeatedClick ? null : value
+    };
+  }
+
+  function clearChartNumberFilters() {
+    selectedYear = [];
+    selectedRank = [];
+    lastClickedYearFilter = null;
+    lastClickedRankFilter = null;
+  }
 
   function buildChartColgroupHtml(totalColumns) {
     const safeColumns = Math.max(1, Number(totalColumns) || 1);
@@ -73,6 +176,8 @@ d3.json("./songs.json").then(dataset => {
       genreCounts[g] = (genreCounts[g] || 0) + 1;
     });
   });
+
+  const genreHasSongs = (gKey) => (genreCounts[gKey] || 0) > 0;
   
   // Track visibility for genres - default to SHOWN (true)
   let genreVisibility = {};
@@ -146,8 +251,9 @@ d3.json("./songs.json").then(dataset => {
         descriptorCounts[d] = (descriptorCounts[d] || 0) + 1;
       });
 
-      const t = song?.genretaxonomy;
-      if (t) taxonomyCounts[t] = (taxonomyCounts[t] || 0) + 1;
+      getVisibleSongTaxonomies(song).forEach((t) => {
+        taxonomyCounts[t] = (taxonomyCounts[t] || 0) + 1;
+      });
 
       const countries = song?.countryCode;
       if (Array.isArray(countries)) {
@@ -205,7 +311,11 @@ d3.json("./songs.json").then(dataset => {
   // Tooltip
   const tooltip = d3.select("body").append("div").attr("id", "tooltip");
   let activeTooltipCell = null;
+  let activeTooltipMode = "chart";
   let tooltipRepositionRaf = 0;
+  let chartTooltipDelayTimer = 0;
+  let chartTooltipSuppressUntil = 0;
+  const chartTooltipDelayMs = 0;
 
   function isMobileTooltipDisabled() {
     return window.matchMedia && window.matchMedia("(hover: none), (pointer: coarse), (max-width: 1100px)").matches;
@@ -215,35 +325,20 @@ d3.json("./songs.json").then(dataset => {
     const tooltipNode = tooltip.node();
     if (!tooltipNode) return;
 
-    const tableNode = (cellNode && cellNode.closest(".chart-table")) || document.querySelector(".chart-table");
-    if (!tableNode) {
+    const boundsNode = (cellNode && cellNode.closest(".chart-grid-scroller")) || document.querySelector(".chart-grid-scroller");
+    if (!boundsNode) {
       tooltip.style("max-width", "min(560px, calc(100vw - 20px))");
       return;
     }
 
-    const gridCells = Array.from(tableNode.querySelectorAll(".chart-cell"));
-    if (gridCells.length === 0) {
+    const boundsRect = boundsNode.getBoundingClientRect();
+    if (boundsRect.width <= 0) {
       tooltip.style("max-width", "min(560px, calc(100vw - 20px))");
       return;
     }
 
-    let minGridLeft = Infinity;
-    let maxGridRight = -Infinity;
-    gridCells.forEach(cell => {
-      const rect = cell.getBoundingClientRect();
-      if (rect.width <= 0 || rect.height <= 0) return;
-      minGridLeft = Math.min(minGridLeft, rect.left);
-      maxGridRight = Math.max(maxGridRight, rect.right);
-    });
-
-    if (!Number.isFinite(minGridLeft) || !Number.isFinite(maxGridRight) || maxGridRight <= minGridLeft) {
-      tooltip.style("max-width", "min(560px, calc(100vw - 20px))");
-      return;
-    }
-
-    const gridWidth = maxGridRight - minGridLeft;
     const gridInset = 12;
-    const safeWidth = Math.max(220, Math.floor(gridWidth - (gridInset * 2)));
+    const safeWidth = Math.max(220, Math.floor(boundsRect.width - (gridInset * 2)));
     tooltip.style("max-width", `${safeWidth}px`);
   }
 
@@ -273,14 +368,62 @@ d3.json("./songs.json").then(dataset => {
 
   function queueTooltipReposition() {
     if (!activeTooltipCell) return;
+    if (activeTooltipMode === "chart" && (chartTooltipDelayTimer || !tooltip.classed("visible"))) return;
     if (tooltipRepositionRaf) cancelAnimationFrame(tooltipRepositionRaf);
     tooltipRepositionRaf = requestAnimationFrame(() => {
       tooltipRepositionRaf = 0;
       if (!activeTooltipCell || !activeTooltipCell.isConnected) return;
-      syncTooltipMaxWidth(activeTooltipCell);
       fitTooltipTextToWidth();
-      positionTooltipForCell(activeTooltipCell);
+      if (activeTooltipMode === "histogram") {
+        positionTooltipForElement(activeTooltipCell);
+      } else {
+        syncTooltipMaxWidth(activeTooltipCell);
+        positionTooltipForCell(activeTooltipCell);
+      }
     });
+  }
+
+  function clearChartTooltipDelay() {
+    if (!chartTooltipDelayTimer) return;
+    clearTimeout(chartTooltipDelayTimer);
+    chartTooltipDelayTimer = 0;
+  }
+
+  function hideChartTooltipForCell(cellNode = null) {
+    clearChartTooltipDelay();
+    if (!cellNode || activeTooltipCell === cellNode) activeTooltipCell = null;
+    activeTooltipMode = "chart";
+    tooltip.classed("visible", false);
+  }
+
+  function scheduleChartTooltip(cellNode, song) {
+    if (!cellNode || !song) return;
+    if (performance.now() < chartTooltipSuppressUntil) return;
+
+    clearChartTooltipDelay();
+    chartTooltipDelayTimer = setTimeout(() => {
+      chartTooltipDelayTimer = 0;
+      if (!cellNode.isConnected || activeTooltipCell !== cellNode) return;
+      if (performance.now() < chartTooltipSuppressUntil) return;
+
+      const hoverSide = getEffectiveVisibleSongSide(song);
+      const track = hoverSide === "B" ? song.tracks?.[1] : song.tracks?.[0];
+      const trackTitle = getFilteredHoverTitleForSong(song) || track?.title || song.tracks?.[0]?.title || "";
+      const artistSeparator = getSongArtistSeparator(song);
+      const filteredArtists = getFilteredHoverArtistsForSong(song);
+      const sideGenres = getSongGenresForSide(song, hoverSide);
+      const sideGenreList = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])].filter(Boolean);
+      const genreLabel = sideGenreList.find(g => genreVisibility[g]) || sideGenres.primarygenre || song.primarygenre || "";
+
+      tooltip.html(`
+        <h2>${trackTitle}</h2>
+        <p class="tooltip-artist-line">${filteredArtists.join(artistSeparator)}</p>
+        <p class="tooltip-rank-genre-line">#${song.rank} for ${song.chartYear} &bull; ${genreLabel}</p>
+      `);
+      syncTooltipMaxWidth(cellNode);
+      fitTooltipTextToWidth();
+      positionTooltipForCell(cellNode);
+    }, chartTooltipDelayMs);
   }
 
   window.addEventListener("resize", queueTooltipReposition);
@@ -312,47 +455,22 @@ d3.json("./songs.json").then(dataset => {
     const tooltipWidth = tooltipNode.offsetWidth;
     const tooltipHeight = tooltipNode.offsetHeight;
 
-    const tableNode = cellNode.closest(".chart-table") || document.querySelector(".chart-table");
-    if (!tableNode) {
+    const boundsNode = cellNode.closest(".chart-grid-scroller") || cellNode.closest(".chart-table") || document.querySelector(".chart-grid-scroller") || document.querySelector(".chart-table");
+    if (!boundsNode) {
       tooltip.classed("visible", false);
       return;
     }
 
-    const gridCells = Array.from(tableNode.querySelectorAll(".chart-cell"));
-    if (gridCells.length === 0) {
+    const boundsRect = boundsNode.getBoundingClientRect();
+    if (boundsRect.width <= 0 || boundsRect.height <= 0) {
       tooltip.classed("visible", false);
       return;
     }
 
-    let minGridLeft = Infinity;
-    let minGridTop = Infinity;
-    let maxGridRight = -Infinity;
-    let maxGridBottom = -Infinity;
-
-    gridCells.forEach(cell => {
-      const cellRect = cell.getBoundingClientRect();
-      if (cellRect.width <= 0 || cellRect.height <= 0) return;
-
-      minGridLeft = Math.min(minGridLeft, cellRect.left);
-      minGridTop = Math.min(minGridTop, cellRect.top);
-      maxGridRight = Math.max(maxGridRight, cellRect.right);
-      maxGridBottom = Math.max(maxGridBottom, cellRect.bottom);
-    });
-
-    if (
-      !Number.isFinite(minGridLeft) ||
-      !Number.isFinite(minGridTop) ||
-      !Number.isFinite(maxGridRight) ||
-      !Number.isFinite(maxGridBottom)
-    ) {
-      tooltip.classed("visible", false);
-      return;
-    }
-
-    const gridLeft = scrollX + minGridLeft;
-    const gridTop = scrollY + minGridTop;
-    const gridRight = scrollX + maxGridRight;
-    const gridBottom = scrollY + maxGridBottom;
+    const gridLeft = scrollX + boundsRect.left;
+    const gridTop = scrollY + boundsRect.top;
+    const gridRight = scrollX + boundsRect.right;
+    const gridBottom = scrollY + boundsRect.bottom;
 
     let minLeft = Math.max(gridLeft + gridInset, viewportLeft + viewportPadding);
     let maxLeft = Math.min(gridRight - tooltipWidth - gridInset, viewportLeft + viewportWidth - tooltipWidth - viewportPadding);
@@ -434,6 +552,44 @@ d3.json("./songs.json").then(dataset => {
       .style("top", `${chosen.top}px`);
   }
 
+  function positionTooltipForElement(anchorNode) {
+    const tooltipNode = tooltip.node();
+    if (!tooltipNode || !anchorNode) return;
+
+    const rect = anchorNode.getBoundingClientRect();
+    const gap = 8;
+    const viewportPadding = 10;
+    const scrollX = window.scrollX || window.pageXOffset;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const viewport = window.visualViewport;
+    const viewportLeft = scrollX + (viewport ? viewport.offsetLeft : 0);
+    const viewportTop = scrollY + (viewport ? viewport.offsetTop : 0);
+    const viewportWidth = viewport ? viewport.width : window.innerWidth;
+    const viewportHeight = viewport ? viewport.height : window.innerHeight;
+    const tooltipWidth = tooltipNode.offsetWidth;
+    const tooltipHeight = tooltipNode.offsetHeight;
+    const anchorLeft = scrollX + rect.left;
+    const anchorRight = scrollX + rect.right;
+    const anchorTop = scrollY + rect.top;
+    const anchorBottom = scrollY + rect.bottom;
+    const anchorCenterX = (anchorLeft + anchorRight) / 2;
+
+    const minLeft = viewportLeft + viewportPadding;
+    const maxLeft = viewportLeft + viewportWidth - tooltipWidth - viewportPadding;
+    const topAbove = anchorTop - tooltipHeight - gap;
+    const topBelow = anchorBottom + gap;
+    const maxTop = viewportTop + viewportHeight - tooltipHeight - viewportPadding;
+    const left = Math.max(minLeft, Math.min(anchorCenterX - (tooltipWidth / 2), Math.max(minLeft, maxLeft)));
+    const top = topAbove >= viewportTop + viewportPadding
+      ? topAbove
+      : Math.max(viewportTop + viewportPadding, Math.min(topBelow, maxTop));
+
+    tooltip
+      .classed("visible", true)
+      .style("left", `${left}px`)
+      .style("top", `${top}px`);
+  }
+
   function getContrastingTextColor(hexColor) {
     const hex = String(hexColor || "").trim().replace("#", "");
     const validHex = /^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(hex) ? hex : "3a3738";
@@ -449,8 +605,28 @@ d3.json("./songs.json").then(dataset => {
     return luminance > 0.62 ? "#231f20" : "#f7fbff";
   }
 
+  function hexToRgba(hexColor, alpha) {
+    const hex = String(hexColor || "").trim().replace("#", "");
+    if (!/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(hex)) return "";
+
+    const expandedHex = hex.length === 3
+      ? hex.split("").map(ch => ch + ch).join("")
+      : hex;
+
+    const r = parseInt(expandedHex.slice(0, 2), 16);
+    const g = parseInt(expandedHex.slice(2, 4), 16);
+    const b = parseInt(expandedHex.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  function getTaxonomyContainerAccentStyle(color) {
+    const fill = hexToRgba(color, 0.1);
+    if (!color) return "";
+    return `border-color: ${color};${fill ? ` background-color: ${fill};` : ""}`;
+  }
+
   function getTaxonomyBadgeStyle(color) {
-    const safeColor = color || "#3a3738";
+    const safeColor = color || "#b6c5d5";
     const textColor = getContrastingTextColor(safeColor);
     return `background-color: ${safeColor}; border-color: ${safeColor}; color: ${textColor};`;
   }
@@ -490,16 +666,20 @@ d3.json("./songs.json").then(dataset => {
 
   function getPlayButtonIconSvg(isPlaying) {
     if (isPlaying) {
-      return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>`;
+      return `<span class="play-icon-mask play-icon-mask--pause" aria-hidden="true"></span>`;
     }
-    return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 6 L19 12 L8 18 Z"></path></svg>`;
+    return `<span class="play-icon-mask play-icon-mask--play" aria-hidden="true"></span>`;
   }
 
   function getStepButtonIconSvg(direction) {
     if (direction === "prev") {
-      return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 6 L9 12 L16 18 Z"></path><rect x="6" y="6" width="2" height="12" rx="1"></rect></svg>`;
+      return `<span class="play-icon-mask play-icon-mask--prev" aria-hidden="true"></span>`;
     }
-    return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 6 L15 12 L8 18 Z"></path><rect x="16" y="6" width="2" height="12" rx="1"></rect></svg>`;
+    return `<span class="play-icon-mask play-icon-mask--next" aria-hidden="true"></span>`;
+  }
+
+  function getDropdownIconHtml() {
+    return `<span class="dropdown-icon-mask" aria-hidden="true"></span>`;
   }
 
   function setCurrentVideoPlaying(nextPlaying) {
@@ -507,102 +687,60 @@ d3.json("./songs.json").then(dataset => {
     const icon = getPlayButtonIconSvg(isCurrentVideoPlaying);
     const label = isCurrentVideoPlaying ? "Pause video" : "Play video";
 
-    d3.selectAll("#play-first, #compact-play")
+    d3.selectAll(".song-compact-play-btn")
       .html(`<span class="play-icon">${icon}</span>`)
-      .attr("title", label)
+      .attr("title", null)
       .attr("aria-label", label);
+
+    d3.selectAll(".context-nav-icon--song")
+      .classed("is-playing", isCurrentVideoPlaying)
+      .attr("title", null);
+  }
+
+  function formatVideoTime(seconds) {
+    const totalSeconds = Math.max(0, Math.floor(Number(seconds) || 0));
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    if (hours > 0) {
+      return `${hours}:${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+    return `${minutes}:${String(secs).padStart(2, "0")}`;
+  }
+
+  function syncSelectedSongScrubberUi({ force = false } = {}) {
+    const duration = Number.isFinite(currentVideoDuration) && currentVideoDuration > 0 ? currentVideoDuration : 0;
+    const current = Math.min(Math.max(0, currentVideoTime || 0), duration || Math.max(0, currentVideoTime || 0));
+
+    d3.selectAll(".song-compact-scrub-current").text(formatVideoTime(current));
+    d3.selectAll(".song-compact-scrub-duration").text(duration > 0 ? formatVideoTime(duration) : "0:00");
+
+    d3.selectAll(".song-compact-scrub-input")
+      .attr("max", duration > 0 ? duration : 0)
+      .property("disabled", duration <= 0)
+      .style("--scrub-progress", `${duration > 0 ? (current / duration) * 100 : 0}%`)
+      .each(function() {
+        if (!force && isVideoScrubbing && document.activeElement === this) return;
+        d3.select(this).property("value", current);
+      });
+  }
+
+  function updateVideoProgressFromPlayerInfo(info = {}) {
+    if (typeof info.duration === "number" && Number.isFinite(info.duration)) {
+      currentVideoDuration = Math.max(0, info.duration);
+    }
+
+    if (!isVideoScrubbing && typeof info.currentTime === "number" && Number.isFinite(info.currentTime)) {
+      currentVideoTime = Math.max(0, info.currentTime);
+    }
+
+    syncSelectedSongScrubberUi();
   }
 
   function getCurrentVideoIframe() {
     return d3.select("#video-container iframe").node();
   }
-// Song title fit behavior for selected song panel.
-
-  function fitOpenSongTitle() {
-    const titleNode = d3.select("#song-modal-cell .song-selected-title").node();
-    if (!titleNode) return;
-    const titleTextNode = titleNode.querySelector(".song-selected-title-text") || titleNode;
-
-    const minOneLineFontPx = 32;
-    const minTwoLineFontPx = 24;
-    const step = 0.5;
-    const defaultFontPx = 48;
-
-    // Always reset font size to default before measuring.
-    titleNode.style.minHeight = "";
-    titleNode.style.setProperty("display", "flex", "important");
-    titleNode.style.alignItems = "flex-end";
-    titleNode.style.overflow = "hidden";
-    titleNode.style.removeProperty("-webkit-box-orient");
-    titleNode.style.removeProperty("-webkit-line-clamp");
-    titleNode.style.removeProperty("line-clamp");
-
-    titleTextNode.style.fontSize = `${defaultFontPx}px`;
-    titleTextNode.style.display = "block";
-    titleTextNode.style.width = "100%";
-    titleTextNode.style.whiteSpace = "nowrap";
-    titleTextNode.style.overflow = "hidden";
-    titleTextNode.style.textOverflow = "clip";
-    titleTextNode.style.overflowWrap = "normal";
-    titleTextNode.style.removeProperty("-webkit-box-orient");
-    titleTextNode.style.removeProperty("-webkit-line-clamp");
-    titleTextNode.style.removeProperty("line-clamp");
-
-    let fontSize = defaultFontPx;
-    while (titleTextNode.scrollWidth > titleTextNode.clientWidth && fontSize > minOneLineFontPx) {
-      fontSize = Math.max(minOneLineFontPx, fontSize - step);
-      titleTextNode.style.fontSize = `${fontSize}px`;
-    }
-
-    // If still too long at one-line minimum, try fitting within two lines.
-    if (titleTextNode.scrollWidth > titleTextNode.clientWidth) {
-      titleTextNode.style.whiteSpace = "normal";
-      titleTextNode.style.display = "-webkit-box";
-      titleTextNode.style.setProperty("-webkit-box-orient", "vertical");
-      titleTextNode.style.setProperty("-webkit-line-clamp", "2");
-      titleTextNode.style.setProperty("line-clamp", "2");
-      titleTextNode.style.overflow = "hidden";
-      titleTextNode.style.textOverflow = "clip";
-      titleTextNode.style.overflowWrap = "anywhere";
-
-      // Keep shrinking until it fits in two lines or reaches two-line minimum font size.
-      while (titleTextNode.scrollHeight > titleTextNode.clientHeight + 1 && fontSize > minTwoLineFontPx) {
-        fontSize = Math.max(minTwoLineFontPx, fontSize - step);
-        titleTextNode.style.fontSize = `${fontSize}px`;
-      }
-
-      // Never truncate title text with ellipsis: if still too long at minimum size,
-      // allow it to wrap naturally beyond two lines.
-      if (titleTextNode.scrollHeight > titleTextNode.clientHeight + 1) {
-        titleTextNode.style.display = "block";
-        titleTextNode.style.removeProperty("-webkit-box-orient");
-        titleTextNode.style.removeProperty("-webkit-line-clamp");
-        titleTextNode.style.removeProperty("line-clamp");
-        titleTextNode.style.overflow = "visible";
-      }
-    }
-
-    const measuredHeight = Math.ceil(titleNode.getBoundingClientRect().height || titleNode.scrollHeight || 0);
-    if (measuredHeight > songTitleMaxRenderedHeight) {
-      songTitleMaxRenderedHeight = measuredHeight;
-    }
-    if (songTitleMaxRenderedHeight > 0) {
-      titleNode.style.minHeight = `${songTitleMaxRenderedHeight}px`;
-    }
-  }
-
-  function ensureSongTitleFitResizeListener() {
-    if (songTitleFitResizeBound) return;
-    window.addEventListener("resize", () => {
-      if (songTitleFitResizeRaf) cancelAnimationFrame(songTitleFitResizeRaf);
-      songTitleFitResizeRaf = requestAnimationFrame(() => {
-        songTitleMaxRenderedHeight = 0;
-        fitOpenSongTitle();
-      });
-    });
-    songTitleFitResizeBound = true;
-  }
-
   function handleYouTubePlayerMessage(event) {
     const iframe = getCurrentVideoIframe();
     if (!iframe || !iframe.contentWindow || event.source !== iframe.contentWindow) return;
@@ -623,6 +761,10 @@ d3.json("./songs.json").then(dataset => {
       playerState = payload.info;
     } else if (payload.event === "infoDelivery" && payload.info && typeof payload.info.playerState === "number") {
       playerState = payload.info.playerState;
+    }
+
+    if (payload.event === "infoDelivery" && payload.info) {
+      updateVideoProgressFromPlayerInfo(payload.info);
     }
 
     if (playerState === 1) {
@@ -662,6 +804,20 @@ d3.json("./songs.json").then(dataset => {
     return true;
   }
 
+  function seekCurrentVideoTo(seconds) {
+    const iframe = getCurrentVideoIframe();
+    if (!iframe || !iframe.contentWindow) return false;
+
+    const target = Math.max(0, Math.min(Number(seconds) || 0, currentVideoDuration || Number(seconds) || 0));
+    currentVideoTime = target;
+    iframe.contentWindow.postMessage(
+      JSON.stringify({ event: "command", func: "seekTo", args: [target, true] }),
+      "*"
+    );
+    syncSelectedSongScrubberUi({ force: true });
+    return true;
+  }
+
   function toggleCurrentVideoPlayback() {
     const hasPlayer = d3.select("#video-container iframe").node();
     if (!hasPlayer) return false;
@@ -698,7 +854,7 @@ d3.json("./songs.json").then(dataset => {
       return;
     }
 
-    // Move to next/prev song - always start on side A if visible, otherwise B
+    // Move to next/prev song - enter on A when stepping forward, B when stepping backward (if visible)
     const currentVisibleIndex = visibleSongs.indexOf(selectedSong);
     let targetVisibleIndex;
     if (currentVisibleIndex === -1) {
@@ -712,7 +868,12 @@ d3.json("./songs.json").then(dataset => {
     if (targetSongIndex !== -1) {
       // Always start on the preferred side for the new song
       const targetVisibleSides = getVisibleSidesForSong(targetSong);
-      const startingSide = targetVisibleSides.includes('A') ? 'A' : 'B';
+      // When stepping forward, enter a song on side A (if visible) so the next step can play side B.
+      // When stepping backward, enter a song on side B (if visible) so the previous step can play side A.
+      const preferredSide = step > 0 ? "A" : "B";
+      const startingSide = targetVisibleSides.includes(preferredSide)
+        ? preferredSide
+        : (targetVisibleSides.includes(preferredSide === "A" ? "B" : "A") ? (preferredSide === "A" ? "B" : "A") : "A");
       showSongModal(targetSongIndex, startingSide, false, true, true);
     }
   }
@@ -752,19 +913,26 @@ d3.json("./songs.json").then(dataset => {
     if (mount.empty()) return;
 
     const isChartSort = sortMode === "chart";
-    const isRankFiltered = isChartSort && selectedRank !== null;
+    const isRankFiltered = isChartSort && hasAnySelectedValue(selectedRank);
+    const dataColumnCount = ranks.length;
     const ranksHtml = ranks.map(rank => {
-      const isActive = isChartSort && selectedRank === rank;
+      const isActive = isChartSort && hasSelectedValue(selectedRank, rank);
       const classes = ["chart-rank-label"];
       if (isChartSort) classes.push("chart-rank-label-toggle");
       if (isActive) classes.push("chart-rank-label-active");
       const label = isChartSort ? `#${rank}` : `${rank}`;
+      const title = isActive
+        ? (lastClickedRankFilter === rank ? "Reset rank filter" : `Rank #${rank} selected`)
+        : `Add rank #${rank}`;
 
-      return `<td class="${classes.join(" ")}" data-rank="${rank}" ${isChartSort ? `role="button" tabindex="0" aria-pressed="${isActive ? "true" : "false"}" title="${isActive ? "Show all ranks" : `Show only rank #${rank}`}"` : ""}>${label}</td>`;
+      return `<td class="${classes.join(" ")}" data-rank="${rank}" ${isChartSort ? `role="button" tabindex="0" aria-pressed="${isActive ? "true" : "false"}" title="${title}"` : ""}>${label}</td>`;
     }).join("");
 
-    mount.style("display", null).html(`
-      <table class="chart-rank-table ${isRankFiltered ? "rank-filter-active" : ""}" aria-hidden="true">
+    mount
+      .style("display", null)
+      .style("--chart-data-columns", dataColumnCount)
+      .html(`
+      <table class="chart-rank-table ${isRankFiltered ? "rank-filter-active" : ""}" style="--chart-data-columns: ${dataColumnCount};" aria-hidden="true">
         ${buildChartColgroupHtml(ranks.length + 1)}
         <tbody>
           <tr>
@@ -780,7 +948,9 @@ d3.json("./songs.json").then(dataset => {
         .on("click", function() {
           const rank = Number(d3.select(this).attr("data-rank"));
           if (!Number.isFinite(rank)) return;
-          selectedRank = selectedRank === rank ? null : rank;
+          const nextSelection = addOrRepeatToggleSelectedValue(selectedRank, rank, lastClickedRankFilter);
+          selectedRank = nextSelection.values;
+          lastClickedRankFilter = nextSelection.lastClicked;
           renderChartRankHeader();
           buildTable();
         })
@@ -789,7 +959,9 @@ d3.json("./songs.json").then(dataset => {
           event.preventDefault();
           const rank = Number(d3.select(this).attr("data-rank"));
           if (!Number.isFinite(rank)) return;
-          selectedRank = selectedRank === rank ? null : rank;
+          const nextSelection = addOrRepeatToggleSelectedValue(selectedRank, rank, lastClickedRankFilter);
+          selectedRank = nextSelection.values;
+          lastClickedRankFilter = nextSelection.lastClicked;
           renderChartRankHeader();
           buildTable();
         });
@@ -806,7 +978,7 @@ d3.json("./songs.json").then(dataset => {
     return `
       <div class="sort-dropdown" data-sort-dropdown="chart">
         <button type="button" id="sort-chart-btn" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-          ${getChartSortModeText(currentMode)} <span class="icon">&#x25BE;</span>
+          ${getChartSortModeText(currentMode)} ${getDropdownIconHtml()}
         </button>
         <div class="sort-dropdown-menu">
           <div class="sort-dropdown-title">Sort by</div>
@@ -839,7 +1011,10 @@ d3.json("./songs.json").then(dataset => {
       const nextMode = d3.select(this).attr("data-chart-sort");
       if (nextMode && nextMode !== sortMode) {
         sortMode = nextMode;
-        if (sortMode === "genre") selectedRank = null;
+        if (sortMode === "genre") {
+          selectedRank = [];
+          lastClickedRankFilter = null;
+        }
         renderChartRankHeader();
         buildTable();
         renderChartSortControl();
@@ -874,31 +1049,117 @@ d3.json("./songs.json").then(dataset => {
     }
   });
 
-  // global utility functions
-  function clearMainPanels() {
-    d3.select("#genres-cell").html("");
-    d3.select("#descriptors-cell").html("");
-    d3.select("#categories-cell").html("");
+  // global utility functions 
+  const contextPanelDefs = [ 
+    { key: "song", selector: "#song-modal-cell" }, 
+    { key: "categories", selector: "#categories-cell" }, 
+    { key: "genres", selector: "#genres-cell" }, 
+    { key: "descriptors", selector: "#descriptors-cell" }, 
+    { key: "countries", selector: "#countries-cell" }, 
+    { key: "artists", selector: "#artists-cell" }, 
+    { key: "ratings", selector: "#ratings-cell" }, 
+    { key: "about", selector: "#about-cell" } 
+  ]; 
+  let activeContextPanelKey = "song"; 
+ 
+  function isMobileOverlayMode() { 
+    return !!(window.matchMedia && window.matchMedia("(max-width: 1100px)").matches); 
+  } 
+ 
+  function setActiveContextPanel(panelKey, { scrollToTop = true } = {}) { 
+    if (!panelKey) return; 
+    activeContextPanelKey = panelKey; 
+ 
+    d3.selectAll(".context-nav-button").each(function() { 
+      const btn = d3.select(this); 
+      const isActive = btn.attr("data-panel") === activeContextPanelKey; 
+      btn.classed("is-active", isActive); 
+      btn.attr("aria-current", isActive ? "page" : null); 
+    }); 
+ 
+    contextPanelDefs.forEach(({ key, selector }) => { 
+      const cell = d3.select(selector); 
+      if (cell.empty()) return; 
+      const isActive = key === activeContextPanelKey; 
+      cell.style("display", isActive ? null : "none"); 
+      cell.attr("aria-hidden", isActive ? "false" : "true"); 
+      if (isActive && scrollToTop) { 
+        const node = cell.node(); 
+        if (node) node.scrollTop = 0; 
+        const bodyNode = node.querySelector?.(".accordion-body");
+        if (bodyNode) bodyNode.scrollTop = 0;
+        if (isMobileOverlayMode()) {
+          const overlayPanel = document.querySelector(".menu-overlay-panel");
+          if (overlayPanel) overlayPanel.scrollTop = 0;
+          const contextColumn = document.querySelector(".menu-overlay-panel .context-column");
+          if (contextColumn) contextColumn.scrollTop = 0;
+        }
+      } 
+    }); 
+  } 
+ 
+  function initContextSideNav() { 
+    const nav = d3.select(".context-nav"); 
+    if (nav.empty()) return; 
+ 
+    d3.selectAll(".context-nav-button").on("click", function(event) { 
+      event.preventDefault(); 
+      event.stopPropagation(); 
+
+      if (!isMobileOverlayMode() && event.target?.closest?.(".context-nav-icon--song")) {
+        playSelectedVisibleSongFromChartControls();
+        return;
+      }
+
+      const key = d3.select(this).attr("data-panel"); 
+      setActiveContextPanel(key); 
+      updateContextColumn(); 
+    }); 
+ 
+    // Ensure we re-apply the correct layout on resize (desktop <-> mobile). 
+    window.addEventListener("resize", () => updateContextColumn()); 
+  } 
+ 
+  function clearMainPanels() { 
+    d3.select("#genres-cell").html(""); 
+    d3.select("#descriptors-cell").html(""); 
+    d3.select("#categories-cell").html(""); 
     d3.select("#countries-cell").html("");
     d3.select("#artists-cell").html("");
-    d3.select("#about-cell").html("");
-    d3.selectAll(".nav-tab").classed("active", false);
-    updateContextColumn();
-  }
-function updateContextColumn() {
-    const allCells = d3.selectAll(".context-cell").nodes();
-    allCells.forEach(n => {
-      const html = n.innerHTML.trim();
-      // hide empty cells, show cells with content
-      if (html.length === 0) {
-        d3.select(n).style("display", "none");
-      } else {
-        d3.select(n).style("display", null);
+    d3.select("#about-cell").html(""); 
+    d3.selectAll(".nav-tab").classed("active", false); 
+    updateContextColumn(); 
+  } 
+function updateContextColumn() { 
+    // Show only the active panel in both desktop and mobile-overlay layouts. 
+    const activeDef = contextPanelDefs.find(d => d.key === activeContextPanelKey) || contextPanelDefs[0]; 
+    if (activeDef) setActiveContextPanel(activeDef.key, { scrollToTop: false }); 
+  } 
+
+  window.__goaUpdateContextColumn = updateContextColumn;
+
+  function openSelectedSongContextCell() {
+    if (!selectedSongRef) return;
+
+    accordionState.song = true;
+
+    if (isMobileOverlayMode()) {
+      setActiveContextPanel("song", { scrollToTop: false });
+      if (typeof window.__goaSetMenuOpen === "function") {
+        window.__goaSetMenuOpen(true);
       }
-    });
+      updateContextColumn();
+      return;
+    }
+
+    setActiveContextPanel("song");
+    updateContextColumn();
   }
 
   function refreshRenderedContextPanels({ preserveScroll = true } = {}) {
+    const desktopPanelsScroller = !isMobileOverlayMode() ? d3.select(".context-panels").node() : null;
+    const priorDesktopPanelsScrollTop = preserveScroll ? (desktopPanelsScroller?.scrollTop || 0) : 0;
+
     const panels = [
       { selector: "#genres-cell", render: renderGenreListCell },
       { selector: "#descriptors-cell", render: renderDescriptorsListCell },
@@ -914,100 +1175,95 @@ function updateContextColumn() {
       if (!node.innerHTML || node.innerHTML.trim().length === 0) return;
 
       const priorScrollTop = preserveScroll ? node.scrollTop : 0;
+      const priorBodyScrollTop = preserveScroll ? (node.querySelector(".accordion-body")?.scrollTop || 0) : 0;
       try {
         render();
       } catch (error) {
         console.error("Panel refresh failed:", selector, error);
       }
-      if (preserveScroll) node.scrollTop = priorScrollTop;
+      if (preserveScroll) {
+        node.scrollTop = priorScrollTop;
+        const nextBodyNode = node.querySelector(".accordion-body");
+        if (nextBodyNode) nextBodyNode.scrollTop = priorBodyScrollTop;
+      }
     });
 
     updateContextColumn();
+
+    if (preserveScroll && desktopPanelsScroller) {
+      const restoreSidebarScroll = () => {
+        const maxTop = Math.max(0, desktopPanelsScroller.scrollHeight - desktopPanelsScroller.clientHeight);
+        desktopPanelsScroller.scrollTop = Math.min(Math.max(0, priorDesktopPanelsScrollTop), maxTop);
+      };
+      restoreSidebarScroll();
+      requestAnimationFrame(restoreSidebarScroll);
+    }
   }
 
   function scrollLeftPanelToTop() {
-    const infoCellNode = d3.select("#info-cell").node();
-    if (infoCellNode) infoCellNode.scrollTop = 0;
-
     const contextColumnNode = d3.select(".context-column").node();
     if (contextColumnNode) contextColumnNode.scrollTop = 0;
   }
 
-  function closeSongAccordion(immediate = false) {
-    accordionState.song = false;
+  function scrollContextPanelToTop(panelSelector = null) {
+    const panelNode = panelSelector ? d3.select(panelSelector).node() : null;
+    if (panelNode) panelNode.scrollTop = 0;
 
-    const panel = d3.select('#song-modal-cell .accordion-panel[data-accordion-key="song"]');
-    if (panel.empty()) return;
+    const bodyNode = panelNode?.querySelector?.(".accordion-body");
+    if (bodyNode) bodyNode.scrollTop = 0;
 
-    const wasOpen = panel.classed("is-open");
-
-    panel.classed("is-open", false).classed("is-closed", true);
-    panel.select(".accordion-summary").style("display", "flex");
-    panel.selectAll(".accordion-toggle").attr("aria-expanded", "false");
-
-    const bodyNode = panel.select(".accordion-body").node();
-    if (!bodyNode) return;
-
-    // Clear any previous close listener so repeated close calls stay idempotent.
-    if (bodyNode.__songAccordionCloseHandler) {
-      bodyNode.removeEventListener("transitionend", bodyNode.__songAccordionCloseHandler);
-      bodyNode.__songAccordionCloseHandler = null;
-    }
-
-    // If already closed, enforce collapsed state without re-running close animation.
-    if (!wasOpen) {
-      bodyNode.style.display = "none";
-      bodyNode.style.maxHeight = "0px";
-      bodyNode.style.opacity = "0";
-      bodyNode.style.paddingTop = "0px";
+    if (!isMobileOverlayMode()) {
+      const panelsScroller = d3.select(".context-panels").node();
+      if (panelsScroller) panelsScroller.scrollTop = 0;
       return;
     }
 
-    if (immediate) {
-      bodyNode.style.display = "none";
-      bodyNode.style.maxHeight = "0px";
-      bodyNode.style.opacity = "0";
-      bodyNode.style.paddingTop = "0px";
-      return;
-    }
+    const overlay = document.querySelector("#menu-overlay");
+    const overlayPanel = document.querySelector(".menu-overlay-panel");
+    const contextColumn = document.querySelector(".menu-overlay-panel .context-column");
+    const panelsScroller = document.querySelector(".menu-overlay-panel .context-panels");
 
-    bodyNode.style.display = "block";
-    const currentHeight = bodyNode.scrollHeight;
-    bodyNode.style.maxHeight = `${currentHeight}px`;
-    bodyNode.style.opacity = "1";
-    bodyNode.style.paddingTop = "12px";
-
-    requestAnimationFrame(() => {
-      bodyNode.style.maxHeight = "0px";
-      bodyNode.style.opacity = "0";
-      bodyNode.style.paddingTop = "0px";
-    });
-
-    const onCloseEnd = (event) => {
-      if (event.propertyName !== "max-height") return;
-      bodyNode.style.display = "none";
-      bodyNode.removeEventListener("transitionend", onCloseEnd);
-      bodyNode.__songAccordionCloseHandler = null;
-    };
-    bodyNode.__songAccordionCloseHandler = onCloseEnd;
-    bodyNode.addEventListener("transitionend", onCloseEnd);
+    if (overlay) overlay.scrollTop = 0;
+    if (overlayPanel) overlayPanel.scrollTop = 0;
+    if (contextColumn) contextColumn.scrollTop = 0;
+    if (panelsScroller) panelsScroller.scrollTop = 0;
+    document
+      .querySelectorAll(".menu-overlay-panel .accordion-body, .menu-overlay-panel .song-body-content")
+      .forEach((node) => { node.scrollTop = 0; });
   }
 
-  function renderAccordionCell(cellSelector, { key, title = "", headerMetaHtml = "", summaryHtml = "", bodyHtml = "", defaultOpen = true, headerBorderColor = "" }) {
-    const cell = d3.select(cellSelector);
-    if (!bodyHtml || !String(bodyHtml).trim()) {
-      cell.classed("context-cell--accordion", false);
-      cell.html("");
-      updateContextColumn();
-      return;
-    }
+  function queueContextPanelScrollToTop(panelSelector = null) {
+    scrollContextPanelToTop(panelSelector);
+    requestAnimationFrame(() => scrollContextPanelToTop(panelSelector));
+    setTimeout(() => scrollContextPanelToTop(panelSelector), 0);
+    setTimeout(() => scrollContextPanelToTop(panelSelector), 80);
+  }
 
-    cell.classed("context-cell--accordion", true);
+  window.__goaScrollContextPanelToTop = queueContextPanelScrollToTop;
 
-    if (accordionState[key] === undefined) accordionState[key] = defaultOpen;
-    const isOpen = accordionState[key];
-    const keepSummaryVisible = key === "song";
-    const hasTitle = String(title).trim().length > 0;
+  function closeSongAccordion(immediate = false) { 
+    // Intentionally disabled: panels should not auto-close.
+    void immediate;
+    return;
+  } 
+
+  function renderAccordionCell(cellSelector, { key, title = "", headerMetaHtml = "", summaryHtml = "", bodyHtml = "", defaultOpen = true, headerBorderColor = "", showHeader = true }) { 
+    const cell = d3.select(cellSelector); 
+    if (!bodyHtml || !String(bodyHtml).trim()) { 
+      cell.classed("context-cell--accordion", false); 
+      cell.html(""); 
+      updateContextColumn(); 
+      return; 
+    } 
+
+    cell.classed("context-cell--accordion", true); 
+ 
+    const useAccordionInteractions = false; 
+    if (accordionState[key] === undefined) accordionState[key] = defaultOpen; 
+    const isOpen = showHeader && useAccordionInteractions ? accordionState[key] : true; 
+    const keepSummaryVisible = key === "song"; 
+    const hasTitle = String(title).trim().length > 0; 
+    const renderStaticPanelHeading = showHeader && key !== "song" && (hasTitle || headerMetaHtml);
 
     const titleButtonHtml = hasTitle
       ? `<button type="button" class="accordion-toggle accordion-toggle-title" data-accordion-key="${key}" aria-expanded="${isOpen ? "true" : "false"}">
@@ -1020,11 +1276,11 @@ function updateContextColumn() {
       : "";
 
     const headerStyle = headerBorderColor
-      ? ` style="border-color: ${headerBorderColor};"`
+      ? ` style="${getTaxonomyContainerAccentStyle(headerBorderColor)}"`
       : "";
 
-    cell.html(`
-      <div class="accordion-panel ${isOpen ? "is-open" : "is-closed"}" data-accordion-key="${key}">
+    const headerHtml = (showHeader && useAccordionInteractions)
+      ? `
         <div class="accordion-header"${headerStyle}>
           ${titleButtonHtml}
           ${metaHtml}
@@ -1032,10 +1288,26 @@ function updateContextColumn() {
             ${summaryHtml || ""}
           </div>
           <button type="button" class="accordion-toggle accordion-toggle-arrow" data-accordion-key="${key}" aria-expanded="${isOpen ? "true" : "false"}">
-            <span class="accordion-arrow">&#x203A;</span>
+            <span class="accordion-arrow" aria-hidden="true"></span>
           </button>
         </div>
+      `
+      : "";
+
+    const panelHeadingHtml = renderStaticPanelHeading
+      ? `
+        <div class="panel-heading"${headerStyle}>
+          ${hasTitle ? `<h2 class="panel-heading-title">${title}</h2>` : ""}
+          ${headerMetaHtml ? `<div class="panel-heading-meta">${headerMetaHtml}</div>` : ""}
+        </div>
+      `
+      : "";
+
+    cell.html(`
+      <div class="accordion-panel ${isOpen ? "is-open" : "is-closed"}" data-accordion-key="${key}">
+        ${headerHtml}
         <div class="accordion-body">
+          ${panelHeadingHtml}
           ${bodyHtml}
         </div>
       </div>
@@ -1045,13 +1317,14 @@ function updateContextColumn() {
       accordionState[panelKey] = nowOpen;
       const bodyNode = panel.select(".accordion-body").node();
       if (!bodyNode) return;
+      const openDisplay = panelKey === "song" ? "flex" : "block";
 
       panel.classed("is-open", nowOpen).classed("is-closed", !nowOpen);
       panel.select(".accordion-summary").style("display", (nowOpen && !keepSummaryVisible) ? "none" : "flex");
       panel.selectAll(".accordion-toggle").attr("aria-expanded", nowOpen ? "true" : "false");
 
       if (immediate) {
-        bodyNode.style.display = nowOpen ? "block" : "none";
+        bodyNode.style.display = nowOpen ? openDisplay : "none";
         bodyNode.style.maxHeight = nowOpen ? "none" : "0px";
         bodyNode.style.opacity = nowOpen ? "1" : "0";
         bodyNode.style.paddingTop = nowOpen ? "12px" : "0px";
@@ -1059,7 +1332,7 @@ function updateContextColumn() {
       }
 
       if (nowOpen) {
-        bodyNode.style.display = "block";
+        bodyNode.style.display = openDisplay;
         bodyNode.style.maxHeight = "0px";
         bodyNode.style.opacity = "0";
         bodyNode.style.paddingTop = "0px";
@@ -1093,57 +1366,112 @@ function updateContextColumn() {
       }
     }
 
-    const panelRoot = cell.select(".accordion-panel");
-    setPanelOpenState(panelRoot, key, isOpen, true);
-
-    cell.selectAll(".accordion-toggle").on("click", function () {
-      const panelKey = d3.select(this).attr("data-accordion-key");
-      const panel = d3.select(this.closest(".accordion-panel"));
-      const nowOpen = !accordionState[panelKey];
-      setPanelOpenState(panel, panelKey, nowOpen);
-    });
-
-    cell.selectAll(".accordion-header").on("click", function(event) {
-      const panel = d3.select(this.closest(".accordion-panel"));
-      const panelKey = panel.attr("data-accordion-key");
-
-      const interactiveTarget = event.target.closest("button, input, a, label, .clickable-genre, .clickable-descriptor, .clickable-taxonomy, .clickable-country, .clickable-artist");
-      if (interactiveTarget) return;
-
-      const nowOpen = !accordionState[panelKey];
-      setPanelOpenState(panel, panelKey, nowOpen);
-    });
-
-    updateContextColumn();
-  }
+    const panelRoot = cell.select(".accordion-panel"); 
+    setPanelOpenState(panelRoot, key, isOpen, true); 
+ 
+    if (useAccordionInteractions) { 
+      cell.selectAll(".accordion-toggle").on("click", function () { 
+        const panelKey = d3.select(this).attr("data-accordion-key"); 
+        const panel = d3.select(this.closest(".accordion-panel")); 
+        const nowOpen = !accordionState[panelKey]; 
+        setPanelOpenState(panel, panelKey, nowOpen); 
+      }); 
+ 
+      cell.selectAll(".accordion-header").on("click", function(event) { 
+        const panel = d3.select(this.closest(".accordion-panel")); 
+        const panelKey = panel.attr("data-accordion-key"); 
+ 
+        const interactiveTarget = event.target.closest("button, input, a, label, .clickable-genre, .clickable-descriptor, .clickable-taxonomy, .clickable-country, .clickable-artist"); 
+        if (interactiveTarget) return; 
+ 
+        const nowOpen = !accordionState[panelKey]; 
+        setPanelOpenState(panel, panelKey, nowOpen); 
+      }); 
+    } else { 
+      // Desktop side-panel layout: keep panels always open (no accordion interactions). 
+      accordionState[key] = true; 
+    } 
+ 
+    updateContextColumn(); 
+  } 
   function updateStatusBar() {
     const visibleCount = visibleSongCountsCache.songs;
-    const genreCount = Object.values(genreVisibility).filter(v => v).length;
-    const taxonomyCount = Object.values(taxonomyVisibility).filter(v => v).length;
-    const descriptorCount = Object.values(descriptorVisibility).filter(v => v).length;
-    const countryCount = Object.values(countryVisibility).filter(v => v).length;
-    const artistCount = Object.values(artistVisibility).filter(v => v).length;
-    const totalGenres = Object.keys(genreVisibility).length;
-    const totalTaxonomies = Object.keys(taxonomyVisibility).length;
-    const totalDescriptors = Object.keys(descriptorVisibility).length;
-    const totalCountries = Object.keys(countryVisibility).length;
-    const totalArtists = Object.keys(artistVisibility).length;
 
-    const fractionText = (count, total, { zeroMeansAll = false } = {}) => {
-      if (!Number.isFinite(total) || total <= 0) return "0/0";
-      const effectiveCount = (zeroMeansAll && count === 0) ? total : count;
-      return `${effectiveCount}/${total}`;
+    const escapeHtml = (value) => String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
+    const buildFilterRow = (iconKey, text) => `
+      <div class="song-count-dropdown-row">
+        ${iconKey === "categories"
+          ? `<img src="SVG/Categories.svg" alt="" class="song-count-filter-icon song-count-filter-icon--image" aria-hidden="true">`
+          : `<span class="song-count-filter-icon song-count-filter-icon--${iconKey}" aria-hidden="true"></span>`}
+        <span class="song-count-filter-text">${text}</span>
+      </div>
+    `;
+
+    const getActiveFilterSummary = (visibilityMap, totalLabel, iconKey, getDisplayLabel) => {
+      const keys = Object.keys(visibilityMap || {});
+      const total = keys.length;
+      if (total === 0) return null;
+
+      const selectedKeys = keys.filter(k => visibilityMap[k] !== false);
+      if (selectedKeys.length === total) return null;
+
+      const selectedText = selectedKeys.length > 3
+        ? `${selectedKeys.length}/${total} ${totalLabel}`
+        : (selectedKeys.length > 0
+          ? selectedKeys.map(k => escapeHtml(getDisplayLabel(k))).join(", ")
+          : `0/${total} ${totalLabel}`);
+
+      return buildFilterRow(iconKey, selectedText);
     };
 
-    const genreCountText = fractionText(genreCount, totalGenres, { zeroMeansAll: false });
-    const taxonomyCountText = fractionText(taxonomyCount, totalTaxonomies, { zeroMeansAll: true });
-    const descriptorCountText = fractionText(descriptorCount, totalDescriptors, { zeroMeansAll: false });
-    const countryCountText = fractionText(countryCount, totalCountries, { zeroMeansAll: true });
-    const artistCountText = fractionText(artistCount, totalArtists, { zeroMeansAll: true });
-    const selectedYearText = selectedYear === null ? "All" : selectedYear;
-    const selectedRankText = sortMode === "chart"
-      ? (selectedRank === null ? "All" : `#${selectedRank}`)
-      : "All";
+    const activeFilterRows = [];
+
+    if (hasAnySelectedValue(selectedYear)) {
+      const yearText = selectedYear.map(year => escapeHtml(year)).join(", ");
+      activeFilterRows.push(`<div class="song-count-dropdown-row">Year: ${yearText}</div>`);
+    }
+
+    if (sortMode === "chart" && hasAnySelectedValue(selectedRank)) {
+      const rankText = selectedRank.map(rank => `#${escapeHtml(rank)}`).join(", ");
+      activeFilterRows.push(`<div class="song-count-dropdown-row">Rank: ${rankText}</div>`);
+    }
+
+    if (ratingMinFilter > 0.5 || ratingMaxFilter < 5) {
+      const formatRatingFilter = (value) => {
+        const v = Number(value);
+        if (!Number.isFinite(v)) return "";
+        return v.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+      };
+      activeFilterRows.push(buildFilterRow("ratings", `Ratings: ${formatRatingFilter(ratingMinFilter)}-${formatRatingFilter(ratingMaxFilter)} stars`));
+    }
+
+    if (showAllExcludingSelectedGenres && getSelectedGenreKeys().length > 0) {
+      activeFilterRows.push(buildFilterRow("genres", "Genres: excluding selected"));
+    }
+
+    if (showAllExcludingSelectedDescriptors && getSelectedDescriptorKeys().length > 0) {
+      activeFilterRows.push(buildFilterRow("descriptors", "Descriptors: excluding selected"));
+    }
+
+    [
+      getActiveFilterSummary(genreVisibility, "genres", "genres", k => genres[k]?.label || k),
+      getActiveFilterSummary(descriptorVisibility, "descriptors", "descriptors", k => descriptors[k]?.label || k),
+      getActiveFilterSummary(taxonomyVisibility, "categories", "categories", k => taxonomy[k]?.label || k),
+      getActiveFilterSummary(countryVisibility, "countries", "countries", k => k),
+      getActiveFilterSummary(artistVisibility, "artists", "artists", k => k)
+    ].forEach(row => {
+      if (row) activeFilterRows.push(row);
+    });
+
+    const activeFiltersHtml = activeFilterRows.length
+      ? activeFilterRows.join("")
+      : `<div class="song-count-dropdown-row">No filters used</div>`;
 
     const status = `${visibleCount} song${visibleCount !== 1 ? "s" : ""}`;
     const songCountEl = d3.select("#song-count");
@@ -1151,17 +1479,11 @@ function updateContextColumn() {
     songCountEl.html(`
       <div class="sort-dropdown" data-sort-dropdown="song-count">
         <button type="button" id="song-count-btn" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-          ${status} <span class="icon">&#x25BE;</span>
+          ${status} ${getDropdownIconHtml()}
         </button>
         <div class="sort-dropdown-menu">
-          <div class="sort-dropdown-title">Showing</div>
-          <div class="song-count-dropdown-row">Years: ${selectedYearText}</div>
-          <div class="song-count-dropdown-row">Ranks: ${selectedRankText}</div>
-          <div class="song-count-dropdown-row">Genres: ${genreCountText}</div>
-          <div class="song-count-dropdown-row">Descriptors: ${descriptorCountText}</div>
-          <div class="song-count-dropdown-row">Categories: ${taxonomyCountText}</div>
-          <div class="song-count-dropdown-row">Countries: ${countryCountText}</div>
-          <div class="song-count-dropdown-row">Artists: ${artistCountText}</div>
+          <div class="sort-dropdown-title">Filters</div>
+          ${activeFiltersHtml}
         </div>
       </div>
     `);
@@ -1190,13 +1512,15 @@ function toggleAllGlobal() {
 
   // "Show all" should also clear chart year/rank filters.
   if (newState) {
-    selectedYear = null;
-    selectedRank = null;
+    clearChartNumberFilters();
     ratingMinFilter = 0.5;
     ratingMaxFilter = 5;
+    lastClickedHistogramBin = null;
     mustContainAllSelectedGenres = false;
     mustContainAllSelectedDescriptors = false;
-    d3.selectAll("#genres-must-contain-all, #descriptors-must-contain-all").property("checked", false);
+    showAllExcludingSelectedGenres = false;
+    showAllExcludingSelectedDescriptors = false;
+    d3.selectAll("#genres-must-contain-all, #descriptors-must-contain-all, #genres-exclude-selected, #descriptors-exclude-selected").property("checked", false);
   }
 
     Object.keys(genreVisibility).forEach(k => genreVisibility[k] = newState);
@@ -1216,16 +1540,220 @@ function toggleAllGlobal() {
   }
   function getChartScrollContainer() {
     // The chart scroll container is the element that actually scrolls the chart table.
-    // CSS may move scrolling between `.chart-area` and `.chart-container`, so prefer
-    // whichever currently has overflow/scroll content.
+    const chartGridScrollerNode = d3.select(".chart-grid-scroller").node();
+    if (chartGridScrollerNode) return chartGridScrollerNode;
+
     const chartContainerNode = d3.select(".chart-container").node();
     if (chartContainerNode) return chartContainerNode;
-
     return d3.select(".chart-area").node() || document.scrollingElement || document.documentElement;
   }
 
+  let currentChartDataColumns = ranks.length;
+
+  function getCssPixelValue(node, propertyName, fallback) {
+    const rawValue = window.getComputedStyle(node || document.documentElement).getPropertyValue(propertyName).trim();
+    const parsed = Number.parseFloat(rawValue);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  }
+
+  function syncChartTableMetrics(dataColumns = currentChartDataColumns) {
+    const chartScroller = getChartScrollContainer();
+    if (!chartScroller || !chartScroller.style) return;
+
+    currentChartDataColumns = Math.max(0, Number(dataColumns) || 0);
+    const yearColumnWidth = getCssPixelValue(chartScroller, "--year-column-width", 88);
+    const minCellWidth = getCssPixelValue(chartScroller, "--chart-min-cell-width", 48);
+    const containerStyles = window.getComputedStyle(chartScroller);
+    const horizontalPadding =
+      (Number.parseFloat(containerStyles.paddingLeft) || 0) +
+      (Number.parseFloat(containerStyles.paddingRight) || 0);
+    const availableTableWidth = Math.max(0, chartScroller.clientWidth - horizontalPadding);
+    const minTableWidth = yearColumnWidth + (currentChartDataColumns * minCellWidth);
+    const tableWidth = Math.max(availableTableWidth, minTableWidth);
+    const activeCellWidth = currentChartDataColumns > 0
+      ? Math.max(minCellWidth, (tableWidth - yearColumnWidth) / currentChartDataColumns)
+      : minCellWidth;
+
+    chartScroller.style.setProperty("--chart-data-columns", currentChartDataColumns);
+    chartScroller.style.setProperty("--chart-table-width", `${tableWidth}px`);
+    chartScroller.style.setProperty("--chart-cell-width", `${activeCellWidth}px`);
+    chartScroller.classList.toggle("chart-min-cell-overflow", minTableWidth > availableTableWidth + 1);
+  }
+
+  function syncChartOverflowState() {
+    const chartScroller = getChartScrollContainer();
+    if (!chartScroller || !chartScroller.classList) return false;
+
+    const hasOverflow = chartScroller.classList.contains("chart-min-cell-overflow");
+    chartScroller.classList.toggle("chart-has-overflow", hasOverflow);
+    return hasOverflow;
+  }
+
+  function syncChartScrollportWidth() {
+    const chartScroller = getChartScrollContainer();
+    if (!chartScroller || !chartScroller.style) return;
+    syncChartTableMetrics();
+    requestAnimationFrame(syncChartOverflowState);
+  }
+
+  function initChartDragPan() {
+    const chartScroller = d3.select(".chart-grid-scroller").node();
+    if (!chartScroller || initChartDragPan.bound) return;
+
+    let panState = null;
+    let panFrame = 0;
+    let postPanTooltipTimer = 0;
+    let postPanTooltipPoint = null;
+    let suppressNextClick = false;
+    const interactiveSelector = "button, a, input, select, textarea, [role='button'], #selected-song-bar, .chart-controls-row";
+
+    const clearPostPanTooltip = () => {
+      if (!postPanTooltipTimer) return;
+      clearTimeout(postPanTooltipTimer);
+      postPanTooltipTimer = 0;
+      postPanTooltipPoint = null;
+    };
+
+    const schedulePostPanTooltip = (event) => {
+      if (isMobileTooltipDisabled()) return;
+
+      const pointerX = event.clientX;
+      const pointerY = event.clientY;
+      const delay = Math.max(0, chartTooltipSuppressUntil - performance.now()) + 20;
+
+      clearPostPanTooltip();
+      postPanTooltipPoint = { x: pointerX, y: pointerY };
+      postPanTooltipTimer = setTimeout(() => {
+        postPanTooltipTimer = 0;
+        postPanTooltipPoint = null;
+        const elements = typeof document.elementsFromPoint === "function"
+          ? document.elementsFromPoint(pointerX, pointerY)
+          : [document.elementFromPoint(pointerX, pointerY)].filter(Boolean);
+        const cellNode = elements
+          .map((el) => el?.closest?.(".chart-cell"))
+          .find((el) => el && chartScroller.contains(el));
+        if (!cellNode || !chartScroller.contains(cellNode)) return;
+        if (cellNode.classList.contains("empty")) return;
+        if (isPointerInsideStickyYearColumn({ clientX: pointerX, clientY: pointerY }, cellNode)) return;
+
+        const song = d3.select(cellNode).datum();
+        if (!song) return;
+
+        activeTooltipCell = cellNode;
+        activeTooltipMode = "chart";
+        tooltip.classed("visible", false);
+        scheduleChartTooltip(cellNode, song);
+      }, delay);
+    };
+
+    const applyPanFrame = () => {
+      panFrame = 0;
+      if (!panState || !panState.moved) return;
+      chartScroller.scrollLeft = panState.scrollLeft - panState.dx;
+      chartScroller.scrollTop = panState.scrollTop - panState.dy;
+    };
+
+    chartScroller.addEventListener("scroll", () => {
+      if (
+        activeTooltipMode === "chart" &&
+        (chartTooltipDelayTimer || activeTooltipCell || tooltip.classed("visible"))
+      ) {
+        hideChartTooltipForCell();
+      }
+    });
+
+    chartScroller.addEventListener("pointerdown", (event) => {
+      clearPostPanTooltip();
+      if (event.pointerType === "touch") return;
+      if (event.button !== 0 || event.target.closest(interactiveSelector)) return;
+      if (!syncChartOverflowState()) return;
+      if (!event.target.closest(".chart-table, .chart-rank-header")) return;
+
+      panState = {
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        scrollLeft: chartScroller.scrollLeft,
+        scrollTop: chartScroller.scrollTop,
+        dx: 0,
+        dy: 0,
+        active: false,
+        moved: false
+      };
+    });
+
+    chartScroller.addEventListener("pointermove", (event) => {
+      if (!panState) {
+        if (
+          postPanTooltipPoint &&
+          (Math.abs(event.clientX - postPanTooltipPoint.x) > 8 ||
+            Math.abs(event.clientY - postPanTooltipPoint.y) > 8)
+        ) {
+          clearPostPanTooltip();
+        }
+        return;
+      }
+      if (!panState || event.pointerId !== panState.pointerId) return;
+      const dx = event.clientX - panState.startX;
+      const dy = event.clientY - panState.startY;
+      const hasMoved = Math.abs(dx) > 6 || Math.abs(dy) > 6;
+      if (!hasMoved && !panState.moved) return;
+      if (!panState.active) {
+        panState.active = true;
+        hideChartTooltipForCell();
+        chartScroller.setPointerCapture(event.pointerId);
+        chartScroller.classList.add("is-panning");
+      }
+      panState.moved = true;
+      panState.dx = dx;
+      panState.dy = dy;
+      if (!panFrame) panFrame = requestAnimationFrame(applyPanFrame);
+      event.preventDefault();
+    });
+
+    const endPan = (event) => {
+      if (!panState || event.pointerId !== panState.pointerId) return;
+      if (panFrame) {
+        cancelAnimationFrame(panFrame);
+        applyPanFrame();
+      }
+      chartScroller.classList.remove("is-panning");
+      if (chartScroller.hasPointerCapture(event.pointerId)) {
+        chartScroller.releasePointerCapture(event.pointerId);
+      }
+      suppressNextClick = panState.moved;
+      if (panState.moved) {
+        chartTooltipSuppressUntil = performance.now() + 700;
+        hideChartTooltipForCell();
+        schedulePostPanTooltip(event);
+      }
+      panState = null;
+    };
+
+    chartScroller.addEventListener("pointerup", endPan);
+    chartScroller.addEventListener("pointercancel", endPan);
+    chartScroller.addEventListener("lostpointercapture", () => {
+      clearPostPanTooltip();
+      if (panFrame) {
+        cancelAnimationFrame(panFrame);
+        panFrame = 0;
+      }
+      chartScroller.classList.remove("is-panning");
+      panState = null;
+    });
+
+    chartScroller.addEventListener("click", (event) => {
+      if (!suppressNextClick) return;
+      suppressNextClick = false;
+      event.preventDefault();
+      event.stopPropagation();
+    }, true);
+
+    initChartDragPan.bound = true;
+  }
+
   function getChartTopObstructionHeight(scroller) {
-    const stickySelectors = [".sort-controls"];
+    const stickySelectors = [".chart-rank-header"];
     let obstructionBottom = 0;
     const scrollerRect = scroller?.getBoundingClientRect?.();
 
@@ -1258,6 +1786,7 @@ function toggleAllGlobal() {
 
     const scroller = getChartScrollContainer();
     const selectedRowGap = 8;
+    const selectedColumnGap = 8;
     const rowNode = selectedCellNode.closest("tr") || selectedCellNode;
 
     const computeTargetTop = () => {
@@ -1269,48 +1798,98 @@ function toggleAllGlobal() {
       return Math.max(0, Math.round(currentScrollTop + topInScroller - obstruction - selectedRowGap));
     };
 
+    const computeTargetLeft = () => {
+      if (!scroller || scroller === document.documentElement || scroller === document.body) return window.scrollX || window.pageXOffset || 0;
+
+      const cellRect = selectedCellNode.getBoundingClientRect();
+      const scrollerRect = scroller.getBoundingClientRect();
+      const currentScrollLeft = scroller.scrollLeft || 0;
+      const yearLabelNode = rowNode.querySelector?.(".year-label") || document.querySelector(".chart-table .year-label");
+      const yearColumnWidth = yearLabelNode?.getBoundingClientRect?.().width || 0;
+      const visibleLeft = scrollerRect.left + yearColumnWidth + selectedColumnGap;
+      const visibleRight = scrollerRect.right - selectedColumnGap;
+
+      if (cellRect.left >= visibleLeft && cellRect.right <= visibleRight) return currentScrollLeft;
+
+      if (cellRect.left < visibleLeft) {
+        return Math.max(0, Math.round(currentScrollLeft + (cellRect.left - visibleLeft)));
+      }
+
+      return Math.max(0, Math.round(currentScrollLeft + (cellRect.right - visibleRight)));
+    };
+
     if (typeof scroller?.scrollTo === "function") {
-      scroller.scrollTo({ top: computeTargetTop(), behavior: "smooth" });
+      scroller.scrollTo({ top: computeTargetTop(), left: computeTargetLeft(), behavior: "smooth" });
     } else {
       window.scrollTo({ top: computeTargetTop(), behavior: "smooth" });
     }
   }
 
-  // hook global toggle button (chart + overlay)
-  d3.selectAll("#toggle-all-global, #toggle-all-global-overlay").on("click", toggleAllGlobal);
-  d3.select("#prev-first").on("click", () => {
-    const isMobileOverlay = window.matchMedia && window.matchMedia("(max-width: 1100px)").matches;
-    if (isMobileOverlay) {
-      accordionState.song = true;
-      if (typeof window.__goaSetMenuOpen === "function") window.__goaSetMenuOpen(true);
-    }
-    showRelativeVisibleSong(-1);
-  });
-  d3.select("#play-first").on("click", () => {
-    playSelectedVisibleSongFromChartControls();
-  });
-  d3.select("#next-first").on("click", () => {
-    const isMobileOverlay = window.matchMedia && window.matchMedia("(max-width: 1100px)").matches;
-    if (isMobileOverlay) {
-      accordionState.song = true;
-      if (typeof window.__goaSetMenuOpen === "function") window.__goaSetMenuOpen(true);
-    }
-    showRelativeVisibleSong(1);
-  });
-
-  d3.select("#prev-first .play-icon").html(getStepButtonIconSvg("prev"));
-  d3.select("#next-first .play-icon").html(getStepButtonIconSvg("next"));
+  // hook global toggle button
+  d3.select("#toggle-all-global").on("click", toggleAllGlobal);
   setCurrentVideoPlaying(false);
+
+  function buildSongDescriptorsGroupedHtml(descriptorKeys) {
+    const categoryOrder = ["Atmosphere", "Form", "Lyrics", "Mood", "Style", "Technique", "Theme", "Vocals"];
+    const groups = {};
+    categoryOrder.forEach((category) => { groups[category] = []; });
+    const otherDescriptors = [];
+
+    const getDescriptorLabel = (key) => {
+      const meta = descriptors[key];
+      return meta?.label || key;
+    };
+
+    const resolveDescriptorCategory = (key) => {
+      const meta = descriptors[key];
+      const rawGroups = Array.isArray(meta?.descriptorGroup)
+        ? meta.descriptorGroup
+        : (meta?.descriptorGroup ? [meta.descriptorGroup] : []);
+      const normalizedGroups = rawGroups.map(g => String(g || "").trim().toLowerCase());
+      return categoryOrder.find(category => normalizedGroups.includes(category.toLowerCase())) || null;
+    };
+
+    Array.from(new Set((descriptorKeys || []).filter(Boolean))).forEach((key) => {
+      const category = resolveDescriptorCategory(key);
+      const descriptorHtml = `<span class="clickable-descriptor" data-descriptor="${key}">${getDescriptorLabel(key)}</span>`;
+      if (category) groups[category].push(descriptorHtml);
+      else otherDescriptors.push(descriptorHtml);
+    });
+
+    const groupHtml = categoryOrder
+      .filter(category => groups[category].length > 0)
+      .map(category => `
+        <div class="song-descriptor-group">
+          <h3 class="song-descriptor-group-title">${category}</h3>
+          <p class="song-descriptor-group-items">${groups[category].join(" • ")}</p>
+        </div>
+      `);
+
+    if (otherDescriptors.length > 0) {
+      groupHtml.push(`
+        <div class="song-descriptor-group">
+          <h3 class="song-descriptor-group-title">Other</h3>
+          <p class="song-descriptor-group-items">${otherDescriptors.join(" • ")}</p>
+        </div>
+      `);
+    }
+
+    return groupHtml.length
+      ? `<div class="song-descriptors-row song-descriptors-row--grouped">${groupHtml.join("")}</div>`
+      : "";
+  }
 
 
   // Table
-  const table = d3.select(".chart-container").append("table").attr("class", "chart-table");
+  const table = d3.select(".chart-grid-scroller").append("table").attr("class", "chart-table");
   const tbody = table.append("tbody");
 
   function applyChartTableColgroup(totalColumns) {
     const safeColumns = Math.max(1, Number(totalColumns) || 1);
     const dataColumns = Math.max(0, safeColumns - 1);
 
+    syncChartTableMetrics(dataColumns);
+    table.style("--chart-data-columns", dataColumns);
     table.select("colgroup").remove();
     const colgroup = table.insert("colgroup", ":first-child");
     colgroup.append("col").attr("class", "chart-year-col");
@@ -1321,7 +1900,9 @@ function toggleAllGlobal() {
 
   queueHeaderStickyOffsetSync();
   window.addEventListener("resize", queueHeaderStickyOffsetSync);
-  ensureSongTitleFitResizeListener();
+  syncChartScrollportWidth();
+  window.addEventListener("resize", syncChartScrollportWidth);
+  initChartDragPan();
   ensureYearLabelResizeListener();
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => queueHeaderStickyOffsetSync());
@@ -1330,14 +1911,35 @@ function toggleAllGlobal() {
   buildTable();
   renderChartSortControl();
   renderChartRankHeader();
-  // populate static context cells (all available, collapsed by default)
-  [renderGenreListCell, renderDescriptorsListCell, renderCategoriesPanel, renderCountriesPanel, renderArtistsPanel, renderRatingsPanel, renderAboutPanel].forEach((renderFn) => {
-    try {
-      renderFn();
-    } catch (error) {
-      console.error("Panel render failed:", error);
-    }
-  });
+
+  function ensureChartSortControlHostLocation() {
+    const host = document.getElementById("chart-sort-control-host");
+    if (!host) return;
+
+    const desktopSlot = document.querySelector(".chart-controls-right");
+
+    if (desktopSlot && host.parentElement !== desktopSlot) desktopSlot.appendChild(host);
+  }
+
+  ensureChartSortControlHostLocation(); 
+  window.addEventListener("resize", ensureChartSortControlHostLocation); 
+ 
+  initContextSideNav(); 
+  updateContextColumn(); 
+ 
+  // populate static context cells (all available, collapsed by default) 
+  [renderGenreListCell, renderDescriptorsListCell, renderCategoriesPanel, renderCountriesPanel, renderArtistsPanel, renderRatingsPanel, renderAboutPanel].forEach((renderFn) => { 
+    try { 
+      renderFn(); 
+    } catch (error) { 
+      console.error("Panel render failed:", error); 
+    } 
+  }); 
+
+  // Default selected tile on initial load: first song in the chart list.
+  if (selectedSongIndex === -1 && currentSongList.length > 0) {
+    showSongModal(0, getPreferredVisibleSongSide(currentSongList[0]), false, false, true);
+  }
 
   function isYearLabelContracted() {
     return !!(window.matchMedia && window.matchMedia("(max-width: 380px)").matches);
@@ -1375,14 +1977,19 @@ function toggleAllGlobal() {
   }
 
   function buildTable() {
+    syncChartScrollportWidth();
+    const chartScroller = getChartScrollContainer();
+    const priorChartScrollTop = chartScroller?.scrollTop || 0;
+    const priorChartScrollLeft = chartScroller?.scrollLeft || 0;
+
     tbody.html("");
     currentSongList = [];
-    const isYearFiltered = selectedYear !== null;
-    const isRankFiltered = sortMode === "chart" && selectedRank !== null;
+    const isYearFiltered = hasAnySelectedValue(selectedYear);
+    const isRankFiltered = sortMode === "chart" && hasAnySelectedValue(selectedRank);
     table.classed("year-filter-active", isYearFiltered);
 
     function appendYearLabelCell(row, year) {
-      const isSelected = selectedYear === year;
+      const isSelected = hasSelectedValue(selectedYear, year);
       row.append("td")
         .attr("class", "year-label year-label-toggle")
         .attr("data-year", year)
@@ -1390,16 +1997,22 @@ function toggleAllGlobal() {
         .attr("role", "button")
         .attr("tabindex", 0)
         .attr("aria-pressed", isSelected ? "true" : "false")
-        .attr("title", isSelected ? "Show all years" : `Show only ${year}`)
+        .attr("title", isSelected
+          ? (lastClickedYearFilter === year ? "Reset year filter" : `${year} selected`)
+          : `Add ${year}`)
         .text(formatYearLabelText(year))
         .on("click", () => {
-          selectedYear = selectedYear === year ? null : year;
+          const nextSelection = addOrRepeatToggleSelectedValue(selectedYear, year, lastClickedYearFilter);
+          selectedYear = nextSelection.values;
+          lastClickedYearFilter = nextSelection.lastClicked;
           buildTable();
         })
         .on("keydown", function(event) {
           if (event.key !== "Enter" && event.key !== " ") return;
           event.preventDefault();
-          selectedYear = selectedYear === year ? null : year;
+          const nextSelection = addOrRepeatToggleSelectedValue(selectedYear, year, lastClickedYearFilter);
+          selectedYear = nextSelection.values;
+          lastClickedYearFilter = nextSelection.lastClicked;
           buildTable();
         });
     }
@@ -1410,9 +2023,9 @@ function toggleAllGlobal() {
       years.forEach(year => {
         const tr = tbody.append("tr");
         appendYearLabelCell(tr, year);
-        const showYearSongs = !isYearFiltered || selectedYear === year;
+        const showYearSongs = !isYearFiltered || hasSelectedValue(selectedYear, year);
         ranks.forEach(rank => {
-          const showRankSongs = !isRankFiltered || selectedRank === rank;
+          const showRankSongs = !isRankFiltered || hasSelectedValue(selectedRank, rank);
           const shouldShowSong = showYearSongs && showRankSongs;
           const song = songs.find(d => d.chartYear === year && d.rank === rank);
           appendCell(tr, song, !shouldShowSong);
@@ -1428,8 +2041,8 @@ function toggleAllGlobal() {
         const hidden = yearSongs.filter(s => !isSongVisible(s));
 
         const sorter = (a, b) => {
-          const ai = taxonomyOrder.indexOf(a.genretaxonomy);
-          const bi = taxonomyOrder.indexOf(b.genretaxonomy);
+          const ai = taxonomyOrder.indexOf(getSongTaxonomyForVisibleSides(a));
+          const bi = taxonomyOrder.indexOf(getSongTaxonomyForVisibleSides(b));
           const A = ai === -1 ? taxonomyOrder.length : ai;
           const B = bi === -1 ? taxonomyOrder.length : bi;
           return A - B;
@@ -1444,7 +2057,7 @@ function toggleAllGlobal() {
       years.forEach(year => {
         const tr = tbody.append("tr");
         appendYearLabelCell(tr, year);
-        const showYearSongs = !isYearFiltered || selectedYear === year;
+        const showYearSongs = !isYearFiltered || hasSelectedValue(selectedYear, year);
         for (let colIndex = 0; colIndex < maxCols; colIndex++) {
           const song = songsByYear[year][colIndex];
           appendCell(tr, song, !showYearSongs);
@@ -1453,12 +2066,26 @@ function toggleAllGlobal() {
       });
     }
     syncSelectedSongCellSelection();
+    requestAnimationFrame(syncChartOverflowState);
     // update helpers after rebuilding
     recomputeVisibleSongCountsCache();
     updateStatusBar();
     refreshRenderedContextPanels({ preserveScroll: true });
     updateContextColumn();
     syncYearLabelText();
+
+    // Rebuilding the table can reset/clamp scroll; restore it so filter updates don't jump to top.
+    if (chartScroller) {
+      const restoreChartScroll = () => {
+        const maxTop = Math.max(0, chartScroller.scrollHeight - chartScroller.clientHeight);
+        const maxLeft = Math.max(0, chartScroller.scrollWidth - chartScroller.clientWidth);
+        chartScroller.scrollTop = Math.min(Math.max(0, priorChartScrollTop), maxTop);
+        chartScroller.scrollLeft = Math.min(Math.max(0, priorChartScrollLeft), maxLeft);
+      };
+
+      restoreChartScroll();
+      requestAnimationFrame(restoreChartScroll);
+    }
   }
 
 // Genre Filtering
@@ -1475,12 +2102,18 @@ function isSongVisible(song) {
   const anyArtistChecked = Object.values(artistVisibility).some(v => v);
   const selectedDescriptors = getSelectedDescriptorKeys();
   const anyDescriptorChecked = selectedDescriptors.length > 0;
+  const excludeSelectedGenres = showAllExcludingSelectedGenres && anyGenreChecked;
+  const excludeSelectedDescriptors = showAllExcludingSelectedDescriptors && anyDescriptorChecked;
 
   const songGenreSet = mustContainAllSelectedGenres ? new Set(songGenres) : null;
   const songDescriptorSet = mustContainAllSelectedDescriptors ? new Set(songDescriptors) : null;
+  const selectedGenreSet = excludeSelectedGenres ? new Set(selectedGenres) : null;
+  const selectedDescriptorSet = excludeSelectedDescriptors ? new Set(selectedDescriptors) : null;
 
   let genreOk = false;
-  if (!anyTaxChecked) {
+  if (excludeSelectedGenres) {
+    genreOk = !songGenres.some(g => selectedGenreSet.has(g));
+  } else if (!anyTaxChecked) {
     // With no taxonomy filter active, at least one checked genre must match.
     // If no genres are checked, show none.
     if (!anyGenreChecked) genreOk = false;
@@ -1491,9 +2124,7 @@ function isSongVisible(song) {
       genreOk = songGenres.some(g => genreVisibility[g]);
     }
   } else {
-    const taxOk = taxonomyVisibility[song.genretaxonomy];
-    if (!taxOk) genreOk = false;
-    else if (!anyGenreChecked) genreOk = true;
+    if (!anyGenreChecked) genreOk = true;
     else if (mustContainAllSelectedGenres) {
       if (selectedGenres.length > songGenreSet.size) genreOk = false;
       else genreOk = selectedGenres.every((g) => songGenreSet.has(g));
@@ -1507,7 +2138,9 @@ function isSongVisible(song) {
   const artistOk = !anyArtistChecked || songArtists.some(a => artistVisibility[a]);
 
   let descriptorOk = false;
-  if (!anyDescriptorChecked) descriptorOk = true;
+  if (excludeSelectedDescriptors) {
+    descriptorOk = !songDescriptors.some(d => selectedDescriptorSet.has(d));
+  } else if (!anyDescriptorChecked) descriptorOk = true;
   else if (mustContainAllSelectedDescriptors) {
     if (selectedDescriptors.length > songDescriptorSet.size) descriptorOk = false;
     else descriptorOk = selectedDescriptors.every((d) => songDescriptorSet.has(d));
@@ -1524,6 +2157,24 @@ function isSongVisible(song) {
   return genreOk && descriptorOk && countryOk && artistOk && sideOk;
 }
 
+  function isPointerInsideStickyYearColumn(event, cellNode) {
+    if (!event || !cellNode) return false;
+
+    const rowNode = cellNode.closest("tr");
+    const yearLabelNode = rowNode?.querySelector(".year-label");
+    if (!yearLabelNode) return false;
+
+    const rect = yearLabelNode.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return false;
+
+    return (
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom
+    );
+  }
+
   // Single table cell for each song
   function appendCell(row, song, forceEmpty = false) {
     const cell = row.append("td").attr("class", "chart-cell").classed("empty", !song);
@@ -1533,11 +2184,12 @@ function isSongVisible(song) {
         cell.classed("empty", true).style("background-color", "");
         return;
       }
-      cell.style("background-color", taxonomy[song.genretaxonomy]?.color || "#2c292b");
 
       // Print/title helpers: store which side(s) are currently "visible" under the genre filter.
       // This lets print/export or any CSS that surfaces titles show A, B, or A/B correctly.
       const visibleSides = getVisibleSidesForSong(song);
+      const visibleTaxonomyKey = getSongTaxonomyForVisibleSides(song, visibleSides);
+      cell.style("background-color", taxonomy[visibleTaxonomyKey]?.color || "#2c292b");
       const titleA = song?.tracks?.[0]?.title || "";
       const titleB = song?.tracks?.[1]?.title || "";
       const combinedTitle = titleB ? `${titleA} / ${titleB}` : titleA;
@@ -1559,53 +2211,38 @@ function isSongVisible(song) {
         .text(printTitle);
     }
     // Tooltip 
-    cell.on("mouseenter", function () {
+    cell.on("mouseenter", function (event) {
       if (!song || isMobileTooltipDisabled()) return;
-      const hoverSide = getEffectiveVisibleSongSide(song);
-      const track = hoverSide === "B" ? song.tracks?.[1] : song.tracks?.[0];
-      const trackTitle = getFilteredHoverTitleForSong(song) || track?.title || song.tracks?.[0]?.title || "";
-
+      if (isPointerInsideStickyYearColumn(event, this)) return;
+      if (performance.now() < chartTooltipSuppressUntil) return;
       activeTooltipCell = this;
-      const artistSeparator = getSongArtistSeparator(song);
-      const filteredArtists = getFilteredHoverArtistsForSong(song);
-      const sideGenres = getSongGenresForSide(song, hoverSide);
-      const sideGenreList = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])].filter(Boolean);
-      const genreLabel = sideGenreList.find(g => genreVisibility[g]) || sideGenres.primarygenre || song.primarygenre || "";
-      tooltip.classed("visible", true).html(`
-        <h2>${trackTitle}</h2>
-        <p class="tooltip-artist-line">${filteredArtists.join(artistSeparator)}</p>
-        <p class="tooltip-rank-genre-line">#${song.rank} for ${song.chartYear} • ${genreLabel}</p>
-      `);
-      syncTooltipMaxWidth(this);
-      fitTooltipTextToWidth();
-      positionTooltipForCell(this);
+      activeTooltipMode = "chart";
+      tooltip.classed("visible", false);
+      scheduleChartTooltip(this, song);
     })
-    .on("mousemove", function() {
+    .on("mousemove", function(event) {
       if (!song || isMobileTooltipDisabled()) return;
+      if (performance.now() < chartTooltipSuppressUntil) return;
+      if (isPointerInsideStickyYearColumn(event, this)) {
+        hideChartTooltipForCell(this);
+        return;
+      }
       activeTooltipCell = this;
-      queueTooltipReposition();
+      activeTooltipMode = "chart";
+      if (!chartTooltipDelayTimer && tooltip.classed("visible")) queueTooltipReposition();
     })
     .on("mouseleave", function() {
       if (isMobileTooltipDisabled()) return;
-      if (activeTooltipCell === this) activeTooltipCell = null;
-      tooltip.classed("visible", false);
+      hideChartTooltipForCell(this);
     })
-    .on("click", () => {
+    .on("click", function(event) {
       if (!song) return;
+      if (isPointerInsideStickyYearColumn(event, this)) return;
       let songIndex = currentSongList.indexOf(song);
       if (songIndex === -1) songIndex = currentSongList.findIndex(s => s.chartYear === song.chartYear && s.rank === song.rank);
       if (songIndex === -1) return;
       const visibleSides = getVisibleSidesForSong(song);
       const clickSide = visibleSides.includes("A") ? "A" : visibleSides[0] || "A";
-
-      const isMobileOverlay = window.matchMedia && window.matchMedia("(max-width: 1100px)").matches;
-      if (isMobileOverlay) {
-        // Ensure the song accordion is opened when selecting from the chart on mobile.
-        accordionState.song = true;
-        if (typeof window.__goaSetMenuOpen === "function") {
-          window.__goaSetMenuOpen(true);
-        }
-      }
 
       showSongModal(songIndex, clickSide, false, false, true);
     });
@@ -1638,7 +2275,13 @@ function isSongVisible(song) {
   }
 
   function rerenderCurrentPanel(resetScroll = false) {
-    if (!currentPanel.type) return;
+    // Never hijack the user's current panel/scroll just because filters changed.
+    // If a "selected" block is open, rebuild it; otherwise just refresh visible panels in-place.
+    if (!currentPanel.type) {
+      refreshRenderedContextPanels({ preserveScroll: true });
+      return;
+    }
+
     if (currentPanel.type === "taxonomy") showTaxonomyPanel(currentPanel.key, resetScroll, false);
     else if (currentPanel.type === "genre") showGenrePanel(currentPanel.key, resetScroll, false);
     else if (currentPanel.type === "descriptor") showDescriptorPanel(currentPanel.key, resetScroll, false);
@@ -1664,7 +2307,7 @@ function syncToggleAllButtonLabels() {
   const allGenresChecked = Object.values(genreVisibility).every(v => v) &&
                            Object.values(taxonomyVisibility).every(v => v);
 
-  d3.selectAll("#toggle-all-global, #toggle-all-global-overlay").text(allGlobalChecked ? "Hide all" : "Show all");
+  d3.select("#toggle-all-global").text(allGlobalChecked ? "Hide all" : "Show all");
   d3.select("#toggle-all-genres").text(allGenresChecked ? "Hide all" : "Show all");
   d3.select("#toggle-all-descriptors").text(Object.values(descriptorVisibility).every(v => v) ? "Hide all" : "Show all");
   d3.select("#toggle-all-categories").text(Object.values(taxonomyVisibility).every(v => v) ? "Hide all" : "Show all");
@@ -1681,7 +2324,7 @@ function getSortModeText(mode) {
 }
 
 function getSortDropdownTriggerLabel(mode) {
-  return `${getSortModeText(mode)} <span class="icon">&#x25BE;</span>`;
+  return `${getSortModeText(mode)} ${getDropdownIconHtml()}`;
 }
 
 function renderSortDropdownHtml(dropdownKey, currentMode) {
@@ -1704,6 +2347,29 @@ function renderSortDropdownHtml(dropdownKey, currentMode) {
   `;
 }
 
+function isCountSortMode(mode) {
+  return mode === "popular" || mode === "unpopular";
+}
+
+function renderSortByVisibleToggleHtml(dropdownKey, currentMode, checked) {
+  if (!isCountSortMode(currentMode)) return "";
+  return `
+    <div class="panel-controls-row panel-controls-row--checkbox">
+      <label class="must-contain-all-toggle">
+        <input type="checkbox" id="${dropdownKey}-sort-visible" ${checked ? "checked" : ""}>
+        <span>Sort by visible</span>
+      </label>
+    </div>
+  `;
+}
+
+function bindSortByVisibleToggle(dropdownKey, setChecked, rerender) {
+  d3.select(`#${dropdownKey}-sort-visible`).on("change", function() {
+    setChecked(!!this.checked);
+    if (typeof rerender === "function") rerender();
+  });
+}
+
 function getGenreListViewText(view) {
   return view === "all" ? "Full List" : "Sorted";
 }
@@ -1718,7 +2384,7 @@ function renderGenreViewDropdownHtml(currentView) {
   return `
     <div class="sort-dropdown" data-sort-dropdown="genre-view">
       <button type="button" id="genre-view-btn" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-        ${getGenreListViewText(currentView)} <span class="icon">&#x25BE;</span>
+        ${getGenreListViewText(currentView)} ${getDropdownIconHtml()}
       </button>
       <div class="sort-dropdown-menu">
         <div class="sort-dropdown-title">Genres</div>
@@ -1742,7 +2408,7 @@ function renderDescriptorViewDropdownHtml(currentView) {
   return `
     <div class="sort-dropdown" data-sort-dropdown="descriptor-view">
       <button type="button" id="descriptor-view-btn" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-        ${getDescriptorListViewText(currentView)} <span class="icon">&#x25BE;</span>
+        ${getDescriptorListViewText(currentView)} ${getDropdownIconHtml()}
       </button>
       <div class="sort-dropdown-menu">
         <div class="sort-dropdown-title">Descriptors</div>
@@ -1873,7 +2539,9 @@ function getFlagIconClass(countryCode) {
     "SOUTH KOREA": "KR",
     SPAIN: "ES",
     SWEDEN: "SE",
-    "TRINIDAD AND TOBAGO": "TT"
+    "TRINIDAD AND TOBAGO": "TT",
+    CROATIA: "HR",
+    NORWAY: "NO"
   };
 
   const isoCode = countryAlias[normalized] || normalized;
@@ -1899,6 +2567,7 @@ function renderCategoriesPanel() {
   const toggleAllLabel = allChecked ? "Hide all" : "Show all";
 
   const categoriesBodyHtml = `
+    ${renderPanelSelectedBlockHtml("categories")}
     <p class="panel-description">The base genres used to categorise the songs.</p>
     <div class="panel-controls-row">
       <button id="toggle-all-categories">${toggleAllLabel}</button>
@@ -1908,7 +2577,7 @@ function renderCategoriesPanel() {
       ${orderedKeys.map(tKey => {
         const info = taxonomy[tKey] || {};
         const label = info.label || tKey;
-        const totalCount = songs.filter(s => s.genretaxonomy === tKey).length;
+        const totalCount = songs.filter(s => getAllSongTaxonomies(s).includes(tKey)).length;
         const visibleCount = visibleSongCountsCache.taxonomy[tKey] || 0;
         return `
           <li>
@@ -1929,6 +2598,11 @@ function renderCategoriesPanel() {
     title: "Categories",
     headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleCategories, totalCategories)}</span>`,
     bodyHtml: categoriesBodyHtml
+  });
+
+  bindPanelSelectedBlockInteractions("categories", {
+    rerender: renderCategoriesPanel,
+    containerSelector: "#categories-cell"
   });
 
   d3.select("#toggle-all-categories").on("click", () => {
@@ -1955,22 +2629,28 @@ function renderCountriesPanel() {
   if (countrySortMode === "az") sorted.sort((a,b) => a[0].localeCompare(b[0]));
   else if (countrySortMode === "za") sorted.sort((a,b) => b[0].localeCompare(a[0]));
   else if (countrySortMode === "popular") sorted.sort((a,b) => {
-  const diff = b[1] - a[1];
+  const countA = sortCountriesByVisible ? (visibleSongCountsCache.countries[a[0]] || 0) : a[1];
+  const countB = sortCountriesByVisible ? (visibleSongCountsCache.countries[b[0]] || 0) : b[1];
+  const diff = countB - countA;
   if (diff !== 0) return diff;
   return a[0].localeCompare(b[0]);
   });
   else if (countrySortMode === "unpopular") sorted.sort((a,b) => {
-  const diff = a[1] - b[1];
+  const countA = sortCountriesByVisible ? (visibleSongCountsCache.countries[a[0]] || 0) : a[1];
+  const countB = sortCountriesByVisible ? (visibleSongCountsCache.countries[b[0]] || 0) : b[1];
+  const diff = countA - countB;
   if (diff !== 0) return diff;
   return a[0].localeCompare(b[0]);
 });
 
   const countriesBodyHtml = `
+    ${renderPanelSelectedBlockHtml("countries")}
     <p class="panel-description">Filter the chart by artist country.</p>
     <div class="panel-controls-row">
       <button id="toggle-all-countries">${getToggleAllLabelFor(countryVisibility)}</button>
       ${renderSortDropdownHtml("countries", countrySortMode)}
     </div>
+    ${renderSortByVisibleToggleHtml("countries", countrySortMode, sortCountriesByVisible)}
     <br>
     <ul>
       ${sorted.map(([c,totalCount]) => {
@@ -1999,6 +2679,11 @@ function renderCountriesPanel() {
     bodyHtml: countriesBodyHtml
   });
 
+  bindPanelSelectedBlockInteractions("countries", {
+    rerender: renderCountriesPanel,
+    containerSelector: "#countries-cell"
+  });
+
   updateContextColumn();
   // Toggle all countries
 d3.select("#toggle-all-countries").on("click", () => {
@@ -2016,6 +2701,11 @@ d3.select("#toggle-all-countries").on("click", () => {
     (mode) => { countrySortMode = mode; },
     renderCountriesPanel
   );
+  bindSortByVisibleToggle(
+    "countries",
+    (checked) => { sortCountriesByVisible = checked; },
+    renderCountriesPanel
+  );
 
   bindGenreClicks();
 }
@@ -2029,23 +2719,29 @@ function renderArtistsPanel() {
   if (artistSortMode === "az") sorted.sort((a,b) => a[0].localeCompare(b[0]));
   else if (artistSortMode === "za") sorted.sort((a,b) => b[0].localeCompare(a[0]));
   else if (artistSortMode === "popular") sorted.sort((a,b) => {
-  const diff = b[1] - a[1];
+  const countA = sortArtistsByVisible ? (visibleSongCountsCache.artists[a[0]] || 0) : a[1];
+  const countB = sortArtistsByVisible ? (visibleSongCountsCache.artists[b[0]] || 0) : b[1];
+  const diff = countB - countA;
   if (diff !== 0) return diff;
   return a[0].localeCompare(b[0]);
 });
 
   else if (artistSortMode === "unpopular") sorted.sort((a,b) => {
-  const diff = a[1] - b[1];
+  const countA = sortArtistsByVisible ? (visibleSongCountsCache.artists[a[0]] || 0) : a[1];
+  const countB = sortArtistsByVisible ? (visibleSongCountsCache.artists[b[0]] || 0) : b[1];
+  const diff = countA - countB;
   if (diff !== 0) return diff;
   return a[0].localeCompare(b[0]);
 });
 
   const artistsBodyHtml = `
+    ${renderPanelSelectedBlockHtml("artists")}
     <p class="panel-description">Filter the chart by artists.</p>
     <div class="panel-controls-row">
       <button id="toggle-all-artists">${getToggleAllLabelFor(artistVisibility)}</button>
       ${renderSortDropdownHtml("artists", artistSortMode)}
     </div>
+    ${renderSortByVisibleToggleHtml("artists", artistSortMode, sortArtistsByVisible)}
     <br>
     <ul>
       ${sorted.map(([a, totalCount]) => {
@@ -2069,6 +2765,11 @@ function renderArtistsPanel() {
     bodyHtml: artistsBodyHtml
   });
 
+  bindPanelSelectedBlockInteractions("artists", {
+    rerender: renderArtistsPanel,
+    containerSelector: "#artists-cell"
+  });
+
   updateContextColumn();
 // Toggle all Artists
 
@@ -2087,6 +2788,11 @@ d3.select("#toggle-all-artists").on("click", () => {
     (mode) => { artistSortMode = mode; },
     renderArtistsPanel
   );
+  bindSortByVisibleToggle(
+    "artists",
+    (checked) => { sortArtistsByVisible = checked; },
+    renderArtistsPanel
+  );
 
   bindGenreClicks();
 }
@@ -2095,7 +2801,6 @@ d3.select("#toggle-all-artists").on("click", () => {
 function renderRatingsPanel() {
   const minRating = 0.5;
   const maxRating = 5;
-  // Visual tick marks only (no snapping).
   const tickStep = 0.25;
 
   const clampToRange = (value) => {
@@ -2120,11 +2825,6 @@ function renderRatingsPanel() {
     allTicks.push(Number(v.toFixed(2)));
   }
 
-  const tickHtml = allTicks.map((v) => {
-    const pct = ((v - minRating) / (maxRating - minRating)) * 100;
-    return `<span class="rating-range-tick" style="left:${pct}%"></span>`;
-  }).join("");
-
   const labels = [];
   for (let v = minRating; v <= maxRating + 1e-9; v += 0.5) {
     labels.push(Number(v.toFixed(2)));
@@ -2135,21 +2835,50 @@ function renderRatingsPanel() {
     return `<span class="rating-range-label" style="left:${pct}%">${formatLabel(v)}</span>`;
   }).join("");
 
+  const ratingBins = allTicks.slice(0, -1).map((lower, index) => ({
+    lower,
+    upper: allTicks[index + 1],
+    count: 0
+  }));
+
+  songs.forEach((song) => {
+    const sides = song?.tracks?.[1]?.youtubeId ? ["A", "B"] : ["A"];
+    sides.forEach((side) => {
+      const score = getSongRatingScoreForSide(song, side);
+      if (score === null || !Number.isFinite(Number(score))) return;
+      const binIndex = Math.min(
+        ratingBins.length - 1,
+        Math.max(0, Math.floor((Number(score) - minRating) / tickStep))
+      );
+      const bin = ratingBins[binIndex];
+      if (!bin || Number(score) < bin.lower || Number(score) > bin.upper) return;
+      bin.count += 1;
+    });
+  });
+
+  const maxBinCount = Math.max(1, ...ratingBins.map(bin => bin.count));
+  const histogramHtml = ratingBins.map((bin) => {
+    const heightPct = bin.count > 0 ? Math.max(5, (bin.count / maxBinCount) * 100) : 0;
+    const songLabel = bin.count === 1 ? "song" : "songs";
+    const label = `${formatLabel(bin.lower)}-${formatLabel(bin.upper)}: ${bin.count} ${songLabel}`;
+    return `<span class="rating-histogram-column" role="button" tabindex="0" data-rating-lower="${bin.lower}" data-rating-upper="${bin.upper}" data-rating-count="${bin.count}" aria-label="${label}"><span class="rating-histogram-bar" style="height:${heightPct}%;"></span></span>`;
+  }).join("");
+
   const ratingsBodyHtml = `
-    <p class="panel-description">Filter the chart by RYM rating (weighted average of available single/track ratings).</p>
+    <p class="panel-description">Filter the chart by RYM rating (weighted average of available single and track ratings on Rate Your Music).</p>
     <div class="rating-range">
       <div class="rating-range-header">
         <span class="rating-range-value" id="rating-range-value"></span>
         <button type="button" id="rating-reset">Reset</button>
       </div>
+      <div class="rating-histogram" style="--rating-histogram-bars:${ratingBins.length};" aria-label="Rating distribution">${histogramHtml}</div>
       <div class="rating-range-slider" id="rating-range-slider">
         <div class="rating-range-track"></div>
         <div class="rating-range-highlight" id="rating-range-highlight"></div>
         <input type="range" id="rating-range-min" min="${minRating}" max="${maxRating}" step="any" value="${ratingMinFilter}">
         <input type="range" id="rating-range-max" min="${minRating}" max="${maxRating}" step="any" value="${ratingMaxFilter}">
-        <div class="rating-range-ticks">${tickHtml}</div>
+        <div class="rating-range-labels">${labelsHtml}</div>
       </div>
-      <div class="rating-range-labels">${labelsHtml}</div>
     </div>
   `;
 
@@ -2169,6 +2898,7 @@ function renderRatingsPanel() {
   const valueEl = d3.select("#rating-range-value");
   const highlightEl = d3.select("#rating-range-highlight");
   const sliderEl = d3.select("#rating-range-slider");
+  const histogramBars = d3.selectAll(".rating-histogram-column");
 
   const syncUi = () => {
     const minVal = clampToRange(minInput.property("value"));
@@ -2176,8 +2906,22 @@ function renderRatingsPanel() {
     const leftPct = ((minVal - minRating) / (maxRating - minRating)) * 100;
     const rightPct = 100 - ((maxVal - minRating) / (maxRating - minRating)) * 100;
 
-    valueEl.text(`${formatLabel(minVal)} \u2192 ${formatLabel(maxVal)} stars`);
+    valueEl.html(`
+      <span>${formatLabel(minVal)}</span>
+      <span class="rating-range-arrow" aria-hidden="true"></span>
+      <span>${formatLabel(maxVal)}</span>
+      <span>stars</span>
+    `);
     highlightEl.style("left", `${leftPct}%`).style("right", `${rightPct}%`);
+    histogramBars.classed("is-outside-range", function() {
+      const lower = Number(d3.select(this).attr("data-rating-lower"));
+      const upper = Number(d3.select(this).attr("data-rating-upper"));
+      return Number.isFinite(lower) && Number.isFinite(upper) && (upper <= minVal || lower >= maxVal);
+    }).classed("is-selected-range", function() {
+      const lower = Number(d3.select(this).attr("data-rating-lower"));
+      const upper = Number(d3.select(this).attr("data-rating-upper"));
+      return Number.isFinite(lower) && Number.isFinite(upper) && lower >= minVal && upper <= maxVal;
+    });
 
     // Keep the closest thumb above the other when crossing.
     const minNode = minInput.node();
@@ -2224,6 +2968,7 @@ function renderRatingsPanel() {
     ratingMinFilter = clampToRange(minInput.property("value"));
     ratingMaxFilter = clampToRange(maxInput.property("value"));
     if (ratingMinFilter > ratingMaxFilter) ratingMinFilter = ratingMaxFilter;
+    lastClickedHistogramBin = null;
     minInput.property("value", ratingMinFilter);
     maxInput.property("value", ratingMaxFilter);
     syncUi();
@@ -2233,9 +2978,83 @@ function renderRatingsPanel() {
   minInput.on("change", applyOnRelease);
   maxInput.on("change", applyOnRelease);
 
+  const applyHistogramRange = (barNode) => {
+    const bar = d3.select(barNode);
+    const lower = clampToRange(bar.attr("data-rating-lower"));
+    const upper = clampToRange(bar.attr("data-rating-upper"));
+    if (!Number.isFinite(lower) || !Number.isFinite(upper)) return;
+
+    const clickedBin = `${lower}-${upper}`;
+    const selectedSameBin = Math.abs(ratingMinFilter - lower) < 1e-9 && Math.abs(ratingMaxFilter - upper) < 1e-9;
+    const clickedInsideRange = lower >= ratingMinFilter - 1e-9 && upper <= ratingMaxFilter + 1e-9;
+    const fullRangeSelected = Math.abs(ratingMinFilter - minRating) < 1e-9 && Math.abs(ratingMaxFilter - maxRating) < 1e-9;
+
+    if (selectedSameBin) {
+      ratingMinFilter = minRating;
+      ratingMaxFilter = maxRating;
+      lastClickedHistogramBin = null;
+    } else if (fullRangeSelected || clickedInsideRange) {
+      ratingMinFilter = lower;
+      ratingMaxFilter = upper;
+      lastClickedHistogramBin = clickedBin;
+    } else {
+      ratingMinFilter = Math.min(ratingMinFilter, lower);
+      ratingMaxFilter = Math.max(ratingMaxFilter, upper);
+      lastClickedHistogramBin = clickedBin;
+    }
+
+    minInput.property("value", ratingMinFilter);
+    maxInput.property("value", ratingMaxFilter);
+    syncUi();
+    activeTooltipCell = null;
+    activeTooltipMode = "chart";
+    tooltip.classed("visible", false);
+    applyRatingFilter();
+  };
+
+  histogramBars
+    .on("mouseenter", function() {
+      if (isMobileTooltipDisabled()) return;
+      const bar = d3.select(this);
+      const lower = Number(bar.attr("data-rating-lower"));
+      const upper = Number(bar.attr("data-rating-upper"));
+      const count = Number(bar.attr("data-rating-count")) || 0;
+      const songLabel = count === 1 ? "song" : "songs";
+
+      activeTooltipCell = this;
+      activeTooltipMode = "histogram";
+      tooltip
+        .style("max-width", "min(260px, calc(100vw - 20px))")
+        .classed("visible", true)
+        .html(`
+          <h2>${formatLabel(lower)}-${formatLabel(upper)} stars</h2>
+          <p>${count} ${songLabel}</p>
+        `);
+      fitTooltipTextToWidth();
+      positionTooltipForElement(this);
+    })
+    .on("mousemove", function() {
+      if (activeTooltipCell === this) positionTooltipForElement(this);
+    })
+    .on("mouseleave", function() {
+      if (activeTooltipCell === this) activeTooltipCell = null;
+      activeTooltipMode = "chart";
+      tooltip.classed("visible", false);
+    })
+    .on("click", function(event) {
+      event.preventDefault();
+      applyHistogramRange(this);
+    })
+    .on("keydown", function(event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      applyHistogramRange(this);
+    });
+
   d3.select("#rating-reset").on("click", () => {
     ratingMinFilter = minRating;
     ratingMaxFilter = maxRating;
+    lastClickedHistogramBin = null;
     minInput.property("value", ratingMinFilter);
     maxInput.property("value", ratingMaxFilter);
     syncUi();
@@ -2323,10 +3142,14 @@ function renderAboutPanel() {
 }
 
 
-// Song modal
-  function showSongModal(songIndex, side = "A", autoPlay = false, alignTileTop = false, resetContextScroll = false) {
+  // Song modal
+  function showSongModal(songIndex, side = "A", autoPlay = false, alignTileTop = false, resetContextScroll = false, variant = "chart") {
     const song = currentSongList[songIndex];
     if (!song) return;
+
+    currentVideoTime = 0;
+    currentVideoDuration = 0;
+    isVideoScrubbing = false;
 
     if (resetContextScroll) {
       scrollLeftPanelToTop();
@@ -2363,7 +3186,14 @@ function renderAboutPanel() {
       else if (visibleSides.includes("A")) selectedSongSide = "A";
       else selectedSongSide = "B";
     }
-    const currentTrack = selectedSongSide === "B" ? song.tracks[1] : song.tracks[0];
+    const originalVersion = getOriginalVersionForSong(song, selectedSongSide);
+    const isOriginalVersion = variant === "original" && !!originalVersion;
+    selectedSongVariant = isOriginalVersion ? "original" : "chart";
+    const displaySong = (isOriginalVersion && originalVersion.sourceSong) ? originalVersion.sourceSong : song;
+    const displaySide = (isOriginalVersion && originalVersion.sourceSong) ? originalVersion.sourceSide : selectedSongSide;
+    const currentTrack = isOriginalVersion
+      ? { title: originalVersion.title || "Original version", youtubeId: originalVersion.youtubeId }
+      : (selectedSongSide === "B" ? song.tracks[1] : song.tracks[0]);
     const selectedSideTitle = currentTrack?.title || combinedTitle;
 
     // Embed YouTube video. nocookie version
@@ -2388,19 +3218,32 @@ function renderAboutPanel() {
     `;
     };
     // Build clickable genre spans
-    const sideGenres = getSongGenresForSide(song, selectedSongSide);
+    const hasOriginalChartMatch = isOriginalVersion && !!originalVersion.sourceSong;
+    const sideGenres = hasOriginalChartMatch
+      ? getSongGenresForSide(displaySong, displaySide)
+      : (isOriginalVersion ? { primarygenre: null, subgenres: [] } : getSongGenresForSide(song, selectedSongSide));
     const genreSpans = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])]
       .filter(Boolean)
       .map(g => `<span class="clickable-genre" data-genre="${g}">${g}</span>`)
       .join(" • ");
-    const descriptorSpans = getSongDescriptorsForSide(song, selectedSongSide)
-      .filter(Boolean)
-      .map(d => `<span class="clickable-descriptor" data-descriptor="${d}">${d}</span>`)
-      .join(" • ");
-    const descriptorsRowHtml = descriptorSpans ? `<p class="song-descriptors-row">${descriptorSpans}</p>` : "";
+    const descriptorsGroupedHtml = buildSongDescriptorsGroupedHtml(
+      hasOriginalChartMatch
+        ? getSongDescriptorsForSide(displaySong, displaySide)
+        : (isOriginalVersion ? [] : getSongDescriptorsForSide(song, selectedSongSide))
+    );
+    const buildSongSectionDividerHtml = (label) => `
+      <div class="song-section-divider" aria-hidden="true">
+        <span>${label}</span>
+      </div>
+    `;
+    const descriptorsRowHtml = descriptorsGroupedHtml
+      ? `${buildSongSectionDividerHtml("Descriptors")}${descriptorsGroupedHtml}`
+      : "";
 
     // Build ratings row
-    const ratings = getSongRatingsForSide(song, selectedSongSide);
+    const ratings = hasOriginalChartMatch
+      ? getSongRatingsForSide(displaySong, displaySide)
+      : (isOriginalVersion ? { primary: null, single: null, track: null } : getSongRatingsForSide(song, selectedSongSide));
     let ratingsRowHtml = "";
     if (ratings.primary || ratings.single || ratings.track) {
       const formatRating = (rating, label) => {
@@ -2414,10 +3257,18 @@ function renderAboutPanel() {
       const singleText = formatRating(ratings.single, 'single rating');
       const trackText = formatRating(ratings.track, 'track rating');
 
-      ratingsRowHtml = `<p class="song-ratings-row"><span class="primary-rating">${primaryText}</span><br><span class="secondary-ratings">${singleText}, ${trackText}</span></p>`;
+      ratingsRowHtml = `${buildSongSectionDividerHtml("Ratings")}<p class="song-ratings-row"><span class="primary-rating">${primaryText}</span><br><span class="secondary-ratings">${singleText}, ${trackText}</span></p>`;
     }
 
-    const artistCountryPairsHtml = getArtistsForSide(song, selectedSongSide)
+    const displayArtists = isOriginalVersion
+      ? (hasOriginalChartMatch
+          ? getArtistsForSide(displaySong, displaySide)
+          : [{
+              artist: originalVersion.artist || "",
+              country: originalVersion.country || ""
+            }].filter(d => d.artist || d.country))
+      : getArtistsForSide(song, selectedSongSide);
+    const artistCountryPairsHtml = displayArtists
       .map(({ artist, country }) => {
         const flagClass = country ? getFlagIconClass(country) : "";
         const flagHtml = flagClass
@@ -2426,25 +3277,49 @@ function renderAboutPanel() {
 
         return `<span class="artist-country-pair"><span class="artist-name clickable-artist" data-artist="${artist}">${artist}</span>${flagHtml}</span>`;
       })
-      .join(getSongArtistSeparator(song));
+      .join(getSongArtistSeparator(hasOriginalChartMatch ? displaySong : song));
     // Peak chart info
     let peakInfo = "";
-    if (song.peakPos) {
-      peakInfo = `Peaked at #${song.peakPos}`;
-      if (song.weeksOnChart) {
-        peakInfo += ` for ${song.weeksOnChart} week${song.weeksOnChart > 1 ? "s" : ""}`;
+    const chartInfoSong = hasOriginalChartMatch ? displaySong : song;
+    if (chartInfoSong.peakPos) {
+      peakInfo = `Peaked at #${chartInfoSong.peakPos}`;
+      if (chartInfoSong.weeksOnChart) {
+        peakInfo += ` for ${chartInfoSong.weeksOnChart} week${chartInfoSong.weeksOnChart > 1 ? "s" : ""}`;
       }
     }
-    const chartInfoParts = [`Rank #${song.rank} for ${song.chartYear}`];
+    const chartInfoParts = [`Rank #${chartInfoSong.rank} for ${chartInfoSong.chartYear}`];
     if (peakInfo) chartInfoParts.push(peakInfo);
-    chartInfoParts.push(`Released ${song.releaseYear}`);
-    const chartInfoText = chartInfoParts.join("  •  ");
+    chartInfoParts.push(`Released ${chartInfoSong.releaseYear}`);
+    const chartInfoText = isOriginalVersion && !hasOriginalChartMatch ? "Original version" : chartInfoParts.join("  •  ");
 
     const currentSideOrVersionLabel = hasSecondTitle
       ? (selectedSongSide === "A" ? "A Side" : "B Side")
       : (selectedSongSide === "A" ? "Ver 1" : "Ver 2");
+    const nextSideOrVersionLabel = hasSecondTitle
+      ? (selectedSongSide === "A" ? "B Side" : "A Side")
+      : (selectedSongSide === "A" ? "Ver 2" : "Ver 1");
+    const songBodySideToggleHtml = (!isOriginalVersion && hasSecondTrack && visibleSides.length === 2)
+      ? `
+        <div class="song-side-toggle-row">
+          <button type="button" class="song-side-toggle-btn" title="Change song side" aria-label="Change song side">
+            Change to ${nextSideOrVersionLabel}
+          </button>
+        </div>
+      `
+      : "";
+    const originalVersionToggleHtml = originalVersion
+      ? `
+        <div class="song-original-toggle-row">
+          <button type="button" class="song-original-toggle-btn">
+            ${isOriginalVersion ? "Show charting version" : "Show original version"}
+          </button>
+        </div>
+      `
+      : "";
 
-    const tax = taxonomy[song.genretaxonomy];
+    const selectedTaxonomyKey = hasOriginalChartMatch ? getSongTaxonomyForSide(displaySong, displaySide) : (isOriginalVersion ? "" : getSongTaxonomyForSide(song, selectedSongSide));
+    const tax = taxonomy[selectedTaxonomyKey];
+    const showSongMetadataSections = !isOriginalVersion || hasOriginalChartMatch;
     // Fill modal cell content
     const songBodyHtml = `
       <div id="video-container">${videoHtml(currentTrack)}</div>
@@ -2452,41 +3327,74 @@ function renderAboutPanel() {
         <h1 class="song-selected-title"><span class="song-selected-title-text">${selectedSideTitle}</span></h1>
         <div class="song-gap-half" aria-hidden="true"></div>
         <p class="song-artists-line"><span class="artists artists-with-flags">${artistCountryPairsHtml}</span></p>
+        ${songBodySideToggleHtml}
         <div class="song-gap-full" aria-hidden="true"></div>
         <p class="song-chart-info-line">${chartInfoText}</p>
-        <div class="song-gap-full" aria-hidden="true"></div>
-        <div class="song-taxonomy-row">${tax ? `<div class="genre-badge clickable-taxonomy" style="${getTaxonomyBadgeStyle(tax.color)}" data-taxonomy="${song.genretaxonomy}">${tax.label}</div>` : ""}</div>
-        <div class="song-gap-full" aria-hidden="true"></div>
-        <p class="song-genres-row">${genreSpans}</p>
-        ${descriptorsRowHtml}
+        ${showSongMetadataSections ? '<div class="song-gap-full" aria-hidden="true"></div>' : ''}
+        ${showSongMetadataSections ? buildSongSectionDividerHtml("Genres") : ""}
+        ${showSongMetadataSections ? `<div class="song-taxonomy-row">${tax ? `<div class="genre-badge clickable-taxonomy" style="${getTaxonomyBadgeStyle(tax.color)}" data-taxonomy="${selectedTaxonomyKey}">${tax.label}</div>` : ""}</div>` : ""}
+        ${showSongMetadataSections ? '<div class="song-gap-full" aria-hidden="true"></div>' : ''}
+        ${showSongMetadataSections ? `<p class="song-genres-row">${genreSpans}</p>` : ""}
         ${descriptorsRowHtml ? '<div class="song-gap-full" aria-hidden="true"></div>' : ''}
+        ${descriptorsRowHtml}
+        ${ratingsRowHtml ? '<div class="song-gap-full" aria-hidden="true"></div>' : ''}
         ${ratingsRowHtml}
+        ${originalVersionToggleHtml ? '<div class="song-gap-full" aria-hidden="true"></div>' : ''}
+        ${originalVersionToggleHtml}
       </div>
     `;
 
-    const songSummaryHtml = `
+    const buildCompactSongBarHtml = () => `
       <div class="song-compact-meta">
         <span class="song-compact-title">${selectedSideTitle}</span>
-        <span class="song-compact-artist">${getArtistsForSide(song, selectedSongSide).map(d => d.artist).join(getSongArtistSeparator(song))}</span>
+        <span class="song-compact-artist">${displayArtists.map(d => d.artist).filter(Boolean).join(isOriginalVersion ? getSongArtistSeparator(displaySong) : getSongArtistSeparator(song))}</span>
       </div>
       <div class="song-compact-controls">
-        ${(hasSecondTrack && visibleSides.length === 2) ? `<button id="compact-toggle-side" title="Toggle side">${currentSideOrVersionLabel}</button>` : ""}
+        ${(!isOriginalVersion && hasSecondTrack && visibleSides.length === 2) ? `<button type="button" class="song-compact-toggle-side-btn" title="Toggle side" aria-label="Toggle side">${currentSideOrVersionLabel}</button>` : ""}
         <div class="song-compact-transport">
-          <button id="compact-prev-song" title="Previous song" aria-label="Previous song"><span class="play-icon">${getStepButtonIconSvg("prev")}</span></button>
-          <button id="compact-play" title="Play video" aria-label="Play video"><span class="play-icon">${getPlayButtonIconSvg(false)}</span></button>
-          <button id="compact-next-song" title="Next song" aria-label="Next song"><span class="play-icon">${getStepButtonIconSvg("next")}</span></button>
+          <button type="button" class="song-compact-transport-btn song-compact-prev-btn" data-action="prev" aria-label="Previous song"><span class="play-icon">${getStepButtonIconSvg("prev")}</span></button>
+          <button type="button" class="song-compact-transport-btn song-compact-play-btn" data-action="play" aria-label="Play video"><span class="play-icon">${getPlayButtonIconSvg(false)}</span></button>
+          <button type="button" class="song-compact-transport-btn song-compact-next-btn" data-action="next" aria-label="Next song"><span class="play-icon">${getStepButtonIconSvg("next")}</span></button>
         </div>
+      </div>
+      <div class="song-compact-scrubber">
+        <span class="song-compact-scrub-time song-compact-scrub-current">0:00</span>
+        <input type="range" class="song-compact-scrub-input" min="0" max="0" step="0.1" value="0" aria-label="Video position" disabled>
+        <span class="song-compact-scrub-time song-compact-scrub-duration">0:00</span>
       </div>
     `;
 
-    d3.select("#song-modal-cell").style("display", "block");
-    renderAccordionCell("#song-modal-cell", {
-      key: "song",
-      title: "",
-      summaryHtml: songSummaryHtml,
-      bodyHtml: songBodyHtml,
+    const songBarHtml = buildCompactSongBarHtml();
+
+    const selectedSongBar = d3.select("#selected-song-bar")
+      .style("display", "grid")
+      .attr("role", "button")
+      .attr("tabindex", "0")
+      .attr("aria-label", "Open selected song")
+      .html(songBarHtml);
+    syncSelectedSongScrubberUi({ force: true });
+
+    if (tax?.color) {
+      selectedSongBar
+        .style("border-color", tax.color)
+        .style("background-color", hexToRgba(tax.color, 0.1));
+    } else { 
+      selectedSongBar
+        .style("border-color", "")
+        .style("background-color", ""); 
+    } 
+ 
+    d3.select("#song-modal-cell").style("display", "block"); 
+    if (!isMobileOverlayMode()) { 
+      setActiveContextPanel("song", { scrollToTop: false }); 
+    } 
+    renderAccordionCell("#song-modal-cell", { 
+      key: "song", 
+      title: "", 
+      bodyHtml: songBodyHtml, 
       defaultOpen: true,
-      headerBorderColor: tax?.color || ""
+      headerBorderColor: tax?.color || "",
+      showHeader: false
     });
     ensureYouTubeMessageListener();
     registerCurrentYouTubePlayer();
@@ -2496,17 +3404,14 @@ function renderAboutPanel() {
       currentIframe.addEventListener("load", registerCurrentYouTubePlayer, { once: true });
     }
 
-    fitOpenSongTitle();
-
     setCurrentVideoPlaying(!!autoPlay);
 
     bindGenreClicks();
 
-    d3.selectAll(".clickable-genre").on("click", function() {
-      const gKey = d3.select(this).attr("data-genre");
-      closeSongAccordion();
-      showGenrePanel(gKey, true);
-    });
+    d3.selectAll(".clickable-genre").on("click", function() { 
+      const gKey = d3.select(this).attr("data-genre"); 
+      showGenrePanel(gKey, true); 
+    }); 
 
     // Keep modal navigation behavior in sync with chart controls.
     function movePrevSong() {
@@ -2523,26 +3428,71 @@ function renderAboutPanel() {
       showSongModal(songIndex, nextSide);
     }
 
-    d3.select("#compact-prev-song").on("click", function(event) {
-      event.stopPropagation();
-      movePrevSong();
-    });
-    d3.select("#compact-next-song").on("click", function(event) {
-      event.stopPropagation();
-      moveNextSong();
-    });
-
-    if (hasSecondTrack && visibleSides.length === 2) {
-      d3.select("#compact-toggle-side").on("click", function(event) {
-        event.stopPropagation();
-        toggleSongSide();
-      });
+    function toggleOriginalVersion() {
+      showSongModal(
+        songIndex,
+        selectedSongSide,
+        false,
+        false,
+        false,
+        isOriginalVersion ? "chart" : "original"
+      );
     }
 
-    d3.select("#compact-play").on("click", function(event) {
-      event.stopPropagation();
-      toggleCurrentVideoPlayback();
-    });
+    const bindCompactSongBarControls = (containerSelector, { stopPropagation = false } = {}) => {
+      const root = d3.select(containerSelector);
+      if (root.empty()) return;
+
+      const withMaybeStop = (handler) => {
+        return function(event) {
+          if (stopPropagation && event) event.stopPropagation();
+          handler(event);
+        };
+      };
+
+      root.selectAll('[data-action="prev"]').on("click", withMaybeStop(() => movePrevSong()));
+      root.selectAll('[data-action="next"]').on("click", withMaybeStop(() => moveNextSong()));
+      root.selectAll('[data-action="play"]').on("click", withMaybeStop(() => toggleCurrentVideoPlayback()));
+      root.selectAll(".song-compact-toggle-side-btn").on("click", withMaybeStop(() => toggleSongSide()));
+      root.selectAll(".song-side-toggle-btn").on("click", withMaybeStop(() => toggleSongSide()));
+      root.selectAll(".song-original-toggle-btn").on("click", withMaybeStop(() => toggleOriginalVersion()));
+      root.selectAll(".song-compact-scrub-input")
+        .on("input", function(event) {
+          if (stopPropagation && event) event.stopPropagation();
+          isVideoScrubbing = true;
+          currentVideoTime = Number(this.value) || 0;
+          syncSelectedSongScrubberUi();
+        })
+        .on("change", function(event) {
+          if (stopPropagation && event) event.stopPropagation();
+          const target = Number(this.value) || 0;
+          isVideoScrubbing = false;
+          seekCurrentVideoTo(target);
+        })
+        .on("pointerdown", function(event) {
+          if (stopPropagation && event) event.stopPropagation();
+          isVideoScrubbing = true;
+        })
+        .on("pointerup", function() { isVideoScrubbing = false; })
+        .on("pointercancel", function() { isVideoScrubbing = false; })
+        .on("blur", function() { isVideoScrubbing = false; });
+    };
+
+    // Keep compact transport/scrubber controls from triggering the selected bar opener.
+    bindCompactSongBarControls("#selected-song-bar", { stopPropagation: true });
+    bindCompactSongBarControls("#song-modal-cell", { stopPropagation: false });
+
+    selectedSongBar
+      .on("click", function(event) {
+        if (event.target?.closest?.("button, input, a, select, textarea")) return;
+        openSelectedSongContextCell();
+      })
+      .on("keydown", function(event) {
+        if (event.target !== this) return;
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        openSelectedSongContextCell();
+      });
 
     // no overlay needed; using context cell
   }
@@ -2560,6 +3510,7 @@ function renderFeaturedGenresList() {
   const grouped = {};
 
   Object.entries(genres).forEach(([gKey, g]) => {
+    if (!genreHasSongs(gKey)) return;
     const groups = Array.isArray(g.genreGroup) ? g.genreGroup : [g.genreGroup];
     groups.forEach(group => {
       if (!group) return;
@@ -2607,7 +3558,7 @@ function renderFeaturedGenresList() {
           <input type="checkbox" class="organized-group-checkbox" data-organized-group="${group}" aria-label="Toggle all genres in ${group}" ${groupAllChecked ? "checked" : ""}>
           <span class="organized-group-title">${group}</span>
           <span class="organized-group-count">${formatVisibleTotalCount(groupItemCountVisible, groupItemCountTotal)}</span>
-          <span class="organized-group-arrow">&#x203A;</span>
+          <span class="organized-group-arrow" aria-hidden="true"></span>
         </div>
         <div class="organized-group-body">
           <ul>${groupGenres}</ul>
@@ -2639,7 +3590,7 @@ function syncOrganizedGroupCheckboxes() {
 
   
 function renderAllGenresList() {
-  let sorted = [...allGenresList];
+  let sorted = allGenresList.filter(genreHasSongs);
 
   if (genreSortMode === "az") {
     sorted.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
@@ -2647,12 +3598,12 @@ function renderAllGenresList() {
     sorted.sort((a, b) => b.toLowerCase().localeCompare(a.toLowerCase()));
   } else if (genreSortMode === "popular") {
     sorted.sort((a, b) => {
-      const visibleA = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[a] || 0) : (genreCounts[a] || 0);
-      const visibleB = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[b] || 0) : (genreCounts[b] || 0);
-      const diffVisible = visibleB - visibleA;
-      if (diffVisible !== 0) return diffVisible; // primary: visible popularity
+      const countA = sortGenresByVisible ? (visibleSongCountsCache.genres[a] || 0) : (genreCounts[a] || 0);
+      const countB = sortGenresByVisible ? (visibleSongCountsCache.genres[b] || 0) : (genreCounts[b] || 0);
+      const diff = countB - countA;
+      if (diff !== 0) return diff; // primary: popularity
 
-      if (mustContainAllSelectedGenres) {
+      if (sortGenresByVisible) {
         const totalA = genreCounts[a] || 0;
         const totalB = genreCounts[b] || 0;
         const diffTotal = totalB - totalA;
@@ -2663,13 +3614,13 @@ function renderAllGenresList() {
     });
   } else if (genreSortMode === "unpopular") {
     sorted.sort((a, b) => {
-      const countA = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[a] || 0) : (genreCounts[a] || 0);
-      const countB = mustContainAllSelectedGenres ? (visibleSongCountsCache.genres[b] || 0) : (genreCounts[b] || 0);
+      const countA = sortGenresByVisible ? (visibleSongCountsCache.genres[a] || 0) : (genreCounts[a] || 0);
+      const countB = sortGenresByVisible ? (visibleSongCountsCache.genres[b] || 0) : (genreCounts[b] || 0);
 
       const diff = countA - countB;
       if (diff !== 0) return diff; // primary: least popular
 
-      if (mustContainAllSelectedGenres) {
+      if (sortGenresByVisible) {
         const totalA = genreCounts[a] || 0;
         const totalB = genreCounts[b] || 0;
         // For ties in visible counts, keep overall-most higher.
@@ -2705,6 +3656,9 @@ function renderGenreListCell() {
   const sortButtonHtml = genreListView === "all"
     ? renderSortDropdownHtml("genres", genreSortMode)
     : "";
+  const sortByVisibleHtml = genreListView === "all"
+    ? renderSortByVisibleToggleHtml("genres", genreSortMode, sortGenresByVisible)
+    : "";
   const genresDescription = genreListView === "all"
     ? "Browse all genres in the database."
     : "Browse grouped and organised genres.";
@@ -2716,14 +3670,22 @@ function renderGenreListCell() {
         <span>Must contain all selected genres</span>
       </label>
     </div>
+    <div class="panel-controls-row panel-controls-row--checkbox">
+      <label class="must-contain-all-toggle">
+        <input type="checkbox" id="genres-exclude-selected" ${showAllExcludingSelectedGenres ? "checked" : ""}>
+        <span>Show all excluding selection</span>
+      </label>
+    </div>
   `;
 
   const genresBodyHtml = `
+     ${renderPanelSelectedBlockHtml("genres")}
      <p class="panel-description">${genresDescription}</p>
      <div class="panel-controls-row">${viewButtonHtml}
        <button id="toggle-all-genres">${toggleAllLabel}</button>
        ${sortButtonHtml}
      </div>
+     ${sortByVisibleHtml}
      ${mustContainAllGenresRowHtml}
     <br>
      ${listContainer}
@@ -2738,10 +3700,28 @@ function renderGenreListCell() {
     headerMetaHtml: `<span class="genre-count">${formatVisibleTotalCount(visibleGenres, totalGenres)}</span>`,
     bodyHtml: genresBodyHtml
   });
+
+  bindPanelSelectedBlockInteractions("genres", {
+    rerender: renderGenreListCell,
+    containerSelector: "#genres-cell"
+  });
   bindGenreViewDropdown();
 
   d3.select("#genres-must-contain-all").on("change", function() {
     mustContainAllSelectedGenres = !!this.checked;
+    if (mustContainAllSelectedGenres) {
+      showAllExcludingSelectedGenres = false;
+      d3.select("#genres-exclude-selected").property("checked", false);
+    }
+    buildTable();
+  });
+
+  d3.select("#genres-exclude-selected").on("change", function() {
+    showAllExcludingSelectedGenres = !!this.checked;
+    if (showAllExcludingSelectedGenres) {
+      mustContainAllSelectedGenres = false;
+      d3.select("#genres-must-contain-all").property("checked", false);
+    }
     buildTable();
   });
 
@@ -2848,7 +3828,9 @@ function renderGenreListCell() {
   d3.select("#toggle-all-genres").on("click", function() {
       toggleAllGenreVisibility();
       mustContainAllSelectedGenres = false;
+      showAllExcludingSelectedGenres = false;
       d3.select("#genres-must-contain-all").property("checked", false);
+      d3.select("#genres-exclude-selected").property("checked", false);
       refreshAllFilterToggleCheckboxes();
       syncOrganizedGroupCheckboxes();
       renderChartRankHeader();
@@ -2863,6 +3845,11 @@ function renderGenreListCell() {
       "genres",
       () => genreSortMode,
       (mode) => { genreSortMode = mode; },
+      renderGenreListCell
+    );
+    bindSortByVisibleToggle(
+      "genres",
+      (checked) => { sortGenresByVisible = checked; },
       renderGenreListCell
     );
   }
@@ -3042,7 +4029,7 @@ function renderFeaturedDescriptorsList() {
                      ${subgroupAllChecked ? "checked" : ""}>
               <span class="organized-descriptor-subgroup-title">${subgroupName}</span>
               <span class="organized-descriptor-subgroup-count">${formatVisibleTotalCount(subgroupItemCountVisible, subgroupItemCountTotal)}</span>
-              <span class="organized-descriptor-subgroup-arrow">&#x203A;</span>
+              <span class="organized-descriptor-subgroup-arrow" aria-hidden="true"></span>
             </div>
             <div class="organized-descriptor-subgroup-body">
               <ul>${descriptorListHtml}</ul>
@@ -3057,7 +4044,7 @@ function renderFeaturedDescriptorsList() {
         <div class="organized-descriptor-group-toggle" data-organized-descriptor-group="${group}" role="button" tabindex="0" aria-expanded="${isOpen ? "true" : "false"}">
           <span class="organized-descriptor-group-title">${group}</span>
           <span class="organized-descriptor-group-count">${formatVisibleTotalCount(groupItemCountVisible, groupItemCountTotal)}</span>
-          <span class="organized-descriptor-group-arrow">&#x203A;</span>
+          <span class="organized-descriptor-group-arrow" aria-hidden="true"></span>
         </div>
         <div class="organized-descriptor-group-body">
           <div class="organized-descriptor-group-items">
@@ -3128,12 +4115,12 @@ function renderAllDescriptorsList() {
     sorted.sort((a, b) => getLabel(b).toLowerCase().localeCompare(getLabel(a).toLowerCase()));
   } else if (descriptorSortMode === "popular") {
     sorted.sort((a, b) => {
-      const visibleA = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[a] || 0) : (descriptorCounts[a] || 0);
-      const visibleB = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[b] || 0) : (descriptorCounts[b] || 0);
-      const diffVisible = visibleB - visibleA;
-      if (diffVisible !== 0) return diffVisible;
+      const countA = sortDescriptorsByVisible ? (visibleSongCountsCache.descriptors[a] || 0) : (descriptorCounts[a] || 0);
+      const countB = sortDescriptorsByVisible ? (visibleSongCountsCache.descriptors[b] || 0) : (descriptorCounts[b] || 0);
+      const diff = countB - countA;
+      if (diff !== 0) return diff;
 
-      if (mustContainAllSelectedDescriptors) {
+      if (sortDescriptorsByVisible) {
         const totalA = descriptorCounts[a] || 0;
         const totalB = descriptorCounts[b] || 0;
         const diffTotal = totalB - totalA;
@@ -3144,13 +4131,13 @@ function renderAllDescriptorsList() {
     });
   } else if (descriptorSortMode === "unpopular") {
     sorted.sort((a, b) => {
-      const countA = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[a] || 0) : (descriptorCounts[a] || 0);
-      const countB = mustContainAllSelectedDescriptors ? (visibleSongCountsCache.descriptors[b] || 0) : (descriptorCounts[b] || 0);
+      const countA = sortDescriptorsByVisible ? (visibleSongCountsCache.descriptors[a] || 0) : (descriptorCounts[a] || 0);
+      const countB = sortDescriptorsByVisible ? (visibleSongCountsCache.descriptors[b] || 0) : (descriptorCounts[b] || 0);
 
       const diff = countA - countB;
       if (diff !== 0) return diff;
 
-      if (mustContainAllSelectedDescriptors) {
+      if (sortDescriptorsByVisible) {
         const totalA = descriptorCounts[a] || 0;
         const totalB = descriptorCounts[b] || 0;
         const diffTotal = totalB - totalA;
@@ -3186,6 +4173,9 @@ function renderDescriptorsListCell() {
   const sortButtonHtml = descriptorListView === "all"
     ? renderSortDropdownHtml("descriptors", descriptorSortMode)
     : "";
+  const sortByVisibleHtml = descriptorListView === "all"
+    ? renderSortByVisibleToggleHtml("descriptors", descriptorSortMode, sortDescriptorsByVisible)
+    : "";
 
   const descriptorsDescription = descriptorListView === "all"
     ? "Browse all descriptors in the database."
@@ -3198,14 +4188,22 @@ function renderDescriptorsListCell() {
         <span>Must contain all selected descriptors</span>
       </label>
     </div>
+    <div class="panel-controls-row panel-controls-row--checkbox">
+      <label class="must-contain-all-toggle">
+        <input type="checkbox" id="descriptors-exclude-selected" ${showAllExcludingSelectedDescriptors ? "checked" : ""}>
+        <span>Show all excluding selection</span>
+      </label>
+    </div>
   `;
 
   const descriptorsBodyHtml = `
+     ${renderPanelSelectedBlockHtml("descriptors")}
      <p class="panel-description">${descriptorsDescription}</p>
      <div class="panel-controls-row">${viewButtonHtml}
        <button id="toggle-all-descriptors">${toggleAllLabel}</button>
        ${sortButtonHtml}
      </div>
+     ${sortByVisibleHtml}
      ${mustContainAllDescriptorsRowHtml}
     <br>
      ${listContainer}
@@ -3221,10 +4219,28 @@ function renderDescriptorsListCell() {
     bodyHtml: descriptorsBodyHtml
   });
 
+  bindPanelSelectedBlockInteractions("descriptors", {
+    rerender: renderDescriptorsListCell,
+    containerSelector: "#descriptors-cell"
+  });
+
   bindDescriptorViewDropdown();
 
   d3.select("#descriptors-must-contain-all").on("change", function() {
     mustContainAllSelectedDescriptors = !!this.checked;
+    if (mustContainAllSelectedDescriptors) {
+      showAllExcludingSelectedDescriptors = false;
+      d3.select("#descriptors-exclude-selected").property("checked", false);
+    }
+    buildTable();
+  });
+
+  d3.select("#descriptors-exclude-selected").on("change", function() {
+    showAllExcludingSelectedDescriptors = !!this.checked;
+    if (showAllExcludingSelectedDescriptors) {
+      mustContainAllSelectedDescriptors = false;
+      d3.select("#descriptors-must-contain-all").property("checked", false);
+    }
     buildTable();
   });
 
@@ -3411,7 +4427,9 @@ function renderDescriptorsListCell() {
   d3.select("#toggle-all-descriptors").on("click", function() {
     toggleAllVisibility(descriptorVisibility);
     mustContainAllSelectedDescriptors = false;
+    showAllExcludingSelectedDescriptors = false;
     d3.select("#descriptors-must-contain-all").property("checked", false);
+    d3.select("#descriptors-exclude-selected").property("checked", false);
     refreshAllFilterToggleCheckboxes();
     syncOrganizedDescriptorGroupCheckboxes();
     syncOrganizedDescriptorSubgroupCheckboxes();
@@ -3430,35 +4448,37 @@ function renderDescriptorsListCell() {
       (mode) => { descriptorSortMode = mode; },
       renderDescriptorsListCell
     );
+    bindSortByVisibleToggle(
+      "descriptors",
+      (checked) => { sortDescriptorsByVisible = checked; },
+      renderDescriptorsListCell
+    );
   }
 }
 
-function bindGenreClicks() {
-    d3.selectAll(".clickable-genre").on("click", function() {
-      closeSongAccordion();
-      showGenrePanel(d3.select(this).attr("data-genre"), true);
-    });
-
-    d3.selectAll(".clickable-descriptor").on("click", function() {
-      closeSongAccordion();
-      showDescriptorPanel(d3.select(this).attr("data-descriptor"), true);
-    });
+function bindGenreClicks() { 
+    d3.selectAll(".clickable-genre").on("click", function() { 
+      showGenrePanel(d3.select(this).attr("data-genre"), true); 
+    }); 
+ 
+    d3.selectAll(".clickable-descriptor").on("click", function() { 
+      showDescriptorPanel(d3.select(this).attr("data-descriptor"), true); 
+    }); 
 
     d3.selectAll(".clickable-taxonomy").on("click", function() {
       showTaxonomyPanel(d3.select(this).attr("data-taxonomy"), true);
     });
 
-    d3.selectAll(".clickable-country").on("click", function() {
-      closeSongAccordion();
-      showCountryPanel(d3.select(this).attr("data-country"), true);
-    });
+    d3.selectAll(".clickable-country").on("click", function() { 
+      showCountryPanel(d3.select(this).attr("data-country"), true); 
+    }); 
+ 
+    d3.selectAll(".clickable-artist").on("click", function() { 
+      showArtistPanel(d3.select(this).attr("data-artist"), true); 
+    }); 
 
-    d3.selectAll(".clickable-artist").on("click", function() {
-      closeSongAccordion();
-      showArtistPanel(d3.select(this).attr("data-artist"), true);
-    });
-
-    d3.selectAll(".genre-toggle").on("change", function() {
+    d3.selectAll(".genre-toggle").on("change", function(event) {
+      event?.stopPropagation?.();
       const gKey = d3.select(this).attr("data-genre");
       genreVisibility[gKey] = this.checked;
       d3.selectAll(`.genre-toggle[data-genre="${gKey}"]`).property("checked", this.checked);
@@ -3470,7 +4490,8 @@ function bindGenreClicks() {
       syncToggleAllButtonLabels();
     });
 
-    d3.selectAll(".taxonomy-toggle").on("change", function() {
+    d3.selectAll(".taxonomy-toggle").on("change", function(event) {
+      event?.stopPropagation?.();
       const tKey = d3.select(this).attr("data-taxonomy");
       taxonomyVisibility[tKey] = this.checked;
       d3.selectAll(`.taxonomy-toggle[data-taxonomy="${tKey}"]`).property("checked", this.checked);
@@ -3480,7 +4501,8 @@ function bindGenreClicks() {
       syncToggleAllButtonLabels();
     });
 
-    d3.selectAll(".descriptor-toggle").on("change", function() {
+    d3.selectAll(".descriptor-toggle").on("change", function(event) {
+      event?.stopPropagation?.();
       const dKey = d3.select(this).attr("data-descriptor");
       descriptorVisibility[dKey] = this.checked;
       d3.selectAll(`.descriptor-toggle[data-descriptor="${dKey}"]`).property("checked", this.checked);
@@ -3493,7 +4515,8 @@ function bindGenreClicks() {
       syncToggleAllButtonLabels();
     });
 
-    d3.selectAll(".country-toggle").on("change", function() {
+    d3.selectAll(".country-toggle").on("change", function(event) {
+      event?.stopPropagation?.();
       const cKey = d3.select(this).attr("data-country");
       if (!cKey) return;
       countryVisibility[cKey] = this.checked;
@@ -3506,7 +4529,8 @@ function bindGenreClicks() {
       syncToggleAllButtonLabels();
     });
 
-    d3.selectAll(".artist-toggle").on("change", function() {
+    d3.selectAll(".artist-toggle").on("change", function(event) {
+      event?.stopPropagation?.();
       const aKey = d3.select(this).attr("data-artist");
       if (!aKey) return;
       artistVisibility[aKey] = this.checked;
@@ -3580,13 +4604,21 @@ function refreshAllFilterToggleCheckboxes() {
     const aKey = d3.select(this).attr("data-artist");
     return artistVisibility[aKey] !== false;
   });
+  d3.select("#genres-must-contain-all").property("checked", mustContainAllSelectedGenres);
+  d3.select("#descriptors-must-contain-all").property("checked", mustContainAllSelectedDescriptors);
+  d3.select("#genres-exclude-selected").property("checked", showAllExcludingSelectedGenres);
+  d3.select("#descriptors-exclude-selected").property("checked", showAllExcludingSelectedDescriptors);
 }
 
 function showAllFilters() {
-  selectedYear = null;
-  selectedRank = null;
+  clearChartNumberFilters();
   ratingMinFilter = 0.5;
   ratingMaxFilter = 5;
+  lastClickedHistogramBin = null;
+  mustContainAllSelectedGenres = false;
+  mustContainAllSelectedDescriptors = false;
+  showAllExcludingSelectedGenres = false;
+  showAllExcludingSelectedDescriptors = false;
   setAllVisibility(genreVisibility, true);
   setAllVisibility(taxonomyVisibility, true);
   setAllVisibility(descriptorVisibility, true);
@@ -3605,11 +4637,15 @@ function showAllFilters() {
 
 function applyShowOnlyFilter(filterType, key) {
   if (!filterType || !key) return;
-  selectedYear = null;
-  selectedRank = null;
+  clearChartNumberFilters();
   // "Show only" should also clear rating filters back to full range.
   ratingMinFilter = 0.5;
   ratingMaxFilter = 5;
+  lastClickedHistogramBin = null;
+  mustContainAllSelectedGenres = false;
+  mustContainAllSelectedDescriptors = false;
+  showAllExcludingSelectedGenres = false;
+  showAllExcludingSelectedDescriptors = false;
 
   const maps = {
     genre: genreVisibility,
@@ -3878,6 +4914,39 @@ function getAllSongDescriptors(song) {
   return Array.from(set);
 }
 
+function getSongTaxonomyForSide(song, side = "A") {
+  const normalizedSide = (String(side || "A").toUpperCase() === "B") ? "B" : "A";
+  if (normalizedSide === "B") return song?.taxonomyB || song?.genretaxonomy || "";
+  return song?.genretaxonomy || "";
+}
+
+function getAllSongTaxonomies(song) {
+  const set = new Set();
+  const taxonomyA = getSongTaxonomyForSide(song, "A");
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+  const taxonomyB = hasB ? getSongTaxonomyForSide(song, "B") : "";
+  if (taxonomyA) set.add(taxonomyA);
+  if (taxonomyB) set.add(taxonomyB);
+  return Array.from(set);
+}
+
+function getVisibleSongTaxonomies(song) {
+  const visibleSides = getVisibleSidesForSong(song);
+  const set = new Set();
+  visibleSides.forEach((side) => {
+    const taxKey = getSongTaxonomyForSide(song, side);
+    if (taxKey) set.add(taxKey);
+  });
+  return Array.from(set);
+}
+
+function getSongTaxonomyForVisibleSides(song, visibleSides = getVisibleSidesForSong(song)) {
+  if (Array.isArray(visibleSides) && visibleSides.length === 1) {
+    return getSongTaxonomyForSide(song, visibleSides[0]);
+  }
+  return getSongTaxonomyForSide(song, "A");
+}
+
 function songHasDescriptor(song, descriptorKey) {
   if (!song || !descriptorKey) return false;
   return getAllSongDescriptors(song).some(d => String(d).toLowerCase() === String(descriptorKey).toLowerCase());
@@ -3891,22 +4960,46 @@ function songHasGenre(song, genreKey) {
 function songSideHasAnyVisibleGenre(song, side) {
   const sideGenres = getSongGenresForSide(song, side);
   const list = [sideGenres.primarygenre, ...(sideGenres.subgenres || [])].filter(Boolean);
+  if (showAllExcludingSelectedGenres) {
+    const selectedGenres = getSelectedGenreKeys();
+    if (selectedGenres.length === 0) return true;
+    const selectedGenreSet = new Set(selectedGenres);
+    return !list.some(g => selectedGenreSet.has(g));
+  }
   if (list.length === 0) return false;
   return list.some(g => genreVisibility[g]);
 }
 
 function songSideHasAnyVisibleDescriptor(song, side) {
   const descriptors = getSongDescriptorsForSide(song, side);
+  if (showAllExcludingSelectedDescriptors) {
+    const selectedDescriptors = getSelectedDescriptorKeys();
+    if (selectedDescriptors.length === 0) return true;
+    const selectedDescriptorSet = new Set(selectedDescriptors);
+    return !(descriptors || []).some(d => selectedDescriptorSet.has(d));
+  }
   if (!descriptors || descriptors.length === 0) return false;
   return descriptors.some(d => descriptorVisibility[d]);
 }
 
+function songSideHasVisibleTaxonomy(song, side) {
+  const taxKey = getSongTaxonomyForSide(song, side);
+  return !!taxKey && taxonomyVisibility[taxKey] !== false;
+}
+
 function isGenreFilterActive() {
-  return !Object.values(genreVisibility).every(v => v);
+  return (showAllExcludingSelectedGenres && getSelectedGenreKeys().length > 0) || !Object.values(genreVisibility).every(v => v);
 }
 
 function isDescriptorFilterActive() {
   const values = Object.values(descriptorVisibility);
+  const anyVisible = values.some(v => v);
+  const allVisible = values.every(v => v);
+  return (showAllExcludingSelectedDescriptors && getSelectedDescriptorKeys().length > 0) || (anyVisible && !allVisible);
+}
+
+function isTaxonomyFilterActive() {
+  const values = Object.values(taxonomyVisibility);
   const anyVisible = values.some(v => v);
   const allVisible = values.every(v => v);
   return anyVisible && !allVisible;
@@ -3914,16 +5007,21 @@ function isDescriptorFilterActive() {
 
 function getVisibleSidesForSong(song) {
   const hasB = !!song?.tracks?.[1]?.youtubeId;
+  const taxonomyFilterActive = isTaxonomyFilterActive();
   const genreFilterActive = isGenreFilterActive();
   const descriptorFilterActive = isDescriptorFilterActive();
   const ratingFilterActive = ratingMinFilter > 0.5 || ratingMaxFilter < 5;
+  const sideContentOk = (side) => {
+    const taxonomyOk = !taxonomyFilterActive || songSideHasVisibleTaxonomy(song, side);
+    const genreOk = !genreFilterActive || songSideHasAnyVisibleGenre(song, side);
+    const descriptorOk = !descriptorFilterActive || songSideHasAnyVisibleDescriptor(song, side);
+    return taxonomyOk && genreOk && descriptorOk;
+  };
   
   if (!hasB) {
-    if (!genreFilterActive && !descriptorFilterActive && !ratingFilterActive) return ["A"];
+    if (!taxonomyFilterActive && !genreFilterActive && !descriptorFilterActive && !ratingFilterActive) return ["A"];
 
-    const aContentOk = (!genreFilterActive && !descriptorFilterActive)
-      ? true
-      : (genreFilterActive && songSideHasAnyVisibleGenre(song, "A")) || (descriptorFilterActive && songSideHasAnyVisibleDescriptor(song, "A"));
+    const aContentOk = sideContentOk("A");
 
     let aRatingOk = true;
     if (ratingFilterActive) {
@@ -3935,15 +5033,11 @@ function getVisibleSidesForSong(song) {
     return (aContentOk && aRatingOk) ? ["A"] : [];
   }
 
-  if (!genreFilterActive && !descriptorFilterActive && !ratingFilterActive) return ["A", "B"];
+  if (!taxonomyFilterActive && !genreFilterActive && !descriptorFilterActive && !ratingFilterActive) return ["A", "B"];
 
   // If genre/descriptor filters are inactive, both sides are "content-visible" by default.
-  const aContentOk = (!genreFilterActive && !descriptorFilterActive)
-    ? true
-    : (genreFilterActive && songSideHasAnyVisibleGenre(song, "A")) || (descriptorFilterActive && songSideHasAnyVisibleDescriptor(song, "A"));
-  const bContentOk = (!genreFilterActive && !descriptorFilterActive)
-    ? true
-    : (genreFilterActive && songSideHasAnyVisibleGenre(song, "B")) || (descriptorFilterActive && songSideHasAnyVisibleDescriptor(song, "B"));
+  const aContentOk = sideContentOk("A");
+  const bContentOk = sideContentOk("B");
 
   let aRatingOk = true;
   let bRatingOk = true;
@@ -3998,6 +5092,20 @@ function getSongSidesContainingDescriptor(song, descriptorKey) {
       .filter(Boolean)
       .map(v => String(v).toLowerCase());
     if (list.includes(key)) sides.push(side);
+  });
+
+  return sides;
+}
+
+function getSongSidesContainingTaxonomy(song, taxonomyKey) {
+  const key = String(taxonomyKey || "").trim().toLowerCase();
+  if (!key) return [];
+
+  const hasB = !!song?.tracks?.[1]?.youtubeId;
+  const sides = [];
+  (hasB ? ["A", "B"] : ["A"]).forEach((side) => {
+    const taxKey = getSongTaxonomyForSide(song, side);
+    if (String(taxKey || "").toLowerCase() === key) sides.push(side);
   });
 
   return sides;
@@ -4139,6 +5247,89 @@ function getSongRatingVotesForSide(song, side = "A") {
   return ratings?.primary?.votes || 0;
 }
 
+function normalizeYouTubeId(value) {
+  return String(value || "").trim();
+}
+
+function findChartTrackByYouTubeId(youtubeId) {
+  const targetId = normalizeYouTubeId(youtubeId);
+  if (!targetId) return null;
+
+  for (const song of songs) {
+    const tracks = Array.isArray(song?.tracks) ? song.tracks : [];
+    for (let i = 0; i < tracks.length; i += 1) {
+      if (normalizeYouTubeId(tracks[i]?.youtubeId) === targetId) {
+        return {
+          song,
+          side: i === 1 ? "B" : "A",
+          track: tracks[i]
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+function getOriginalVersionForSong(song, side = "A") {
+  if (!song) return null;
+  const normalizedSide = String(side || "A").toUpperCase() === "B" ? "B" : "A";
+
+  const coverCandidate = normalizedSide === "B"
+    ? {
+        type: "cover",
+        title: song.covertitleB,
+        youtubeId: song.coveryoutubeidB,
+        artist: song.coverartistB,
+        country: song.covercountryB
+      }
+    : {
+        type: "cover",
+        title: song.covertitle,
+        youtubeId: song.coveryoutubeid,
+        artist: song.coverartist,
+        country: song.covercountry
+      };
+
+  const candidates = [
+    coverCandidate,
+    {
+      type: "remix",
+      title: song.remixtitle,
+      youtubeId: song.remixyoutubeid,
+      artist: song.remixartist,
+      country: song.remixcountry
+    }
+  ];
+
+  for (const candidate of candidates) {
+    const youtubeId = normalizeYouTubeId(candidate.youtubeId);
+    if (!youtubeId) continue;
+
+    const match = findChartTrackByYouTubeId(youtubeId);
+    const matchedArtists = match ? getArtistsForSide(match.song, match.side) : [];
+    const matchedArtistText = matchedArtists.map(d => d.artist).filter(Boolean).join(getSongArtistSeparator(match?.song));
+    const matchedCountryText = matchedArtists.map(d => d.country).filter(Boolean)[0] || "";
+    const title = match?.track?.title || String(candidate.title || "").trim() || "";
+    const artist = matchedArtistText || String(candidate.artist || "").trim();
+
+    if (!title && !artist && !match) continue;
+
+    return {
+      ...candidate,
+      title: title || "Original version",
+      youtubeId,
+      artist,
+      country: matchedCountryText || String(candidate.country || "").trim(),
+      sourceSong: match?.song || null,
+      sourceSide: match?.side || "A",
+      sourceTrack: match?.track || null
+    };
+  }
+
+  return null;
+}
+
 function isAlternativeVersionSong(song) {
   const artists = Array.isArray(song?.artists) ? song.artists : [];
   const trackA = song?.tracks?.[0];
@@ -4240,8 +5431,9 @@ function getFilteredHoverArtistsForSong(song) {
 }
 
 function buildTopSongsSectionHtmlForItem(songsList, options = {}) {
-  const topChartSongs = getTopChartingSongs(songsList, 3, options);
-  const topRatedSongs = getTopRatedSongs(songsList, 3, options);
+  const fullLimit = Number.MAX_SAFE_INTEGER;
+  const topChartSongs = getTopChartingSongs(songsList, fullLimit, options);
+  const topRatedSongs = getTopRatedSongs(songsList, fullLimit, options);
   return buildTopSongsSectionHtml(topChartSongs, topRatedSongs, options);
 }
 
@@ -4254,22 +5446,28 @@ function buildTopSongsSectionHtml(topChartSongs, topRatedSongs, options = {}) {
 
   const chartRowsHtml = buildTopSongRowsHtml(topChartSongs, "chart", resolveSides);
   const ratingRowsHtml = buildTopSongRowsHtml(topRatedSongs, "ratings", resolveSides);
+  const chartToggleHtml = topChartSongs.length > 3
+    ? `<button type="button" class="top-songs-show-all" data-top-songs-show-all="chart" style="display:${selectedMode === "chart" ? "" : "none"}" aria-expanded="false">Show all</button>`
+    : "";
+  const ratingsToggleHtml = topRatedSongs.length > 3
+    ? `<button type="button" class="top-songs-show-all" data-top-songs-show-all="ratings" style="display:${selectedMode === "ratings" ? "" : "none"}" aria-expanded="false">Show all</button>`
+    : "";
 
   const chartContentHtml = chartRowsHtml.length
-    ? `<ul class="top-songs-list top-songs-list--chart" style="display:${selectedMode === "chart" ? "" : "none"}">${chartRowsHtml}</ul>`
+    ? `<ol class="top-songs-list top-songs-list--chart" data-top-songs-list="chart" style="display:${selectedMode === "chart" ? "" : "none"}">${chartRowsHtml}</ol>${chartToggleHtml}`
     : `<p class="top-songs-empty top-songs-empty--chart" style="display:${selectedMode === "chart" ? "" : "none"}">No songs found.</p>`;
 
   const ratingsContentHtml = ratingRowsHtml.length
-    ? `<ul class="top-songs-list top-songs-list--ratings" style="display:${selectedMode === "ratings" ? "" : "none"}">${ratingRowsHtml}</ul>`
+    ? `<ol class="top-songs-list top-songs-list--ratings" data-top-songs-list="ratings" style="display:${selectedMode === "ratings" ? "" : "none"}">${ratingRowsHtml}</ol>${ratingsToggleHtml}`
     : `<p class="top-songs-empty top-songs-empty--ratings" style="display:${selectedMode === "ratings" ? "" : "none"}">No rated songs found.</p>`;
 
   return `
     <div class="top-songs-section">
+      ${buildSelectedSectionDividerHtml("Top Songs")}
       <div class="top-songs-section-header">
-        <h2>Top Songs</h2>
         <div class="sort-dropdown top-songs-mode-dropdown" data-sort-dropdown="top-songs">
           <button type="button" class="sort-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-            ${selectedMode === "ratings" ? "Ratings" : "Chart"} <span class="icon">&#x25BE;</span>
+            ${selectedMode === "ratings" ? "Ratings" : "Chart"} ${getDropdownIconHtml()}
           </button>
           <div class="sort-dropdown-menu">
             <div class="sort-dropdown-title">Top Songs</div>
@@ -4288,7 +5486,7 @@ function buildTopSongsSectionHtml(topChartSongs, topRatedSongs, options = {}) {
 
 function buildTopSongRowsHtml(songs, mode, resolveSides) {
   const list = Array.isArray(songs) ? songs : [];
-  return list.map((song) => {
+  return list.map((song, index) => {
     const hasB = !!song?.tracks?.[1]?.youtubeId;
     const titleA = song?.tracks?.[0]?.title || "Untitled";
     const titleB = song?.tracks?.[1]?.title || "";
@@ -4304,7 +5502,7 @@ function buildTopSongRowsHtml(songs, mode, resolveSides) {
       const peak = song?.peakPos ?? "";
       const weeksAt1 = getWeeksAtNumberOneProxy(song);
       const metaParts = [`#${rank}`, `${year}`];
-      if (Number.isFinite(Number(peak))) metaParts.push(`Peak #${peak}`);
+      if (Number.isFinite(Number(peak)) && Number(peak) > 1) metaParts.push(`Peak #${peak}`);
       if (weeksAt1 > 0) metaParts.push(`${weeksAt1}w at #1`);
       metaText = metaParts.join("  •  ");
     } else {
@@ -4316,7 +5514,7 @@ function buildTopSongRowsHtml(songs, mode, resolveSides) {
         ? getSongRatingVotesForSide(song, topSongsSideOverride)
         : getSongRatingVotesForSong(song, relevantSides);
       metaText = score !== null
-        ? `${score.toFixed(2)}/5 from ${votes} rating${votes === 1 ? "" : "s"}`
+        ? `${score.toFixed(2)} / ${votes} rating${votes === 1 ? "" : "s"}`
         : "No rating data";
     }
 
@@ -4376,14 +5574,17 @@ function buildTopSongRowsHtml(songs, mode, resolveSides) {
     })();
 
     return `
-      <li class="top-song-row">
-        <div class="top-song-main">
-          <div class="top-song-title">
-            ${titleButtonsHtml}
+      <li class="top-song-row${index >= 3 ? " top-song-row--extra" : ""}">
+        <div class="top-song-row-content">
+          <span class="top-song-rank" aria-hidden="true">${index + 1}.</span>
+          <div class="top-song-main">
+            <div class="top-song-title">
+              ${titleButtonsHtml}
+            </div>
+            ${artistRowHtml}
+            <span class="top-song-meta">${metaText}</span>
           </div>
-          ${artistRowHtml}
         </div>
-        <span class="top-song-meta">${metaText}</span>
       </li>
     `;
   }).join("");
@@ -4403,7 +5604,7 @@ function bindTopSongsModeDropdown(containerSelector = "#info-cell") {
         return d3.select(this).attr("data-top-songs-mode") === mode;
       });
 
-      trigger.html(`${mode === "ratings" ? "Ratings" : "Chart"} <span class="icon">&#x25BE;</span>`);
+      trigger.html(`${mode === "ratings" ? "Ratings" : "Chart"} ${getDropdownIconHtml()}`);
       dropdown.attr("data-top-songs-mode", mode);
 
       const parent = dropdown.node().closest(".top-songs-section");
@@ -4413,9 +5614,11 @@ function bindTopSongsModeDropdown(containerSelector = "#info-cell") {
       section.selectAll(".top-songs-list").style("display", "none");
       section.selectAll(".top-songs-disclaimer").style("display", "none");
       section.selectAll(".top-songs-empty").style("display", "none");
+      section.selectAll(".top-songs-show-all").style("display", "none");
 
       section.select(`.top-songs-list--${mode}`).style("display", null);
       section.select(`.top-songs-disclaimer--${mode}`).style("display", null);
+      section.select(`[data-top-songs-show-all="${mode}"]`).style("display", null);
       if (mode === "ratings") {
         const ratingList = section.select(".top-songs-list--ratings");
         if (ratingList.empty() || !ratingList.html().trim()) {
@@ -4451,6 +5654,26 @@ function bindTopSongsModeDropdown(containerSelector = "#info-cell") {
 
     setMode(topSongsMode);
   });
+
+  root.selectAll(".top-songs-show-all").on("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const button = d3.select(this);
+    const mode = button.attr("data-top-songs-show-all");
+    const sectionNode = this.closest(".top-songs-section");
+    if (!mode || !sectionNode) return;
+
+    const section = d3.select(sectionNode);
+    const list = section.select(`[data-top-songs-list="${mode}"]`);
+    if (list.empty()) return;
+
+    const nextExpanded = !list.classed("is-expanded");
+    list.classed("is-expanded", nextExpanded);
+    button
+      .attr("aria-expanded", nextExpanded ? "true" : "false")
+      .text(nextExpanded ? "Show less" : "Show all");
+  });
 }
 
 function resolveSongIndexByYearRank(chartYear, rank) {
@@ -4464,11 +5687,10 @@ function resolveSongIndexByYearRank(chartYear, rank) {
 
   // If the current chart is filtered (year/rank), clear filters so the requested song is present.
   // This avoids "wrong song" behavior caused by stale indices when the table is rebuilt.
-  const hadYearFilter = selectedYear !== null;
-  const hadRankFilter = selectedRank !== null;
+  const hadYearFilter = hasAnySelectedValue(selectedYear);
+  const hadRankFilter = hasAnySelectedValue(selectedRank);
   if (hadYearFilter || hadRankFilter) {
-    selectedYear = null;
-    selectedRank = null;
+    clearChartNumberFilters();
     buildTable();
     idx = currentSongList.findIndex(matcher);
   }
@@ -4483,13 +5705,26 @@ function bindTopSongButtons(containerSelector = "#info-cell") {
     const songIndex = resolveSongIndexByYearRank(year, rank);
     if (!Number.isFinite(songIndex) || songIndex < 0) return;
     showSongModal(songIndex, side, false, true, true);
+    if (isMobileOverlayMode()) {
+      openSelectedSongContextCell();
+      if (typeof window.__goaScrollContextPanelToTop === "function") {
+        window.__goaScrollContextPanelToTop("#song-modal-cell");
+      }
+    }
   });
 }
 
-function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
-  closeSongAccordion();
-  if (forceOpen) accordionState.selected = true;
-    currentPanel = { type: "taxonomy", key: taxKey };
+function buildSelectedSectionDividerHtml(label) {
+  return `
+    <div class="selected-section-divider" aria-hidden="true">
+      <span>${label}</span>
+    </div>
+  `;
+}
+
+function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) { 
+  if (forceOpen) accordionState.categories = true; 
+    currentPanel = { type: "taxonomy", key: taxKey }; 
 
     const info = taxonomy[taxKey];
     if (!info) return;
@@ -4513,8 +5748,8 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
         }).join("")
       : "";
 
-    const relatedSectionHtml = relatedHtml ? `<h2>Key Genres:</h2><br><ul>${relatedHtml}</ul>` : "";
-    const taxonomyCountTotal = songs.filter(s => s.genretaxonomy === taxKey).length;
+    const relatedSectionHtml = relatedHtml ? `${buildSelectedSectionDividerHtml("Key Genres")}<ul>${relatedHtml}</ul>` : "";
+    const taxonomyCountTotal = songs.filter(s => getAllSongTaxonomies(s).includes(taxKey)).length;
     const taxonomyCountVisible = visibleSongCountsCache.taxonomy[taxKey] || 0;
 
     const headerMetaHtml = `
@@ -4527,8 +5762,10 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
 
     const taxonomyOnlySelected = isOnlyVisibleSelected(taxonomyVisibility, taxKey);
     const taxonomyOnlyLabel = taxonomyOnlySelected ? "Show all" : "Show only";
-    const taxonomySongs = songs.filter(s => s && s.genretaxonomy === taxKey);
-    const topTaxSongsSectionHtml = buildTopSongsSectionHtmlForItem(taxonomySongs);
+    const taxonomySongs = songs.filter(s => s && getAllSongTaxonomies(s).includes(taxKey));
+    const topTaxSongsSectionHtml = buildTopSongsSectionHtmlForItem(taxonomySongs, {
+      resolveSides: (song) => getSongSidesContainingTaxonomy(song, taxKey)
+    });
 
     const infoBodyHtml = `
       <button type="button" class="selected-only-toggle" data-only-type="taxonomy" data-taxonomy="${taxKey}">${taxonomyOnlyLabel}</button>
@@ -4537,30 +5774,27 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       ${topTaxSongsSectionHtml}
     `;
 
-    renderAccordionCell("#info-cell", {
-      key: "selected",
-      title: "",
+    panelSelectedState.categories = {
       headerMetaHtml,
       bodyHtml: infoBodyHtml,
       headerBorderColor: info.color
-    });
+    };
 
-    if (resetScroll) scrollLeftPanelToTop();
-    
-
-    
-    bindGenreClicks();
-
-    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
-
-    bindTopSongButtons("#info-cell");
-    bindTopSongsModeDropdown("#info-cell");
+    if (forceOpen) {
+      setActiveContextPanel("categories");
+      renderCategoriesPanel();
+      if (resetScroll) {
+        queueContextPanelScrollToTop("#categories-cell");
+      }
+    } else {
+      refreshRenderedContextPanels({ preserveScroll: true });
+    }
   }
 
   // Genre side panel 
 
   function showGenrePanel(genreKey, resetScroll = true, forceOpen = true) {
-    if (forceOpen) accordionState.selected = true;
+    if (forceOpen) accordionState.genres = true;
 
     // resolve case sensitivity if needed/ consistency with them all and json
     let resolvedKey = genreKey;
@@ -4594,20 +5828,20 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       ${topGenreSongsSectionHtml}
       `;
 
-      renderAccordionCell("#info-cell", {
-        key: "selected",
-        title: "",
+      panelSelectedState.genres = {
         headerMetaHtml,
         bodyHtml: infoBodyHtml
-      });
+      };
 
-      if (resetScroll) scrollLeftPanelToTop();
-      bindGenreClicks();
-
-      d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
-
-      bindTopSongButtons("#info-cell");
-      bindTopSongsModeDropdown("#info-cell");
+      if (forceOpen) {
+        setActiveContextPanel("genres");
+        renderGenreListCell();
+        if (resetScroll) {
+          queueContextPanelScrollToTop("#genres-cell");
+        }
+      } else {
+        refreshRenderedContextPanels({ preserveScroll: true });
+      }
       return;
     }
 
@@ -4626,7 +5860,21 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
         `).join("")
       : "";
 
-    const relatedSectionHtml = relatedHtml ? `<h2>Related genres:</h2><br><ul>${relatedHtml}</ul>` : "";
+    const relatedSectionHtml = relatedHtml ? `${buildSelectedSectionDividerHtml("Related Genres")}<ul>${relatedHtml}</ul>` : "";
+    const externalLinkIconHtml = `
+      <svg class="external-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M7 17 17 7"></path>
+        <path d="M9 7h8v8"></path>
+      </svg>
+    `;
+    const buildLearnMoreLinkHtml = (href, label) => href
+      ? `<li><a class="external-link" href="${href}" target="_blank" rel="noopener noreferrer"><span>${label}</span>${externalLinkIconHtml}</a></li>`
+      : "";
+    const learnMoreLinks = [
+      buildLearnMoreLinkHtml(g.link, "Rate Your Music"),
+      buildLearnMoreLinkHtml(g.wikipedia, "Wikipedia")
+    ].filter(Boolean).join("");
+    const learnMoreSectionHtml = learnMoreLinks ? `${buildSelectedSectionDividerHtml("Learn More")}<ul>${learnMoreLinks}</ul>` : "";
 
     const headerMetaHtml = `
       <div class="selected-main-row selected-main-row--summary">
@@ -4642,37 +5890,35 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
 
       </div>
       <p>${g.description || ""}</p>
-      ${g.link ? `<p><a href="${g.link}" target="_blank" rel="noopener noreferrer">Learn more🡥</a></p>` : ""}
       ${relatedSectionHtml ? `<br>${relatedSectionHtml}` : ""}
+      ${learnMoreSectionHtml ? `<br>${learnMoreSectionHtml}` : ""}
       ${buildTopSongsSectionHtmlForItem(
         songs.filter(s => songHasGenre(s, resolvedKey)),
         { resolveSides: (song) => getSongSidesContainingGenre(song, resolvedKey) }
       )}
     `;
 
-    renderAccordionCell("#info-cell", {
-      key: "selected",
-      title: "",
+    panelSelectedState.genres = {
       headerMetaHtml,
       bodyHtml: infoBodyHtml,
       headerBorderColor: taxInfo?.color || ""
-    });
+    };
 
-    if (resetScroll) scrollLeftPanelToTop();
-    
-    
-    bindGenreClicks();
-
-    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
-
-    bindTopSongButtons("#info-cell");
-    bindTopSongsModeDropdown("#info-cell");
+    if (forceOpen) {
+      setActiveContextPanel("genres");
+      renderGenreListCell();
+      if (resetScroll) {
+        queueContextPanelScrollToTop("#genres-cell");
+      }
+    } else {
+      refreshRenderedContextPanels({ preserveScroll: true });
+    }
   }
 
 
 
   function showDescriptorPanel(descriptorKey, resetScroll = true, forceOpen = true) {
-    if (forceOpen) accordionState.selected = true;
+    if (forceOpen) accordionState.descriptors = true;
 
     let resolvedKey = descriptorKey;
     if (!descriptors[descriptorKey]) {
@@ -4709,27 +5955,26 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       ${topDescriptorSongsSectionHtml}
     `;
 
-    renderAccordionCell("#info-cell", {
-      key: "selected",
-      title: "",
+    panelSelectedState.descriptors = {
       headerMetaHtml,
       bodyHtml: infoBodyHtml
-    });
+    };
 
-    if (resetScroll) scrollLeftPanelToTop();
-    bindGenreClicks();
-
-    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
-
-    bindTopSongButtons("#info-cell");
-    bindTopSongsModeDropdown("#info-cell");
+    if (forceOpen) {
+      setActiveContextPanel("descriptors");
+      renderDescriptorsListCell();
+      if (resetScroll) {
+        queueContextPanelScrollToTop("#descriptors-cell");
+      }
+    } else {
+      refreshRenderedContextPanels({ preserveScroll: true });
+    }
   }
 
-  function showCountryPanel(countryCode, resetScroll = true, forceOpen = true) {
-    closeSongAccordion();
-    if (forceOpen) accordionState.selected = true;
-    const code = String(countryCode || "").trim();
-    if (!code) return;
+  function showCountryPanel(countryCode, resetScroll = true, forceOpen = true) { 
+    if (forceOpen) accordionState.countries = true; 
+    const code = String(countryCode || "").trim(); 
+    if (!code) return; 
 
     currentPanel = { type: "country", key: code };
 
@@ -4770,28 +6015,26 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       })}
     `;
 
-    renderAccordionCell("#info-cell", {
-      key: "selected",
-      title: "",
+    panelSelectedState.countries = {
       headerMetaHtml,
       bodyHtml: infoBodyHtml
-    });
+    };
 
-    if (resetScroll) scrollLeftPanelToTop();
-
-    bindGenreClicks();
-
-    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
-
-    bindTopSongButtons("#info-cell");
-    bindTopSongsModeDropdown("#info-cell");
+    if (forceOpen) {
+      setActiveContextPanel("countries");
+      renderCountriesPanel();
+      if (resetScroll) {
+        queueContextPanelScrollToTop("#countries-cell");
+      }
+    } else {
+      refreshRenderedContextPanels({ preserveScroll: true });
+    }
   }
 
-  function showArtistPanel(artistName, resetScroll = true, forceOpen = true) {
-    closeSongAccordion();
-    if (forceOpen) accordionState.selected = true;
-    const name = String(artistName || "").trim();
-    if (!name) return;
+  function showArtistPanel(artistName, resetScroll = true, forceOpen = true) { 
+    if (forceOpen) accordionState.artists = true; 
+    const name = String(artistName || "").trim(); 
+    if (!name) return; 
 
     currentPanel = { type: "artist", key: name };
 
@@ -4828,21 +6071,20 @@ function showTaxonomyPanel(taxKey, resetScroll = true, forceOpen = true) {
       })}
     `;
 
-    renderAccordionCell("#info-cell", {
-      key: "selected",
-      title: "",
+    panelSelectedState.artists = {
       headerMetaHtml,
       bodyHtml: infoBodyHtml
-    });
+    };
 
-    if (resetScroll) scrollLeftPanelToTop();
-
-    bindGenreClicks();
-
-    d3.select("#info-cell").selectAll(".selected-only-toggle").on("click", handleSelectedOnlyToggleButtonClick);
-
-    bindTopSongButtons("#info-cell");
-    bindTopSongsModeDropdown("#info-cell");
+    if (forceOpen) {
+      setActiveContextPanel("artists");
+      renderArtistsPanel();
+      if (resetScroll) {
+        queueContextPanelScrollToTop("#artists-cell");
+      }
+    } else {
+      refreshRenderedContextPanels({ preserveScroll: true });
+    }
   }
 
   });
@@ -4860,6 +6102,9 @@ function setMenuOpen(nextOpen, { resetScroll = true } = {}) {
 
   if (nextOpen) {
     menuOverlay.style.display = 'flex';
+    if (typeof window.__goaUpdateContextColumn === "function") {
+      window.__goaUpdateContextColumn();
+    }
 
     if (resetScroll) {
       const panel = document.querySelector(".menu-overlay-panel");
@@ -4867,7 +6112,6 @@ function setMenuOpen(nextOpen, { resetScroll = true } = {}) {
       const contextScroller = document.querySelector(".menu-overlay-panel .context-column");
       if (contextScroller) contextScroller.scrollTop = 0;
     }
-
     menuBtn.classList.add('open');
     menuBtn.setAttribute('aria-label', 'Close menu');
     document.body.classList.add('no-scroll');
@@ -4894,41 +6138,41 @@ menuOverlay.addEventListener('click', function(e) {
   if (e.target === menuOverlay) setMenuOpen(false);
 });
 
-    // Reset scroll when clicking a selected genre inside overlay
+    // Reset scroll when clicking a selected item inside the mobile overlay.
     overlayPanel.addEventListener('click', function(e) {
-      // target a selected genre button
-      if (e.target.matches('.clickable-genre, .clickable-descriptor, .clickable-taxonomy, .clickable-country, .clickable-artist')) {
-        overlayPanel.scrollTop = 0; // reset scroll
-        const contextScroller = document.querySelector(".menu-overlay-panel .context-column");
-        if (contextScroller) contextScroller.scrollTop = 0;
+      const selectedItem = e.target.closest('.clickable-genre, .clickable-descriptor, .clickable-taxonomy, .clickable-country, .clickable-artist');
+      if (!selectedItem || !overlayPanel.contains(selectedItem)) return;
+
+      if (typeof window.__goaScrollContextPanelToTop === "function") {
+        window.__goaScrollContextPanelToTop();
       }
     });
 
 });
 
-  const contextColumn = document.querySelector(".context-column");
+const contextColumn = document.querySelector(".context-column");
+const contextNav = document.querySelector(".context-nav");
+const contextPanels = document.querySelector(".context-panels");
+const headerContent = document.querySelector(".header-content");
 const overlayPanel = document.querySelector(".menu-overlay-panel");
 const mainContainer = document.querySelector(".main-container");
-const songCount = document.getElementById("song-count");
-const songCountChartHost = document.getElementById("song-count-host");
-const songCountOverlayHost = document.getElementById("song-count-overlay-host");
 
 function moveContextColumn() {
   const isMobile = window.innerWidth <= 1100;
   if (isMobile) {
+    if (contextNav && headerContent && contextNav.parentElement !== headerContent) {
+      headerContent.appendChild(contextNav);
+    }
     if (!overlayPanel.contains(contextColumn)) {
       overlayPanel.appendChild(contextColumn);
     }
   } else {
+    if (contextNav && contextPanels && contextNav.parentElement !== contextColumn) {
+      contextColumn.insertBefore(contextNav, contextPanels);
+    }
     if (!mainContainer.contains(contextColumn)) {
       mainContainer.insertBefore(contextColumn, mainContainer.firstChild);
     }
-  }
-
-  // On mobile, keep the "Showing X songs" control inside the overlay, not in the chart header row.
-  if (songCount && songCountChartHost && songCountOverlayHost) {
-    const targetHost = isMobile ? songCountOverlayHost : songCountChartHost;
-    if (!targetHost.contains(songCount)) targetHost.appendChild(songCount);
   }
 
   // Ensure the overlay can't remain open when switching back to desktop layout.
@@ -4939,4 +6183,321 @@ function moveContextColumn() {
 
 window.addEventListener("resize", moveContextColumn);
 window.addEventListener("DOMContentLoaded", moveContextColumn);
+})();
+
+// VS Code-style overlay scrollbars for the app's custom scroll surfaces.
+(function() {
+const SCROLL_TARGET_SELECTOR = [
+  ".chart-grid-scroller",
+  ".context-column",
+  ".context-panels",
+  ".context-panels .accordion-body",
+  "#song-modal-cell .song-body-content",
+  ".menu-overlay",
+  ".menu-overlay-panel",
+  ".menu-overlay-panel .context-column"
+].join(",");
+
+const MIN_THUMB_SIZE = 28;
+const BAR_SIZE = 10;
+const instances = new Map();
+let resizeObserver = null;
+let scanQueued = false;
+let updateQueued = false;
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function createScrollbar(axis) {
+  const bar = document.createElement("div");
+  bar.className = `goa-overlay-scrollbar goa-overlay-scrollbar--${axis}`;
+  bar.setAttribute("aria-hidden", "true");
+
+  const thumb = document.createElement("div");
+  thumb.className = "goa-overlay-scrollbar__thumb";
+  bar.appendChild(thumb);
+  document.body.appendChild(bar);
+
+  return { bar, thumb };
+}
+
+function createInstance(target) {
+  const vertical = createScrollbar("vertical");
+  const horizontal = createScrollbar("horizontal");
+  const instance = {
+    target,
+    vertical,
+    horizontal,
+    hideTimer: null,
+    isPointerInside: false,
+    isDragging: false
+  };
+
+  target.addEventListener("scroll", () => {
+    showInstance(instance);
+    queueUpdate();
+  }, { passive: true });
+
+  target.addEventListener("pointerenter", () => {
+    instance.isPointerInside = true;
+    showInstance(instance);
+  });
+
+  target.addEventListener("pointerleave", () => {
+    instance.isPointerInside = false;
+    scheduleHide(instance);
+  });
+
+  [vertical.bar, horizontal.bar].forEach((bar) => {
+    bar.addEventListener("pointerenter", () => {
+      instance.isPointerInside = true;
+      showInstance(instance);
+    });
+    bar.addEventListener("pointerleave", () => {
+      instance.isPointerInside = false;
+      scheduleHide(instance);
+    });
+  });
+
+  bindDrag(instance, "vertical");
+  bindDrag(instance, "horizontal");
+
+  if (resizeObserver) resizeObserver.observe(target);
+  instances.set(target, instance);
+  updateInstance(instance);
+}
+
+function removeInstance(target, instance) {
+  if (resizeObserver) resizeObserver.unobserve(target);
+  instance.vertical.bar.remove();
+  instance.horizontal.bar.remove();
+  instances.delete(target);
+}
+
+function bindDrag(instance, axis) {
+  const scrollbar = instance[axis];
+  const isVertical = axis === "vertical";
+
+  scrollbar.bar.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") return;
+    if (event.target !== scrollbar.bar) return;
+
+    const target = instance.target;
+    const barRect = scrollbar.bar.getBoundingClientRect();
+    const pointer = isVertical ? event.clientY - barRect.top : event.clientX - barRect.left;
+    const scrollSize = isVertical ? target.scrollHeight : target.scrollWidth;
+    const clientSize = isVertical ? target.clientHeight : target.clientWidth;
+    const trackSize = isVertical ? scrollbar.bar.offsetHeight : scrollbar.bar.offsetWidth;
+    const thumbSize = isVertical ? scrollbar.thumb.offsetHeight : scrollbar.thumb.offsetWidth;
+    const maxScroll = Math.max(1, scrollSize - clientSize);
+    const maxThumbTravel = Math.max(1, trackSize - thumbSize);
+    const nextScroll = ((pointer - (thumbSize / 2)) / maxThumbTravel) * maxScroll;
+
+    event.preventDefault();
+    showInstance(instance);
+    if (isVertical) {
+      target.scrollTop = nextScroll;
+    } else {
+      target.scrollLeft = nextScroll;
+    }
+    queueUpdate();
+  });
+
+  scrollbar.thumb.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const target = instance.target;
+    const startPointer = isVertical ? event.clientY : event.clientX;
+    const startScroll = isVertical ? target.scrollTop : target.scrollLeft;
+    const scrollSize = isVertical ? target.scrollHeight : target.scrollWidth;
+    const clientSize = isVertical ? target.clientHeight : target.clientWidth;
+    const trackSize = isVertical ? scrollbar.bar.offsetHeight : scrollbar.bar.offsetWidth;
+    const thumbSize = isVertical ? scrollbar.thumb.offsetHeight : scrollbar.thumb.offsetWidth;
+    const maxScroll = Math.max(1, scrollSize - clientSize);
+    const maxThumbTravel = Math.max(1, trackSize - thumbSize);
+    const scrollPerPixel = maxScroll / maxThumbTravel;
+
+    instance.isDragging = true;
+    showInstance(instance);
+    scrollbar.bar.classList.add("is-dragging");
+    scrollbar.thumb.setPointerCapture?.(event.pointerId);
+
+    function onPointerMove(moveEvent) {
+      moveEvent.preventDefault();
+      const pointer = isVertical ? moveEvent.clientY : moveEvent.clientX;
+      const nextScroll = startScroll + ((pointer - startPointer) * scrollPerPixel);
+      if (isVertical) {
+        target.scrollTop = nextScroll;
+      } else {
+        target.scrollLeft = nextScroll;
+      }
+      queueUpdate();
+    }
+
+    function onPointerUp(upEvent) {
+      instance.isDragging = false;
+      scrollbar.bar.classList.remove("is-dragging");
+      scrollbar.thumb.releasePointerCapture?.(upEvent.pointerId);
+      document.removeEventListener("pointermove", onPointerMove);
+      document.removeEventListener("pointerup", onPointerUp);
+      scheduleHide(instance);
+    }
+
+    document.addEventListener("pointermove", onPointerMove);
+    document.addEventListener("pointerup", onPointerUp, { once: true });
+  });
+}
+
+function showInstance(instance) {
+  clearTimeout(instance.hideTimer);
+  updateInstance(instance);
+  instance.vertical.bar.classList.add("is-visible");
+  instance.horizontal.bar.classList.add("is-visible");
+  scheduleHide(instance);
+}
+
+function scheduleHide(instance) {
+  clearTimeout(instance.hideTimer);
+  if (instance.isDragging || instance.isPointerInside) return;
+
+  instance.hideTimer = setTimeout(() => {
+    instance.vertical.bar.classList.remove("is-visible");
+    instance.horizontal.bar.classList.remove("is-visible");
+  }, 850);
+}
+
+function isUsableTarget(target) {
+  if (!document.body.contains(target)) return false;
+  const rect = target.getBoundingClientRect();
+  if (rect.width < 1 || rect.height < 1) return false;
+  const style = window.getComputedStyle(target);
+  return style.display !== "none" && style.visibility !== "hidden";
+}
+
+function updateInstance(instance) {
+  const target = instance.target;
+  const rect = target.getBoundingClientRect();
+  const hasVertical = target.scrollHeight > target.clientHeight + 1;
+  const hasHorizontal = target.scrollWidth > target.clientWidth + 1;
+  const canRender = isUsableTarget(target);
+
+  updateAxis(instance, "vertical", rect, hasVertical && canRender, hasHorizontal);
+  updateAxis(instance, "horizontal", rect, hasHorizontal && canRender, hasVertical);
+}
+
+function updateAxis(instance, axis, rect, shouldShow, hasOtherAxis) {
+  const target = instance.target;
+  const scrollbar = instance[axis];
+  const isVertical = axis === "vertical";
+
+  if (!shouldShow) {
+    scrollbar.bar.style.display = "none";
+    scrollbar.bar.classList.remove("is-visible", "is-dragging");
+    return;
+  }
+
+  const trackLength = Math.max(0, (isVertical ? rect.height : rect.width) - (hasOtherAxis ? BAR_SIZE : 0));
+  const clientSize = isVertical ? target.clientHeight : target.clientWidth;
+  const scrollSize = isVertical ? target.scrollHeight : target.scrollWidth;
+  const scrollPosition = isVertical ? target.scrollTop : target.scrollLeft;
+  const maxScroll = Math.max(1, scrollSize - clientSize);
+  const thumbLength = clamp((clientSize / scrollSize) * trackLength, MIN_THUMB_SIZE, trackLength);
+  const thumbOffset = ((trackLength - thumbLength) * scrollPosition) / maxScroll;
+
+  scrollbar.bar.style.display = "block";
+
+  if (isVertical) {
+    scrollbar.bar.style.left = `${Math.round(rect.right - BAR_SIZE)}px`;
+    scrollbar.bar.style.top = `${Math.round(rect.top)}px`;
+    scrollbar.bar.style.width = `${BAR_SIZE}px`;
+    scrollbar.bar.style.height = `${Math.round(trackLength)}px`;
+    scrollbar.thumb.style.left = "";
+    scrollbar.thumb.style.top = `${thumbOffset}px`;
+    scrollbar.thumb.style.width = "";
+    scrollbar.thumb.style.height = `${thumbLength}px`;
+  } else {
+    scrollbar.bar.style.left = `${Math.round(rect.left)}px`;
+    scrollbar.bar.style.top = `${Math.round(rect.bottom - BAR_SIZE)}px`;
+    scrollbar.bar.style.width = `${Math.round(trackLength)}px`;
+    scrollbar.bar.style.height = `${BAR_SIZE}px`;
+    scrollbar.thumb.style.left = `${thumbOffset}px`;
+    scrollbar.thumb.style.top = "";
+    scrollbar.thumb.style.width = `${thumbLength}px`;
+    scrollbar.thumb.style.height = "";
+  }
+}
+
+function queueUpdate() {
+  if (updateQueued) return;
+  updateQueued = true;
+  requestAnimationFrame(() => {
+    updateQueued = false;
+    instances.forEach((instance, target) => {
+      if (!document.body.contains(target)) {
+        removeInstance(target, instance);
+      } else {
+        updateInstance(instance);
+      }
+    });
+  });
+}
+
+function queueScan() {
+  if (scanQueued) return;
+  scanQueued = true;
+  requestAnimationFrame(() => {
+    scanQueued = false;
+    scanTargets();
+  });
+}
+
+function scanTargets() {
+  document.querySelectorAll(SCROLL_TARGET_SELECTOR).forEach((target) => {
+    if (!instances.has(target)) createInstance(target);
+  });
+
+  instances.forEach((instance, target) => {
+    if (!document.body.contains(target) || !target.matches(SCROLL_TARGET_SELECTOR)) {
+      removeInstance(target, instance);
+    }
+  });
+
+  queueUpdate();
+}
+
+function initOverlayScrollbars() {
+  if (resizeObserver === null && "ResizeObserver" in window) {
+    resizeObserver = new ResizeObserver(queueUpdate);
+  }
+
+  scanTargets();
+
+  const mutationObserver = new MutationObserver((mutations) => {
+    const shouldScan = mutations.some((mutation) => {
+      const target = mutation.target;
+      return target instanceof Element && !target.closest(".goa-overlay-scrollbar");
+    });
+    if (shouldScan) queueScan();
+  });
+  mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class", "style"]
+  });
+
+  window.addEventListener("resize", () => {
+    queueScan();
+    queueUpdate();
+  });
+  window.addEventListener("scroll", queueUpdate, { passive: true });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initOverlayScrollbars);
+} else {
+  initOverlayScrollbars();
+}
 })();
