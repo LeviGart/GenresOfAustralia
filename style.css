@@ -3127,6 +3127,7 @@ body.is-resizing-side-panel {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     width: 100vw;
+    max-width: none;
     min-width: 0;
     height: auto;
     position: fixed;
@@ -3141,6 +3142,7 @@ body.is-resizing-side-panel {
     margin: 0;
     padding: 0 var(--page-side-padding) 10px;
     box-sizing: border-box;
+    justify-items: stretch;
   }
 
   body:not(.no-scroll) .header-content > .context-nav {
@@ -3148,6 +3150,9 @@ body.is-resizing-side-panel {
   }
 
   .header-content > .context-nav .context-nav-button {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
     min-height: 64px;
     padding: 8px 4px;
     gap: 5px;
