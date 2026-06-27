@@ -8,25 +8,15 @@
   <title>Genres of Australia</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="app.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.typekit.net/jrx8vqr.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"/>
   <link rel="stylesheet" href="reset.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="site-bg" aria-hidden="true">
-    <div class="squares">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
   </div>
   <div class="page-wrapper">
     <header class="main-header">
@@ -36,37 +26,31 @@
           <span class="menu-icon-bar"></span>
           <span class="menu-icon-bar"></span>
         </button>
-        <img src="genresofaustralialogo2026.svg" alt="Genres of Australia" class="logo-image" />
+        <img src="SVG/GenresLogo.svg" alt="Genres of Australia" class="logo-image" />
         <div class="menu-overlay" id="menu-overlay" style="display:none">
           <div class="menu-overlay-panel">
-            <div class="overlay-topbar" aria-label="Overlay song count">
-              <div class="overlay-song-count" id="song-count-overlay-host" aria-label="Showing songs"></div>
-              <button id="toggle-all-global-overlay">Hide all</button>
-            </div>
-
           </div>
         </div>
+        <div class="header-credit">Created by <a href="https://levigartner.myportfolio.com/" target="_blank" rel="noopener noreferrer">Levi Gartner</a></div>
       </div>
     </header>
-    <div class="header-divider"></div>
-
     <div class="main-container">
       <div class="chart-area">
         <div class="chart-wrapper">
           <div class="chart-container">
             <div class="sort-controls">
+              <div class="context-cell" id="selected-song-bar" style="display:none;"></div>
               <div class="chart-controls-row">
-                <div id="chart-sort-control-host"><div id="chart-sort-control"></div></div>
-                <span id="chart-transport-host"><span id="chart-transport">
-                  <button id="prev-first" title="Previous song" aria-label="Previous song"><span class="play-icon"></span></button>
-                  <button id="play-first" title="Play video" aria-label="Play video"><span class="play-icon"></span></button>
-                  <button id="next-first" title="Next song" aria-label="Next song"><span class="play-icon"></span></button>
-                </span></span>
-                <span id="song-info">
-                  <button id="toggle-all-global">Hide all</button>
-                  <span id="song-count-host"><span id="song-count"></span></span>
-                </span>
+                <div class="chart-controls-right">
+                  <span id="song-info">
+                    <button id="toggle-all-global">Hide all</button>
+                    <span id="song-count-host"><span id="song-count"></span></span>
+                  </span>
+                  <div id="chart-sort-control-host"><div id="chart-sort-control"></div></div>
+                </div>
               </div>
+            </div>
+            <div class="chart-grid-scroller">
               <div id="chart-rank-header" class="chart-rank-header" aria-label="Chart rank headers"></div>
             </div>
           </div>
@@ -74,20 +58,56 @@
       </div>
 
       <div class="context-column">
-        <div class="context-cell" id="song-modal-cell" style="display:none;"></div>
-        <div class="context-cell" id="info-cell"></div>
-        <div class="context-cell" id="categories-cell"></div>
-        <div class="context-cell" id="genres-cell"></div>
-        <div class="context-cell" id="descriptors-cell"></div>
-        <div class="context-cell" id="countries-cell"></div>
-        <div class="context-cell" id="artists-cell"></div>
-        <div class="context-cell" id="ratings-cell"></div>
-        <div class="context-cell" id="about-cell"></div>
-        <div class="context-credit">Created by <a href="https://levigartner.myportfolio.com/" target="_blank" rel="noopener noreferrer">Levi Gartner</a></div>
+        <nav class="context-nav" aria-label="Side panel navigation">
+          <button type="button" class="context-nav-button" data-panel="song">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--song" aria-hidden="true"></span>
+            <span>Song</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="categories">
+            <span class="context-nav-icon context-nav-icon--stack" aria-hidden="true">
+              <img src="SVG/Categories.svg" alt="" class="context-nav-icon-image" />
+              <span class="context-nav-icon-border context-nav-icon-border--categories"></span>
+            </span>
+            <span>Categories</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="genres">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--genres" aria-hidden="true"></span>
+            <span>Genres</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="descriptors">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--descriptors" aria-hidden="true"></span>
+            <span>Descriptors</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="countries">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--countries" aria-hidden="true"></span>
+            <span>Countries</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="artists">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--artists" aria-hidden="true"></span>
+            <span>Artists</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="ratings">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--ratings" aria-hidden="true"></span>
+            <span>Ratings</span>
+          </button>
+          <button type="button" class="context-nav-button" data-panel="about">
+            <span class="context-nav-icon context-nav-icon--mask context-nav-icon--about" aria-hidden="true"></span>
+            <span>About</span>
+          </button>
+        </nav>
+        <div class="context-panels" aria-label="Side panel content">
+          <div class="context-cell" id="song-modal-cell" style="display:none;"></div>
+          <div class="context-cell" id="categories-cell"></div>
+          <div class="context-cell" id="genres-cell"></div>
+          <div class="context-cell" id="descriptors-cell"></div>
+          <div class="context-cell" id="countries-cell"></div>
+          <div class="context-cell" id="artists-cell"></div>
+          <div class="context-cell" id="ratings-cell"></div>
+          <div class="context-cell" id="about-cell"></div>
+        </div>
       </div>
     </div>
   </div>
 
 </body>
 </html>
-
