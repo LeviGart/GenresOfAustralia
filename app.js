@@ -6156,9 +6156,106 @@ const contextPanels = document.querySelector(".context-panels");
 const headerContent = document.querySelector(".header-content");
 const overlayPanel = document.querySelector(".menu-overlay-panel");
 const mainContainer = document.querySelector(".main-container");
+const chartArea = document.querySelector(".chart-area");
+const panelResizer = document.querySelector(".panel-resizer");
+let minSidePanelWidth = null;
+const minChartWidth = 520;
+
+function isDesktopSidePanelLayout() {
+  return window.innerWidth > 1100;
+}
+
+function getPanelResizerWidth() {
+  return panelResizer ? panelResizer.getBoundingClientRect().width : 0;
+}
+
+function ensureMinSidePanelWidth() {
+  if (!contextColumn || !isDesktopSidePanelLayout()) return 0;
+  if (minSidePanelWidth === null) {
+    minSidePanelWidth = Math.round(contextColumn.getBoundingClientRect().width);
+  }
+  return minSidePanelWidth || 0;
+}
+
+function getMaxSidePanelWidth() {
+  if (!mainContainer) return ensureMinSidePanelWidth();
+  const availableWidth = mainContainer.getBoundingClientRect().width - getPanelResizerWidth();
+  const maxFromChart = Math.max(ensureMinSidePanelWidth(), availableWidth - minChartWidth);
+  return Math.min(4000, maxFromChart);
+}
+
+function setSidePanelWidth(width) {
+  if (!contextColumn || !chartArea || !isDesktopSidePanelLayout()) return;
+  const minWidth = ensureMinSidePanelWidth();
+  const maxWidth = getMaxSidePanelWidth();
+  const nextWidth = Math.round(Math.min(Math.max(width, minWidth), maxWidth));
+  contextColumn.style.flex = `0 0 ${nextWidth}px`;
+  contextColumn.style.width = `${nextWidth}px`;
+  chartArea.style.flex = "1 1 auto";
+  chartArea.style.width = "";
+  panelResizer?.setAttribute("aria-valuemin", String(minWidth));
+  panelResizer?.setAttribute("aria-valuemax", String(maxWidth));
+  panelResizer?.setAttribute("aria-valuenow", String(nextWidth));
+}
+
+function resetDesktopResizeStylesForMobile() {
+  if (isDesktopSidePanelLayout()) return;
+  if (contextColumn) {
+    contextColumn.style.flex = "";
+    contextColumn.style.width = "";
+  }
+  if (chartArea) {
+    chartArea.style.flex = "";
+    chartArea.style.width = "";
+  }
+}
+
+function initPanelResizer() {
+  if (!panelResizer || !contextColumn || !chartArea || !mainContainer) return;
+
+  panelResizer.addEventListener("pointerdown", (event) => {
+    if (!isDesktopSidePanelLayout()) return;
+    event.preventDefault();
+    ensureMinSidePanelWidth();
+
+    const pointerId = event.pointerId;
+    const startX = event.clientX;
+    const startWidth = contextColumn.getBoundingClientRect().width;
+    panelResizer.setPointerCapture?.(pointerId);
+    document.body.classList.add("is-resizing-side-panel");
+
+    const onPointerMove = (moveEvent) => {
+      const deltaX = moveEvent.clientX - startX;
+      setSidePanelWidth(startWidth + deltaX);
+    };
+
+    const stopDrag = (upEvent) => {
+      panelResizer.removeEventListener("pointermove", onPointerMove);
+      panelResizer.removeEventListener("pointerup", stopDrag);
+      panelResizer.removeEventListener("pointercancel", stopDrag);
+      panelResizer.releasePointerCapture?.(upEvent.pointerId);
+      document.body.classList.remove("is-resizing-side-panel");
+      window.dispatchEvent(new Event("resize"));
+    };
+
+    panelResizer.addEventListener("pointermove", onPointerMove);
+    panelResizer.addEventListener("pointerup", stopDrag);
+    panelResizer.addEventListener("pointercancel", stopDrag);
+  });
+
+  panelResizer.addEventListener("keydown", (event) => {
+    if (!isDesktopSidePanelLayout()) return;
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const currentWidth = contextColumn.getBoundingClientRect().width;
+    const step = event.shiftKey ? 40 : 16;
+    setSidePanelWidth(currentWidth + (event.key === "ArrowRight" ? step : -step));
+    window.dispatchEvent(new Event("resize"));
+  });
+}
 
 function moveContextColumn() {
-  const isMobile = window.innerWidth <= 1100;
+  const isMobile = !isDesktopSidePanelLayout();
   if (isMobile) {
     if (contextNav && headerContent && contextNav.parentElement !== headerContent) {
       headerContent.appendChild(contextNav);
@@ -6179,10 +6276,16 @@ function moveContextColumn() {
   if (!isMobile && typeof window.__goaSetMenuOpen === "function") {
     window.__goaSetMenuOpen(false, { resetScroll: false });
   }
+
+  resetDesktopResizeStylesForMobile();
+  if (!isMobile && contextColumn?.style.width) {
+    setSidePanelWidth(parseFloat(contextColumn.style.width));
+  }
 }
 
 window.addEventListener("resize", moveContextColumn);
 window.addEventListener("DOMContentLoaded", moveContextColumn);
+initPanelResizer();
 })();
 
 // VS Code-style overlay scrollbars for the app's custom scroll surfaces.
